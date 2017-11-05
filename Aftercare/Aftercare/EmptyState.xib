@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="EmptyStateView" customModule="Aftercare" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="toothIcon" translatesAutoresizingMaskIntoConstraints="NO" id="6So-LS-ypy">
+                    <rect key="frame" x="150" y="305.5" width="75" height="76"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sz8-Iy-Rb2">
+                    <rect key="frame" x="16" y="389.5" width="343" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="bND-33-Wbs"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="sz8-Iy-Rb2" firstAttribute="top" secondItem="6So-LS-ypy" secondAttribute="bottom" constant="8" id="5aG-Yk-U3I"/>
+                <constraint firstItem="6So-LS-ypy" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="5ck-6f-eVC"/>
+                <constraint firstItem="sz8-Iy-Rb2" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="CXr-xp-O9q"/>
+                <constraint firstItem="6So-LS-ypy" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="bBW-IW-dQD"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="sz8-Iy-Rb2" secondAttribute="trailing" constant="16" id="nXe-Ex-tkB"/>
+                <constraint firstItem="sz8-Iy-Rb2" firstAttribute="centerX" secondItem="6So-LS-ypy" secondAttribute="centerX" id="zzK-G3-5rd"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="titleLabel" destination="sz8-Iy-Rb2" id="daW-5m-FR7"/>
+            </connections>
+            <point key="canvasLocation" x="33.5" y="53.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="toothIcon" width="75" height="76"/>
+    </resources>
+</document>

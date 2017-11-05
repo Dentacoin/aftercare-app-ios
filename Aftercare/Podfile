@@ -1,0 +1,42 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '10.0'
+# Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+use_frameworks!
+
+target 'Aftercare' do
+  # Pods for Dentacare
+  
+  pod 'Alamofire', '~> 4.5'
+  pod 'CodableAlamofire'
+  pod 'AlamofireImage', '~> 3.3'
+  
+  #Simplify Facebook SignIn
+  pod 'FacebookCore'
+  pod 'Firebase/Messaging'
+  pod 'FacebookLogin'
+  pod 'FacebookShare', :git => 'https://github.com/1amageek/facebook-sdk-swift'
+  
+  #Simplify Twitter SignIn
+  pod 'TwitterKit'
+  #Simplify Google SignIn trough Firebase
+  pod 'Firebase/Auth'
+  pod 'GoogleSignIn'
+  
+  #Persistence helper
+  pod 'Disk', '~> 0.3.1'
+  
+  #Use google auto complete view controller for choosing valid country/city
+  pod 'GooglePlaces'
+  pod 'GooglePlacePicker'
+  
+  #Tutorials
+  pod 'EasyTipView'
+  
+  #QRCode
+  pod 'QRCodeReader.swift', '~> 8.0.3'
+  
+  #Fabric/Crashlytics
+  pod 'Fabric'
+  pod 'Crashlytics'
+  
+end

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InitialPageHeaderView" customModule="Aftercare" customModuleProvider="target">
+            <connections>
+                <outlet property="headerContentTopPadding" destination="Wh5-rs-5yM" id="DyU-hB-HJg"/>
+                <outlet property="mainMenuButton" destination="hRo-Lr-zL5" id="9ii-s7-jZA"/>
+                <outlet property="titleLabel" destination="qRe-Rb-qG1" id="xG7-AH-14c"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradientBlueBG" translatesAutoresizingMaskIntoConstraints="NO" id="079-Yn-juf">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hRo-Lr-zL5">
+                    <rect key="frame" x="15" y="15" width="25" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="25" id="B8W-0W-icM"/>
+                        <constraint firstAttribute="width" secondItem="hRo-Lr-zL5" secondAttribute="height" multiplier="1:1" id="dck-8K-7rb"/>
+                    </constraints>
+                    <state key="normal" title="==">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="mainMenuButtonPressed:" destination="-1" eventType="touchUpInside" id="YJB-fE-V2q"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qRe-Rb-qG1">
+                    <rect key="frame" x="40" y="15" width="295" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="qRe-Rb-qG1" secondAttribute="trailing" constant="40" id="0ox-ve-MtV"/>
+                <constraint firstItem="079-Yn-juf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="46h-Io-MpH"/>
+                <constraint firstAttribute="trailing" secondItem="079-Yn-juf" secondAttribute="trailing" id="9Xj-AZ-dSP"/>
+                <constraint firstItem="qRe-Rb-qG1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="40" id="Dsi-i9-fdN"/>
+                <constraint firstAttribute="bottom" secondItem="079-Yn-juf" secondAttribute="bottom" id="MQX-dY-zAo"/>
+                <constraint firstItem="qRe-Rb-qG1" firstAttribute="top" secondItem="hRo-Lr-zL5" secondAttribute="top" id="Tx4-NW-LlI"/>
+                <constraint firstItem="hRo-Lr-zL5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="Wh5-rs-5yM"/>
+                <constraint firstItem="079-Yn-juf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Xlc-pt-C4h"/>
+                <constraint firstItem="hRo-Lr-zL5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="n3T-Sa-GH6"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="33.5" y="55"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="gradientBlueBG" width="375" height="667"/>
+    </resources>
+</document>

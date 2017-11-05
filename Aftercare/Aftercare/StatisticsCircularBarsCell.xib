@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StatisticsCircularBarsCell" id="Ckd-4s-fgX" customClass="StatisticsCircularBarsCell" customModule="Aftercare" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="166"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ckd-4s-fgX" id="mCF-aB-iwb">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="165.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="wyy-tp-A1m">
+                        <rect key="frame" x="45.5" y="8" width="284.5" height="149.5"/>
+                        <subviews>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yp4-DU-2V0" customClass="SmallCircularBar" customModule="Aftercare" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="73.5" height="110"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="yp4-DU-2V0" secondAttribute="height" multiplier="2:3" id="eP0-bO-UVG"/>
+                                    <constraint firstAttribute="height" constant="110" id="pSR-EC-4rx"/>
+                                </constraints>
+                            </view>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oMF-ci-zHx" customClass="SmallCircularBar" customModule="Aftercare" customModuleProvider="target">
+                                <rect key="frame" x="105.5" y="20" width="73.5" height="110"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="110" id="Dzx-Jr-ku4"/>
+                                    <constraint firstAttribute="width" secondItem="oMF-ci-zHx" secondAttribute="height" multiplier="2:3" id="TUB-bO-q8T"/>
+                                </constraints>
+                            </view>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fgA-zi-fJ1" customClass="SmallCircularBar" customModule="Aftercare" customModuleProvider="target">
+                                <rect key="frame" x="211" y="20" width="73.5" height="110"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="110" id="9gM-BE-VsR"/>
+                                    <constraint firstAttribute="width" secondItem="fgA-zi-fJ1" secondAttribute="height" multiplier="2:3" id="Eod-I0-FeP"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="wyy-tp-A1m" firstAttribute="top" secondItem="mCF-aB-iwb" secondAttribute="top" constant="8" id="N2z-fY-Wy7"/>
+                    <constraint firstItem="wyy-tp-A1m" firstAttribute="centerX" secondItem="mCF-aB-iwb" secondAttribute="centerX" id="fEB-tr-lby"/>
+                    <constraint firstAttribute="bottom" secondItem="wyy-tp-A1m" secondAttribute="bottom" constant="8" id="op2-9U-jjy"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="actionsTakenBar" destination="yp4-DU-2V0" id="xxW-9V-OqG"/>
+                <outlet property="averageTimeBar" destination="fgA-zi-fJ1" id="7ws-rM-Xpi"/>
+                <outlet property="timeLeftBar" destination="oMF-ci-zHx" id="fx6-fR-HxW"/>
+            </connections>
+            <point key="canvasLocation" x="30.5" y="115"/>
+        </tableViewCell>
+    </objects>
+</document>

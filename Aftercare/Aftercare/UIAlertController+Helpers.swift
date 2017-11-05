@@ -1,0 +1,136 @@
+//
+//  UIAlertController+Helpers.swift
+//  Throwing Fruit
+//
+//  Created by Dimitar Grudev on 1/26/17.
+//  Copyright © 2017 Dimitar Grudev. All rights reserved.
+//
+
+import UIKit
+
+typealias AlertDismissHandler = () -> ()
+
+extension UIAlertController {
+    
+    static func show(message: String) {
+        let controller = alertController(title: nil, message: message, buttonTitle: NSLocalizedString("Ok", comment: ""), handler: nil)
+        controller.show()
+    }
+    
+    static func show(controllerWithTitle title: String, message: String) {
+        let controller = alertController(title: title, message: message, buttonTitle: NSLocalizedString("Ok", comment: ""), handler: nil)
+        controller.show()
+    }
+    
+    static func show(controllerWithTitle title: String, message: String, buttonTitle: String) {
+        let controller = alertController(title: title, message: message, buttonTitle: buttonTitle, handler: nil)
+        controller.show()
+    }
+    
+    static func show(controllerWithTitle title: String, message: String, cancelTitle: String) {
+        let controller = alertController(title: title, message: message, cancelTitle: cancelTitle, buttonTitle: NSLocalizedString("Ok", comment: ""), nil, nil)
+        controller.show()
+    }
+    
+    @discardableResult static func alertController(
+        title: String?,
+        message: String,
+        buttonTitle: String,
+        handler: AlertDismissHandler? = nil
+        ) -> UIAlertController {
+        
+        let controller = UIAlertController(title: title,
+                                           message: message,
+                                           preferredStyle: .alert)
+        
+        let actionHandler: ((UIAlertAction) -> Void) = { (action) in
+            handler?()
+        }
+        
+        let action = UIAlertAction(title: buttonTitle,
+                                   style: .default,
+                                   handler: actionHandler)
+        
+        controller.addAction(action)
+        
+        return controller
+    }
+    
+    @discardableResult static func alertController(title: String?,
+                                message: String,
+                                cancelTitle: String,
+                                buttonTitle: String,
+        _ handler: AlertDismissHandler? = nil,
+        _ cancelHandler: AlertDismissHandler? = nil) -> UIAlertController {
+        
+        let controller = UIAlertController(title: title,
+                                           message: message,
+                                           preferredStyle: .alert)
+        
+        let cancelHandler: ((UIAlertAction) -> Void) = { (action) in
+            cancelHandler?()
+        }
+        
+        let actionCancel = UIAlertAction(title: cancelTitle,
+                                         style: .default,
+                                         handler: cancelHandler)
+        
+        let actionHandler: ((UIAlertAction) -> Void) = { (action) in
+            handler?()
+        }
+        
+        let action = UIAlertAction(title: buttonTitle,
+                                   style: .default,
+                                   handler: actionHandler)
+        
+        controller.addAction(actionCancel)
+        controller.addAction(action)
+        
+        return controller
+    }
+    
+}
+
+///
+
+import ObjectiveC
+
+private var alertWindowAssociationKey: UInt8 = 0
+
+extension UIAlertController {
+    
+    var alertWindow: UIWindow? {
+        get {
+            return objc_getAssociatedObject(self, &alertWindowAssociationKey) as? UIWindow
+        }
+        set(newValue) {
+            objc_setAssociatedObject(self, &alertWindowAssociationKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
+    
+    @objc public func show() {
+        show(true)
+    }
+    
+    @objc public func show(_ animated: Bool) {
+        show(animated, completion: nil)
+    }
+    
+    @objc public func show(_ animated: Bool, completion: (() -> Void)? = nil) {
+        self.alertWindow = UIWindow(frame: UIScreen.main.bounds)
+        self.alertWindow?.rootViewController = UIViewController()
+        self.alertWindow?.windowLevel = UIWindowLevelAlert + 1
+        self.alertWindow?.makeKeyAndVisible()
+        self.alertWindow?.rootViewController?.present(self,
+                                                      animated: animated,
+                                                      completion: completion)
+    }
+    
+    override open func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        self.alertWindow?.isHidden = true
+        self.alertWindow = nil
+    }
+    
+}

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsClearButtonTableCell" rowHeight="91" id="IDd-Gg-Q0U" customClass="SettingsClearButtonTableCell" customModule="Aftercare" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="443" height="94"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IDd-Gg-Q0U" id="e9C-p2-Qw6">
+                <rect key="frame" x="0.0" y="0.0" width="443" height="93.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1hv-q9-ZpC">
+                        <rect key="frame" x="16" y="36" width="309" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="daK-8X-UH7">
+                        <rect key="frame" x="333" y="29" width="80" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="bmA-dZ-Ahf"/>
+                        </constraints>
+                        <state key="normal" title="Clear">
+                            <color key="titleColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="daK-8X-UH7" firstAttribute="centerY" secondItem="e9C-p2-Qw6" secondAttribute="centerY" id="RbA-jJ-SI7"/>
+                    <constraint firstItem="daK-8X-UH7" firstAttribute="leading" secondItem="1hv-q9-ZpC" secondAttribute="trailing" constant="8" id="Rxw-2V-HHC"/>
+                    <constraint firstItem="1hv-q9-ZpC" firstAttribute="centerY" secondItem="e9C-p2-Qw6" secondAttribute="centerY" id="Zev-mF-NJz"/>
+                    <constraint firstAttribute="trailing" secondItem="daK-8X-UH7" secondAttribute="trailing" constant="30" id="bQN-Vo-U1t"/>
+                    <constraint firstItem="1hv-q9-ZpC" firstAttribute="leading" secondItem="e9C-p2-Qw6" secondAttribute="leading" constant="16" id="qQT-l7-SeM"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="cellButton" destination="daK-8X-UH7" id="ZmF-9w-AY1"/>
+                <outlet property="cellLabel" destination="1hv-q9-ZpC" id="3mG-NL-hGM"/>
+            </connections>
+            <point key="canvasLocation" x="27.5" y="49"/>
+        </tableViewCell>
+    </objects>
+</document>
