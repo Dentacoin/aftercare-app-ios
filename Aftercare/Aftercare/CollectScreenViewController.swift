@@ -337,7 +337,7 @@ extension CollectScreenViewController {
             return
         }
         
-        if monthsSinceUserRegistration >= 3 && totalDCN > 1000 {
+        if monthsSinceUserRegistration >= 3 && totalDCN >= 1000 {
             let vcID = String(describing: CollectSecondScreenViewController.self)
             contentDelegate?.requestLoadViewController(vcID, ["userWallet" : wallet])
         } else {
