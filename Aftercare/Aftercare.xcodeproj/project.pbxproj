@@ -13,7 +13,6 @@
 		24657E881F13EA390057B846 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24657E871F13EA390057B846 /* AppDelegate.swift */; };
 		24657E8D1F13EA390057B846 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24657E8B1F13EA390057B846 /* Main.storyboard */; };
 		24657E921F13EA390057B846 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24657E901F13EA390057B846 /* LaunchScreen.storyboard */; };
-		248AC47A1F1FAC69002960A1 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248AC4791F1FAC69002960A1 /* Globals.swift */; };
 		249A97061F389432003ABB8D /* WelcomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249A97051F389432003ABB8D /* WelcomeScreenViewController.swift */; };
 		249A97081F38949B003ABB8D /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249A97071F38949B003ABB8D /* SplashScreenViewController.swift */; };
 		249A970A1F38951D003ABB8D /* LoginScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249A97091F38951D003ABB8D /* LoginScreenViewController.swift */; };
@@ -190,7 +189,6 @@
 		24657E8C1F13EA390057B846 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		24657E911F13EA390057B846 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		24657E931F13EA390057B846 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		248AC4791F1FAC69002960A1 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		249A97051F389432003ABB8D /* WelcomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeScreenViewController.swift; sourceTree = "<group>"; };
 		249A97071F38949B003ABB8D /* SplashScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
 		249A97091F38951D003ABB8D /* LoginScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginScreenViewController.swift; sourceTree = "<group>"; };
@@ -655,7 +653,6 @@
 		24FE8CD41F30CD2200AD582C /* Globals */ = {
 			isa = PBXGroup;
 			children = (
-				248AC4791F1FAC69002960A1 /* Globals.swift */,
 				24B7D0931F3205A200797685 /* Theme.swift */,
 				9F28A3A61F56E1E50002FF53 /* UserDataContainer.swift */,
 				9F28A3A81F57DD1D0002FF53 /* SystemMethods.swift */,
@@ -1343,7 +1340,6 @@
 				9FF0AEA51F593AA30056846B /* DecodeOperation.swift in Sources */,
 				9F1712A71F4C53D900FB263B /* LoginScreenPresenter.swift in Sources */,
 				9F1262431F5D4EFC004498FC /* MainMenuViewController.swift in Sources */,
-				248AC47A1F1FAC69002960A1 /* Globals.swift in Sources */,
 				9FE9936D1F86CD350007D759 /* OralHealthTableCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
