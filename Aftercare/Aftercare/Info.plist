@@ -138,8 +138,8 @@
 		<string>GOOGLE_PLACES_API_KEY</string>
 		<key>EnvironmentAPIURL</key>
 		<string>ENVIRONMENT_API_URL</string>
-        <key>EnvironmentAPIProtocol</key>
-        <string>ENVIRONMENT_API_PROTOCOL</string>
+		<key>EnvironmentAPIProtocol</key>
+		<string>ENVIRONMENT_API_PROTOCOL</string>
 	</dict>
 </dict>
 </plist>

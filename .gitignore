@@ -22,6 +22,8 @@ environment_preprocess.h
 pre_action.log
 Aftercare/config/environments/
 
+## Custom Header Macro
+Aftercare/config/fileheaders/macros/
 
 ## Other
 *.xccheckout

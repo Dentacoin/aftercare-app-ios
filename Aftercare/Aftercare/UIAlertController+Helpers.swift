@@ -3,7 +3,7 @@
 //  Throwing Fruit
 //
 //  Created by Dimitar Grudev on 1/26/17.
-//  Copyright © 2017 Dimitar Grudev. All rights reserved.
+//  Copyright © 2017 Stichting Administratiekantoor Dentacoin. All rights reserved.
 //
 
 import UIKit
