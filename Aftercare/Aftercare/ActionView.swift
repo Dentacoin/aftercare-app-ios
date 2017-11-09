@@ -12,6 +12,349 @@ import EasyTipView
 
 class ActionView: UIView {
     
+    //IBOutlets
+    @IBOutlet weak var totalBar: TotalDCNBar!
+    @IBOutlet weak var timerContainer: UIView!
+    @IBOutlet weak var actionBarsContainer: ActionBarsView!
+    @IBOutlet weak var actionFootherContainer: ActionFooterView!
+    @IBOutlet weak var edgeGesture: UIScreenEdgePanGestureRecognizer!
+    
+    //MARK: - delegates
+    
+    weak var delegate: ActionViewDelegate?
+    
+    //MARK: - Fileprivates
+    
+    internal var actionViewRecordType: ActionRecordType?
+    
+    fileprivate var statisticsPanelOpened: Bool = false {
+        didSet {
+            edgeGesture.isEnabled = !statisticsPanelOpened
+        }
+    }
+    
+    fileprivate let statisticsView: StatisticsView = {
+        let statistics: StatisticsView = Bundle.main.loadNibNamed(
+            String(describing: StatisticsView.self),
+            owner: self,
+            options: nil
+            )?.first as! StatisticsView
+        return statistics
+    }()
+    
+    fileprivate var statisticsOpenedFrame: CGRect = CGRect.zero
+    fileprivate var statisticsClosedFrame: CGRect = CGRect.zero
+    
+    //this value is for bottom safe area inset on iPhoneX. It's difficult to get those insets from the parent from this view
+    //and for sake of simplicity i hardcode this in order to settings view hide fully after closed. This value doesn't change
+    //the animation and expected functionality on other types of iphones and iOS versions
+    fileprivate var bottomInset: CGFloat = 37
+    
+    //MARK: - Lifecycle
+    
+    convenience init(frame: CGRect, _ actionType: ActionRecordType) {
+        self.init(frame: frame)
+    }
+    
+    convenience init?(coder aDecoder: NSCoder, _ actionType: ActionRecordType) {
+        self.init(coder: aDecoder)
+    }
+    
+    deinit {
+        //remove observers
+        let notifications = NotificationCenter.default
+        notifications.removeObserver(self)
+    }
+    
+    override func didMoveToSuperview() {
+        super.didMoveToSuperview()
+        setup()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+//        if !tutorialsAlreadySetup {
+//            tutorialsAlreadySetup = true
+//            setupTutorials()
+//        }
+        calculateStatisticsViewFrames()
+    }
+    
+    //MARK: internal logic
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        //if statistics screen is opened
+        if statisticsPanelOpened == true {
+            //get the first touch
+            if let touch = touches.first {
+                //get the touch location
+                let location = touch.location(in: self)
+                //and get the statistics screen bounds
+                let frame = statisticsView.frame
+                //check whether the touch is inside the statistics screen or outside of it
+                if !frame.contains(location) {
+                    //if the touch is outside, close the statistics screen
+                    closeStatisticsScreen()
+                }
+            }
+        }
+    }
+    
+    fileprivate func setup() {
+        
+        totalBar.delegate = self
+        actionFootherContainer.delegate = self
+        
+        //setup statistics menu
+        statisticsView.delegate = self
+        self.addSubview(statisticsView)
+        statisticsView.layoutIfNeeded()
+        
+        //register to notifications
+        let notifications = NotificationCenter.default
+        
+        notifications.addObserver(
+            self,
+            selector: Selector.closeStatisticsSelector,
+            name: Notification.Name.CloseStatisticsNotification,
+            object: nil
+        )
+        
+        notifications.addObserver(
+            self,
+            selector: Selector.openStatisticsSelector,
+            name: Notification.Name.OpenStatisticsNotification,
+            object: nil
+        )
+        
+        self.clipsToBounds = false
+    }
+    
+    fileprivate func calculateStatisticsViewFrames() {
+        let containerHeight = self.frame.size.height
+        let containerWidth = self.frame.size.width
+        self.statisticsClosedFrame = CGRect(
+            x: 0,
+            y: containerHeight + bottomInset,
+            width: containerWidth,
+            height: (containerHeight * 0.5) + bottomInset
+        )
+        
+        self.statisticsOpenedFrame = CGRect(
+            x: 0,
+            y: containerHeight * 0.5,
+            width: containerWidth,
+            height: (containerHeight * 0.5) + bottomInset
+        )
+        
+        statisticsView.frame = statisticsClosedFrame
+    }
+    
+    //MARK: - Public Api
+    
+    open func config(type actionType: ActionRecordType) {
+        
+        self.actionViewRecordType = actionType
+        
+        if let type = self.actionViewRecordType {
+            statisticsView.config(type: type)
+        }
+        
+        if let data = UserDataContainer.shared.actionScreenData {
+            self.updateData(data)
+        }
+        
+    }
+    
+    open func closeStatisticsScreen(_ animated: Bool = true) {
+        
+        let endFrame = self.statisticsClosedFrame
+        
+        if animated {
+            UIView.animate(withDuration: 0.3, animations: { [weak self] () -> Void in
+                self?.statisticsView.frame = endFrame
+                }, completion: { [weak self] success in
+                    if success {
+                        self?.statisticsPanelOpened = false
+                        NotificationCenter.default.post(name: NSNotification.Name.CloseStatisticsNotification, object: self)
+                    }
+                }
+            )
+        } else {
+            self.statisticsView.frame = endFrame
+            self.statisticsPanelOpened = false
+        }
+    }
+    
+    open func openStatisticsScreen(_ animated: Bool = true) {
+        
+        let endFrame = self.statisticsOpenedFrame
+        
+        if animated {
+            UIView.animate(withDuration: 0.3, animations: { [weak self] () -> Void in
+                self?.statisticsView.frame = endFrame
+                }, completion: { [weak self] success in
+                    if success {
+                        self?.statisticsPanelOpened = true
+                        NotificationCenter.default.post(name: NSNotification.Name.OpenStatisticsNotification, object: self)
+                    }
+                }
+            )
+        } else {
+            self.statisticsView.frame = endFrame
+            self.statisticsPanelOpened = true
+        }
+        
+    }
+    
+    //MARK: - update data
+    
+    func updateData(_ data: ActionScreenData) {
+        
+        if let total = data.totalDCN {
+            totalBar.setTotalValue(total)
+        }
+        
+        var screenDashboardData: ActionDashboardData?
+        
+        guard let type = self.actionViewRecordType else { return }
+        switch type {
+        case .brush:
+            screenDashboardData = data.brush
+            break
+        case .flossed:
+            screenDashboardData = data.flossed
+            break
+        case .rinsed:
+            screenDashboardData = data.rinsed
+            break
+        }
+        
+        guard let dashboard = screenDashboardData else { return }
+        
+        //calculate last bar value
+        actionBarsContainer.setLastBarValue(dashboard.lastTime)
+        
+        //calculate left actions value
+        actionBarsContainer.setLeftBarValue(dashboard.left, forType: type)
+        
+        //this bar has no value progress indication
+        actionBarsContainer.setEarnedBarValue(dashboard.earned)
+        
+        if let type = self.actionViewRecordType {
+            statisticsView.config(type: type)
+        }
+        
+        self.statisticsView.updateData(data)
+    }
+    
+    //MARK: - @IBAction
+    
+    @IBAction func onSwipeGueastureSettingsScreen(_ sender: UIScreenEdgePanGestureRecognizer) {
+        
+        if sender.state == .began || sender.state == .changed {
+            
+            let containerHalfHeight = frame.size.height * 0.5
+            var location = sender.location(in: self)
+            
+            if location.y < containerHalfHeight {
+                location.y = containerHalfHeight
+            }
+            
+            self.statisticsView.frame = CGRect(
+                x: 0,
+                y: Int(location.y),
+                width: Int(frame.size.width),
+                height: Int(containerHalfHeight)
+            )
+            
+        }
+        
+        if sender.state == .ended || sender.state == .cancelled {
+            
+            let location = sender.location(in: self)
+            let yOffset = frame.size.height - location.y
+            
+            if yOffset > statisticsView.frame.size.height * 0.5 {
+                //show statistics view
+                UIView.animate(withDuration: 0.2, animations: { [weak self] in
+                    if let frame = self?.statisticsOpenedFrame {
+                        self?.statisticsView.frame = frame
+                    }
+                    }, completion: { [weak self] success in
+                        if success {
+                            self?.statisticsPanelOpened = true
+                        }
+                    }
+                )
+            } else {//hide statistics view
+                
+                UIView.animate(withDuration: 0.2, animations: { [weak self] in
+                    if let frame = self?.statisticsClosedFrame {
+                        self?.statisticsView.frame = frame
+                    }
+                    }, completion: { [weak self] success in
+                        if success {
+                            self?.statisticsPanelOpened = false
+                        }
+                    }
+                )
+            }
+            
+        }
+        
+    }
+    
+    //MARK: - KVO Selectors
+    
+    @objc fileprivate func closeStatisticsNotification() {
+        if self.statisticsPanelOpened {
+            self.closeStatisticsScreen(false)
+        }
+    }
+    
+    @objc fileprivate func openStatisticsNotification() {
+        if !self.statisticsPanelOpened {
+            self.openStatisticsScreen(false)
+        }
+    }
+}
+
+//MARK: - ActionFooterViewDelegate
+
+extension ActionView: ActionFooterViewDelegate {
+    func onStatisticsButtonPressed() {
+        //??? if self.timerRunning { return }
+        openStatisticsScreen()
+    }
+    
+    
+    func onActionButtonPressed() {
+        
+    }
+    
+}
+
+//MARK: - TotalDCNBarDelegate
+
+extension ActionView: TotalDCNBarDelegate {
+    func onTotalBarPressed() {
+        //??? if timerRunning { return }
+        delegate?.requestToOpenCollectScreen()
+    }
+}
+
+//MARK: - StatisticsDelegate
+
+extension ActionView: StatisticsDelegate {
+    func closeStatisticsPressed() {
+        closeStatisticsScreen()
+    }
+}
+
+/*
+class ActionView: UIView {
+    
     //MARK: - IBOutlets
     
     @IBOutlet weak var timerBar: CircularBar!
@@ -62,12 +405,6 @@ class ActionView: UIView {
     fileprivate var statisticsOpenedFrame: CGRect = CGRect.zero
     fileprivate var statisticsClosedFrame: CGRect = CGRect.zero
     fileprivate var tutorialsAlreadySetup = false
-    
-    fileprivate var statisticsPanelOpened: Bool = false {
-        didSet {
-            edgeGesture.isEnabled = !statisticsPanelOpened
-        }
-    }
     
     fileprivate let statisticsView: StatisticsView = {
         let statistics: StatisticsView = Bundle.main.loadNibNamed(
@@ -149,67 +486,6 @@ class ActionView: UIView {
             self.updateData(data)
         }
         
-    }
-    
-    open func closeStatisticsScreen(_ animated: Bool = true) {
-        
-        let endFrame = self.statisticsClosedFrame
-        
-        if animated {
-            UIView.animate(withDuration: 0.3, animations: { [weak self] () -> Void in
-                self?.statisticsView.frame = endFrame
-                }, completion: { [weak self] success in
-                    if success {
-                        self?.statisticsPanelOpened = false
-                        self?.delegate?.statisticsScreenClosed(self!)
-                    }
-                }
-            )
-        } else {
-            self.statisticsView.frame = endFrame
-            self.statisticsPanelOpened = false
-        }
-    }
-
-    open func openStatisticsScreen(_ animated: Bool = true) {
-        
-        let endFrame = self.statisticsOpenedFrame
-        
-        if animated {
-            UIView.animate(withDuration: 0.3, animations: { [weak self] () -> Void in
-                self?.statisticsView.frame = endFrame
-                }, completion: { [weak self] success in
-                    if success {
-                        self?.statisticsPanelOpened = true
-                        self?.delegate?.statisticsScreenOpened(self!)
-                    }
-                }
-            )
-        } else {
-            self.statisticsView.frame = endFrame
-            self.statisticsPanelOpened = true
-        }
-        
-    }
-    
-    //MARK: internal logic
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //if statistics screen is opened
-        if statisticsPanelOpened == true {
-            //get the first touch
-            if let touch = touches.first {
-                //get the touch location
-                let location = touch.location(in: self)
-                //and get the statistics screen bounds
-                let frame = statisticsView.frame
-                //check whether the touch is inside the statistics screen or outside of it
-                if !frame.contains(location) {
-                    //if the touch is outside, close the statistics screen
-                    closeStatisticsScreen()
-                }
-            }
-        }
     }
     
     //MARK: - Timer logic
@@ -333,47 +609,6 @@ class ActionView: UIView {
         }
         self.actionButton.isUserInteractionEnabled = true
     }
-    
-    //MARK: - update data
-    
-    func updateData(_ data: ActionScreenData) {
-        
-        if let total = data.totalDCN {
-            self.totalValueLabel.text = String(total) + " DCN"
-        }
-        
-        var screenDashboardData: ActionDashboardData?
-        
-        guard let type = self.actionViewRecordType else { return }
-        switch type {
-            case .brush:
-                screenDashboardData = data.brush
-                break
-            case .flossed:
-                screenDashboardData = data.flossed
-                break
-            case .rinsed:
-                screenDashboardData = data.rinsed
-                break
-        }
-        
-        guard let dashboard = screenDashboardData else { return }
-        
-        //calculate last bar value
-        let lastTimeProgress = UserDataContainer.shared.getActionsLastTimeBarProgress(Double(dashboard.lastTime))
-        let lastTimeLabel = SystemMethods.Utils.secondsToHumanReadableFormat(dashboard.lastTime)
-        self.lastBar.setValue(lastTimeLabel, lastTimeProgress)
-        
-        //calculate left actions value
-        let leftProgress = UserDataContainer.shared.getActionsLeftBarProgress(Double(dashboard.left), forType: type)
-        self.leftBar.setValue(String(dashboard.left), leftProgress)
-        
-        //this bar has no value progress
-        self.earnedBar.setValue(String(dashboard.earned))
-        
-        self.statisticsView.updateData(data)
-    }
-    
 }
 
 //MARK: - Apply theme and appearance
@@ -512,66 +747,6 @@ extension ActionView {
         openStatisticsScreen()
     }
     
-    @IBAction func onSwipeGueastureSettingsScreen(_ sender: UIScreenEdgePanGestureRecognizer) {
-        
-        if sender.state == .began || sender.state == .changed {
-            
-            let containerHalfHeight = frame.size.height * 0.5
-            var location = sender.location(in: self)
-            
-            if location.y < containerHalfHeight {
-                location.y = containerHalfHeight
-            }
-            
-            self.statisticsView.frame = CGRect(
-                x: 0,
-                y: Int(location.y),
-                width: Int(frame.size.width),
-                height: Int(containerHalfHeight)
-            )
-            
-        }
-        
-        if sender.state == .ended || sender.state == .cancelled {
-            
-            let location = sender.location(in: self)
-            let yOffset = frame.size.height - location.y
-            
-            if yOffset > statisticsView.frame.size.height * 0.5 {
-                //show statistics view
-                UIView.animate(withDuration: 0.2, animations: { [weak self] in
-                    if let frame = self?.statisticsOpenedFrame {
-                        self?.statisticsView.frame = frame
-                    }
-                }, completion: { [weak self] success in
-                        if success {
-                            self?.statisticsPanelOpened = true
-                        }
-                    }
-                )
-            } else {//hide statistics view
-                
-                UIView.animate(withDuration: 0.2, animations: { [weak self] in
-                    if let frame = self?.statisticsClosedFrame {
-                        self?.statisticsView.frame = frame
-                    }
-                }, completion: { [weak self] success in
-                        if success {
-                            self?.statisticsPanelOpened = false
-                        }
-                    }
-                )
-            }
-            
-        }
-        
-    }
-    
-    @IBAction func collectScreenButtonPressed(_ sender: UIButton) {
-        if timerRunning { return }
-        delegate?.requestToOpenCollectScreen()
-    }
-    
 }
 
 //MARK: - EasyTipViewDelegate
@@ -585,22 +760,37 @@ extension ActionView: EasyTipViewDelegate {
     
 }
 
-//MARK: - StatisticsDelegate
-
-extension ActionView: StatisticsDelegate {
-    internal func closeStatisticsPressed() {
-        closeStatisticsScreen()
-    }
-}
-
 //MARK: - Selectors
 
 fileprivate extension Selector {
     static let updateTimerSelector = #selector(ActionView.updateTimer)
     static let executeActionSelector = #selector(ActionView.executeAction)
 }
+*/
+
+//MARK: - ActionViewProtocol
+
+protocol ActionViewProtocol {
+    var actionViewRecordType: ActionRecordType { get }
+    func updateData(_ data: ActionScreenData)
+}
+
+//MARK: - Selectors
+
+extension Selector {
+    static let closeStatisticsSelector = #selector(ActionView.closeStatisticsNotification)
+    static let openStatisticsSelector = #selector(ActionView.openStatisticsNotification)
+}
+
+//MARK: - Notifications
+
+extension Notification.Name {
+    static let CloseStatisticsNotification = Notification.Name("CloseStatisticsNotification")
+    static let OpenStatisticsNotification = Notification.Name("OpenStatisticsNotification")
+}
 
 //MARK: - Helpers
+//TODO: - move these Helper extensions to more proper place
 
 extension Date {
     var iso8601: String {
@@ -613,3 +803,4 @@ extension String {
         return DateFormatter.iso8601.date(from: self)   // "Mar 22, 2017, 10:22 AM"
     }
 }
+

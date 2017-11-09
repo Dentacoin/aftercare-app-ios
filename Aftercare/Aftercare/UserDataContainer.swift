@@ -93,6 +93,8 @@ class UserDataContainer {
     
     //MARK: - Public properties
     
+    var isRoutineRequested = false
+    
     var emergencyScreenImage: UIImage? {
         get {
             return self.emergencyScreenshot

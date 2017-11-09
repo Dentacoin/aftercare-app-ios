@@ -11,14 +11,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CircularBar" customModule="Aftercare" customModuleProvider="target">
-            <connections>
-                <outlet property="bar" destination="xOH-dA-MmL" id="FCg-6T-nZW"/>
-                <outlet property="centerLabel" destination="qlD-C2-l2j" id="oP7-9v-R6n"/>
-            </connections>
-        </placeholder>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view opaque="NO" contentMode="scaleToFill" id="iN0-l3-epB">
+        <view opaque="NO" contentMode="scaleToFill" id="iN0-l3-epB" customClass="CircularBar" customModule="Aftercare" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -37,13 +32,17 @@
             </subviews>
             <constraints>
                 <constraint firstItem="qlD-C2-l2j" firstAttribute="centerY" secondItem="xOH-dA-MmL" secondAttribute="centerY" id="5dM-Hm-S1d"/>
-                <constraint firstItem="xOH-dA-MmL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="6YG-wg-2ef"/>
-                <constraint firstItem="xOH-dA-MmL" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="HnJ-ms-fpa"/>
+                <constraint firstItem="xOH-dA-MmL" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Eke-Sp-TlW"/>
+                <constraint firstItem="xOH-dA-MmL" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="HQn-O3-x5x"/>
                 <constraint firstItem="qlD-C2-l2j" firstAttribute="width" secondItem="xOH-dA-MmL" secondAttribute="width" multiplier="0.5" id="bg5-dU-WgE"/>
-                <constraint firstItem="xOH-dA-MmL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ucM-Vw-Cij"/>
+                <constraint firstItem="xOH-dA-MmL" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="hvT-vh-Ubp"/>
                 <constraint firstItem="qlD-C2-l2j" firstAttribute="centerX" secondItem="xOH-dA-MmL" secondAttribute="centerX" id="viR-bG-QJI"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="bar" destination="xOH-dA-MmL" id="Hx2-oK-jyf"/>
+                <outlet property="centerLabel" destination="qlD-C2-l2j" id="0HQ-Tz-onZ"/>
+            </connections>
             <point key="canvasLocation" x="34" y="45"/>
         </view>
     </objects>

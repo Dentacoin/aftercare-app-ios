@@ -25,11 +25,23 @@ class CircularBar: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
+        customizeComponents()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setup()
+    }
+    
+    override func awakeAfter(using aDecoder: NSCoder) -> Any? {
+        if self.subviews.count == 0 {
+            setup()
+        }
+        return self
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        customizeComponents()
     }
     
     fileprivate func setup() {
@@ -38,17 +50,12 @@ class CircularBar: UIView {
         contentView!.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
         addSubview(contentView!)
     }
-    
+
     fileprivate func loadViewFromNib() -> UIView! {
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: String(describing: type(of: self)), bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         return view
-    }
-    
-    override func willMove(toSuperview newSuperview: UIView?) {
-        super.willMove(toSuperview: newSuperview)
-        customizeComponents()
     }
     
 }
@@ -74,9 +81,5 @@ extension CircularBar {
         centerLabel.adjustsFontSizeToFitWidth = true
         
     }
-    
-//    fileprivate func degToRad(angle: Double) -> Double {
-//        return angle / 180 * .pi
-//    }
 
 }

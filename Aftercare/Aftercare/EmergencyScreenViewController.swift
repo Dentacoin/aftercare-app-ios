@@ -64,7 +64,7 @@ class EmergencyScreenViewController: UIViewController, ContentConformer {
     
     //MARK: - Fileprivates
     
-    fileprivate var teeths: [UIButton] = []
+    fileprivate var teeth: [UIButton] = []
     fileprivate var teethsStateKeeper: [Int : UIButton?] = [:]
     fileprivate var calculatedConstraints = false
     
@@ -72,7 +72,7 @@ class EmergencyScreenViewController: UIViewController, ContentConformer {
         super.viewDidLoad()
         header.delegate = self
         
-        teeths = [
+        teeth = [
             tooth01, tooth02, tooth03, tooth04, tooth05, tooth06, tooth07, tooth08, tooth09, tooth10,
             tooth11, tooth12, tooth13, tooth14, tooth15, tooth16, tooth17, tooth18, tooth19, tooth20,
             tooth21, tooth22, tooth23, tooth24, tooth25, tooth26, tooth27, tooth28, tooth29, tooth30,
@@ -165,7 +165,7 @@ extension EmergencyScreenViewController {
         
         var tagId = 1
         
-        for tooth in teeths {
+        for tooth in teeth {
             tooth.tag = tagId
             themeManager.setDCBlueTheme(to: tooth, ofType: .ButtonTooth(selected: false))
             tooth.addTarget(self, action: Selector.toothButtonPressed, for: .touchUpInside)

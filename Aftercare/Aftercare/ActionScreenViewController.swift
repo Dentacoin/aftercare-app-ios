@@ -26,7 +26,7 @@ class ActionScreenViewController: UIViewController, ContentConformer {
     
     //MARK: - fileprivates
     
-    fileprivate var pagesArray: [ActionView] = []
+    fileprivate var pagesArray: [ActionViewProtocol] = []
     fileprivate var calculatedConstraints = false
     fileprivate var headerHeight: CGFloat = 0
     fileprivate var currentPageIndex = 0
@@ -37,6 +37,15 @@ class ActionScreenViewController: UIViewController, ContentConformer {
             owner: self,
             options: nil
             )?.first as! GoalPopupScreen
+        return popup
+    }()
+    
+    fileprivate let routinesPopupScreen: RoutinesPopupScreen = {
+        let popup = Bundle.main.loadNibNamed(
+            String(describing: RoutinesPopupScreen.self),
+            owner: self,
+            options: nil
+            )?.first as! RoutinesPopupScreen
         return popup
     }()
     
@@ -53,6 +62,7 @@ class ActionScreenViewController: UIViewController, ContentConformer {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        requestDayRoutine()
     }
     
     override func viewDidLayoutSubviews() {
@@ -65,9 +75,28 @@ class ActionScreenViewController: UIViewController, ContentConformer {
                 headerHeight = headerHeightConstraint.constant
             }
         }
+        updateSubscreensContentSizes()
     }
     
     //MARK: - Internal logic
+    
+    fileprivate func requestDayRoutine() {
+        
+        if UserDataContainer.shared.isRoutineRequested {
+            UserDataContainer.shared.isRoutineRequested = true
+            
+//            let routinesPopup = self.routinesPopupScreen
+//            routinesPopup.delegate = self
+//            routinesPopup.setCurrentDay(58)
+//            routinesPopup.setRoutinesDescription("Lorem Ipsum dolor sit amet")
+//            routinesPopup.setRoutinesStartLabel("Start routine")
+//            let frame = UIScreen.main.bounds
+//            routinesPopup.frame = frame
+//            self.view.addSubview(routinesPopup)
+            
+        }
+    
+    }
     
 }
 
@@ -87,33 +116,39 @@ extension ActionScreenViewController {
         
     }
     
-    fileprivate func createSubScreens() -> [ActionView]? {
+    fileprivate func createSubScreens() -> [ActionViewProtocol]? {
         
-        let pageTypes: [ActionRecordType] = [.flossed, .brush, .rinsed]
+//        let pageTypes: [ActionRecordType] = [.flossed, .brush, .rinsed]
         
-        for i in 0...pageTypes.count - 1 {
-            let type = pageTypes[i]
-            let page = Bundle.main.loadNibNamed(
-                "ActionView",
-                owner: self.contentScrollView,
-                options: nil
-            )?.first as! ActionView
-            
-            page.backgroundColor = .clear
-            page.config(type: type)
-            page.delegate = self
-            pagesArray.append(page)
-        }
+//        for i in 0...pageTypes.count - 1 {
+//            let type = pageTypes[i]
+//            let page = Bundle.main.loadNibNamed(
+//                "ActionView",
+//                owner: self.contentScrollView,
+//                options: nil
+//            )?.first as! ActionView
+//
+//            page.backgroundColor = .clear
+//            page.config(type: type)
+//            page.delegate = self
+//            pagesArray.append(page)
+//        }
+        
+        let flossPage = FlossActionView()
+        flossPage.delegate = self
+        pagesArray.append(flossPage)
+        let brushPage = BrushActionView()
+        brushPage.delegate = self
+        pagesArray.append(brushPage)
+        let rinsePage = RinseActionView()
+        rinsePage.delegate = self
+        pagesArray.append(rinsePage)
+        
         return pagesArray
     }
     
-    fileprivate func setupSubScreens(_ screens: [ActionView]) {
+    fileprivate func setupSubScreens(_ screens: [ActionViewProtocol]) {
         
-        contentScrollView.frame = CGRect(
-            x: 0,
-            y: 0, width: view.frame.width,
-            height: view.frame.height
-        )
         contentScrollView.contentSize = CGSize(
             width: view.frame.width * CGFloat(screens.count),
             height: 1//we don't need vertical scrooling so we set height to 1
@@ -123,16 +158,26 @@ extension ActionScreenViewController {
         contentScrollView.showsHorizontalScrollIndicator = false
         
         for i in 0 ..< screens.count {
-            let screen = screens[i]
-            screen.frame = CGRect(
-                x: view.frame.width * CGFloat(i),
-                y: 0,
-                width: view.frame.width,
-                height: view.frame.height
-            )
+            let screen = screens[i] as! UIView
             contentScrollView.addSubview(screen)
         }
         
+    }
+    
+    fileprivate func updateSubscreensContentSizes() {
+        if pagesArray.count > 0 {
+            let scrollFrame = contentScrollView.frame
+            for i in 0..<pagesArray.count {
+                let page = pagesArray[i]
+                let frame = CGRect(
+                    x: scrollFrame.size.width * CGFloat(i),
+                    y: 0,
+                    width: view.frame.width,
+                    height: scrollFrame.size.height
+                )
+                (page as! UIView).frame = frame
+            }
+        }
     }
     
     fileprivate func scrollContentScrollViewTo(page index: Int) {
@@ -155,23 +200,24 @@ extension ActionScreenViewController: ActionViewDelegate {
         contentDelegate?.requestLoadViewController(vcID, nil)
     }
     
-    func statisticsScreenOpened(_ sender: ActionView) {
-        //open all other statistics screens except the sender where is already opened
-        for page in pagesArray {
-            if page != sender {
-                page.openStatisticsScreen(false)
-            }
-        }
-    }
-    
-    func statisticsScreenClosed(_ sender: ActionView) {
-        //close all other statistics screens except the sender where is already closed
-        for page in pagesArray {
-            if page != sender {
-                page.closeStatisticsScreen(false)
-            }
-        }
-    }
+//    func statisticsScreenOpened(_ sender: UIView) {
+//        //open all other statistics screens except the sender where is already opened
+//        for page in pagesArray {
+//            if page.actionViewRecordType == (sender as! ActionView).actionViewRecordType {
+//                page.openStatisticsScreen(animated: false)
+//            }
+//        }
+//    }
+//
+//    func statisticsScreenClosed(_ sender: UIView) {
+//        //close all other statistics screens except the sender where is already closed
+//        for page in pagesArray {
+//            if page.actionViewRecordType == (sender as! ActionView).actionViewRecordType {
+//                continue
+//            }
+//            page.closeStatisticsScreen(animated: false)
+//        }
+//    }
     
     func timerStarted() {
         self.view.layoutIfNeeded()
@@ -249,6 +295,16 @@ extension ActionScreenViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let pageIndex = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
         header.selectTab(atIndex: pageIndex)
+    }
+    
+}
+
+//MARK: - RoutinesPopupScreenDelegate
+
+extension ActionScreenViewController: RoutinesPopupScreenDelegate {
+    
+    func onRoutinesButtonPressed() {
+        
     }
     
 }

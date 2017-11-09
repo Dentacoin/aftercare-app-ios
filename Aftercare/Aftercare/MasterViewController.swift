@@ -27,7 +27,6 @@ final class MasterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.setupView()
     }
     

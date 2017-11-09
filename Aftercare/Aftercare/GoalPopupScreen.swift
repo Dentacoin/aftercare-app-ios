@@ -67,6 +67,7 @@ extension GoalPopupScreen {
         containerView.layer.shadowColor = UIColor.black.cgColor
         containerView.layer.shadowOffset =  CGSize(width: 1.0, height: 2.0)
         containerView.layer.shadowOpacity = 1
+        containerView.layer.shadowRadius = 20
         
         if completed {
             self.achievedStyle()

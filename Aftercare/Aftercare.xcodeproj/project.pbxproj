@@ -64,6 +64,12 @@
 		9F1712A71F4C53D900FB263B /* LoginScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1712A61F4C53D900FB263B /* LoginScreenPresenter.swift */; };
 		9F1712A91F4C53EC00FB263B /* SignUpScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1712A81F4C53EC00FB263B /* SignUpScreenPresenter.swift */; };
 		9F1712AC1F4C5F3B00FB263B /* BaseProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1712AB1F4C5F3B00FB263B /* BaseProtocols.swift */; };
+		9F1E78401FB0D86C00A1A7D5 /* ActionBarsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F1E783F1FB0D86C00A1A7D5 /* ActionBarsView.xib */; };
+		9F1E78421FB0D97200A1A7D5 /* ActionBarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1E78411FB0D97200A1A7D5 /* ActionBarsView.swift */; };
+		9F1E78441FB199BE00A1A7D5 /* RoutinesPopupScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F1E78431FB199BE00A1A7D5 /* RoutinesPopupScreen.xib */; };
+		9F1E78461FB19DEE00A1A7D5 /* RoutinesPopupScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1E78451FB19DEE00A1A7D5 /* RoutinesPopupScreen.swift */; };
+		9F1E78481FB1C1C900A1A7D5 /* Routine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1E78471FB1C1C900A1A7D5 /* Routine.swift */; };
+		9F254A5B1FB254B300BC001A /* RinseActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F254A5A1FB254B300BC001A /* RinseActionView.swift */; };
 		9F28A3961F504E340002FF53 /* APIRouterProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F28A3951F504E340002FF53 /* APIRouterProtocols.swift */; };
 		9F28A3991F504EAA0002FF53 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F28A3981F504EAA0002FF53 /* APIRouter.swift */; };
 		9F28A39B1F50615F0002FF53 /* APIProviderProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F28A39A1F50615F0002FF53 /* APIProviderProtocols.swift */; };
@@ -146,9 +152,18 @@
 		9FDE78231F9B41270013719F /* NotificationsVisitTheApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDE78221F9B41270013719F /* NotificationsVisitTheApp.swift */; };
 		9FE22F841F7FAFAF00238DBB /* NSError+Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE22F831F7FAFAF00238DBB /* NSError+Parser.swift */; };
 		9FE51F751FAB56C000771A34 /* NSURLRequest+AllowsAnyHTTPSCertificate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE51F741FAB56C000771A34 /* NSURLRequest+AllowsAnyHTTPSCertificate.swift */; };
+		9FE7CC0F1FB205BC0042EB14 /* BrushBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FE7CC0E1FB205BC0042EB14 /* BrushBar.xib */; };
+		9FE7CC111FB205EA0042EB14 /* BrushBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE7CC101FB205EA0042EB14 /* BrushBar.swift */; };
+		9FE7CC131FB254070042EB14 /* FlossActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE7CC121FB254070042EB14 /* FlossActionView.swift */; };
+		9FE7CC151FB254400042EB14 /* BrushActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE7CC141FB254400042EB14 /* BrushActionView.swift */; };
 		9FE993691F8697690007D759 /* OralHealthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE993681F8697690007D759 /* OralHealthData.swift */; };
 		9FE9936B1F86CBCC0007D759 /* OralHealthTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FE9936A1F86CBCC0007D759 /* OralHealthTableCell.xib */; };
 		9FE9936D1F86CD350007D759 /* OralHealthTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE9936C1F86CD350007D759 /* OralHealthTableCell.swift */; };
+		9FEA44161FB08BF9000F7710 /* TotalDCNBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FEA44151FB08BF9000F7710 /* TotalDCNBar.xib */; };
+		9FEA44181FB09ACE000F7710 /* TotalDCNBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA44171FB09ACE000F7710 /* TotalDCNBar.swift */; };
+		9FEA44211FB0A3D2000F7710 /* HairlineConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA44201FB0A3D2000F7710 /* HairlineConstraint.swift */; };
+		9FEA44231FB0AB03000F7710 /* ActionFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FEA44221FB0AB03000F7710 /* ActionFooterView.xib */; };
+		9FEA44251FB0ACF7000F7710 /* ActionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA44241FB0ACF7000F7710 /* ActionFooterView.swift */; };
 		9FF0AEA11F58B8A30056846B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9FF0AEA01F58B8A30056846B /* GoogleService-Info.plist */; };
 		9FF0AEA31F593A3E0056846B /* ImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0AEA21F593A3E0056846B /* ImageRequest.swift */; };
 		9FF0AEA51F593AA30056846B /* DecodeOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0AEA41F593AA30056846B /* DecodeOperation.swift */; };
@@ -257,6 +272,12 @@
 		9F1712A61F4C53D900FB263B /* LoginScreenPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginScreenPresenter.swift; sourceTree = "<group>"; };
 		9F1712A81F4C53EC00FB263B /* SignUpScreenPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpScreenPresenter.swift; sourceTree = "<group>"; };
 		9F1712AB1F4C5F3B00FB263B /* BaseProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseProtocols.swift; sourceTree = "<group>"; };
+		9F1E783F1FB0D86C00A1A7D5 /* ActionBarsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActionBarsView.xib; sourceTree = "<group>"; };
+		9F1E78411FB0D97200A1A7D5 /* ActionBarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionBarsView.swift; sourceTree = "<group>"; };
+		9F1E78431FB199BE00A1A7D5 /* RoutinesPopupScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoutinesPopupScreen.xib; sourceTree = "<group>"; };
+		9F1E78451FB19DEE00A1A7D5 /* RoutinesPopupScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinesPopupScreen.swift; sourceTree = "<group>"; };
+		9F1E78471FB1C1C900A1A7D5 /* Routine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routine.swift; sourceTree = "<group>"; };
+		9F254A5A1FB254B300BC001A /* RinseActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RinseActionView.swift; sourceTree = "<group>"; };
 		9F28A3951F504E340002FF53 /* APIRouterProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRouterProtocols.swift; sourceTree = "<group>"; };
 		9F28A3981F504EAA0002FF53 /* APIRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
 		9F28A39A1F50615F0002FF53 /* APIProviderProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIProviderProtocols.swift; sourceTree = "<group>"; };
@@ -384,9 +405,18 @@
 		9FDE78221F9B41270013719F /* NotificationsVisitTheApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsVisitTheApp.swift; sourceTree = "<group>"; };
 		9FE22F831F7FAFAF00238DBB /* NSError+Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSError+Parser.swift"; sourceTree = "<group>"; };
 		9FE51F741FAB56C000771A34 /* NSURLRequest+AllowsAnyHTTPSCertificate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSURLRequest+AllowsAnyHTTPSCertificate.swift"; sourceTree = "<group>"; };
+		9FE7CC0E1FB205BC0042EB14 /* BrushBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BrushBar.xib; sourceTree = "<group>"; };
+		9FE7CC101FB205EA0042EB14 /* BrushBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrushBar.swift; sourceTree = "<group>"; };
+		9FE7CC121FB254070042EB14 /* FlossActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlossActionView.swift; sourceTree = "<group>"; };
+		9FE7CC141FB254400042EB14 /* BrushActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrushActionView.swift; sourceTree = "<group>"; };
 		9FE993681F8697690007D759 /* OralHealthData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OralHealthData.swift; sourceTree = "<group>"; };
 		9FE9936A1F86CBCC0007D759 /* OralHealthTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OralHealthTableCell.xib; sourceTree = "<group>"; };
 		9FE9936C1F86CD350007D759 /* OralHealthTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OralHealthTableCell.swift; sourceTree = "<group>"; };
+		9FEA44151FB08BF9000F7710 /* TotalDCNBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TotalDCNBar.xib; sourceTree = "<group>"; };
+		9FEA44171FB09ACE000F7710 /* TotalDCNBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalDCNBar.swift; sourceTree = "<group>"; };
+		9FEA44201FB0A3D2000F7710 /* HairlineConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HairlineConstraint.swift; sourceTree = "<group>"; };
+		9FEA44221FB0AB03000F7710 /* ActionFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActionFooterView.xib; sourceTree = "<group>"; };
+		9FEA44241FB0ACF7000F7710 /* ActionFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionFooterView.swift; sourceTree = "<group>"; };
 		9FF0AEA01F58B8A30056846B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9FF0AEA21F593A3E0056846B /* ImageRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRequest.swift; sourceTree = "<group>"; };
 		9FF0AEA41F593AA30056846B /* DecodeOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecodeOperation.swift; sourceTree = "<group>"; };
@@ -549,6 +579,7 @@
 		24FE8CCE1F30CC9400AD582C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				9FEA441F1FB0A3C0000F7710 /* Utils */,
 				24ED18221F38C5E500C1A11A /* Vendors */,
 				24FE8CCF1F30CCB000AD582C /* Extensions */,
 				24FE8CD01F30CCB700AD582C /* Models */,
@@ -623,11 +654,19 @@
 			children = (
 				9F1390051F62F3F5006528F2 /* Headers */,
 				24FE8CD31F30CD0300AD582C /* Cells */,
+				9FEA44171FB09ACE000F7710 /* TotalDCNBar.swift */,
+				9F1E78411FB0D97200A1A7D5 /* ActionBarsView.swift */,
+				9FEA44241FB0ACF7000F7710 /* ActionFooterView.swift */,
 				9F0D45D21F69349700E2A423 /* ActionView.swift */,
+				9FE7CC121FB254070042EB14 /* FlossActionView.swift */,
+				9FE7CC141FB254400042EB14 /* BrushActionView.swift */,
+				9F254A5A1FB254B300BC001A /* RinseActionView.swift */,
 				9FF837521F6A89AA00E72CBC /* StatisticsView.swift */,
+				9FE7CC101FB205EA0042EB14 /* BrushBar.swift */,
 				9FF837561F6AD8E900E72CBC /* CircularBar.swift */,
 				9FF837691F6C14B400E72CBC /* SmallCircularBar.swift */,
 				9FF8377D1F6FD1A300E72CBC /* GoalPopupScreen.swift */,
+				9F1E78451FB19DEE00A1A7D5 /* RoutinesPopupScreen.swift */,
 				9FBB8E251F83B522008C2C65 /* UploadImageButton.swift */,
 				9FFC8BB71FA20BBA0043F7BC /* ReusableXibView.swift */,
 			);
@@ -658,6 +697,7 @@
 				9F28A3A81F57DD1D0002FF53 /* SystemMethods.swift */,
 				9F16E3481F9A9F030081D244 /* NotificationsManager.swift */,
 				9FA7EAAB1F9F8C22003AD94A /* AnalyticsManager.swift */,
+				9F1E78471FB1C1C900A1A7D5 /* Routine.swift */,
 			);
 			name = Globals;
 			sourceTree = "<group>";
@@ -685,14 +725,19 @@
 		9F0D45CF1F69340300E2A423 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9FEA44151FB08BF9000F7710 /* TotalDCNBar.xib */,
+				9F1E783F1FB0D86C00A1A7D5 /* ActionBarsView.xib */,
+				9FEA44221FB0AB03000F7710 /* ActionFooterView.xib */,
 				9F0D45D01F69342E00E2A423 /* ActionView.xib */,
 				9FF837501F6A86BE00E72CBC /* StatisticsView.xib */,
 				9FF8377B1F6FD14E00E72CBC /* GoalPopupScreen.xib */,
+				9FE7CC0E1FB205BC0042EB14 /* BrushBar.xib */,
 				9FF837541F6AD80200E72CBC /* CircularBar.xib */,
 				9FF837671F6C139E00E72CBC /* SmallCircularBar.xib */,
 				9FFC8BB91FA20D640043F7BC /* EmptyState.xib */,
 				9FFC8BBB1FA20DBF0043F7BC /* LoadingState.xib */,
 				9FFC8BBD1FA210420043F7BC /* ErrorState.xib */,
+				9F1E78431FB199BE00A1A7D5 /* RoutinesPopupScreen.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -979,6 +1024,14 @@
 			name = Headers;
 			sourceTree = "<group>";
 		};
+		9FEA441F1FB0A3C0000F7710 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				9FEA44201FB0A3D2000F7710 /* HairlineConstraint.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1052,8 +1105,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F1E78401FB0D86C00A1A7D5 /* ActionBarsView.xib in Resources */,
+				9F1E78441FB199BE00A1A7D5 /* RoutinesPopupScreen.xib in Resources */,
 				9FF837781F6EFDCB00E72CBC /* GoalsScreenCell.xib in Resources */,
 				24657E921F13EA390057B846 /* LaunchScreen.storyboard in Resources */,
+				9FEA44161FB08BF9000F7710 /* TotalDCNBar.xib in Resources */,
 				9F13900B1F63D248006528F2 /* InitialPageHeaderView.xib in Resources */,
 				9FF837681F6C139E00E72CBC /* SmallCircularBar.xib in Resources */,
 				9FFC8BBC1FA20DBF0043F7BC /* LoadingState.xib in Resources */,
@@ -1076,10 +1132,12 @@
 				9FCA68BE1FAA1F5F008B36DA /* secp256k1.table in Resources */,
 				9FF837551F6AD80200E72CBC /* CircularBar.xib in Resources */,
 				9F2A39581F62B4AF007D089F /* MainMenuSeparatorCell.xib in Resources */,
+				9FEA44231FB0AB03000F7710 /* ActionFooterView.xib in Resources */,
 				9FF837701F6D387E00E72CBC /* StatisticsCircularBarsCell.xib in Resources */,
 				9F0D45D11F69342E00E2A423 /* ActionView.xib in Resources */,
 				9F0A6C811F605832003AF65C /* Lato-Black.ttf in Resources */,
 				9FF0AEA11F58B8A30056846B /* GoogleService-Info.plist in Resources */,
+				9FE7CC0F1FB205BC0042EB14 /* BrushBar.xib in Resources */,
 				9FA7EAAE1F9FC698003AD94A /* Assets.xcassets in Resources */,
 				9FFC8BBE1FA210420043F7BC /* ErrorState.xib in Resources */,
 			);
@@ -1221,11 +1279,15 @@
 				9F13900D1F63D405006528F2 /* InitialPageHeaderView.swift in Sources */,
 				9F1390111F63DADD006528F2 /* GoalsScreenViewController.swift in Sources */,
 				9FBB8E261F83B522008C2C65 /* UploadImageButton.swift in Sources */,
+				9FE7CC131FB254070042EB14 /* FlossActionView.swift in Sources */,
 				9FCA68BA1FAA1F5F008B36DA /* secp256k1.c in Sources */,
 				9FBAA9C21F8D2E5B00489ABA /* ActionData.swift in Sources */,
 				9FCA68C81FAA1F5F008B36DA /* BlockInfo.m in Sources */,
+				9F254A5B1FB254B300BC001A /* RinseActionView.swift in Sources */,
+				9F1E78481FB1C1C900A1A7D5 /* Routine.swift in Sources */,
 				9FCA68D61FAA1F5F008B36DA /* Payment.m in Sources */,
 				24ED18241F38C5FD00C1A11A /* UIImage+Helpers.swift in Sources */,
+				9F1E78421FB0D97200A1A7D5 /* ActionBarsView.swift in Sources */,
 				9FCA68D01FAA1F5F008B36DA /* TransactionInfo.m in Sources */,
 				9FCA68B61FAA1F5F008B36DA /* sha2.c in Sources */,
 				24657E881F13EA390057B846 /* AppDelegate.swift in Sources */,
@@ -1240,6 +1302,7 @@
 				9FCA68CF1FAA1F5F008B36DA /* RegEx.m in Sources */,
 				9FCA68C71FAA1F5F008B36DA /* Transaction.m in Sources */,
 				2430C8BE1F3CA8C700353EE1 /* UITextField+fixCaretPosition.swift in Sources */,
+				9FE7CC111FB205EA0042EB14 /* BrushBar.swift in Sources */,
 				9FCA68BD1FAA1F5F008B36DA /* ripemd160.c in Sources */,
 				9FF837531F6A89AA00E72CBC /* StatisticsView.swift in Sources */,
 				9FCA68C41FAA1F5F008B36DA /* pbkdf2.c in Sources */,
@@ -1277,19 +1340,23 @@
 				9F17129B1F4C52CD00FB263B /* SignUpScreenConfigurator.swift in Sources */,
 				9F1390271F655E86006528F2 /* SettingsSwitchTableCell.swift in Sources */,
 				9F28A3A31F5587040002FF53 /* GooglePlusProvider.swift in Sources */,
+				9FEA44181FB09ACE000F7710 /* TotalDCNBar.swift in Sources */,
 				9F28A3A91F57DD1D0002FF53 /* SystemMethods.swift in Sources */,
 				9FCA68BC1FAA1F5F008B36DA /* bignum.c in Sources */,
 				9FCA68C61FAA1F5F008B36DA /* Hash.m in Sources */,
+				9FEA44251FB0ACF7000F7710 /* ActionFooterView.swift in Sources */,
 				9F1712A91F4C53EC00FB263B /* SignUpScreenPresenter.swift in Sources */,
 				9F1390231F6400ED006528F2 /* EditUserProfileScreenViewController.swift in Sources */,
 				9FF8377E1F6FD1A300E72CBC /* GoalPopupScreen.swift in Sources */,
 				9FF8376A1F6C14B400E72CBC /* SmallCircularBar.swift in Sources */,
 				9F4482E81F8BB62C00349A10 /* ActionRecordData.swift in Sources */,
+				9F1E78461FB19DEE00A1A7D5 /* RoutinesPopupScreen.swift in Sources */,
 				9F17129F1F4C531400FB263B /* LoginScreenCoordinator.swift in Sources */,
 				9F1712AC1F4C5F3B00FB263B /* BaseProtocols.swift in Sources */,
 				9FFC8BB81FA20BBA0043F7BC /* ReusableXibView.swift in Sources */,
 				9FCA68D51FAA1F5F008B36DA /* Address.m in Sources */,
 				9FBAA9C41F8E4FF400489ABA /* ActionsResponseList.swift in Sources */,
+				9FE7CC151FB254400042EB14 /* BrushActionView.swift in Sources */,
 				9FE22F841F7FAFAF00238DBB /* NSError+Parser.swift in Sources */,
 				9FDE781F1F9B406E0013719F /* NotificationsVisitDentist.swift in Sources */,
 				9FCA68CE1FAA1F5F008B36DA /* Utilities.m in Sources */,
@@ -1332,6 +1399,7 @@
 				9F1262471F5DE87B004498FC /* UserAgreementScreenViewController.swift in Sources */,
 				9FCA68D31FAA1F5F008B36DA /* scrypt_sha256.c in Sources */,
 				9F1390171F63DD95006528F2 /* EmergencyScreenViewController.swift in Sources */,
+				9FEA44211FB0A3D2000F7710 /* HairlineConstraint.swift in Sources */,
 				9F28A3991F504EAA0002FF53 /* APIRouter.swift in Sources */,
 				9FA7EAAC1F9F8C22003AD94A /* AnalyticsManager.swift in Sources */,
 				9FE51F751FAB56C000771A34 /* NSURLRequest+AllowsAnyHTTPSCertificate.swift in Sources */,

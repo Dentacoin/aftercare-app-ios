@@ -48,12 +48,16 @@ protocol HeaderDelegate: class {
 }
 
 protocol ActionViewDelegate: class {
-    func statisticsScreenOpened(_ sender: ActionView)
-    func statisticsScreenClosed(_ sender: ActionView)
     func requestToOpenCollectScreen()
     func timerStarted()
     func timerStopped()
     func actionComplete()
+}
+
+//MARK: - embedView Proxy ActionViewDelegate
+protocol ActionViewProxyDelegateProtocol: ActionViewDelegate {
+    var delegate: ActionViewDelegate? { get set }
+    var embedView: ActionView? { get }
 }
 
 protocol StatisticsDelegate: class {
@@ -77,5 +81,38 @@ extension ContentConformer {
 
 extension DataSourceDelegate {
     func actionScreenDataUpdated(_ data: ActionScreenData) { }
+}
+
+extension ActionViewProxyDelegateProtocol {
+    
+    var actionViewRecordType: ActionRecordType {
+        get {
+            return (embedView?.actionViewRecordType)!
+        }
+    }
+    
+    //delegate to sender methods
+    
+    func updateData(_ data: ActionScreenData) {
+        embedView?.updateData(data)
+    }
+    
+    //sender to delegate methods
+    
+    func requestToOpenCollectScreen() {
+        delegate?.requestToOpenCollectScreen()
+    }
+    
+    func timerStarted() {
+        delegate?.requestToOpenCollectScreen()
+    }
+    
+    func timerStopped() {
+        delegate?.timerStarted()
+    }
+    
+    func actionComplete() {
+        delegate?.actionComplete()
+    }
 }
 

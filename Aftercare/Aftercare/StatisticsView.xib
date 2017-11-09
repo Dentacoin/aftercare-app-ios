@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -30,7 +30,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Statistic Screen Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKy-FP-6MC">
-                    <rect key="frame" x="0.0" y="36" width="375" height="20.333333333333336"/>
+                    <rect key="frame" x="0.0" y="36" width="375" height="20.333333333333329"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -49,7 +49,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IaR-QO-g1b">
-                            <rect key="frame" x="122.33333333333334" y="0.0" width="114.33333333333331" height="36"/>
+                            <rect key="frame" x="122.33333333333334" y="0.0" width="114.33333333333334" height="36"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="36" id="a6G-c7-1nI"/>
                             </constraints>
@@ -59,7 +59,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tos-sZ-iwO">
-                            <rect key="frame" x="244.66666666666663" y="0.0" width="114.33333333333337" height="36"/>
+                            <rect key="frame" x="244.66666666666666" y="0.0" width="114.33333333333334" height="36"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="36" id="XN7-E3-dyH"/>
                             </constraints>
@@ -69,21 +69,18 @@
                             </connections>
                         </button>
                     </subviews>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="359" id="Nqa-7A-75z"/>
-                    </constraints>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Qm9-dd-Ce1">
-                    <rect key="frame" x="16" y="108.33333333333334" width="343" height="190.66666666666666"/>
+                    <rect key="frame" x="16" y="108.33333333333333" width="343" height="190.66666666666669"/>
                     <subviews>
                         <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D7c-k4-1ln" customClass="SmallCircularBar" customModule="Aftercare" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="103.66666666666667" height="190.66666666666669"/>
+                            <rect key="frame" x="0.0" y="0.0" width="103.66666666666667" height="190.66666666666666"/>
                         </view>
                         <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="53q-DJ-9gy" customClass="SmallCircularBar" customModule="Aftercare" customModuleProvider="target">
-                            <rect key="frame" x="119.66666666666666" y="0.0" width="103.66666666666669" height="190.66666666666669"/>
+                            <rect key="frame" x="119.66666666666666" y="0.0" width="103.66666666666666" height="190.66666666666666"/>
                         </view>
                         <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sRT-PL-1uJ" customClass="SmallCircularBar" customModule="Aftercare" customModuleProvider="target">
-                            <rect key="frame" x="239.33333333333337" y="0.0" width="103.66666666666663" height="190.66666666666669"/>
+                            <rect key="frame" x="239.33333333333334" y="0.0" width="103.66666666666666" height="190.66666666666666"/>
                         </view>
                     </subviews>
                 </stackView>
