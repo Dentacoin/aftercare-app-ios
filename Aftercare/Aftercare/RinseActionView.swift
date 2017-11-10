@@ -49,8 +49,16 @@ class RinseActionView: UIView, ActionViewProtocol {
         return NSLocalizedString("Don't worry if you can't get to the 30 seconds the first time, it gets easier each time you try.", comment: "")
     }()
     
-    fileprivate lazy var doneDescriptionString:String = {
+    fileprivate lazy var doneEveningDescriptionString:String = {
         return NSLocalizedString("You're done, spit the solution out in the sink You have completed your last brush for the day. Amazing job! Have a nice rest and come back in the morning.", comment: "")
+    }()
+    
+    fileprivate lazy var doneMorningCongratsDescriptionString:String = {
+        return NSLocalizedString("Congratulations! NOW you are ready to Amaze the world with your beautiful smile.", comment: "")
+    }()
+    
+    fileprivate lazy var doneMorningDescriptionString:String = {
+        return NSLocalizedString("Make big things today and come back in the evening before going to bed.", comment: "")
     }()
     
     fileprivate func setupContent() {
@@ -129,16 +137,39 @@ class RinseActionView: UIView, ActionViewProtocol {
 
 extension RinseActionView: ActionViewProxyDelegateProtocol {
     
-    func timerUpdated(_ milliseconds: Double) {
+    func timerUpdated(_ seconds: Double) {
         guard let timer = self.timer else { return }
-        timer.centerLabel.text = self.formatCountdownTimerData(milliseconds)
-        timer.bar.angle = self.secondsToAngle(milliseconds)
+        timer.centerLabel.text = self.formatCountdownTimerData(seconds)
+        timer.bar.angle = self.secondsToAngle(seconds)
+        
+        if seconds >= 0, seconds < 10 {
+            if !actionDescription01Flag {
+                actionDescription01Flag = true
+                embedView?.descriptionTextView.text = actionDescription01String
+                if let routine = UserDataContainer.shared.routine {
+                    SoundManager.shared.playSound(SoundType.sound(routine.type, .rinse, .progress(Int(seconds))))
+                }
+            }
+        }
+        
+        if seconds >= 10, seconds < 20 {
+            if !actionDescription02Flag {
+                actionDescription02Flag = true
+                embedView?.descriptionTextView.text = actionDescription02String
+                if let routine = UserDataContainer.shared.routine {
+                    SoundManager.shared.playSound(SoundType.sound(routine.type, .rinse, .progress(Int(seconds))))
+                }
+            }
+        }
     }
     
     func stateChanged(_ newState: ActionState) {
         if newState == .Ready {
             embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("START", comment: ""), withState: .blue)
             embedView?.descriptionTextView.text = readyDescriptionString
+            if let routine = UserDataContainer.shared.routine {
+                SoundManager.shared.playSound(SoundType.sound(routine.type, .rinse, .ready))
+            }
         } else if newState == .Action {
             embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("STOP", comment: ""), withState: .red)
         } else if newState == .Done {
@@ -146,7 +177,20 @@ extension RinseActionView: ActionViewProxyDelegateProtocol {
             timer.centerLabel.text = "0:00"
             timer.bar.angle = 0
             embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("RINSE", comment: ""), withState: .blue)
-            embedView?.descriptionTextView.text = doneDescriptionString
+            embedView?.descriptionTextView.text = doneEveningDescriptionString
+            if let routine = UserDataContainer.shared.routine {
+                if routine.type == .evening {
+                    embedView?.descriptionTextView.text = doneEveningDescriptionString
+                } else {
+                    embedView?.descriptionTextView.text = doneMorningCongratsDescriptionString
+                }
+                SoundManager.shared.playSound(SoundType.sound(routine.type, .rinse, .done(.other))) { [weak self] in
+                    if routine.type == .morning {
+                        self?.embedView?.descriptionTextView.text = self?.doneMorningDescriptionString
+                    }
+                    SoundManager.shared.playSound(SoundType.sound(routine.type, .rinse, .done(.congratulations)))
+                }
+            }
         } else if newState == .Initial {
             embedView?.toggleDescriptionText(false)
             return

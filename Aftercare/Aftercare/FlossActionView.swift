@@ -133,15 +133,24 @@ extension FlossActionView: ActionViewProxyDelegateProtocol {
         if newState == .Ready {
             embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("START", comment: ""), withState: .blue)
             embedView?.descriptionTextView.text = readyDescriptionString
+            if let routine = UserDataContainer.shared.routine {
+                SoundManager.shared.playSound(SoundType.sound(routine.type, .floss, .ready))
+            }
         } else if newState == .Action {
             embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("STOP", comment: ""), withState: .red)
             embedView?.descriptionTextView.text = actionDescriptionString
+            if let routine = UserDataContainer.shared.routine {
+                SoundManager.shared.playSound(SoundType.sound(routine.type, .floss, .progress(0)))
+            }
         } else if newState == .Done {
             guard let timer = self.timer else { return }
             timer.centerLabel.text = "0:00"
             timer.bar.angle = 0
             embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("FLOSS", comment: ""), withState: .blue)
             embedView?.descriptionTextView.text = doneDescriptionString
+            if let routine = UserDataContainer.shared.routine {
+                SoundManager.shared.playSound(SoundType.sound(routine.type, .floss, .done(.other)))
+            }
         } else if newState == .Initial {
             embedView?.toggleDescriptionText(false)
             return

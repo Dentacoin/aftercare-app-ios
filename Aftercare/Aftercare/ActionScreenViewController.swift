@@ -30,7 +30,6 @@ class ActionScreenViewController: UIViewController, ContentConformer {
     fileprivate var calculatedConstraints = false
     fileprivate var headerHeight: CGFloat = 0
     fileprivate var currentPageIndex = 0
-    fileprivate var routine: RoutineType?
     fileprivate var lastTab: Int = 0
     
     fileprivate let goalPopupScreen: GoalPopupScreen = {
@@ -103,6 +102,7 @@ class ActionScreenViewController: UIViewController, ContentConformer {
             if let routine = routine {
                 
                 let buttonLabel: String?
+                let routinePath: RoutinePath?
                 if routine.startHour == 2 {
 //                    if UserDataContainer.shared.isMorningRoutineDone {
 //                        //the routine is already done
@@ -110,6 +110,7 @@ class ActionScreenViewController: UIViewController, ContentConformer {
 //                    }
                     UserDataContainer.shared.isMorningRoutineDone = true
                     buttonLabel = routineMorningStartButtonLabel
+                    routinePath = .morning
                 } else {
 //                    if UserDataContainer.shared.isEveningRoutineDone {
 //                        //routine is alredy done
@@ -117,9 +118,10 @@ class ActionScreenViewController: UIViewController, ContentConformer {
 //                    }
                     UserDataContainer.shared.isEveningRoutineDone = true
                     buttonLabel = routineEveningStartButtonLabel
+                    routinePath = .evening
                 }
                 
-                self.routine = routine
+                UserDataContainer.shared.routine = routine
                 
                 let routinesPopup = self.routinesPopupScreen
                 routinesPopup.delegate = self
@@ -130,6 +132,8 @@ class ActionScreenViewController: UIViewController, ContentConformer {
                 let frame = UIScreen.main.bounds
                 routinesPopup.frame = frame
                 self.view.addSubview(routinesPopup)
+                
+                SoundManager.shared.playSound(SoundType.greeting(routinePath!))
                 
             }
         }
@@ -233,12 +237,12 @@ extension ActionScreenViewController: ActionViewDelegate {
     }
     
     func timerStarted() {
-        if var routine = self.routine {
+        if var routine = UserDataContainer.shared.routine {
             //we have routine
             
             //remove current screen from the list
             routine.actions = Array(routine.actions.dropFirst())
-            self.routine = routine
+            UserDataContainer.shared.routine = routine
             
         } else {
             goFullScreen()
@@ -247,7 +251,7 @@ extension ActionScreenViewController: ActionViewDelegate {
     }
     
     func timerStopped() {
-        if let routine = self.routine {
+        if let routine = UserDataContainer.shared.routine {
             //we have routine
             
             if routine.actions.count > 0 {
@@ -261,7 +265,7 @@ extension ActionScreenViewController: ActionViewDelegate {
                 return
             }
             //we don't have any more screen in our routine so we set it's value to nil and exit
-            self.routine = nil
+            UserDataContainer.shared.routine = nil
         }
         
         exitFullscreen()
@@ -355,7 +359,7 @@ extension ActionScreenViewController: RoutinesPopupScreenDelegate {
     func onRoutinesButtonPressed() {
         routinesPopupScreen.removeFromSuperview()
         
-        guard let routine = routine else { return }
+        guard let routine = UserDataContainer.shared.routine else { return }
         //scroll to first routine screen
         guard let pageIndex = getPageIndex(routine.actions.first!) else { return }
         scrollContentScrollViewTo(page: pageIndex)

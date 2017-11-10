@@ -95,6 +95,8 @@ class UserDataContainer {
     
     //MARK: - Public properties
     
+    var routine: RoutineType?
+    
     var isRoutineRequested = false//this is the state for the current app session
     
     var isMorningRoutineDone: Bool {

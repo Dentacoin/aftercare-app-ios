@@ -38,7 +38,7 @@ class SoundManager {
         }
     }
     
-    func playSound(_ type: SoundType) {
+    func playSound(_ type: SoundType, _ callback: (() -> Void)? = nil) {
         do {
             var path: String
             switch type {
@@ -57,7 +57,11 @@ class SoundManager {
                 print("PLAY SOUND AT PATH: \(url.absoluteURL)")
                 sound = Sound(url: url)
                 sound?.volume = 1.0
-                sound?.play()
+                sound?.play() { completed in
+                    if let callback = callback {
+                        callback()
+                    }
+                }
             }
         } catch {
             print("Warning: \(error.localizedDescription)")
