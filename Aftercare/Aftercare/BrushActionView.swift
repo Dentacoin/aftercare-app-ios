@@ -153,10 +153,10 @@ extension BrushActionView: ActionViewProxyDelegateProtocol {
         if seconds >= 0, seconds < 30 {
             if !actionDescription01Flag {
                 actionDescription01Flag = true
-                embedView?.descriptionTextView.text = actionStep01String
                 timer.highlightSection(.UpperRight)
                 if let routine = UserDataContainer.shared.routine {
                     SoundManager.shared.playSound(SoundType.sound(routine.type, .brush, .progress(seconds)))
+                    embedView?.descriptionTextView.text = actionStep01String
                 }
             }
         }
@@ -164,10 +164,10 @@ extension BrushActionView: ActionViewProxyDelegateProtocol {
         if seconds > 30, seconds < 60 {
             if !actionDescription02Flag {
                 actionDescription02Flag = true
-                embedView?.descriptionTextView.text = actionStep02String
                 timer.highlightSection(.DownRight)
                 if let routine = UserDataContainer.shared.routine {
                     SoundManager.shared.playSound(SoundType.sound(routine.type, .brush, .progress(seconds)))
+                    embedView?.descriptionTextView.text = actionStep02String
                 }
             }
         }
@@ -175,10 +175,10 @@ extension BrushActionView: ActionViewProxyDelegateProtocol {
         if seconds > 60, seconds < 90 {
             if !actionDescription03Flag {
                 actionDescription03Flag = true
-                embedView?.descriptionTextView.text = actionStep03String
                 timer.highlightSection(.DownLeft)
                 if let routine = UserDataContainer.shared.routine {
                     SoundManager.shared.playSound(SoundType.sound(routine.type, .brush, .progress(seconds)))
+                    embedView?.descriptionTextView.text = actionStep03String
                 }
             }
         }
@@ -186,10 +186,10 @@ extension BrushActionView: ActionViewProxyDelegateProtocol {
         if seconds > 90, seconds < 120 {
             if !actionDescription04Flag {
                 actionDescription04Flag = true
-                embedView?.descriptionTextView.text = actionStep04String
                 timer.highlightSection(.UpperLeft)
                 if let routine = UserDataContainer.shared.routine {
                     SoundManager.shared.playSound(SoundType.sound(routine.type, .brush, .progress(seconds)))
+                    embedView?.descriptionTextView.text = actionStep04String
                 }
             }
         }
@@ -197,36 +197,52 @@ extension BrushActionView: ActionViewProxyDelegateProtocol {
         if seconds > 120 {
             if !actionDescription05Flag {
                 actionDescription05Flag = true
-                embedView?.descriptionTextView.text = actionStep05String
                 timer.highlightSection(.None)
                 if let routine = UserDataContainer.shared.routine {
                     SoundManager.shared.playSound(SoundType.sound(routine.type, .brush, .progress(seconds)))
+                    embedView?.descriptionTextView.text = actionStep05String
                 }
             }
         }
     }
     
     func stateChanged(_ newState: ActionState) {
-        if newState == .Ready {
-            embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("START", comment: ""), withState: .blue)
-            if let routine = UserDataContainer.shared.routine {
-                SoundManager.shared.playSound(SoundType.greeting(routine.type))
-            }
-            embedView?.descriptionTextView.text = readyDescriptionString
-        } else if newState == .Action {
-            embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("STOP", comment: ""), withState: .red)
-        } else if newState == .Done {
-            guard let timer = self.timer else { return }
-            timer.timerLabel.text = "0:00"
-            timer.highlightSection(.None)
-            embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("BRUSH", comment: ""), withState: .blue)
-            embedView?.descriptionTextView.text = doneDescriptionString
+        
+        if let routine = UserDataContainer.shared.routine {
             
-        } else if newState == .Initial {
-            embedView?.toggleDescriptionText(false)
-            return
+            if newState == .Ready {
+                embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("START", comment: ""), withState: .blue)
+                SoundManager.shared.playSound(SoundType.greeting(routine.type))
+                embedView?.descriptionTextView.text = readyDescriptionString
+            } else if newState == .Action {
+                embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("STOP", comment: ""), withState: .red)
+            } else if newState == .Done {
+                guard let timer = self.timer else { return }
+                timer.timerLabel.text = "0:00"
+                timer.highlightSection(.None)
+                SoundManager.shared.playSound(SoundType.sound(routine.type, .brush, .done(.other)))
+                embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("BRUSH", comment: ""), withState: .blue)
+                embedView?.descriptionTextView.text = doneDescriptionString
+            } else if newState == .Initial {
+                embedView?.toggleDescriptionText(false)
+                return
+            }
+            if UserDataContainer.shared.routine != nil {
+                embedView?.toggleDescriptionText(true)
+            }
+            
+        } else {
+            
+            if newState == .Initial {
+                guard let timer = self.timer else { return }
+                timer.timerLabel.text = "0:00"
+                timer.highlightSection(.None)
+                embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("FLOSS", comment: ""), withState: .blue)
+            } else {
+                embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("STOP", comment: ""), withState: .red)
+            }
         }
-        embedView?.toggleDescriptionText(true)
+        
     }
     
 }

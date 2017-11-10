@@ -155,9 +155,9 @@ extension RinseActionView: ActionViewProxyDelegateProtocol {
         if seconds >= 0, seconds < 10 {
             if !actionDescription01Flag {
                 actionDescription01Flag = true
-                embedView?.descriptionTextView.text = actionDescription01String
                 if let routine = UserDataContainer.shared.routine {
                     SoundManager.shared.playSound(SoundType.sound(routine.type, .rinse, .progress(Int(seconds))))
+                    embedView?.descriptionTextView.text = actionDescription01String
                 }
             }
         }
@@ -165,39 +165,38 @@ extension RinseActionView: ActionViewProxyDelegateProtocol {
         if seconds >= 10, seconds < 20 {
             if !actionDescription02Flag {
                 actionDescription02Flag = true
-                embedView?.descriptionTextView.text = actionDescription02String
                 if let routine = UserDataContainer.shared.routine {
                     SoundManager.shared.playSound(SoundType.sound(routine.type, .rinse, .progress(Int(seconds))))
+                    embedView?.descriptionTextView.text = actionDescription02String
                 }
             }
         }
     }
     
     func stateChanged(_ newState: ActionState) {
-        if newState == .Ready {
-            
-            embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("START", comment: ""), withState: .blue)
-            if let routine = UserDataContainer.shared.routine {
+        
+        if let routine = UserDataContainer.shared.routine {
+        
+            if newState == .Ready {
+                
+                embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("START", comment: ""), withState: .blue)
                 if routine.type == .morning {
                     embedView?.descriptionTextView.text = readyMorningDescriptionString
                 } else {
                     embedView?.descriptionTextView.text = readyEveningDescriptionString
                 }
                 SoundManager.shared.playSound(SoundType.sound(routine.type, .rinse, .ready))
-            }
-            
-        } else if newState == .Action {
-            
-            embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("STOP", comment: ""), withState: .red)
-            
-        } else if newState == .Done {
-            
-            guard let timer = self.timer else { return }
-            timer.centerLabel.text = "0:00"
-            timer.bar.angle = 0
-            embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("RINSE", comment: ""), withState: .blue)
-            embedView?.descriptionTextView.text = doneEveningDescriptionString
-            if let routine = UserDataContainer.shared.routine {
+                
+            } else if newState == .Action {
+                
+                embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("STOP", comment: ""), withState: .red)
+                
+            } else if newState == .Done {
+                
+                guard let timer = self.timer else { return }
+                timer.centerLabel.text = "0:00"
+                timer.bar.angle = 0
+                embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("RINSE", comment: ""), withState: .blue)
                 if routine.type == .evening {
                     embedView?.descriptionTextView.text = doneEveningDescriptionString
                 } else {
@@ -209,15 +208,28 @@ extension RinseActionView: ActionViewProxyDelegateProtocol {
                     }
                     SoundManager.shared.playSound(SoundType.sound(routine.type, .rinse, .done(.congratulations)))
                 }
+                
+            } else if newState == .Initial {
+                embedView?.toggleDescriptionText(false)
+                return
+            }
+        
+            if UserDataContainer.shared.routine != nil {
+                embedView?.toggleDescriptionText(true)
+            }
+        
+        } else {
+            
+            if newState == .Initial {
+                guard let timer = self.timer else { return }
+                timer.centerLabel.text = "0:00"
+                timer.bar.angle = 0
+                embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("FLOSS", comment: ""), withState: .blue)
+            } else {
+                embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("STOP", comment: ""), withState: .red)
             }
             
-        } else if newState == .Initial {
-            
-            embedView?.toggleDescriptionText(false)
-            return
         }
-        
-        embedView?.toggleDescriptionText(true)
     }
     
 }

@@ -457,30 +457,40 @@ extension ActionView: ActionFooterViewDelegate {
     }
     
     func onActionButtonPressed() {
-        if actionState == .Initial {
-            actionState = .Ready
-            delegate?.stateChanged(actionState)
-        } else if actionState == .Done {
-            //Change state to Ready
-            actionState = .Initial
-            //sendStateChangeNotification()
-            delegate?.stateChanged(actionState)
-            return
-        } else if actionState == .Ready {
-            //Change state to Action
-            actionState = .Action
-            self.perform(Selector.executeActionSelector, with: nil, afterDelay: 0.0)
+        
+        if UserDataContainer.shared.routine != nil {
+            if actionState == .Initial {
+                actionState = .Ready
+                delegate?.stateChanged(actionState)
+            } else if actionState == .Done {
+                //Change state to Ready
+                actionState = .Initial
+                delegate?.stateChanged(actionState)
+                return
+            } else if actionState == .Ready {
+                //Change state to Action
+                actionState = .Action
+                self.perform(Selector.executeActionSelector, with: nil, afterDelay: 0.0)
+            } else {
+                //Change state to Done
+                actionState = .Done
+                self.perform(Selector.executeActionSelector, with: nil, afterDelay: 0.0)
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: { [weak self] in
+                    if self?.actionState == .Done {//if it's still Done change it automatically to Initial
+                        self?.actionState = .Initial
+                        self?.delegate?.stateChanged((self?.actionState)!)
+                    }
+                })
+            }
         } else {
-            //Change state to Done
-            actionState = .Done
+            if actionState == .Initial {
+                actionState = .Action
+            } else {
+                actionState = .Initial
+            }
+            delegate?.stateChanged(actionState)
             self.perform(Selector.executeActionSelector, with: nil, afterDelay: 0.0)
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: { [weak self] in
-                if self?.actionState == .Done {//if it's still Done change it automatically to Initial
-                    self?.actionState = .Initial
-                    self?.delegate?.stateChanged((self?.actionState)!)
-                }
-            })
         }
         
         delegate?.stateChanged(actionState)

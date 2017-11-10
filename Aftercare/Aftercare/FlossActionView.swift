@@ -136,32 +136,45 @@ extension FlossActionView: ActionViewProxyDelegateProtocol {
     }
     
     func stateChanged(_ newState: ActionState) {
-        if newState == .Ready {
-            embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("START", comment: ""), withState: .blue)
-            embedView?.descriptionTextView.text = readyDescriptionString
-            if let routine = UserDataContainer.shared.routine {
+        
+        if let routine = UserDataContainer.shared.routine {
+            
+            if newState == .Ready {
+                embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("START", comment: ""), withState: .blue)
                 SoundManager.shared.playSound(SoundType.sound(routine.type, .floss, .ready))
-            }
-        } else if newState == .Action {
-            embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("STOP", comment: ""), withState: .red)
-            embedView?.descriptionTextView.text = actionDescriptionString
-            if let routine = UserDataContainer.shared.routine {
+                embedView?.descriptionTextView.text = readyDescriptionString
+            } else if newState == .Action {
+                embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("STOP", comment: ""), withState: .red)
                 SoundManager.shared.playSound(SoundType.sound(routine.type, .floss, .progress(0)))
-            }
-        } else if newState == .Done {
-            guard let timer = self.timer else { return }
-            timer.centerLabel.text = "0:00"
-            timer.bar.angle = 0
-            embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("FLOSS", comment: ""), withState: .blue)
-            embedView?.descriptionTextView.text = doneDescriptionString
-            if let routine = UserDataContainer.shared.routine {
+                embedView?.descriptionTextView.text = actionDescriptionString
+            } else if newState == .Done {
+                guard let timer = self.timer else { return }
+                timer.centerLabel.text = "0:00"
+                timer.bar.angle = 0
+                embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("FLOSS", comment: ""), withState: .blue)
                 SoundManager.shared.playSound(SoundType.sound(routine.type, .floss, .done(.other)))
+                embedView?.descriptionTextView.text = doneDescriptionString
+            } else if newState == .Initial {
+                embedView?.toggleDescriptionText(false)
+                return
             }
-        } else if newState == .Initial {
-            embedView?.toggleDescriptionText(false)
-            return
+            
+            if UserDataContainer.shared.routine != nil {
+                embedView?.toggleDescriptionText(true)
+            }
+            
+        } else {
+            
+            if newState == .Initial {
+                guard let timer = self.timer else { return }
+                timer.centerLabel.text = "0:00"
+                timer.bar.angle = 0
+                embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("FLOSS", comment: ""), withState: .blue)
+            } else {
+                embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("STOP", comment: ""), withState: .red)
+            }
+            
         }
-        embedView?.toggleDescriptionText(true)
     }
     
 }

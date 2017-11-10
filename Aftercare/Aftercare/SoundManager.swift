@@ -53,7 +53,7 @@ class SoundManager {
                 //If already playing some sound, stop it
                 sound.stop()
             }
-            if let url = URL(string: "test-1.wav") {
+            if let url = URL(string: "/test-1.wav") {
                 print("PLAY SOUND AT PATH: \(url.absoluteURL)")
                 sound = Sound(url: url)
                 sound?.volume = 1.0
