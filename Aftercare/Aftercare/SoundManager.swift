@@ -131,7 +131,7 @@ class SoundManager {
             self.stopSound()
             
             //WORKING Sound.play(file: "male-morning-greeting", fileExtension: "mp3", numberOfLoops: 0)
-            print("PLAY SOUND \(path)")
+            //print("PLAY SOUND \(path)")
             
             if let url = Bundle.main.url(forResource: path, withExtension: "mp3") {
                 sound = Sound(url: url)
@@ -148,7 +148,7 @@ class SoundManager {
                 }
                 soundIsPlaying = true
                 if self.musicIsPlaying {
-                    self.setMusicVolume(0.5)
+                    self.setMusicVolume(0.3)
                 }
                 
             }

@@ -52,11 +52,11 @@ class ActionScreenViewController: UIViewController, ContentConformer {
     }()
     
     fileprivate lazy var routineMorningStartButtonLabel: String = {
-       return NSLocalizedString("Start morning routine", comment: "")
+       return NSLocalizedString("Start Morning Routine", comment: "")
     }()
     
     fileprivate lazy var routineEveningStartButtonLabel: String = {
-        return NSLocalizedString("Start evening routine", comment: "")
+        return NSLocalizedString("Start Evening Routine", comment: "")
     }()
     
     fileprivate lazy var routineDescriptionLabel: String = {
@@ -113,18 +113,18 @@ class ActionScreenViewController: UIViewController, ContentConformer {
                 let buttonLabel: String?
                 let routinePath: RoutinePath?
                 if routine.startHour == 2 {
-//                    if UserDataContainer.shared.isMorningRoutineDone {
-//                        //the routine is already done
-//                        return
-//                    }
+                    if UserDataContainer.shared.isMorningRoutineDone {
+                        //the routine is already done
+                        return
+                    }
                     UserDataContainer.shared.isMorningRoutineDone = true
                     buttonLabel = routineMorningStartButtonLabel
                     routinePath = .morning
                 } else {
-//                    if UserDataContainer.shared.isEveningRoutineDone {
-//                        //routine is alredy done
-//                        return
-//                    }
+                    if UserDataContainer.shared.isEveningRoutineDone {
+                        //routine is alredy done
+                        return
+                    }
                     UserDataContainer.shared.isEveningRoutineDone = true
                     buttonLabel = routineEveningStartButtonLabel
                     routinePath = .evening

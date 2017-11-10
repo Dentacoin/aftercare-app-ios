@@ -56,7 +56,7 @@ class RoutinesPopupScreen: UIView {
         currentDayLabel.font = UIFont.dntLatoBlackFont(size: UIFont.dntLargeTitleFontSize)
         setCurrentDay(currentDay)
         
-        daysTotalLabel.textColor = UIColor.dntCharcoalGrey
+        daysTotalLabel.textColor = UIColor.lightGray
         daysTotalLabel.font = UIFont.dntLatoRegularFontWith(size: UIFont.dntButtonFontSize)
         daysTotalLabel.text = NSLocalizedString("of", comment: "") + " "  + String(90)
         
@@ -78,7 +78,7 @@ class RoutinesPopupScreen: UIView {
         themeManager.setDCBlueTheme(
             to: startRoutineButton,
             ofType: DCBlueThemeTypes.ButtonOptionStyle(
-                label: "Start Routine",
+                label: startRoutineButton.titleLabel?.text ?? "",
                 selected: false
             )
         )
