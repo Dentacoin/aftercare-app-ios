@@ -35,7 +35,11 @@ class RinseActionView: UIView, ActionViewProtocol {
     
     //MARK: - Fileprivates
     
-    fileprivate lazy var readyDescriptionString:String = {
+    fileprivate lazy var readyMorningDescriptionString:String = {
+        return NSLocalizedString("Now let’s proceed with the second step of your morning dental routine. Rinsing. Measure 20 milliliters of your rinse liquid and press the start button when you are ready to swish.", comment: "")
+    }()
+    
+    fileprivate lazy var readyEveningDescriptionString:String = {
         return NSLocalizedString("Now let’s proceed with the third step of your evening dental routine. Rinsing.", comment: "")
     }()
     
@@ -131,6 +135,12 @@ class RinseActionView: UIView, ActionViewProtocol {
         let scale = 360 / UserDataContainer.shared.RinseActionDurationInSeconds
         return 360 - (seconds * scale)
     }
+    
+    //MARK: - Public
+    
+    func setupTutorials() {
+        embedView?.showTutorials()
+    }
 }
 
 //MARK: - Proxy Delegate Protocol
@@ -165,14 +175,23 @@ extension RinseActionView: ActionViewProxyDelegateProtocol {
     
     func stateChanged(_ newState: ActionState) {
         if newState == .Ready {
+            
             embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("START", comment: ""), withState: .blue)
-            embedView?.descriptionTextView.text = readyDescriptionString
             if let routine = UserDataContainer.shared.routine {
+                if routine.type == .morning {
+                    embedView?.descriptionTextView.text = readyMorningDescriptionString
+                } else {
+                    embedView?.descriptionTextView.text = readyEveningDescriptionString
+                }
                 SoundManager.shared.playSound(SoundType.sound(routine.type, .rinse, .ready))
             }
+            
         } else if newState == .Action {
+            
             embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("STOP", comment: ""), withState: .red)
+            
         } else if newState == .Done {
+            
             guard let timer = self.timer else { return }
             timer.centerLabel.text = "0:00"
             timer.bar.angle = 0
@@ -191,10 +210,13 @@ extension RinseActionView: ActionViewProxyDelegateProtocol {
                     SoundManager.shared.playSound(SoundType.sound(routine.type, .rinse, .done(.congratulations)))
                 }
             }
+            
         } else if newState == .Initial {
+            
             embedView?.toggleDescriptionText(false)
             return
         }
+        
         embedView?.toggleDescriptionText(true)
     }
     

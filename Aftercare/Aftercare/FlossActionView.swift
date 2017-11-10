@@ -117,6 +117,12 @@ class FlossActionView: UIView, ActionViewProtocol {
         return seconds * scale
     }
     
+    //MARK: - Public
+    
+    func setupTutorials() {
+        embedView?.showTutorials()
+    }
+    
 }
 
 //MARK: - Proxy Delegate Protocol

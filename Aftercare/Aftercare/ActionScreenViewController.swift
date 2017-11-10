@@ -31,6 +31,7 @@ class ActionScreenViewController: UIViewController, ContentConformer {
     fileprivate var headerHeight: CGFloat = 0
     fileprivate var currentPageIndex = 0
     fileprivate var lastTab: Int = 0
+    fileprivate var tutorialsAlreadySetup = false
     
     fileprivate let goalPopupScreen: GoalPopupScreen = {
         let popup = Bundle.main.loadNibNamed(
@@ -86,6 +87,14 @@ class ActionScreenViewController: UIViewController, ContentConformer {
                 let topPadding = self.view.safeAreaInsets.top
                 headerHeightConstraint.constant += topPadding
                 headerHeight = headerHeightConstraint.constant
+                
+                //If no routine, show tutorial on current page
+                if UserDataContainer.shared.routine == nil {
+                    if let page = pagesArray.first {
+                        page.setupTutorials()
+                    }
+                }
+                
             }
         }
         updateSubscreensContentSizes()
@@ -104,18 +113,18 @@ class ActionScreenViewController: UIViewController, ContentConformer {
                 let buttonLabel: String?
                 let routinePath: RoutinePath?
                 if routine.startHour == 2 {
-//                    if UserDataContainer.shared.isMorningRoutineDone {
-//                        //the routine is already done
-//                        return
-//                    }
+                    if UserDataContainer.shared.isMorningRoutineDone {
+                        //the routine is already done
+                        return
+                    }
                     UserDataContainer.shared.isMorningRoutineDone = true
                     buttonLabel = routineMorningStartButtonLabel
                     routinePath = .morning
                 } else {
-//                    if UserDataContainer.shared.isEveningRoutineDone {
-//                        //routine is alredy done
-//                        return
-//                    }
+                    if UserDataContainer.shared.isEveningRoutineDone {
+                        //routine is alredy done
+                        return
+                    }
                     UserDataContainer.shared.isEveningRoutineDone = true
                     buttonLabel = routineEveningStartButtonLabel
                     routinePath = .evening
@@ -222,7 +231,14 @@ extension ActionScreenViewController {
         DispatchQueue.main.async() {
             UIView.animate(withDuration: 0.25, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: {
                 self.contentScrollView.contentOffset.x = self.contentScrollView.frame.size.width * CGFloat(index)
-            }, completion: nil)
+            }, completion: { [weak self] success in
+                if !(self?.tutorialsAlreadySetup)! {
+                    self?.tutorialsAlreadySetup = true
+                    if let page = self?.pagesArray[index] {
+                        page.setupTutorials()
+                    }
+                }
+            })
         }
     }
 }

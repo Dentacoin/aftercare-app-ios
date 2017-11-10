@@ -132,6 +132,12 @@ class BrushActionView: UIView, ActionViewProtocol {
         formatedData += seconds > 9 ? String(seconds) : "0" + String(seconds)
         return formatedData
     }
+    
+    //MARK: - Public
+    
+    func setupTutorials() {
+        embedView?.showTutorials()
+    }
 }
 
 //MARK: - Proxy Delegate Protocol
