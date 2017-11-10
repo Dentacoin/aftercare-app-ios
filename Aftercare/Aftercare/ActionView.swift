@@ -13,19 +13,36 @@ import EasyTipView
 class ActionView: UIView {
     
     //IBOutlets
+    
     @IBOutlet weak var totalBar: TotalDCNBar!
     @IBOutlet weak var timerContainer: UIView!
     @IBOutlet weak var actionBarsContainer: ActionBarsView!
     @IBOutlet weak var actionFootherContainer: ActionFooterView!
+    @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var edgeGesture: UIScreenEdgePanGestureRecognizer!
     
     //MARK: - delegates
     
     weak var delegate: ActionViewDelegate?
     
+    //MARK: - Public
+    
+    var actionState: ActionState = .Initial
+    
     //MARK: - Fileprivates
     
-    internal var actionViewRecordType: ActionRecordType?
+    internal let UpdateIntervalInMilliseconds: Double = 0.1
+    internal let OneSecond: Double = 1
+    internal let OneMinute: Double = 60
+    internal let OneHour: Double = 3600
+    
+    fileprivate var timer: Timer?
+    fileprivate var secondsCount: Double = 0
+    fileprivate var timerRunning = false
+    fileprivate var startCountdownTime: Date?
+    fileprivate var endCountdownTime: Date?
+    fileprivate var stoppingCountdown = false
+    fileprivate var tutorialsAlreadySetup = false
     
     fileprivate var statisticsPanelOpened: Bool = false {
         didSet {
@@ -49,6 +66,10 @@ class ActionView: UIView {
     //and for sake of simplicity i hardcode this in order to settings view hide fully after closed. This value doesn't change
     //the animation and expected functionality on other types of iphones and iOS versions
     fileprivate var bottomInset: CGFloat = 37
+    
+    //MARK: - Internals
+    
+    internal var actionViewRecordType: ActionRecordType?
     
     //MARK: - Lifecycle
     
@@ -232,13 +253,10 @@ class ActionView: UIView {
         
         guard let dashboard = screenDashboardData else { return }
         
-        //calculate last bar value
-        actionBarsContainer.setLastBarValue(dashboard.lastTime)
+        //set bar values
         
-        //calculate left actions value
+        actionBarsContainer.setLastBarValue(dashboard.lastTime, type)
         actionBarsContainer.setLeftBarValue(dashboard.left, forType: type)
-        
-        //this bar has no value progress indication
         actionBarsContainer.setEarnedBarValue(dashboard.earned)
         
         if let type = self.actionViewRecordType {
@@ -246,6 +264,22 @@ class ActionView: UIView {
         }
         
         self.statisticsView.updateData(data)
+    }
+    
+    func toggleDescriptionText(_ toggle: Bool) {
+        
+        UIView.animate(withDuration: 0.5, animations: { [weak self] in
+            
+            if toggle {
+                self?.descriptionTextView.alpha = 1
+                self?.actionBarsContainer.alpha = 0
+            } else {
+                self?.descriptionTextView.alpha = 0
+                self?.actionBarsContainer.alpha = 1
+            }
+            
+        })
+        
     }
     
     //MARK: - @IBAction
@@ -305,6 +339,98 @@ class ActionView: UIView {
         
     }
     
+    //MARK: - Timer logic
+    
+    fileprivate func startCountdown() {
+        if self.timer == nil {
+            self.timer = Timer.scheduledTimer(
+                timeInterval: UpdateIntervalInMilliseconds,
+                target: self,
+                selector: Selector.updateTimerSelector,
+                userInfo: nil,
+                repeats: true
+            )
+            self.startCountdownTime = Date()
+            self.timerRunning = true
+            
+            //set the screen not to sleep
+            UIApplication.shared.isIdleTimerDisabled = true
+            
+            //Notify the delegate
+            delegate?.timerStarted()
+        }
+    }
+    
+    fileprivate func stopCountdown() {
+        if let timer = self.timer {
+            timer.invalidate()
+            self.timer = nil
+        }
+        self.endCountdownTime = Date()
+        self.timerRunning = false
+        
+        //set the screen not to sleep
+        UIApplication.shared.isIdleTimerDisabled = false
+        
+        //Notify the delegate
+        delegate?.timerStopped()
+    }
+    
+    fileprivate func clearTimerData() {
+        self.secondsCount = 0
+        self.startCountdownTime = nil
+        self.endCountdownTime = nil
+    }
+    
+    fileprivate func tryToCreateNewRecord() {
+        if self.secondsCount >= UserDataContainer.shared.ActionMinimumRecordTimeInSeconds {
+            //create new record
+            guard let startTime = self.startCountdownTime else { return }
+            guard let endTime = self.endCountdownTime else { return }
+            guard let type = self.actionViewRecordType else { return }
+            let record = ActionRecordData(startTime: startTime.iso8601, endTime: endTime.iso8601, type: type)
+            
+            
+            let defaults = UserDefaults.standard
+            if defaults.value(forKey: "startOf90DaysPeriod") == nil {
+                //If there is not start date of the 90 days period we create one
+                //this mean the 90 days period start from now
+                let now = Date()
+                let startOfThePeriod = now.iso8601
+                defaults.set(startOfThePeriod, forKey: "startOf90DaysPeriod")
+            }
+            
+            //API call to record the successfuly completed action
+            APIProvider.recordAction(record: record) { validAction, error in
+                if let action = validAction {
+                    print("Successfuly record new action: \(action)")
+                    UserDataContainer.shared.syncWithServer()
+                }
+                if let error = error {
+                    print("Error on attempt to record new action: \(error)")
+                }
+            }
+            
+            //Notify the delegate
+            self.delegate?.actionComplete()
+        }
+    }
+    
+    @objc fileprivate func updateTimer() {
+        self.secondsCount += UpdateIntervalInMilliseconds
+        delegate?.timerUpdated(secondsCount)
+    }
+    
+    @objc func executeAction() {
+        if self.timerRunning {
+            self.stopCountdown()
+            self.tryToCreateNewRecord()
+            self.clearTimerData()
+        } else {
+            startCountdown()
+        }
+    }
+    
     //MARK: - KVO Selectors
     
     @objc fileprivate func closeStatisticsNotification() {
@@ -318,19 +444,45 @@ class ActionView: UIView {
             self.openStatisticsScreen(false)
         }
     }
+    
 }
 
 //MARK: - ActionFooterViewDelegate
 
 extension ActionView: ActionFooterViewDelegate {
     func onStatisticsButtonPressed() {
-        //??? if self.timerRunning { return }
+        if self.timerRunning { return }
         openStatisticsScreen()
     }
     
-    
     func onActionButtonPressed() {
+        if actionState == .Initial {
+            actionState = .Ready
+            delegate?.stateChanged(actionState)
+        } else if actionState == .Done {
+            //Change state to Ready
+            actionState = .Initial
+            //sendStateChangeNotification()
+            delegate?.stateChanged(actionState)
+            return
+        } else if actionState == .Ready {
+            //Change state to Action
+            actionState = .Action
+            self.perform(Selector.executeActionSelector, with: nil, afterDelay: 0.0)
+        } else {
+            //Change state to Done
+            actionState = .Done
+            self.perform(Selector.executeActionSelector, with: nil, afterDelay: 0.0)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: { [weak self] in
+                if self?.actionState == .Done {//if it's still Done change it automatically to Initial
+                    self?.actionState = .Initial
+                    self?.delegate?.stateChanged((self?.actionState)!)
+                }
+            })
+        }
         
+        delegate?.stateChanged(actionState)
     }
     
 }
@@ -339,7 +491,7 @@ extension ActionView: ActionFooterViewDelegate {
 
 extension ActionView: TotalDCNBarDelegate {
     func onTotalBarPressed() {
-        //??? if timerRunning { return }
+        if timerRunning { return }
         delegate?.requestToOpenCollectScreen()
     }
 }
@@ -372,14 +524,7 @@ class ActionView: UIView {
     //MARK: - delegates
     
     weak var delegate: ActionViewDelegate?
-    
-    //MARK: - fileprivate constants
-    
-    fileprivate let UpdateIntervalInMilliseconds: Double = 0.1
-    fileprivate let OneSecond: Double = 1
-    fileprivate let OneMinute: Double = 60
-    fileprivate let OneHour: Double = 3600
-    
+ 
     //MARK: - fileprivates
     
     fileprivate var actionViewRecordType: ActionRecordType?
@@ -396,15 +541,7 @@ class ActionView: UIView {
     //the animation and expected functionality on other types of iphones and iOS versions
     fileprivate var bottomInset: CGFloat = 37
     
-    fileprivate var timer: Timer?
-    fileprivate var secondsCount: Double = 0
-    fileprivate var timerRunning = false
-    fileprivate var startCountdownTime: Date?
-    fileprivate var endCountdownTime: Date?
-    fileprivate var stoppingCountdown = false
-    fileprivate var statisticsOpenedFrame: CGRect = CGRect.zero
-    fileprivate var statisticsClosedFrame: CGRect = CGRect.zero
-    fileprivate var tutorialsAlreadySetup = false
+ 
     
     fileprivate let statisticsView: StatisticsView = {
         let statistics: StatisticsView = Bundle.main.loadNibNamed(
@@ -768,6 +905,15 @@ fileprivate extension Selector {
 }
 */
 
+//MARK: -
+
+enum ActionState {
+    case Initial
+    case Ready
+    case Action
+    case Done
+}
+
 //MARK: - ActionViewProtocol
 
 protocol ActionViewProtocol {
@@ -780,6 +926,8 @@ protocol ActionViewProtocol {
 extension Selector {
     static let closeStatisticsSelector = #selector(ActionView.closeStatisticsNotification)
     static let openStatisticsSelector = #selector(ActionView.openStatisticsNotification)
+    static let updateTimerSelector = #selector(ActionView.updateTimer)
+    static let executeActionSelector = #selector(ActionView.executeAction)
 }
 
 //MARK: - Notifications
@@ -800,7 +948,7 @@ extension Date {
 
 extension String {
     var dateFromISO8601: Date? {
-        return DateFormatter.iso8601.date(from: self)   // "Mar 22, 2017, 10:22 AM"
+        return DateFormatter.iso8601.date(from: self)// "Mar 22, 2017, 10:22 AM"
     }
 }
 

@@ -27,6 +27,11 @@
                 <view opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MDM-4h-dj0">
                     <rect key="frame" x="20" y="78" width="354" height="422"/>
                 </view>
+                <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pkl-Ok-4la">
+                    <rect key="frame" x="8" y="500" width="378" height="107"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
                 <view opaque="NO" contentMode="scaleAspectFill" ambiguous="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="151" translatesAutoresizingMaskIntoConstraints="NO" id="QqS-ku-RDu" customClass="ActionBarsView" customModule="Aftercare" customModuleProvider="target">
                     <rect key="frame" x="72" y="500" width="250" height="107"/>
                     <constraints>
@@ -43,14 +48,18 @@
             <constraints>
                 <constraint firstItem="MDM-4h-dj0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="3Um-pR-o4K"/>
                 <constraint firstItem="QqS-ku-RDu" firstAttribute="centerX" secondItem="Z9q-wr-ovd" secondAttribute="centerX" id="4e2-1i-uZC"/>
+                <constraint firstItem="pkl-Ok-4la" firstAttribute="bottom" secondItem="QqS-ku-RDu" secondAttribute="bottom" id="7rP-ih-8VB"/>
                 <constraint firstAttribute="bottom" secondItem="Z9q-wr-ovd" secondAttribute="bottom" id="8dl-7A-Mln"/>
                 <constraint firstAttribute="trailing" secondItem="MDM-4h-dj0" secondAttribute="trailing" constant="20" id="I4L-mt-p0g"/>
                 <constraint firstItem="MDM-4h-dj0" firstAttribute="top" secondItem="m7L-kc-wFq" secondAttribute="bottom" constant="8" id="LQV-ZI-ip9"/>
                 <constraint firstItem="Z9q-wr-ovd" firstAttribute="top" secondItem="QqS-ku-RDu" secondAttribute="bottomMargin" constant="8" id="aKk-kp-Igy"/>
                 <constraint firstItem="Z9q-wr-ovd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="fVl-FA-gIs"/>
+                <constraint firstAttribute="trailing" secondItem="pkl-Ok-4la" secondAttribute="trailing" constant="8" id="gsv-XG-aX0"/>
+                <constraint firstItem="pkl-Ok-4la" firstAttribute="top" secondItem="QqS-ku-RDu" secondAttribute="top" id="hNP-pb-0A9"/>
                 <constraint firstItem="m7L-kc-wFq" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="j75-8z-Tvp"/>
                 <constraint firstAttribute="trailing" secondItem="Z9q-wr-ovd" secondAttribute="trailing" id="lV3-Nr-4Na"/>
                 <constraint firstItem="MDM-4h-dj0" firstAttribute="bottom" secondItem="QqS-ku-RDu" secondAttribute="top" id="qqr-z9-bvK"/>
+                <constraint firstItem="pkl-Ok-4la" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="uKG-Hc-PsH"/>
                 <constraint firstItem="m7L-kc-wFq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="v3v-Mz-SmH"/>
                 <constraint firstAttribute="trailing" secondItem="m7L-kc-wFq" secondAttribute="trailing" constant="16" id="ybZ-jb-7Ye"/>
             </constraints>
@@ -58,6 +67,7 @@
             <connections>
                 <outlet property="actionBarsContainer" destination="QqS-ku-RDu" id="dZt-Aj-1VT"/>
                 <outlet property="actionFootherContainer" destination="Z9q-wr-ovd" id="4lV-Ou-fsE"/>
+                <outlet property="descriptionTextView" destination="pkl-Ok-4la" id="EFb-uy-z0P"/>
                 <outlet property="edgeGesture" destination="NC2-t4-ZIA" id="lbE-P7-12V"/>
                 <outlet property="timerContainer" destination="MDM-4h-dj0" id="Lr4-pk-g4L"/>
                 <outlet property="totalBar" destination="m7L-kc-wFq" id="4nk-sX-cKO"/>

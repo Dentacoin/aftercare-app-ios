@@ -58,8 +58,9 @@ class BrushBar: UIView {
     fileprivate var downLeftPart: [UIButton] = []
     fileprivate var upperLeftPart: [UIButton] = []
     fileprivate var allTeeth: [UIButton] = []
+    fileprivate var highlightedSection: [UIButton]?
     
-    //MARK: - IBDesignable
+    //MARK: - IBDesignable Lifecycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -102,6 +103,51 @@ class BrushBar: UIView {
         calculateLayouts()
     }
     
+    //MARK: - Public api
+    
+    func highlightSection(_ section: BrushBarSections) {
+        
+        UIView.animate(withDuration: 0.5, animations: { [weak self] in
+            if let highlighted = self?.highlightedSection {
+                for tooth in highlighted {
+                    tooth.alpha = 0
+                }
+            }
+            
+            let sectionToHighlight: [UIButton]?
+            
+            switch section {
+                case .UpperRight:
+                    sectionToHighlight = self?.upperRightPart
+                case .DownRight:
+                    sectionToHighlight = self?.downRightPart
+                case .DownLeft:
+                    sectionToHighlight = self?.downLeftPart
+                case .UpperLeft:
+                    sectionToHighlight = self?.upperLeftPart
+                case .None:
+                    sectionToHighlight = nil
+                    self?.highlightedSection = nil
+            }
+            
+            if let section = sectionToHighlight {
+                for tooth in section {
+                    tooth.alpha = 0.7
+                }
+                self?.highlightedSection = section
+            }
+        })
+        
+    }
+    
+    enum BrushBarSections {
+        case UpperRight
+        case DownRight
+        case DownLeft
+        case UpperLeft
+        case None
+    }
+    
 }
 
 //MARK: - apply theme
@@ -134,7 +180,7 @@ extension BrushBar {
         
         timerLabel.textColor = UIColor.dntCeruleanBlue
         timerLabel.font = UIFont.dntLatoLightFont(size: 40)
-        timerLabel.text = "00:00"
+        timerLabel.text = "0:00"
         
         self.backgroundColor = .clear
         

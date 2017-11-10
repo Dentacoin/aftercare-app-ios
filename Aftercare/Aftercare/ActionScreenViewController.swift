@@ -30,6 +30,8 @@ class ActionScreenViewController: UIViewController, ContentConformer {
     fileprivate var calculatedConstraints = false
     fileprivate var headerHeight: CGFloat = 0
     fileprivate var currentPageIndex = 0
+    fileprivate var routine: RoutineType?
+    fileprivate var lastTab: Int = 0
     
     fileprivate let goalPopupScreen: GoalPopupScreen = {
         let popup = Bundle.main.loadNibNamed(
@@ -47,6 +49,18 @@ class ActionScreenViewController: UIViewController, ContentConformer {
             options: nil
             )?.first as! RoutinesPopupScreen
         return popup
+    }()
+    
+    fileprivate lazy var routineMorningStartButtonLabel: String = {
+       return NSLocalizedString("Start morning routine", comment: "")
+    }()
+    
+    fileprivate lazy var routineEveningStartButtonLabel: String = {
+        return NSLocalizedString("Start evening routine", comment: "")
+    }()
+    
+    fileprivate lazy var routineDescriptionLabel: String = {
+        return NSLocalizedString("Good morning sunshine. It is a beautiful day. Let’s get you started properly. \n\n *You will receive your reward upon completion of the 90-day period.", comment: "")
     }()
     
     //MARK: - Lifecycle
@@ -82,20 +96,54 @@ class ActionScreenViewController: UIViewController, ContentConformer {
     
     fileprivate func requestDayRoutine() {
         
-        if UserDataContainer.shared.isRoutineRequested {
+        if !UserDataContainer.shared.isRoutineRequested {
             UserDataContainer.shared.isRoutineRequested = true
             
-//            let routinesPopup = self.routinesPopupScreen
-//            routinesPopup.delegate = self
-//            routinesPopup.setCurrentDay(58)
-//            routinesPopup.setRoutinesDescription("Lorem Ipsum dolor sit amet")
-//            routinesPopup.setRoutinesStartLabel("Start routine")
-//            let frame = UIScreen.main.bounds
-//            routinesPopup.frame = frame
-//            self.view.addSubview(routinesPopup)
-            
+            let routine = Routine.getRoutineForNow()
+            if let routine = routine {
+                
+                let buttonLabel: String?
+                if routine.startHour == 2 {
+//                    if UserDataContainer.shared.isMorningRoutineDone {
+//                        //the routine is already done
+//                        return
+//                    }
+                    UserDataContainer.shared.isMorningRoutineDone = true
+                    buttonLabel = routineMorningStartButtonLabel
+                } else {
+//                    if UserDataContainer.shared.isEveningRoutineDone {
+//                        //routine is alredy done
+//                        return
+//                    }
+                    UserDataContainer.shared.isEveningRoutineDone = true
+                    buttonLabel = routineEveningStartButtonLabel
+                }
+                
+                self.routine = routine
+                
+                let routinesPopup = self.routinesPopupScreen
+                routinesPopup.delegate = self
+                routinesPopup.setCurrentDay(UserDataContainer.shared.dayNumberOf90DaysSession ?? 0)
+                routinesPopup.setRoutinesDescription(routineDescriptionLabel)
+                routinesPopup.setRoutinesStartLabel(buttonLabel!)
+                routinesPopup.delegate = self
+                let frame = UIScreen.main.bounds
+                routinesPopup.frame = frame
+                self.view.addSubview(routinesPopup)
+                
+            }
         }
     
+    }
+    
+    fileprivate func getPageIndex(_ type: ActionRecordType) -> Int? {
+        for i in 0..<pagesArray.count {
+            let page = pagesArray[i]
+            if page.actionViewRecordType == type {
+                return i
+            }
+        }
+        return nil
     }
     
 }
@@ -117,22 +165,6 @@ extension ActionScreenViewController {
     }
     
     fileprivate func createSubScreens() -> [ActionViewProtocol]? {
-        
-//        let pageTypes: [ActionRecordType] = [.flossed, .brush, .rinsed]
-        
-//        for i in 0...pageTypes.count - 1 {
-//            let type = pageTypes[i]
-//            let page = Bundle.main.loadNibNamed(
-//                "ActionView",
-//                owner: self.contentScrollView,
-//                options: nil
-//            )?.first as! ActionView
-//
-//            page.backgroundColor = .clear
-//            page.config(type: type)
-//            page.delegate = self
-//            pagesArray.append(page)
-//        }
         
         let flossPage = FlossActionView()
         flossPage.delegate = self
@@ -200,41 +232,41 @@ extension ActionScreenViewController: ActionViewDelegate {
         contentDelegate?.requestLoadViewController(vcID, nil)
     }
     
-//    func statisticsScreenOpened(_ sender: UIView) {
-//        //open all other statistics screens except the sender where is already opened
-//        for page in pagesArray {
-//            if page.actionViewRecordType == (sender as! ActionView).actionViewRecordType {
-//                page.openStatisticsScreen(animated: false)
-//            }
-//        }
-//    }
-//
-//    func statisticsScreenClosed(_ sender: UIView) {
-//        //close all other statistics screens except the sender where is already closed
-//        for page in pagesArray {
-//            if page.actionViewRecordType == (sender as! ActionView).actionViewRecordType {
-//                continue
-//            }
-//            page.closeStatisticsScreen(animated: false)
-//        }
-//    }
-    
     func timerStarted() {
-        self.view.layoutIfNeeded()
-        self.headerHeightConstraint.constant = 0
-        UIView.animate(withDuration: 0.5) {
-            self.view.layoutIfNeeded()
+        if var routine = self.routine {
+            //we have routine
+            
+            //remove current screen from the list
+            routine.actions = Array(routine.actions.dropFirst())
+            self.routine = routine
+            
+        } else {
+            goFullScreen()
+            contentScrollView.isScrollEnabled = false
         }
-        contentScrollView.isScrollEnabled = false
     }
     
     func timerStopped() {
-        self.view.layoutIfNeeded()
-        self.headerHeightConstraint.constant =  self.headerHeight
-        UIView.animate(withDuration: 0.5) {
-            self.view.layoutIfNeeded()
+        if let routine = self.routine {
+            //we have routine
+            
+            if routine.actions.count > 0 {
+                
+                //proceed with the next screen
+                guard let nextScreenType = routine.actions.first else { return }
+                guard let pageIndex = getPageIndex(nextScreenType) else { return }
+                scrollContentScrollViewTo(page: pageIndex)
+                self.lastTab = pageIndex
+                
+                return
+            }
+            //we don't have any more screen in our routine so we set it's value to nil and exit
+            self.routine = nil
         }
+        
+        exitFullscreen()
         contentScrollView.isScrollEnabled = true
+        
     }
     
     func actionComplete() {
@@ -242,6 +274,23 @@ extension ActionScreenViewController: ActionViewDelegate {
             return
         }
         self.scrollContentScrollViewTo(page: self.currentPageIndex + 1)
+    }
+    
+    fileprivate func goFullScreen() {
+        self.view.layoutIfNeeded()
+        self.headerHeightConstraint.constant = 0
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    fileprivate func exitFullscreen() {
+        self.view.layoutIfNeeded()
+        self.headerHeightConstraint.constant =  self.headerHeight
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
+            self.header.selectTab(atIndex: self.lastTab)
+        }
     }
     
 }
@@ -304,6 +353,21 @@ extension ActionScreenViewController: UIScrollViewDelegate {
 extension ActionScreenViewController: RoutinesPopupScreenDelegate {
     
     func onRoutinesButtonPressed() {
+        routinesPopupScreen.removeFromSuperview()
+        
+        guard let routine = routine else { return }
+        //scroll to first routine screen
+        guard let pageIndex = getPageIndex(routine.actions.first!) else { return }
+        scrollContentScrollViewTo(page: pageIndex)
+        self.header.selectTab(atIndex: pageIndex)
+        
+        //Lock the scroll view and header while executing routine
+        self.view.layoutIfNeeded()
+        self.headerHeightConstraint.constant = 0
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
+        }
+        contentScrollView.isScrollEnabled = false
         
     }
     

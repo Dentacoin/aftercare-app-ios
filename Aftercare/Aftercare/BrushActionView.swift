@@ -10,6 +10,42 @@ import UIKit
 class BrushActionView: UIView, ActionViewProtocol {
     
     internal var embedView: ActionView?
+    internal var timer: BrushBar?
+    
+    //MARK: - fileprivates
+    
+    fileprivate lazy var readyDescriptionString:String = {
+        return NSLocalizedString("Let's start with brushing your teeth. Make sure your toothbrush is not dry, and apply toothpaste as the size of peagrain. Press the start button when you are ready to brush.", comment: "")
+    }()
+    
+    fileprivate var actionDescription01Flag = false
+    fileprivate lazy var actionStep01String:String = {
+        return NSLocalizedString("Starting with the upper left quadrant, brush continuously for the following 30 seconds.", comment: "")
+    }()
+    
+    fileprivate var actionDescription02Flag = false
+    fileprivate lazy var actionStep02String:String = {
+        return NSLocalizedString("Now let’s brush the lower left quadrant for the following 30 seconds.", comment: "")
+    }()
+    
+    fileprivate var actionDescription03Flag = false
+    fileprivate lazy var actionStep03String:String = {
+        return NSLocalizedString("It is time you move to the lower right quadrant. Brush this area for the following 30 seconds.", comment: "")
+    }()
+    
+    fileprivate var actionDescription04Flag = false
+    fileprivate lazy var actionStep04String:String = {
+        return NSLocalizedString("Now let’s brush the upper right quadrant. This is the last sector, only 30 more seconds.", comment: "")
+    }()
+    
+    fileprivate var actionDescription05Flag = false
+    fileprivate lazy var actionStep05String:String = {
+        return NSLocalizedString("When you are done press the STOP button.", comment: "")
+    }()
+    
+    fileprivate lazy var doneDescriptionString:String = {
+        return NSLocalizedString("Now you are done. Congratulations!", comment: "")
+    }()
     
     //MARK: - Delegate
     
@@ -31,6 +67,8 @@ class BrushActionView: UIView, ActionViewProtocol {
         super.layoutSubviews()
         embedView?.frame = self.bounds
     }
+    
+    //MARK: - Internal logic
     
     fileprivate func setupContent() {
         loadXib()
@@ -66,6 +104,7 @@ class BrushActionView: UIView, ActionViewProtocol {
         }
         timer.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         embedView?.timerContainer.addSubview(timer)
+        self.timer = timer
     }
     
     //MARK: - Theme And Appearance
@@ -80,8 +119,96 @@ class BrushActionView: UIView, ActionViewProtocol {
         
     }
     
+    //MARK: - brush specific logic
+    
+    fileprivate func formatCountdownTimerData(_ seconds: Double) -> String? {
+        var formatedData = ""
+        guard let hour = embedView?.OneHour else { return nil }
+        guard let minute = embedView?.OneMinute else { return nil }
+        let minutes = Int((seconds.truncatingRemainder(dividingBy: hour)) / minute)
+        let seconds = Int(seconds.truncatingRemainder(dividingBy: minute))
+        formatedData += String(minutes)
+        formatedData += ":"//delimiter minutes : seconds
+        formatedData += seconds > 9 ? String(seconds) : "0" + String(seconds)
+        return formatedData
+    }
 }
 
 //MARK: - Proxy Delegate Protocol
 
-extension BrushActionView: ActionViewProxyDelegateProtocol { }
+extension BrushActionView: ActionViewProxyDelegateProtocol {
+    
+    func timerUpdated(_ seconds: Double) {
+        guard let timer = self.timer else { return }
+        timer.timerLabel.text = self.formatCountdownTimerData(seconds)
+        
+        let seconds: Int = Int(seconds)
+        
+        if seconds > 0, seconds < 30 {
+            if !actionDescription01Flag {
+                actionDescription01Flag = true
+                embedView?.descriptionTextView.text = actionStep01String
+                timer.highlightSection(.UpperRight)
+                SoundManager.shared.playSound(SoundType.sound(.morning, .brush, .progress(seconds)))
+            }
+        }
+        
+        if seconds > 30, seconds < 60 {
+            if !actionDescription02Flag {
+                actionDescription02Flag = true
+                embedView?.descriptionTextView.text = actionStep02String
+                timer.highlightSection(.DownRight)
+                SoundManager.shared.playSound(SoundType.sound(.morning, .brush, .progress(seconds)))
+            }
+        }
+        
+        if seconds > 60, seconds < 90 {
+            if !actionDescription03Flag {
+                actionDescription03Flag = true
+                embedView?.descriptionTextView.text = actionStep03String
+                timer.highlightSection(.DownLeft)
+                SoundManager.shared.playSound(SoundType.sound(.morning, .brush, .progress(seconds)))
+            }
+        }
+        
+        if seconds > 90, seconds < 120 {
+            if !actionDescription04Flag {
+                actionDescription04Flag = true
+                embedView?.descriptionTextView.text = actionStep04String
+                timer.highlightSection(.UpperLeft)
+                SoundManager.shared.playSound(SoundType.sound(.morning, .brush, .progress(seconds)))
+            }
+        }
+        
+        if seconds > 120 {
+            if !actionDescription05Flag {
+                actionDescription05Flag = true
+                embedView?.descriptionTextView.text = actionStep05String
+                timer.highlightSection(.None)
+                SoundManager.shared.playSound(SoundType.sound(.morning, .brush, .progress(seconds)))
+            }
+        }
+    }
+    
+    func stateChanged(_ newState: ActionState) {
+        if newState == .Ready {
+            embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("START", comment: ""), withState: .blue)
+            SoundManager.shared.playSound(SoundType.greeting(.morning))
+            embedView?.descriptionTextView.text = readyDescriptionString
+        } else if newState == .Action {
+            embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("STOP", comment: ""), withState: .red)
+        } else if newState == .Done {
+            guard let timer = self.timer else { return }
+            timer.timerLabel.text = "0:00"
+            timer.highlightSection(.None)
+            embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("BRUSH", comment: ""), withState: .blue)
+            embedView?.descriptionTextView.text = doneDescriptionString
+            
+        } else if newState == .Initial {
+            embedView?.toggleDescriptionText(false)
+            return
+        }
+        embedView?.toggleDescriptionText(true)
+    }
+    
+}

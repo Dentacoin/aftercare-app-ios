@@ -95,6 +95,7 @@
 		9F4482E61F8BB33D00349A10 /* HabitRecordData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4482E51F8BB33D00349A10 /* HabitRecordData.swift */; };
 		9F4482E81F8BB62C00349A10 /* ActionRecordData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4482E71F8BB62C00349A10 /* ActionRecordData.swift */; };
 		9F4B6A511F99C41600B03C9A /* UpdateUserRequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4B6A501F99C41600B03C9A /* UpdateUserRequestData.swift */; };
+		9F856CBE1FB4C750004B95BD /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F856CBD1FB4C750004B95BD /* SoundManager.swift */; };
 		9F8683B01FAB702F0073C0EB /* DateFormatter+AppFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8683AF1FAB702F0073C0EB /* DateFormatter+AppFormats.swift */; };
 		9F9EF2F31F9DD43B005BE398 /* user-agreement.html in Resources */ = {isa = PBXBuildFile; fileRef = 9F9EF2F21F9DD43B005BE398 /* user-agreement.html */; };
 		9FA061701F7E8EE400298115 /* SuccessfullyCollectedScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA0616F1F7E8EE400298115 /* SuccessfullyCollectedScreenViewController.swift */; };
@@ -303,6 +304,7 @@
 		9F4482E51F8BB33D00349A10 /* HabitRecordData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitRecordData.swift; sourceTree = "<group>"; };
 		9F4482E71F8BB62C00349A10 /* ActionRecordData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionRecordData.swift; sourceTree = "<group>"; };
 		9F4B6A501F99C41600B03C9A /* UpdateUserRequestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserRequestData.swift; sourceTree = "<group>"; };
+		9F856CBD1FB4C750004B95BD /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		9F8683AF1FAB702F0073C0EB /* DateFormatter+AppFormats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+AppFormats.swift"; sourceTree = "<group>"; };
 		9F9EF2F21F9DD43B005BE398 /* user-agreement.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "user-agreement.html"; sourceTree = "<group>"; };
 		9F9EF2F41F9E0CEE005BE398 /* Aftercare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Aftercare.entitlements; sourceTree = "<group>"; };
@@ -531,12 +533,12 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
-		24B7D0951F32105B00797685 /* Images */ = {
+		24B7D0951F32105B00797685 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
 				9FA7EAAD1F9FC698003AD94A /* Assets.xcassets */,
 			);
-			name = Images;
+			name = Assets;
 			sourceTree = "<group>";
 		};
 		24ED18221F38C5E500C1A11A /* Vendors */ = {
@@ -558,7 +560,7 @@
 			children = (
 				9F9EF2F11F9DD3E1005BE398 /* Documents */,
 				249A970F1F38B3A1003ABB8D /* Fonts */,
-				24B7D0951F32105B00797685 /* Images */,
+				24B7D0951F32105B00797685 /* Assets */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -697,6 +699,7 @@
 				9F28A3A81F57DD1D0002FF53 /* SystemMethods.swift */,
 				9F16E3481F9A9F030081D244 /* NotificationsManager.swift */,
 				9FA7EAAB1F9F8C22003AD94A /* AnalyticsManager.swift */,
+				9F856CBD1FB4C750004B95BD /* SoundManager.swift */,
 				9F1E78471FB1C1C900A1A7D5 /* Routine.swift */,
 			);
 			name = Globals;
@@ -1170,6 +1173,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/QRCodeReader.swift/QRCodeReader.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftySound/SwiftySound.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -1191,6 +1195,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QRCodeReader.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftySound.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1265,6 +1270,7 @@
 				9FCA68CB1FAA1F5F008B36DA /* Promise.m in Sources */,
 				249A970A1F38951D003ABB8D /* LoginScreenViewController.swift in Sources */,
 				9F8683B01FAB702F0073C0EB /* DateFormatter+AppFormats.swift in Sources */,
+				9F856CBE1FB4C750004B95BD /* SoundManager.swift in Sources */,
 				9FDE78231F9B41270013719F /* NotificationsVisitTheApp.swift in Sources */,
 				9FA77C961F827EA4002CF7C5 /* AvatarData.swift in Sources */,
 				9F28A3A51F558C580002FF53 /* EmailProvider.swift in Sources */,

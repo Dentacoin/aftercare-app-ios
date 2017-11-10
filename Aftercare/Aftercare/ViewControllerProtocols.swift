@@ -51,6 +51,8 @@ protocol ActionViewDelegate: class {
     func requestToOpenCollectScreen()
     func timerStarted()
     func timerStopped()
+    func timerUpdated(_ milliseconds: Double)
+    func stateChanged(_ newState: ActionState)
     func actionComplete()
 }
 
@@ -83,6 +85,11 @@ extension DataSourceDelegate {
     func actionScreenDataUpdated(_ data: ActionScreenData) { }
 }
 
+extension ActionViewDelegate {
+    func timerUpdated(_ milliseconds: Double) {}
+    func stateChanged(_ newState: ActionState) {}
+}
+
 extension ActionViewProxyDelegateProtocol {
     
     var actionViewRecordType: ActionRecordType {
@@ -104,11 +111,11 @@ extension ActionViewProxyDelegateProtocol {
     }
     
     func timerStarted() {
-        delegate?.requestToOpenCollectScreen()
+        delegate?.timerStarted()
     }
     
     func timerStopped() {
-        delegate?.timerStarted()
+        delegate?.timerStopped()
     }
     
     func actionComplete() {

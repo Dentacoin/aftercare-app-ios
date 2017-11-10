@@ -539,7 +539,17 @@ class ThemeManager {
     fileprivate func applyToothButton(button: UIButton, _ selected: Bool) {
         
         let image = UIImage(named: "tooth-" + String(button.tag))
-        let selectedImage = image?.alpha(0.7)
+        var selectedImage = image
+        
+        
+//        selectedImage = selectedImage?.applyBlur(
+//            withRadius: 0,
+//            tintColor: .red,
+//            saturationDeltaFactor: 0,
+//            maskImage: selectedImage
+//        )
+        
+        selectedImage = selectedImage?.alpha(0.7)
         
         if selected {
             button.setBackgroundImage(selectedImage, for: .normal)
@@ -732,7 +742,7 @@ class ThemeManager {
         
         UIGraphicsEndImageContext()
         
-        return image;
+        return image
     }
     
     fileprivate func createTabBarImage(_ size: CGSize, _ hasLine: Bool) -> UIImage {
@@ -751,6 +761,6 @@ class ThemeManager {
         
         UIGraphicsEndImageContext()
         
-        return image;
+        return image
     }
 }

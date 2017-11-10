@@ -48,7 +48,7 @@ class StatisticScreenViewController: UIViewController, ContentConformer {
             cellType: String(describing: StatisticsLabelCell.self),
             label: NSLocalizedString("Floss Statistic", comment: ""),
             data: nil,
-            kind: nil
+            kind: ActionRecordType.flossed
         ),
         (
             cellType: String(describing: StatisticsCircularBarsCell.self),
@@ -60,7 +60,7 @@ class StatisticScreenViewController: UIViewController, ContentConformer {
             cellType: String(describing: StatisticsLabelCell.self),
             label: NSLocalizedString("Brush Statistic", comment: ""),
             data: nil,
-            kind: nil
+            kind: ActionRecordType.brush
         ),
         (
             cellType: String(describing: StatisticsCircularBarsCell.self),
@@ -72,7 +72,7 @@ class StatisticScreenViewController: UIViewController, ContentConformer {
             cellType: String(describing: StatisticsLabelCell.self),
             label: NSLocalizedString("Rinse Statistic", comment: ""),
             data: nil,
-            kind: nil
+            kind: ActionRecordType.rinsed
         ),
         (
             cellType: String(describing: StatisticsCircularBarsCell.self),
@@ -179,6 +179,7 @@ extension StatisticScreenViewController: UITableViewDelegate {
         
         let cellData = self.data[indexPath.row]
         let cellType = cellData.cellType
+        let cellKind = cellData.kind
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellType, for: indexPath)
         cell.backgroundColor = .clear
@@ -236,7 +237,7 @@ extension StatisticScreenViewController: UITableViewDelegate {
                 }
                 
                 if let averageTimeData = data?.average {
-                    let averageValue = UserDataContainer.shared.getStatisticsAverageTimeProgress(Double(averageTimeData))
+                    let averageValue = UserDataContainer.shared.getStatisticsAverageTimeProgress(Double(averageTimeData), cellKind!)
                     let averageValueTitle = SystemMethods.Utils.secondsToHumanReadableFormat(averageTimeData)
                     cell.averageTimeBar.setValue(averageValueTitle, averageValue)
                     cell.averageTimeBar.setTitle(self.averageTimeTitle)

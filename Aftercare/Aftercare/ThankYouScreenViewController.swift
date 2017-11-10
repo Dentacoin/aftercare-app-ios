@@ -20,9 +20,7 @@ class ThankYouScreenViewController: UIViewController, ContentConformer {
     
     //MARK: - Fileprivates
     
-    fileprivate let shouldStayForSeconds = 4
-    fileprivate var timer: Timer?
-    fileprivate var count = 0
+    fileprivate let shouldStayForSeconds: Int = 4
     
     //MARK: - Delegate
     
@@ -33,36 +31,20 @@ class ThankYouScreenViewController: UIViewController, ContentConformer {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        startCountdownBeforeDismiss()
+        showNextScreenAfterTime()
     }
     
     //MARK: - internal logic
     
-    fileprivate func startCountdownBeforeDismiss() {
-        
-        timer = Timer.scheduledTimer(
-            timeInterval: 1,
-            target: self,
-            selector: Selector.updateTimerSelector,
-            userInfo: nil,
-            repeats: true
-        )
-        
-    }
-        
-    @objc fileprivate func updateTimer() {
-        count += 1
-        if count >= shouldStayForSeconds {
-            timer?.invalidate()
-            presentContentViewController()
-        }
+    func showNextScreenAfterTime() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(shouldStayForSeconds), execute: { [weak self] in
+            self?.presentContentViewController()
+        })
     }
     
     fileprivate func presentContentViewController() {
-        
         let vcID = String(describing: EmergencyScreenViewController.self)
         contentDelegate?.requestLoadViewController(vcID, nil)
-        
     }
 }
 
@@ -90,10 +72,4 @@ extension ThankYouScreenViewController: InsidePageHeaderViewDelegate {
         contentDelegate?.backButtonIsPressed()
     }
     
-}
-
-//MARK: - Selector helper
-
-fileprivate extension Selector {
-    static let updateTimerSelector = #selector(ThankYouScreenViewController.updateTimer)
 }

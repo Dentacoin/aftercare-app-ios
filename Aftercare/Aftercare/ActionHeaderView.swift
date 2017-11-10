@@ -84,7 +84,7 @@ class ActionHeaderView: UIView {
         
         let themeManager = ThemeManager.shared
         
-        if let lastPressed = lastTabBarButtonPressed {
+        if let lastPressed = self.lastTabBarButtonPressed {
             themeManager.setDCBlueTheme(
                 to: lastPressed,
                 ofType: .ButtonTabStyle(
@@ -105,6 +105,7 @@ class ActionHeaderView: UIView {
             )
             selectButton.addTarget(self, action: Selector.tabBarButtonPressed, for: .touchUpInside)
             self.lastTabBarButtonPressed = selectButton
+            self.lastTabBarIndex = index
         }
     }
     

@@ -58,7 +58,9 @@ class UserDataContainer {
     }
     
     //how much time in seconds one action floss/brush/rinse takes on the timer
-    open let ActionDurationInSeconds: Double = 120
+    open let FlossActionDurationInSeconds: Double = 120
+    open let BrushActionDurationInSeconds: Double = 120
+    open let RinseActionDurationInSeconds: Double = 30
     
     //the minimum time in seconds that is needed in order action to be record
     //on the server (this is different from the lowest time that is considered for valid record witch is 2 min.)
@@ -93,7 +95,55 @@ class UserDataContainer {
     
     //MARK: - Public properties
     
-    var isRoutineRequested = false
+    var isRoutineRequested = false//this is the state for the current app session
+    
+    var isMorningRoutineDone: Bool {
+        get {
+            if let lastDoneMorningRoutine = defaults.value(forKey: "MorningRoutineDone") as? String {
+                guard let date = lastDoneMorningRoutine.dateFromISO8601 else { return false }
+                let diff = Calendar.current.dateComponents([.day], from: date, to: Date())
+                if diff.day == 0 {
+                    return true
+                } else {
+                    defaults.set(nil, forKey: "MorningRoutineDone")
+                    return false
+                }
+            }
+            return false
+        }
+        set {
+            if newValue {
+                let now = Date().iso8601
+                defaults.set(now, forKey: "MorningRoutineDone")
+            } else {
+                defaults.set(nil, forKey: "MorningRoutineDone")
+            }
+        }
+    }
+    
+    var isEveningRoutineDone: Bool {
+        get {
+            if let lastDoneMorningRoutine = defaults.value(forKey: "EveningRoutineDone") as? String {
+                guard let date = lastDoneMorningRoutine.dateFromISO8601 else { return false }
+                let diff = Calendar.current.dateComponents([.day], from: date, to: Date())
+                if diff.day == 0 {
+                    return true
+                } else {
+                    defaults.set(nil, forKey: "EveningRoutineDone")
+                    return false
+                }
+            }
+            return false
+        }
+        set {
+            if newValue {
+                let now = Date().iso8601
+                defaults.set(now, forKey: "EveningRoutineDone")
+            } else {
+                defaults.set(nil, forKey: "EveningRoutineDone")
+            }
+        }
+    }
     
     var emergencyScreenImage: UIImage? {
         get {
@@ -208,6 +258,30 @@ class UserDataContainer {
         }
     }
     
+    var dayNumberOf90DaysSession: Int? {
+        
+        if let startDate = defaults.value(forKey: "startOf90DaysPeriod") as? String {
+            guard let date = startDate.dateFromISO8601 else { return 0 }
+            
+            let nowDate = Date()
+            let calendar = Calendar.current
+            
+            let componentsSet = Set<Calendar.Component>([.day])
+            let result = calendar.dateComponents(componentsSet, from: date, to: nowDate)
+            
+            if let day = result.day {
+                if day >= 91 {
+                    //delete the old period and allow user to start new period from the next action started
+                    defaults.set(nil, forKey: "startOf90DaysPeriod")
+                    return nil
+                }
+                return day
+            }
+        }
+        
+        return nil
+    }
+    
     //MARK: - Tutorials help methods
     
     open func getTutorialSessionToggle(_ id: String) -> Bool {
@@ -261,8 +335,16 @@ class UserDataContainer {
         return progress
     }
     
-    open func getActionsLastTimeBarProgress(_ value: Double) -> Double {
-        let maxValue = self.ActionDurationInSeconds
+    open func getActionsLastTimeBarProgress(_ value: Double, _ type: ActionRecordType) -> Double {
+        var maxValue: Double = 0
+        switch type {
+            case .brush:
+                maxValue = self.BrushActionDurationInSeconds
+            case .flossed:
+                maxValue = self.FlossActionDurationInSeconds
+            case .rinsed:
+                maxValue = self.RinseActionDurationInSeconds
+        }
         let one = 360 / maxValue
         return one * value
     }
@@ -333,8 +415,16 @@ class UserDataContainer {
         return one * value
     }
     
-    open func getStatisticsAverageTimeProgress(_ value: Double) -> Double {
-        let maxValue = self.ActionDurationInSeconds
+    open func getStatisticsAverageTimeProgress(_ value: Double, _ type: ActionRecordType) -> Double {
+        var maxValue: Double = 0
+        switch type {
+        case .brush:
+            maxValue = self.BrushActionDurationInSeconds
+        case .flossed:
+            maxValue = self.FlossActionDurationInSeconds
+        case .rinsed:
+            maxValue = self.RinseActionDurationInSeconds
+        }
         let one = 360 / maxValue
         return one * value
     }
