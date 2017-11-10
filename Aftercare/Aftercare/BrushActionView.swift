@@ -212,7 +212,7 @@ extension BrushActionView: ActionViewProxyDelegateProtocol {
             
             if newState == .Ready {
                 embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("START", comment: ""), withState: .blue)
-                SoundManager.shared.playSound(SoundType.greeting(routine.type))
+                SoundManager.shared.playSound(SoundType.sound(routine.type, .brush, .ready))
                 embedView?.descriptionTextView.text = readyDescriptionString
             } else if newState == .Action {
                 embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("STOP", comment: ""), withState: .red)
@@ -220,7 +220,10 @@ extension BrushActionView: ActionViewProxyDelegateProtocol {
                 guard let timer = self.timer else { return }
                 timer.timerLabel.text = "0:00"
                 timer.highlightSection(.None)
-                SoundManager.shared.playSound(SoundType.sound(routine.type, .brush, .done(.other)))
+                
+                //this is the same sound for morning and evening routine
+                SoundManager.shared.playSound(SoundType.sound(.morning, .brush, .done(.congratulations)))
+                
                 embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("BRUSH", comment: ""), withState: .blue)
                 embedView?.descriptionTextView.text = doneDescriptionString
             } else if newState == .Initial {

@@ -121,7 +121,7 @@ struct RequestConverter<T: Encodable>: RequestConverterProtocol {
         if let token = UserDataContainer.shared.sessionToken {
             header.updateValue("Bearer " + token, forKey: "Authorization")
             if let tokenData = Messaging.messaging().fcmToken {
-                print("PUSH NOTIFICATIONS FIREBASE TOKEN: \(tokenData)")
+                //print("PUSH NOTIFICATIONS FIREBASE TOKEN: \(tokenData)")
                 header.updateValue(tokenData, forKey: "FirebaseToken")
             }
         }

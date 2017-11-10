@@ -283,6 +283,11 @@ class ActionView: UIView {
         
     }
     
+    func changeStateTo(_ newState: ActionState) {
+        self.actionState = newState
+        self.delegate?.stateChanged(newState)
+    }
+    
     //MARK: - @IBAction
     
     @IBAction func onSwipeGueastureSettingsScreen(_ sender: UIScreenEdgePanGestureRecognizer) {
@@ -372,9 +377,10 @@ class ActionView: UIView {
         
         //set the screen not to sleep
         UIApplication.shared.isIdleTimerDisabled = false
-        
-        //Notify the delegate
-        delegate?.timerStopped()
+        if UserDataContainer.shared.routine == nil {
+            //Notify the delegate
+            delegate?.timerStopped()
+        }
     }
     
     fileprivate func clearTimerData() {
@@ -390,7 +396,6 @@ class ActionView: UIView {
             guard let endTime = self.endCountdownTime else { return }
             guard let type = self.actionViewRecordType else { return }
             let record = ActionRecordData(startTime: startTime.iso8601, endTime: endTime.iso8601, type: type)
-            
             
             let defaults = UserDefaults.standard
             if defaults.value(forKey: "startOf90DaysPeriod") == nil {
@@ -461,12 +466,9 @@ extension ActionView: ActionFooterViewDelegate {
         if UserDataContainer.shared.routine != nil {
             if actionState == .Initial {
                 actionState = .Ready
-                delegate?.stateChanged(actionState)
             } else if actionState == .Done {
                 //Change state to Ready
                 actionState = .Initial
-                delegate?.stateChanged(actionState)
-                return
             } else if actionState == .Ready {
                 //Change state to Action
                 actionState = .Action
@@ -475,21 +477,25 @@ extension ActionView: ActionFooterViewDelegate {
                 //Change state to Done
                 actionState = .Done
                 self.perform(Selector.executeActionSelector, with: nil, afterDelay: 0.0)
+                self.actionFootherContainer.actionButton.isEnabled = false
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: { [weak self] in
                     if self?.actionState == .Done {//if it's still Done change it automatically to Initial
                         self?.actionState = .Initial
                         self?.delegate?.stateChanged((self?.actionState)!)
+                        self?.actionFootherContainer.actionButton.isEnabled = true
+                        self?.delegate?.timerStopped()
                     }
                 })
             }
         } else {
             if actionState == .Initial {
                 actionState = .Action
+                SoundManager.shared.playRandomMusic()
             } else {
                 actionState = .Initial
+                SoundManager.shared.stopMusic()
             }
-            delegate?.stateChanged(actionState)
             self.perform(Selector.executeActionSelector, with: nil, afterDelay: 0.0)
         }
         
@@ -530,6 +536,7 @@ protocol ActionViewProtocol {
     var actionViewRecordType: ActionRecordType { get }
     func updateData(_ data: ActionScreenData)
     func setupTutorials()
+    func changeStateTo(_ newState: ActionState)
 }
 
 //MARK: - Selectors

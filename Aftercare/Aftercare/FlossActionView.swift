@@ -113,7 +113,11 @@ class FlossActionView: UIView, ActionViewProtocol {
     }
     
     fileprivate func secondsToAngle(_ seconds: Double) -> Double {
-        let scale = 360 / UserDataContainer.shared.FlossActionDurationInSeconds
+        let totalSeconds = UserDataContainer.shared.FlossActionDurationInSeconds
+        if seconds > totalSeconds {
+            return 360
+        }
+        let scale = 360 / totalSeconds
         return seconds * scale
     }
     
@@ -152,7 +156,7 @@ extension FlossActionView: ActionViewProxyDelegateProtocol {
                 timer.centerLabel.text = "0:00"
                 timer.bar.angle = 0
                 embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("FLOSS", comment: ""), withState: .blue)
-                SoundManager.shared.playSound(SoundType.sound(routine.type, .floss, .done(.other)))
+                SoundManager.shared.playSound(SoundType.sound(routine.type, .floss, .done(.congratulations)))
                 embedView?.descriptionTextView.text = doneDescriptionString
             } else if newState == .Initial {
                 embedView?.toggleDescriptionText(false)

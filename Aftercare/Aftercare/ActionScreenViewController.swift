@@ -113,18 +113,18 @@ class ActionScreenViewController: UIViewController, ContentConformer {
                 let buttonLabel: String?
                 let routinePath: RoutinePath?
                 if routine.startHour == 2 {
-                    if UserDataContainer.shared.isMorningRoutineDone {
-                        //the routine is already done
-                        return
-                    }
+//                    if UserDataContainer.shared.isMorningRoutineDone {
+//                        //the routine is already done
+//                        return
+//                    }
                     UserDataContainer.shared.isMorningRoutineDone = true
                     buttonLabel = routineMorningStartButtonLabel
                     routinePath = .morning
                 } else {
-                    if UserDataContainer.shared.isEveningRoutineDone {
-                        //routine is alredy done
-                        return
-                    }
+//                    if UserDataContainer.shared.isEveningRoutineDone {
+//                        //routine is alredy done
+//                        return
+//                    }
                     UserDataContainer.shared.isEveningRoutineDone = true
                     buttonLabel = routineEveningStartButtonLabel
                     routinePath = .evening
@@ -142,8 +142,10 @@ class ActionScreenViewController: UIViewController, ContentConformer {
                 routinesPopup.frame = frame
                 self.view.addSubview(routinesPopup)
                 
+                //play routine greeting sound
                 SoundManager.shared.playSound(SoundType.greeting(routinePath!))
-                
+                //play background music
+                SoundManager.shared.playRandomMusic()
             }
         }
     
@@ -276,9 +278,13 @@ extension ActionScreenViewController: ActionViewDelegate {
                 guard let nextScreenType = routine.actions.first else { return }
                 guard let pageIndex = getPageIndex(nextScreenType) else { return }
                 scrollContentScrollViewTo(page: pageIndex)
+                let page = pagesArray[pageIndex]
+                page.changeStateTo(.Ready)
                 self.lastTab = pageIndex
                 
                 return
+            } else {
+                SoundManager.shared.stopMusic()
             }
             //we don't have any more screen in our routine so we set it's value to nil and exit
             UserDataContainer.shared.routine = nil
@@ -380,6 +386,9 @@ extension ActionScreenViewController: RoutinesPopupScreenDelegate {
         guard let pageIndex = getPageIndex(routine.actions.first!) else { return }
         scrollContentScrollViewTo(page: pageIndex)
         self.header.selectTab(atIndex: pageIndex)
+        
+        let page = pagesArray[pageIndex]
+        page.changeStateTo(.Ready)
         
         //Lock the scroll view and header while executing routine
         self.view.layoutIfNeeded()

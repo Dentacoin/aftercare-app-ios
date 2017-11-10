@@ -216,6 +216,17 @@ extension SettingsScreenViewController: UITableViewDelegate {
             cell.cellSwitch.setOn(data.state, animated: false)
             cell.layoutSubviews()
             
+            if indexPath.section == 1 {
+                if indexPath.row == 0 {
+                    cell.cellSwitch.isOn = SoundManager.shared.soundOn
+                } else if indexPath.row == 1 {
+                    cell.cellSwitch.isOn = SoundManager.shared.musicOn
+                } else if indexPath.row == 2 {
+                    let type = SoundManager.shared.soundType
+                    cell.cellSwitch.isOn = type == VoicePath.male
+                }
+            }
+            
             return cell
         }
         
@@ -262,16 +273,34 @@ extension SettingsScreenViewController: SettingsSwitchTableCellDelegate {
         
         let section = indexPath.section
         
-        if section == 1 {
-            
-            return
-        }
+        switch section {
+            case 1:
+                
+                switch indexPath.row {
+                    case 0:
+                        SoundManager.shared.soundOn = !SoundManager.shared.soundOn
+                    case 1:
+                        SoundManager.shared.musicOn = !SoundManager.shared.musicOn
+                    case 2:
+                        let type = SoundManager.shared.soundType
+                        if type == VoicePath.male {
+                            SoundManager.shared.soundType = VoicePath.female
+                        } else {
+                            SoundManager.shared.soundType = VoicePath.male
+                        }
+                    default:
+                        return
+                }
         
-        if section == 2 {
-            let index = indexPath.row
-            let data = menuData[indexPath.section].items[index]
-            guard let id = NotificationIdentifiers(rawValue: data.id) else { return }
-            NotificationsManager.shared.toggleLocalNotification(withID: id, value)
+            case 2:
+                
+                let index = indexPath.row
+                let data = menuData[indexPath.section].items[index]
+                guard let id = NotificationIdentifiers(rawValue: data.id) else { return }
+                NotificationsManager.shared.toggleLocalNotification(withID: id, value)
+            
+            default:
+                return
         }
         
     }

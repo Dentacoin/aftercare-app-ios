@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.9.3</string>
+	<string>0.9.4</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -42,7 +42,20 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>11</string>
+	<string>12</string>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>EnvironmentAPIProtocol</key>
+		<string>ENVIRONMENT_API_PROTOCOL</string>
+		<key>EnvironmentAPIURL</key>
+		<string>ENVIRONMENT_API_URL</string>
+		<key>GooglePlacesAPIKey</key>
+		<string>GOOGLE_PLACES_API_KEY</string>
+		<key>TwitterKey</key>
+		<string>TWITTER_KEY</string>
+		<key>TwitterSecretKey</key>
+		<string>TWITTER_SECRET</string>
+	</dict>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -128,18 +141,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>EnvironmentVariables</key>
-	<dict>
-		<key>TwitterKey</key>
-		<string>TWITTER_KEY</string>
-		<key>TwitterSecretKey</key>
-		<string>TWITTER_SECRET</string>
-		<key>GooglePlacesAPIKey</key>
-		<string>GOOGLE_PLACES_API_KEY</string>
-		<key>EnvironmentAPIURL</key>
-		<string>ENVIRONMENT_API_URL</string>
-		<key>EnvironmentAPIProtocol</key>
-		<string>ENVIRONMENT_API_PROTOCOL</string>
-	</dict>
 </dict>
 </plist>

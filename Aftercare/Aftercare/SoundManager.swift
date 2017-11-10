@@ -19,6 +19,11 @@ class SoundManager {
     fileprivate var sound: Sound?
     fileprivate var music: Sound?
     
+    //MARK: - public
+    
+    var musicIsPlaying = false
+    var soundIsPlaying = false
+    
     //music IDs
     
     var soundType: VoicePath {
@@ -38,7 +43,81 @@ class SoundManager {
         }
     }
     
+    var soundOn: Bool {
+        get {
+            let defaults = UserDefaults.standard
+            if let on = defaults.value(forKey: "soundOn") as? Bool {
+                return on
+            } else {
+                defaults.set(true, forKey: "soundOn")
+                return true
+            }
+        }
+        
+        set {
+            let defaults = UserDefaults.standard
+            defaults.set(newValue, forKey: "soundOn")
+        }
+    }
+    
+    var musicOn: Bool {
+        get {
+            let defaults = UserDefaults.standard
+            if let on = defaults.value(forKey: "musicOn") as? Bool {
+                return on
+            } else {
+                defaults.set(true, forKey: "musicOn")
+                return true
+            }
+        }
+        
+        set {
+            let defaults = UserDefaults.standard
+            defaults.set(newValue, forKey: "musicOn")
+        }
+    }
+    
+    func playMusic(_ type: MusicPath) {
+        if musicOn == false {
+            return
+        }
+        let path = type.path
+        if let url = Bundle.main.url(forResource: path, withExtension: "mp3") {
+            music = Sound(url: url)
+            music?.play(numberOfLoops: -1, completion: nil)//play music with infinite loop on background
+            setMusicVolume(1.0)
+            musicIsPlaying = true
+        }
+    }
+    
+    func playRandomMusic() {
+        if musicOn == false {
+            return
+        }
+        let path = MusicPath.all.randomElement.path
+        if let url = Bundle.main.url(forResource: path, withExtension: "mp3") {
+            music = Sound(url: url)
+            music?.play(numberOfLoops: -1, completion: nil)//play music with infinite loop on background
+            setMusicVolume(1.0)
+            musicIsPlaying = true
+        }
+    }
+    
+    func stopMusic() {
+        music?.stop()
+        musicIsPlaying = false
+    }
+    
+    func setMusicVolume(_ volume: Float) {
+        music?.volume = volume
+    }
+    
     func playSound(_ type: SoundType, _ callback: (() -> Void)? = nil) {
+        
+        if soundOn == false {
+            return
+        }
+        
         do {
             var path: String
             switch type {
@@ -48,24 +127,40 @@ class SoundManager {
                 path = try SoundPath.sound(voice: soundType, routine: routine, action: action, status: status)
             }
             
+            //Stop all currently playing sounds
+            self.stopSound()
             
-            if let sound = self.sound {
-                //If already playing some sound, stop it
-                sound.stop()
-            }
-            if let url = URL(string: "/test-1.wav") {
-                print("PLAY SOUND AT PATH: \(url.absoluteURL)")
+            //WORKING Sound.play(file: "male-morning-greeting", fileExtension: "mp3", numberOfLoops: 0)
+            print("PLAY SOUND \(path)")
+            
+            if let url = Bundle.main.url(forResource: path, withExtension: "mp3") {
                 sound = Sound(url: url)
                 sound?.volume = 1.0
-                sound?.play() { completed in
+                sound?.play() { [weak self] completed in
                     if let callback = callback {
                         callback()
+                    } else {
+                        self?.soundIsPlaying = false
+                        if let musicPlaying = self?.musicIsPlaying, musicPlaying == true {
+                            self?.setMusicVolume(1.0)
+                        }
                     }
                 }
+                soundIsPlaying = true
+                if self.musicIsPlaying {
+                    self.setMusicVolume(0.5)
+                }
+                
             }
+            
         } catch {
             print("Warning: \(error.localizedDescription)")
         }
+    }
+    
+    func stopSound() {
+        sound?.stop()
+        soundIsPlaying = false
     }
     
 }
@@ -145,7 +240,7 @@ enum SoundPath {
 //            throw SoundPathError.invalidPath
 //        }
         let soundName = voicePath + "-" + routinePath + "-" + "greeting"
-        return voicePath + "/" + routinePath + "/" + soundName
+        return soundName//voicePath + "/" + routinePath + "/" + soundName
     }
     
     static func sound(voice: VoicePath, routine: RoutinePath, action: ActionPath, status: StatusPath) throws -> String {
@@ -178,7 +273,7 @@ enum SoundPath {
         }
         
         let name = voicePath + "-" + routinePath + "-" + actionPath + "-" + NameHelper(action, status)
-        return voicePath + "/" + routinePath + "/" + actionPath + "/" + name
+        return name//voicePath + "/" + routinePath + "/" + actionPath + "/" + name
     }
     
     private static func NameHelper(_ action: ActionPath, _ status: StatusPath) -> String {
@@ -200,11 +295,13 @@ enum SoundPath {
             case 0..<10: return "2"
             default: return "3"
             }
-        case (.rinse, .done): return "7"
+        case (.rinse, .done(.other)): return "4"
+        case (.rinse, .done(.congratulations)): return "5"
             
         case (.floss, .ready): return "1"
         case (.floss, .progress(_)): return "2"
-        case (.floss, .done): return "3"
+        case (.floss, .done(_)): return "3"
+        
         }
     }
     
@@ -224,9 +321,21 @@ enum MusicPath: Int, Pathable {
     case music09
     
     var path: String? {
-        return "music/music-" + "\(self.rawValue)"
+        return "music-" + "\(self.rawValue)"
+    }
+    
+    static var all: [MusicPath] {
+        return [.music01, .music02, .music03, .music04, .music05, .music06, .music07, .music08, .music09]
     }
 }
 
+//MARK: - Helpers
+
+private extension Array {
+    var randomElement: Element {
+        let index = Int(arc4random_uniform(UInt32(count)))
+        return self[index]
+    }
+}
 
 

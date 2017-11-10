@@ -132,7 +132,11 @@ class RinseActionView: UIView, ActionViewProtocol {
     }
     
     fileprivate func secondsToAngle(_ seconds: Double) -> Double {
-        let scale = 360 / UserDataContainer.shared.RinseActionDurationInSeconds
+        let totalSeconds = UserDataContainer.shared.RinseActionDurationInSeconds
+        if seconds > totalSeconds {
+            return 0
+        }
+        let scale = 360 / totalSeconds
         return 360 - (seconds * scale)
     }
     
