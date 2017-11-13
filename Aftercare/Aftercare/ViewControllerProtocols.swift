@@ -99,6 +99,10 @@ extension ActionViewProxyDelegateProtocol {
         }
     }
     
+    func showTutorials() {
+        embedView?.showTutorials()
+    }
+    
     //delegate to sender methods
     
     func changeStateTo(_ newState: ActionState) {

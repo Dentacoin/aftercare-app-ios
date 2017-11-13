@@ -75,25 +75,23 @@ class ActionFooterView: UIView {
     }
     
     func showTutorials() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { [weak self] in
-            let tooltips: [(id: String ,text: String, forView: UIView, arrowAt: EasyTipView.ArrowPosition)] = [
-                (
-                    id: TutorialIDs.dashboardStatistics.rawValue,
-                    text: NSLocalizedString("Tap to open statistics", comment: ""),
-                    forView: (self?.statisticsButton)!,
-                    arrowAt: EasyTipView.ArrowPosition.bottom
-                )
-            ]
-            
-            for tooltip in tooltips {
-                self?.showTooltip(
-                    tooltip.text,
-                    forView: tooltip.forView,
-                    at: tooltip.arrowAt,
-                    id: tooltip.id
-                )
-            }
-        })
+        let tooltips: [(id: String ,text: String, forView: UIView, arrowAt: EasyTipView.ArrowPosition)] = [
+            (
+                id: TutorialIDs.dashboardStatistics.rawValue,
+                text: NSLocalizedString("Tap to open statistics", comment: ""),
+                forView: (statisticsButton)!,
+                arrowAt: EasyTipView.ArrowPosition.bottom
+            )
+        ]
+        
+        for tooltip in tooltips {
+            showTooltip(
+                tooltip.text,
+                forView: tooltip.forView,
+                at: tooltip.arrowAt,
+                id: tooltip.id
+            )
+        }
     }
     
     //MARK: - private api

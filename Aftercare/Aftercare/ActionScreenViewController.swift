@@ -91,7 +91,7 @@ class ActionScreenViewController: UIViewController, ContentConformer {
                 //If no routine, show tutorial on current page
                 if UserDataContainer.shared.routine == nil {
                     if let page = pagesArray.first {
-                        page.setupTutorials()
+                        page.showTutorials()
                     }
                 }
                 
@@ -233,14 +233,7 @@ extension ActionScreenViewController {
         DispatchQueue.main.async() {
             UIView.animate(withDuration: 0.25, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: {
                 self.contentScrollView.contentOffset.x = self.contentScrollView.frame.size.width * CGFloat(index)
-            }, completion: { [weak self] success in
-                if !(self?.tutorialsAlreadySetup)! {
-                    self?.tutorialsAlreadySetup = true
-                    if let page = self?.pagesArray[index] {
-                        page.setupTutorials()
-                    }
-                }
-            })
+            }, completion: nil)
         }
     }
 }

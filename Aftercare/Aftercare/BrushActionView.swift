@@ -226,6 +226,14 @@ extension BrushActionView: ActionViewProxyDelegateProtocol {
                 
                 embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("BRUSH", comment: ""), withState: .blue)
                 embedView?.descriptionTextView.text = doneDescriptionString
+                
+                //null the flags
+                actionDescription01Flag = false
+                actionDescription02Flag = false
+                actionDescription03Flag = false
+                actionDescription04Flag = false
+                actionDescription05Flag = false
+                
             } else if newState == .Initial {
                 embedView?.toggleDescriptionText(false)
                 return

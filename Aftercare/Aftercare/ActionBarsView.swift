@@ -76,38 +76,38 @@ class ActionBarsView: UIView {
     }
     
     func showTutorials() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { [weak self] in
-            let tooltips: [(id: String ,text: String, forView: UIView, arrowAt: EasyTipView.ArrowPosition)] = [
-                (
-                    id: TutorialIDs.lastActivityTime.rawValue,
-                    text: NSLocalizedString("Last recorded time", comment: ""),
-                    forView: (self?.lastBar)!,
-                    arrowAt: EasyTipView.ArrowPosition.bottom
-                ), (
-                    id: TutorialIDs.leftActivitiesCount.rawValue,
-                    text: NSLocalizedString("Remaining activities for today", comment: ""),
-                    forView: (self?.leftBar)!,
-                    arrowAt: EasyTipView.ArrowPosition.top
-                ), (
-                    id: TutorialIDs.dcnEarned.rawValue,
-                    text: NSLocalizedString("Earned DCN from this activity", comment: ""),
-                    forView: (self?.earnedBar)!,
-                    arrowAt: EasyTipView.ArrowPosition.bottom
-                )
-            ]
-            
-            for tooltip in tooltips {
-                self?.showTooltip(
-                    tooltip.text,
-                    forView: tooltip.forView,
-                    at: tooltip.arrowAt,
-                    id: tooltip.id
-                )
-            }
-        })
+        let tooltips: [(id: String ,text: String, forView: UIView, within: UIView, arrowAt: EasyTipView.ArrowPosition)] = [
+            (
+                id: TutorialIDs.lastActivityTime.rawValue,
+                text: NSLocalizedString("Last recorded time", comment: ""),
+                forView: (lastBar)!,
+                within: (lastBar?.superview?.superview?.superview?.superview)!,
+                arrowAt: EasyTipView.ArrowPosition.left
+            ), (
+                id: TutorialIDs.leftActivitiesCount.rawValue,
+                text: NSLocalizedString("Remaining activities for today", comment: ""),
+                forView: (leftBar)!,
+                within: (leftBar)!,
+                arrowAt: EasyTipView.ArrowPosition.right
+            ), (
+                id: TutorialIDs.dcnEarned.rawValue,
+                text: NSLocalizedString("Earned DCN from this activity", comment: ""),
+                forView: (earnedBar)!,
+                within: (earnedBar?.superview?.superview?.superview?.superview)!,
+                arrowAt: EasyTipView.ArrowPosition.bottom
+            )
+        ]
+        
+        for tooltip in tooltips {
+            showTooltip(
+                tooltip.text,
+                forView: tooltip.forView,
+                within: tooltip.within,
+                at: tooltip.arrowAt,
+                id: tooltip.id
+            )
+        }
     }
-    
-    
     
     //MARK: - internal logic
     
@@ -128,7 +128,7 @@ class ActionBarsView: UIView {
     
     //TODO: move this into protocol
     
-    fileprivate func showTooltip(_ text: String, forView: UIView, at position: EasyTipView.ArrowPosition, id: String) {
+    fileprivate func showTooltip(_ text: String, forView: UIView, within superview: UIView, at position: EasyTipView.ArrowPosition, id: String) {
         
         //check if already seen by the user in this app session. "True" means still valid for this session
         var active = UserDataContainer.shared.getTutorialSessionToggle(id)//session state
@@ -146,7 +146,7 @@ class ActionBarsView: UIView {
             
             EasyTipView.show(
                 forView: forView,
-                withinSuperview: forView.superview,
+                withinSuperview: forView.superview?.superview?.superview?.superview,
                 text: tooltipText,
                 preferences: preferences,
                 delegate: self,

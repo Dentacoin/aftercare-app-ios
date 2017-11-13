@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_0" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -24,22 +24,22 @@
                         <constraint firstAttribute="height" constant="70" id="tju-RR-ItD"/>
                     </constraints>
                 </view>
-                <view opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MDM-4h-dj0">
+                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MDM-4h-dj0">
                     <rect key="frame" x="20" y="78" width="354" height="422"/>
                 </view>
-                <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pkl-Ok-4la">
+                <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pkl-Ok-4la">
                     <rect key="frame" x="8" y="500" width="378" height="107"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <view opaque="NO" contentMode="scaleAspectFill" ambiguous="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="151" translatesAutoresizingMaskIntoConstraints="NO" id="QqS-ku-RDu" customClass="ActionBarsView" customModule="Aftercare" customModuleProvider="target">
+                <view opaque="NO" contentMode="scaleAspectFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="151" translatesAutoresizingMaskIntoConstraints="NO" id="QqS-ku-RDu" customClass="ActionBarsView" customModule="Aftercare" customModuleProvider="target">
                     <rect key="frame" x="72" y="500" width="250" height="107"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="QqS-ku-RDu" secondAttribute="height" multiplier="350:150" id="DNH-ik-1k4"/>
                         <constraint firstAttribute="width" constant="250" id="ZZX-36-p8v"/>
                     </constraints>
                 </view>
-                <view opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z9q-wr-ovd" customClass="ActionFooterView" customModule="Aftercare" customModuleProvider="target">
+                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z9q-wr-ovd" customClass="ActionFooterView" customModule="Aftercare" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="607" width="394" height="95"/>
                 </view>
             </subviews>

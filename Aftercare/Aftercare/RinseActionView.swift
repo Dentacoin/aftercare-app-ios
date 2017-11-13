@@ -31,6 +31,7 @@ class RinseActionView: UIView, ActionViewProtocol {
     override func layoutSubviews() {
         super.layoutSubviews()
         embedView?.frame = self.bounds
+        calculateTimerFrame()
     }
     
     //MARK: - Fileprivates
@@ -87,21 +88,25 @@ class RinseActionView: UIView, ActionViewProtocol {
         guard let timer = Bundle.main.loadNibNamed(
             String(describing: CircularBar.self),
             owner: self, options: nil
-            )?.first as? CircularBar else {
-                return
-        }
-        if let containerFrame = embedView?.timerContainer.frame {
-            var timerFrame = timer.frame
-            let aspectRatio = timerFrame.size.width / timerFrame.size.height
-            timerFrame.size.height = min(containerFrame.size.height, containerFrame.size.width) * 0.8
-            timerFrame.size.width = (timerFrame.size.height * aspectRatio)
-            timerFrame.origin.x = (containerFrame.size.width - timerFrame.size.width) / 2
-            timerFrame.origin.y = (containerFrame.size.height - timerFrame.size.height) / 2
-            timer.frame = timerFrame
+        )?.first as? CircularBar else {
+            return
         }
         timer.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        calculateTimerFrame()
         embedView?.timerContainer.addSubview(timer)
         self.timer = timer
+    }
+    
+    fileprivate func calculateTimerFrame() {
+        if let containerFrame = embedView?.timerContainer.frame {
+            if var timerFrame = timer?.frame {
+                timerFrame.size.height = containerFrame.size.height
+                timerFrame.size.width = timerFrame.size.height
+                timerFrame.origin.x = (containerFrame.size.width - timerFrame.size.width) / 2
+                timerFrame.origin.y = (containerFrame.size.height - timerFrame.size.height) / 2
+                timer?.frame = timerFrame
+            }
+        }
     }
     
     //MARK: - Theme And Appearance
@@ -140,11 +145,6 @@ class RinseActionView: UIView, ActionViewProtocol {
         return 360 - (seconds * scale)
     }
     
-    //MARK: - Public
-    
-    func setupTutorials() {
-        embedView?.showTutorials()
-    }
 }
 
 //MARK: - Proxy Delegate Protocol
@@ -213,6 +213,9 @@ extension RinseActionView: ActionViewProxyDelegateProtocol {
                     SoundManager.shared.playSound(SoundType.sound(routine.type, .rinse, .done(.congratulations)))
                 }
                 
+                actionDescription01Flag = false
+                actionDescription02Flag = false
+                
             } else if newState == .Initial {
                 embedView?.toggleDescriptionText(false)
                 return
@@ -228,7 +231,7 @@ extension RinseActionView: ActionViewProxyDelegateProtocol {
                 guard let timer = self.timer else { return }
                 timer.centerLabel.text = "0:00"
                 timer.bar.angle = 0
-                embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("FLOSS", comment: ""), withState: .blue)
+                embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("RINSE", comment: ""), withState: .blue)
             } else {
                 embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("STOP", comment: ""), withState: .red)
             }

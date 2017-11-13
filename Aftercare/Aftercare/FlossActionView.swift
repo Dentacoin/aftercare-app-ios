@@ -24,13 +24,14 @@ class FlossActionView: UIView, ActionViewProtocol {
     }
 
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)//, ActionRecordType.flossed
+        super.init(coder: aDecoder)
         setupContent()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         embedView?.frame = self.bounds
+        calculateTimerFrame()
     }
     
     //MARK: - Fileprivates
@@ -72,18 +73,22 @@ class FlossActionView: UIView, ActionViewProtocol {
         )?.first as? CircularBar else {
             return
         }
-        if let containerFrame = embedView?.timerContainer.frame {
-            var timerFrame = timer.frame
-            let aspectRatio = timerFrame.size.width / timerFrame.size.height
-            timerFrame.size.height = min(containerFrame.size.height, containerFrame.size.width) * 0.8
-            timerFrame.size.width = (timerFrame.size.height * aspectRatio)
-            timerFrame.origin.x = (containerFrame.size.width - timerFrame.size.width) / 2
-            timerFrame.origin.y = (containerFrame.size.height - timerFrame.size.height) / 2
-            timer.frame = timerFrame
-        }
         timer.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        calculateTimerFrame()
         embedView?.timerContainer.addSubview(timer)
         self.timer = timer
+    }
+    
+    fileprivate func calculateTimerFrame() {
+        if let containerFrame = embedView?.timerContainer.frame {
+            if var timerFrame = timer?.frame {
+                timerFrame.size.height = containerFrame.size.height
+                timerFrame.size.width = timerFrame.size.height
+                timerFrame.origin.x = (containerFrame.size.width - timerFrame.size.width) / 2
+                timerFrame.origin.y = (containerFrame.size.height - timerFrame.size.height) / 2
+                timer?.frame = timerFrame
+            }
+        }
     }
     
     //MARK: - Theme And Appearance
@@ -119,12 +124,6 @@ class FlossActionView: UIView, ActionViewProtocol {
         }
         let scale = 360 / totalSeconds
         return seconds * scale
-    }
-    
-    //MARK: - Public
-    
-    func setupTutorials() {
-        embedView?.showTutorials()
     }
     
 }

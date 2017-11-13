@@ -158,9 +158,9 @@ class ActionView: UIView {
         
         self.statisticsOpenedFrame = CGRect(
             x: 0,
-            y: containerHeight * 0.5,
+            y: containerHeight * 0.40,
             width: containerWidth,
-            height: (containerHeight * 0.5) + bottomInset
+            height: (containerHeight * 0.60) + bottomInset
         )
         
         statisticsView.frame = statisticsClosedFrame
@@ -203,9 +203,11 @@ class ActionView: UIView {
     }
     
     open func showTutorials() {
-        actionBarsContainer.showTutorials()
-        actionFootherContainer.showTutorials()
-        totalBar.showTutorials()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: { [weak self] in
+            self?.actionBarsContainer.showTutorials()
+            self?.actionFootherContainer.showTutorials()
+            self?.totalBar.showTutorials()
+        })
     }
     
     open func openStatisticsScreen(_ animated: Bool = true) {
@@ -521,7 +523,7 @@ extension ActionView: StatisticsDelegate {
     }
 }
 
-//MARK: -
+//MARK: - ActionState
 
 enum ActionState {
     case Initial
@@ -535,7 +537,7 @@ enum ActionState {
 protocol ActionViewProtocol {
     var actionViewRecordType: ActionRecordType { get }
     func updateData(_ data: ActionScreenData)
-    func setupTutorials()
+    func showTutorials()
     func changeStateTo(_ newState: ActionState)
 }
 

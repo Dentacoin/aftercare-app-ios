@@ -20,7 +20,7 @@ class CircularBar: UIView {
     
     fileprivate var contentView : UIView?
     
-    //MARK: - IBDesignable
+    //MARK: - IBDesignable Lifecycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -56,6 +56,10 @@ class CircularBar: UIView {
         let nib = UINib(nibName: String(describing: type(of: self)), bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         return view
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
     }
     
 }

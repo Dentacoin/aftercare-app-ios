@@ -18,25 +18,27 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xOH-dA-MmL" customClass="KDCircularProgress" customModule="Aftercare" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                    <rect key="frame" x="20" y="20" width="160" height="160"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qlD-C2-l2j">
+                            <rect key="frame" x="40" y="69" width="80" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="xOH-dA-MmL" secondAttribute="height" multiplier="1:1" id="BRV-eV-opE"/>
+                        <constraint firstItem="qlD-C2-l2j" firstAttribute="width" secondItem="xOH-dA-MmL" secondAttribute="width" multiplier="0.5" id="C3M-Eh-9vq"/>
+                        <constraint firstItem="qlD-C2-l2j" firstAttribute="centerX" secondItem="xOH-dA-MmL" secondAttribute="centerX" id="Ivy-yL-5gf"/>
+                        <constraint firstAttribute="width" secondItem="xOH-dA-MmL" secondAttribute="height" multiplier="1:1" id="icp-NG-PyH"/>
+                        <constraint firstItem="qlD-C2-l2j" firstAttribute="centerY" secondItem="xOH-dA-MmL" secondAttribute="centerY" id="jj8-3K-LmC"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qlD-C2-l2j">
-                    <rect key="frame" x="50" y="90" width="100" height="20.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <constraints>
-                <constraint firstItem="qlD-C2-l2j" firstAttribute="centerY" secondItem="xOH-dA-MmL" secondAttribute="centerY" id="5dM-Hm-S1d"/>
                 <constraint firstItem="xOH-dA-MmL" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Eke-Sp-TlW"/>
                 <constraint firstItem="xOH-dA-MmL" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="HQn-O3-x5x"/>
-                <constraint firstItem="qlD-C2-l2j" firstAttribute="width" secondItem="xOH-dA-MmL" secondAttribute="width" multiplier="0.5" id="bg5-dU-WgE"/>
-                <constraint firstItem="xOH-dA-MmL" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="hvT-vh-Ubp"/>
-                <constraint firstItem="qlD-C2-l2j" firstAttribute="centerX" secondItem="xOH-dA-MmL" secondAttribute="centerX" id="viR-bG-QJI"/>
+                <constraint firstItem="xOH-dA-MmL" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.8" id="kMD-Nr-AfG"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>

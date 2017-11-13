@@ -197,7 +197,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
-                <outlet property="mouthContainer" destination="Gsd-Ps-ncC" id="b1N-5n-PRZ"/>
+                <outlet property="mouthContainer" destination="Gsd-Ps-ncC" id="wpy-tr-eOD"/>
                 <outlet property="timerLabel" destination="LaO-JM-sAl" id="eOk-Mc-a7a"/>
                 <outlet property="tooth01" destination="Fvi-UE-AmF" id="ymj-0p-X2d"/>
                 <outlet property="tooth02" destination="tCf-es-1Ta" id="XxP-3m-YGw"/>
