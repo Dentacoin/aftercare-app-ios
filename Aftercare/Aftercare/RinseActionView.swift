@@ -66,6 +66,8 @@ class RinseActionView: UIView, ActionViewProtocol {
         return NSLocalizedString("Make big things today and come back in the evening before going to bed.", comment: "")
     }()
     
+    fileprivate var actionDoneFlag = false
+    
     fileprivate func setupContent() {
         loadXib()
         loadTimerView()
@@ -175,6 +177,11 @@ extension RinseActionView: ActionViewProxyDelegateProtocol {
                 }
             }
         }
+        
+        if seconds >= UserDataContainer.shared.RinseActionDurationInSeconds, actionDoneFlag == false {
+            actionDoneFlag = true
+            self.embedView?.onActionButtonPressed()
+        }
     }
     
     func stateChanged(_ newState: ActionState) {
@@ -215,6 +222,7 @@ extension RinseActionView: ActionViewProxyDelegateProtocol {
                 
                 actionDescription01Flag = false
                 actionDescription02Flag = false
+                actionDoneFlag = false
                 
             } else if newState == .Initial {
                 embedView?.toggleDescriptionText(false)
