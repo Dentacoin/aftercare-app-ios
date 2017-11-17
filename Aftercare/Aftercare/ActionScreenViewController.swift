@@ -59,8 +59,12 @@ class ActionScreenViewController: UIViewController, ContentConformer {
         return NSLocalizedString("Start Evening Routine", comment: "")
     }()
     
-    fileprivate lazy var routineDescriptionLabel: String = {
+    fileprivate lazy var routineMorningDescriptionLabel: String = {
         return NSLocalizedString("Good morning sunshine. It is a beautiful day. Let’s get you started properly. \n\n *You will receive your reward upon completion of the 90-day period.", comment: "")
+    }()
+    
+    fileprivate lazy var routineEveningDescriptionLabel: String = {
+        return NSLocalizedString("Good evening, darling. Did you have a good day? Are you on the way to becoming a legend?", comment: "")
     }()
     
     //MARK: - Lifecycle
@@ -111,6 +115,7 @@ class ActionScreenViewController: UIViewController, ContentConformer {
             if let routine = routine {
                 
                 let buttonLabel: String?
+                let description: String?
                 let routinePath: RoutinePath?
                 if routine.startHour == 2 {
                     if UserDataContainer.shared.isMorningRoutineDone {
@@ -119,7 +124,10 @@ class ActionScreenViewController: UIViewController, ContentConformer {
                     }
                     UserDataContainer.shared.isMorningRoutineDone = true
                     buttonLabel = routineMorningStartButtonLabel
+                    description = routineMorningDescriptionLabel
                     routinePath = .morning
+                    //play routine greeting sound
+                    SoundManager.shared.playSound(SoundType.greeting(routinePath!))
                 } else {
                     if UserDataContainer.shared.isEveningRoutineDone {
                         //routine is alredy done
@@ -127,7 +135,10 @@ class ActionScreenViewController: UIViewController, ContentConformer {
                     }
                     UserDataContainer.shared.isEveningRoutineDone = true
                     buttonLabel = routineEveningStartButtonLabel
+                    description = routineEveningDescriptionLabel
                     routinePath = .evening
+                    //play routine greeting sound
+                    SoundManager.shared.playSound(SoundType.greeting(routinePath!))
                 }
                 
                 UserDataContainer.shared.routine = routine
@@ -135,17 +146,12 @@ class ActionScreenViewController: UIViewController, ContentConformer {
                 let routinesPopup = self.routinesPopupScreen
                 routinesPopup.delegate = self
                 routinesPopup.setCurrentDay(UserDataContainer.shared.dayNumberOf90DaysSession ?? 0)
-                routinesPopup.setRoutinesDescription(routineDescriptionLabel)
+                routinesPopup.setRoutinesDescription(description!)
                 routinesPopup.setRoutinesStartLabel(buttonLabel!)
                 routinesPopup.delegate = self
                 let frame = UIScreen.main.bounds
                 routinesPopup.frame = frame
                 self.view.addSubview(routinesPopup)
-                
-                //play routine greeting sound
-                SoundManager.shared.playSound(SoundType.greeting(routinePath!))
-                //play background music
-                SoundManager.shared.playRandomMusic()
             }
         }
     
@@ -390,6 +396,9 @@ extension ActionScreenViewController: RoutinesPopupScreenDelegate {
             self.view.layoutIfNeeded()
         }
         contentScrollView.isScrollEnabled = false
+        
+        //play background music
+        SoundManager.shared.playRandomMusic()
         
     }
     
