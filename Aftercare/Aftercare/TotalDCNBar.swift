@@ -61,25 +61,23 @@ class TotalDCNBar: UIView {
     }
     
     func showTutorials() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { [weak self] in
-            let tooltips: [(id: String ,text: String, forView: UIView, arrowAt: EasyTipView.ArrowPosition)] = [
-                (
-                    id: TutorialIDs.totalDcn.rawValue,
-                    text: NSLocalizedString("This is the total amount of DCN you've earned.", comment: ""),
-                    forView: self!,
-                    arrowAt: EasyTipView.ArrowPosition.top
-                )
-            ]
-            
-            for tooltip in tooltips {
-                self?.showTooltip(
-                    tooltip.text,
-                    forView: tooltip.forView,
-                    at: tooltip.arrowAt,
-                    id: tooltip.id
-                )
-            }
-        })
+        let tooltips: [(id: String ,text: String, forView: UIView, arrowAt: EasyTipView.ArrowPosition)] = [
+            (
+                id: TutorialIDs.totalDcn.rawValue,
+                text: NSLocalizedString("This is the total amount of DCN you've earned.", comment: ""),
+                forView: self,
+                arrowAt: EasyTipView.ArrowPosition.top
+            )
+        ]
+        
+        for tooltip in tooltips {
+            self.showTooltip(
+                tooltip.text,
+                forView: tooltip.forView,
+                at: tooltip.arrowAt,
+                id: tooltip.id
+            )
+        }
     }
     
     
