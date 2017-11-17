@@ -459,33 +459,19 @@ extension SignUpScreenViewController: SignUpScreenControllerInputProtocol {
                     print("Upload User Avatar Error: \(error)")
                     UserDataContainer.shared.userAvatar = nil
                 }
-                self?.uiIsBlocked = false
+                self?.clearState()
                 self?.router.navigateToWelcomeScreen()
             }
             
         } else {
-            self.uiIsBlocked = false
+            clearState()
             self.router.navigateToWelcomeScreen()
         }
     }
     
-    func showUserAgreementScreen() {
-        
-        if newAvatarUploaded == true, let avatar = UserDataContainer.shared.userAvatar {
-            var data = UpdateUserRequestData()
-            data.avatarBase64 = avatar.toBase64()
-            APIProvider.updateUser(data) { [weak self] response, error in
-                if let error = error {
-                    print("Upload User Avatar Error: \(error)")
-                    UserDataContainer.shared.userAvatar = nil
-                }
-                self?.uiIsBlocked = false
-                self?.router.showUserAgreementScreen()
-            }
-        } else {
-            self.uiIsBlocked = false
-            self.router.showUserAgreementScreen()
-        }
+    func showUserAgreementScreen(_ data: AuthenticationRequestProtocol) {
+        self.clearState()
+        self.router.showUserAgreementScreen(data)
     }
     
     func showErrorMessage(_ message: String) {
@@ -495,7 +481,6 @@ extension SignUpScreenViewController: SignUpScreenControllerInputProtocol {
             message: message,
             buttonTitle: NSLocalizedString("Ok", comment: "")
         )
-        
     }
     
     func userDidCancelToAuthenticate() {

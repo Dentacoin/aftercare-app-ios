@@ -16,6 +16,7 @@ class FacebookRequestData: Encodable, AuthenticationRequestProtocol {
     var firstName: String?
     var lastName: String?
     var gender: GenderType?
+    var avatar64: String?
     
     init(email: String, id: String, token: String) {
         self.email = email
@@ -49,6 +50,7 @@ class FacebookRequestData: Encodable, AuthenticationRequestProtocol {
         case firstName = "firstname"
         case lastName = "lastname"
         case gender
+        case avatar64 = "avatar_64"
     }
 }
 
@@ -61,6 +63,7 @@ class TwitterRequestData: Encodable, AuthenticationRequestProtocol {
     var firstName: String?
     var lastName: String?
     var gender: GenderType?
+    var avatar64: String?
     
     init(email: String, id: String, token: String, secret: String) {
         self.email = email
@@ -96,6 +99,7 @@ class TwitterRequestData: Encodable, AuthenticationRequestProtocol {
         case firstName = "firstname"
         case lastName = "lastname"
         case gender
+        case avatar64 = "avatar_64"
     }
 }
 
@@ -106,6 +110,7 @@ class GoogleRequestData: Encodable, AuthenticationRequestProtocol {
     var firstName: String?
     var lastName: String?
     var gender: GenderType?
+    var avatar64: String?
     
     init(email: String, id: String, token: String) {
         self.email = email
@@ -138,6 +143,7 @@ class GoogleRequestData: Encodable, AuthenticationRequestProtocol {
         case firstName = "firstname"
         case lastName = "lastname"
         case gender
+        case avatar64 = "avatar_64"
     }
     
 }
@@ -149,6 +155,7 @@ class EmailRequestData: Encodable, AuthenticationRequestProtocol {
     var firstName: String?
     var lastName: String?
     var gender: GenderType?
+    var avatar64: String?
     
     init(email: String, password: String) {
         self.email = email
@@ -170,6 +177,9 @@ class EmailRequestData: Encodable, AuthenticationRequestProtocol {
         if let gender = self.gender {
             try! container.encode(gender, forKey: .gender)
         }
+        if let avatar = self.avatar64 {
+            try! container.encode(avatar, forKey: .avatar64)
+        }
     }
     
     enum EmailRequestKeys: String, CodingKey {
@@ -178,6 +188,7 @@ class EmailRequestData: Encodable, AuthenticationRequestProtocol {
         case firstName = "firstname"
         case lastName = "lastname"
         case gender
+        case avatar64 = "avatar_64"
     }
     
 }
@@ -188,4 +199,5 @@ protocol AuthenticationRequestProtocol {
     var firstName: String? { get set }
     var lastName: String? { get set }
     var gender: GenderType? { get set }
+    var avatar64: String? { get set }
 }

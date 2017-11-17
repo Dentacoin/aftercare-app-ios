@@ -60,13 +60,15 @@ extension WelcomeScreenViewController {
     
     func loadAvatar() {
         UserDataContainer.shared.loadUserAvatar() { [weak self] _ in
-            guard let avatar = UserDataContainer.shared.userAvatar else { return }
+            let avatar = UserDataContainer.shared.userAvatar
             self?.updateAvatarAndNavigateToNextScreen(avatar)
         }
     }
     
-    func updateAvatarAndNavigateToNextScreen(_ avatar: UIImage) {
-        setAvatar(avatar)
+    func updateAvatarAndNavigateToNextScreen(_ avatar: UIImage?) {
+        if let avatar = avatar {
+            setAvatar(avatar)
+        }
         showNextScreenAfterTime()
     }
 

@@ -14,7 +14,7 @@ import Foundation
 protocol SignUpScreenPresenterInputProtocol: PresenterInputProtocol, SignUpScreenCoordinatorOutputProtocol {}
 protocol SignUpScreenPresenterOutputProtocol: PresenterOutputProtocol {
     func showWelcomeScreen()
-    func showUserAgreementScreen()
+    func showUserAgreementScreen(_ data: AuthenticationRequestProtocol)
     func showErrorMessage(_ message: String)
     func userDidCancelToAuthenticate()
 }
@@ -33,13 +33,8 @@ class SignUpScreenPresenter {
 
 extension SignUpScreenPresenter: SignUpScreenPresenterInputProtocol {
     
-    func userDidSignUp() {
-        output?.showUserAgreementScreen()
-    }
-    
-    func userDidFailToSignUp(error: NSError) {
-        UserDataContainer.shared.logout()//this clears any data saved during unsuccessful attempt to sign-up
-        output?.showErrorMessage(error.localizedDescription)
+    func userRequestSignUp(_ data: AuthenticationRequestProtocol) {
+        output?.showUserAgreementScreen(data)
     }
     
     func userDidLogin() {

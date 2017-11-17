@@ -12,7 +12,7 @@ import UIKit
 
 protocol SignUpScreenRouterProtocol {
     func navigateToWelcomeScreen()
-    func showUserAgreementScreen()
+    func showUserAgreementScreen(_ data: AuthenticationRequestProtocol)
 }
 
 class SignUpScreenRouter {
@@ -39,12 +39,12 @@ extension SignUpScreenRouter: SignUpScreenRouterProtocol {
         }
     }
     
-    func showUserAgreementScreen() {
+    func showUserAgreementScreen(_ data: AuthenticationRequestProtocol) {
         if let navController = viewController?.navigationController {
             
             let controller: UserAgreementScreenViewController! =
                 UIStoryboard.login.instantiateViewController()
-            
+            controller.config(data)
             navController.pushViewController(controller, animated: true)
         }
     }

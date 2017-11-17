@@ -12,8 +12,7 @@ import UIKit
 
 protocol SignUpScreenCoordinatorInputProtocol: CoordinatorInputProtocol, SignUpScreenControllerOutputProtocol {}
 protocol SignUpScreenCoordinatorOutputProtocol: CoordinatorOutputProtocol {
-    func userDidSignUp()
-    func userDidFailToSignUp(error: NSError)
+    func userRequestSignUp(_ data: AuthenticationRequestProtocol)
     func userDidLogin()
     func userDidFailToLogin(error: NSError)
     func userDidCancelToAuthenticate()
@@ -80,27 +79,9 @@ extension SignUpScreenCoordinator: SignUpScreenCoordinatorInputProtocol {
         let emailSignUpData = EmailRequestData(email: email, password: password)
         emailSignUpData.firstName = firstName
         emailSignUpData.lastName = lastName
+        emailSignUpData.avatar64 = UserDataContainer.shared.userAvatar?.toBase64()
         
-        APIProvider.signUp(withEmail: emailSignUpData) { [weak self] result, error in
-            if let error = error {
-                self?.output.userDidFailToSignUp(error: error.toNSError())
-                return
-            }
-
-            guard let session = result else { return }
-            EmailProvider.shared.saveUserSession(session)//save received email session
-
-            APIProvider.retreiveUserInfo() { [weak self] userData, error in
-                if let error = error {
-                    self?.output.userDidFailToSignUp(error: error.toNSError())
-                    return
-                }
-                if let data = userData {
-                    UserDataContainer.shared.userInfo = data
-                    self?.output.userDidSignUp()
-                }
-            }
-        }
+        self.output.userRequestSignUp(emailSignUpData)
     }
     
     //MARK: - fileprivate methods
@@ -144,29 +125,9 @@ extension SignUpScreenCoordinator: SignUpScreenCoordinatorInputProtocol {
         requestParams.firstName = self.userInfo?.firstName
         requestParams.lastName = self.userInfo?.lastName
         requestParams.gender = self.userInfo?.gender
+        requestParams.avatar64 = UserDataContainer.shared.userAvatar?.toBase64()
         
-        APIProvider.signUpWithSocial(params: requestParams) { [weak self] response, error in
-            
-            if let error = error?.toNSError() {
-                self?.output.userDidFailToSignUp(error: error)
-                return
-            }
-            
-            guard let session = response else { return }
-            EmailProvider.shared.saveUserSession(session)//save received email session
-            
-            APIProvider.retreiveUserInfo() { [weak self] userData, error in
-                if let error = error {
-                    self?.output.userDidFailToSignUp(error: error.toNSError())
-                    return
-                }
-                if let data = userData {
-                    UserDataContainer.shared.userInfo = data
-                    self?.output.userDidSignUp()
-                }
-            }
-            
-        }
+        self.output.userRequestSignUp(requestParams)
     }
     
 }
