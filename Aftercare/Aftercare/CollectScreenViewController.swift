@@ -142,14 +142,16 @@ extension CollectScreenViewController {
         self.step1Label.textColor = UIColor.dntCharcoalGrey
         self.step1Label.font = UIFont.dntLatoLightFont(size: UIFont.dntLargeTitleFontSize)
         self.step1Label.text = NSLocalizedString("Create your crypto wallet at:", comment: "")
+        self.step1Label.numberOfLines = 2
         
         self.step1AddressLabel.textColor = UIColor.dntCeruleanBlue
         self.step1AddressLabel.font = UIFont.dntLatoRegularFontWith(size: UIFont.dntLargeTextSize)
-        self.step1AddressLabel.text = NSLocalizedString("www.dentacoin.com", comment: "")
+        self.step1AddressLabel.text = NSLocalizedString("www.myetherwallet.com", comment: "")
         
         self.step2Label.textColor = UIColor.dntCharcoalGrey
         self.step2Label.font = UIFont.dntLatoLightFont(size: UIFont.dntLargeTitleFontSize)
         self.step2Label.text = NSLocalizedString("Send us your crypto wallet address", comment: "")
+        self.step2Label.numberOfLines = 2
         
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .left
