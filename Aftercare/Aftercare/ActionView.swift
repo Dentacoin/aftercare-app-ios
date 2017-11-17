@@ -463,7 +463,7 @@ extension ActionView: ActionFooterViewDelegate {
         openStatisticsScreen()
     }
     
-    func onActionButtonPressed() {
+    internal func onActionButtonPressed() {
         
         if UserDataContainer.shared.routine != nil {
             if actionState == .Initial {
