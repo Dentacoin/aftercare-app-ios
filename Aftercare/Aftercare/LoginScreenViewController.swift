@@ -118,6 +118,7 @@ extension LoginScreenViewController {
             ])
         self.emailTextField.attributedPlaceholder = emailPlaceholder
         self.emailTextField.keyboardType = .emailAddress
+        self.emailTextField.autocorrectionType = .no
         
         themeManager.setDCBlueTheme(to: self.passwordTextField, ofType: .TextFieldDefaut)
         self.passwordTextField.isSecureTextEntry = true
@@ -129,6 +130,7 @@ extension LoginScreenViewController {
                 NSAttributedStringKey.paragraphStyle: paragraph
             ])
         self.passwordTextField.attributedPlaceholder = passwordPlaceholder
+        self.passwordTextField.autocorrectionType = .no
         
         //setup "Or Connect With" Label theme
         

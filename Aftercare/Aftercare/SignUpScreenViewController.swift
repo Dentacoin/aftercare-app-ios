@@ -145,6 +145,7 @@ extension SignUpScreenViewController {
         )
         
         firstNameTextField.attributedPlaceholder = firstNamePlaceholder
+        firstNameTextField.autocorrectionType = .no
         
         themeManager.setDCBlueTheme(
             to: self.lastNameTextField,
@@ -163,6 +164,7 @@ extension SignUpScreenViewController {
         )
         
         lastNameTextField.attributedPlaceholder = lastNamePlaceholder
+        lastNameTextField.autocorrectionType = .no
         
         themeManager.setDCBlueTheme(
             to: self.emailTextField,
@@ -182,6 +184,7 @@ extension SignUpScreenViewController {
         
         emailTextField.attributedPlaceholder = emailPlaceholder
         emailTextField.keyboardType = .emailAddress
+        emailTextField.autocorrectionType = .no
         
         themeManager.setDCBlueTheme(
             to: self.passwordTextField,
@@ -202,6 +205,7 @@ extension SignUpScreenViewController {
         )
         
         passwordTextField.attributedPlaceholder = passwordPlaceholder
+        passwordTextField.autocorrectionType = .no
         
         themeManager.setDCBlueTheme(
             to: self.createButton,
