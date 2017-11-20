@@ -551,6 +551,17 @@ public extension UIImage {
         return applyBlur(withRadius: 10, tintColor: effectColor, saturationDeltaFactor: -1.0)
     }
     
+    func tint(color: UIColor, blendMode: CGBlendMode) -> UIImage {
+        let drawRect = CGRect(x: 0, y: 0,width: size.width,height: size.height)
+        UIGraphicsBeginImageContextWithOptions(size, false, scale)
+        color.setFill()
+        UIRectFill(drawRect)
+        draw(in: drawRect, blendMode: blendMode, alpha: 1.0)
+        let tintedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return tintedImage!
+    }
+    
     /**
      Applies a blur to an image based on the specified radius, tint color saturation and mask image
      

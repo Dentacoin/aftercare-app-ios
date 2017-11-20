@@ -36,7 +36,7 @@ struct SystemMethods {
         }
         
         static func validatePassword(_ password: String) -> Bool {
-            return password.characters.count >= 8
+            return password.count >= 8
         }
         
         static func validateZipCode(_ zip: String) -> Bool {
@@ -46,7 +46,7 @@ struct SystemMethods {
         //MARK: - fileprivates
         
         static fileprivate func validateName(_ name: String) -> Bool  {
-            return name.characters.count > 2
+            return name.count > 2
         }
         
     }

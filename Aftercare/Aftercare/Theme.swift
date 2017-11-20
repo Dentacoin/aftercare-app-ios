@@ -119,7 +119,7 @@ enum DCBlueThemeTypes {
     case ButtonOptionStyle(label: String, selected: Bool)
     case ButtonActionStyle(label: String, selected: Bool)
     case ButtonSocialNetworkWith(logoNormal: UIImage, logoHighlighted: UIImage)
-    case ButtonTooth(selected: Bool)
+    case ButtonTooth(color: UIColor, selected: Bool)
     case TextFieldDefaut
     case TextFieldDarkBlue
     case TabBarDefault
@@ -232,8 +232,8 @@ class ThemeManager {
         case .ButtonSocialNetworkWith(let logoNormal, let logoHighlighted):
             applySocialNetworkButton(button: button, logoNormal: logoNormal, logoHighlighted: logoHighlighted)
             return
-        case .ButtonTooth(let selected):
-            applyToothButton(button: button, selected)
+        case .ButtonTooth(let color, let selected):
+            applyToothButton(button: button, color: color, selected)
             return
         default:
             return
@@ -536,20 +536,12 @@ class ThemeManager {
         button.setImage(logoHighlighted, for: .highlighted)
     }
     
-    fileprivate func applyToothButton(button: UIButton, _ selected: Bool) {
+    fileprivate func applyToothButton(button: UIButton, color: UIColor, _ selected: Bool) {
         
         let image = UIImage(named: "tooth-" + String(button.tag))
         var selectedImage = image
         
-        
-//        selectedImage = selectedImage?.applyBlur(
-//            withRadius: 0,
-//            tintColor: .red,
-//            saturationDeltaFactor: 0,
-//            maskImage: selectedImage
-//        )
-        
-        selectedImage = selectedImage?.alpha(0.7)
+        selectedImage = selectedImage?.tint(color: color, blendMode: .destinationAtop).alpha(0.7)
         
         if selected {
             button.setBackgroundImage(selectedImage, for: .normal)
@@ -558,6 +550,7 @@ class ThemeManager {
             button.setBackgroundImage(nil, for: .normal)
             button.setBackgroundImage(selectedImage, for: .highlighted)
         }
+        
     }
     
     //MARK: - Style Sky Floating Label Text Field

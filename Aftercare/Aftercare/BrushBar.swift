@@ -107,9 +107,12 @@ class BrushBar: UIView {
     
     func highlightSection(_ section: BrushBarSections) {
         
+        let themeManager = ThemeManager.shared
+        
         UIView.animate(withDuration: 0.5, animations: { [weak self] in
             if let highlighted = self?.highlightedSection {
                 for tooth in highlighted {
+                    themeManager.setDCBlueTheme(to: tooth, ofType: .ButtonTooth(color: .dntCeruleanBlue, selected: false))
                     tooth.alpha = 0
                 }
             }
@@ -132,7 +135,8 @@ class BrushBar: UIView {
             
             if let section = sectionToHighlight {
                 for tooth in section {
-                    tooth.alpha = 0.7
+                    themeManager.setDCBlueTheme(to: tooth, ofType: .ButtonTooth(color: .dntCeruleanBlue, selected: true))
+                    tooth.alpha = 1
                 }
                 self?.highlightedSection = section
             }
@@ -174,8 +178,12 @@ extension BrushBar {
         allTeeth.append(contentsOf: downRightPart)
         
         //make all teeth transparent on start
+        var tagId = 1
+        
         for tooth in allTeeth {
+            tooth.tag = tagId
             tooth.alpha = 0
+            tagId += 1
         }
         
         timerLabel.textColor = UIColor.dntCeruleanBlue

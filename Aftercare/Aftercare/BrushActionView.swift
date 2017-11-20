@@ -248,7 +248,7 @@ extension BrushActionView: ActionViewProxyDelegateProtocol {
                 guard let timer = self.timer else { return }
                 timer.timerLabel.text = "0:00"
                 timer.highlightSection(.None)
-                embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("FLOSS", comment: ""), withState: .blue)
+                embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("BRUSH", comment: ""), withState: .blue)
             } else {
                 embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("STOP", comment: ""), withState: .red)
             }

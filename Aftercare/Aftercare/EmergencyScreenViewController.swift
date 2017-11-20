@@ -100,12 +100,12 @@ class EmergencyScreenViewController: UIViewController, ContentConformer {
         if let button = teethsStateKeeper[sender.tag], button != nil {
             
             teethsStateKeeper.updateValue(nil, forKey: (button!.tag))
-            themeManager.setDCBlueTheme(to: button!, ofType: .ButtonTooth(selected: false))
+            themeManager.setDCBlueTheme(to: button!, ofType: .ButtonTooth(color: .red, selected: false))
             
         } else {
             
             teethsStateKeeper.updateValue(sender, forKey: sender.tag)
-            themeManager.setDCBlueTheme(to: sender, ofType: .ButtonTooth(selected: true))
+            themeManager.setDCBlueTheme(to: sender, ofType: .ButtonTooth(color: .red, selected: true))
             
         }
         
@@ -167,7 +167,7 @@ extension EmergencyScreenViewController {
         
         for tooth in teeth {
             tooth.tag = tagId
-            themeManager.setDCBlueTheme(to: tooth, ofType: .ButtonTooth(selected: false))
+            themeManager.setDCBlueTheme(to: tooth, ofType: .ButtonTooth(color: .red, selected: false))
             tooth.addTarget(self, action: Selector.toothButtonPressed, for: .touchUpInside)
             tagId += 1
         }
