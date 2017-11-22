@@ -99,6 +99,11 @@ class BrushActionView: UIView, ActionViewProtocol {
             var timerFrame = timer.frame
             timerFrame.size.height = containerFrame.size.height
             timerFrame.origin.x = (containerFrame.size.width - timerFrame.size.width) / 2
+            
+            //Because of the shadow is a part of the teeth timer background it looks uncentered and shifted a bit to the left
+            //We use 6 pixels shift to the right to conpensate this and timer to look perfectly centered
+            timerFrame.origin.x += 6
+            
             timerFrame.origin.y = (containerFrame.size.height - timerFrame.size.height) / 2
             timer.frame = timerFrame
         }
