@@ -468,13 +468,11 @@ extension ActionView: ActionFooterViewDelegate {
         if UserDataContainer.shared.routine != nil {
             if actionState == .Initial {
                 actionState = .Ready
-            } else if actionState == .Done {
-                //Change state to Ready
-                actionState = .Initial
             } else if actionState == .Ready {
-                //Change state to Action
-                actionState = .Action
-                self.perform(Selector.executeActionSelector, with: nil, afterDelay: 0.0)
+                    actionState = .Action
+                    self.perform(Selector.executeActionSelector, with: nil, afterDelay: 0.0)
+            } else if actionState == .Done {
+                actionState = .Initial
             } else {
                 //Change state to Done
                 actionState = .Done

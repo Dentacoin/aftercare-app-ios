@@ -154,7 +154,7 @@ class BrushBar: UIView {
     
 }
 
-//MARK: - apply theme
+//MARK: - apply theme and appearance
 
 extension BrushBar {
     

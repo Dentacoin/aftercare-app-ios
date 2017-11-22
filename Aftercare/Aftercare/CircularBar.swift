@@ -13,6 +13,7 @@ import UIKit
 class CircularBar: UIView {
     
     //MARK: - IBOutlets
+    @IBOutlet weak var container: UIView!
     @IBOutlet weak var bar: KDCircularProgress!
     @IBOutlet weak var centerLabel: UILabel!
     
@@ -60,11 +61,12 @@ class CircularBar: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        calculateLayouts()
     }
     
 }
 
-//MARK: - apply theme
+//MARK: - apply theme and appearance
 
 extension CircularBar {
     
@@ -83,6 +85,41 @@ extension CircularBar {
         centerLabel.textColor = .dntDarkSkyBlue
         centerLabel.font = UIFont.dntLatoLightFont(size: 120)
         centerLabel.adjustsFontSizeToFitWidth = true
+        
+        var labelFrame = centerLabel.frame
+        let barFrame = bar.frame
+        labelFrame.size.width = barFrame.width / 2
+        labelFrame.size.height = barFrame.height / 2
+        labelFrame.origin.x = barFrame.origin.x + (barFrame.width - labelFrame.size.width) / 2
+        labelFrame.origin.y = barFrame.origin.y + (barFrame.height - labelFrame.size.height) / 2
+        centerLabel.frame = labelFrame
+        
+    }
+    
+    fileprivate func calculateLayouts() {
+        
+        let containerPadding: CGFloat = 8
+        let screenRect = self.bounds
+        let positionRectSide = min(screenRect.height, screenRect.width) - (2 * containerPadding)
+        
+        let positionRect = CGRect(
+            x: containerPadding,
+            y: containerPadding,
+            width: positionRectSide,
+            height: positionRectSide
+        )
+        
+        let containerSize = container.frame
+        let widthScale: CGFloat = positionRect.width / containerSize.width
+        let heightScale: CGFloat = positionRect.height / containerSize.height
+        let scaleFactor = min(widthScale, heightScale)
+        
+        container.transform = container.transform.scaledBy(x: scaleFactor, y: scaleFactor)
+        var containerFrame = container.frame
+        containerFrame.origin.x = (screenRect.width - containerFrame.width) / 2
+        containerFrame.origin.y = (screenRect.height - containerFrame.height) / 2
+        
+        container.frame = containerFrame
         
     }
 

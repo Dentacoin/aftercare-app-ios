@@ -217,22 +217,11 @@ extension BrushActionView: ActionViewProxyDelegateProtocol {
             } else if newState == .Action {
                 embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("STOP", comment: ""), withState: .red)
             } else if newState == .Done {
-                guard let timer = self.timer else { return }
-                timer.timerLabel.text = "0:00"
-                timer.highlightSection(.None)
                 
+                resetTimer()
                 //this is the same sound for morning and evening routine
                 SoundManager.shared.playSound(SoundType.sound(.morning, .brush, .done(.congratulations)))
-                
-                embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("BRUSH", comment: ""), withState: .blue)
                 embedView?.descriptionTextView.text = doneDescriptionString
-                
-                //null the flags
-                actionDescription01Flag = false
-                actionDescription02Flag = false
-                actionDescription03Flag = false
-                actionDescription04Flag = false
-                actionDescription05Flag = false
                 
             } else if newState == .Initial {
                 embedView?.toggleDescriptionText(false)
@@ -245,14 +234,28 @@ extension BrushActionView: ActionViewProxyDelegateProtocol {
         } else {
             
             if newState == .Initial {
-                guard let timer = self.timer else { return }
-                timer.timerLabel.text = "0:00"
-                timer.highlightSection(.None)
-                embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("BRUSH", comment: ""), withState: .blue)
+                resetTimer()
             } else {
                 embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("STOP", comment: ""), withState: .red)
             }
         }
+        
+    }
+    
+    fileprivate func resetTimer() {
+        
+        //reset the flags
+        actionDescription01Flag = false
+        actionDescription02Flag = false
+        actionDescription03Flag = false
+        actionDescription04Flag = false
+        actionDescription05Flag = false
+        
+        embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("BRUSH", comment: ""), withState: .blue)
+        
+        guard let timer = self.timer else { return }
+        timer.timerLabel.text = "0:00"
+        timer.highlightSection(.None)
         
     }
     

@@ -87,10 +87,8 @@ class ActionScreenViewController: UIViewController, ContentConformer {
         super.viewDidLayoutSubviews()
         if #available(iOS 11.0, *) {
             if !calculatedConstraints {
-                calculatedConstraints = true
                 let topPadding = self.view.safeAreaInsets.top
                 headerHeightConstraint.constant += topPadding
-                headerHeight = headerHeightConstraint.constant
                 
                 //If no routine, show tutorial on current page
                 if UserDataContainer.shared.routine == nil {
@@ -98,9 +96,15 @@ class ActionScreenViewController: UIViewController, ContentConformer {
                         page.showTutorials()
                     }
                 }
-                
             }
         }
+        
+        if !calculatedConstraints {
+            //save header height value in local variable
+            self.headerHeight = headerHeightConstraint.constant
+            calculatedConstraints = true
+        }
+        
         updateSubscreensContentSizes()
     }
     
@@ -263,7 +267,6 @@ extension ActionScreenViewController: ActionViewDelegate {
             
         } else {
             goFullScreen()
-            contentScrollView.isScrollEnabled = false
         }
     }
     
@@ -275,11 +278,11 @@ extension ActionScreenViewController: ActionViewDelegate {
                 
                 //proceed with the next screen
                 guard let nextScreenType = routine.actions.first else { return }
-                guard let pageIndex = getPageIndex(nextScreenType) else { return }
-                scrollContentScrollViewTo(page: pageIndex)
-                let page = pagesArray[pageIndex]
+                guard let index = getPageIndex(nextScreenType) else { return }
+                scrollContentScrollViewTo(page: index)
+                let page = pagesArray[index]
                 page.changeStateTo(.Ready)
-                self.lastTab = pageIndex
+                self.lastTab = index
                 
                 return
             } else {
@@ -290,15 +293,11 @@ extension ActionScreenViewController: ActionViewDelegate {
         }
         
         exitFullscreen()
-        contentScrollView.isScrollEnabled = true
         
     }
     
     func actionComplete() {
-        if self.currentPageIndex >= self.pagesArray.count - 1 {
-            return
-        }
-        self.scrollContentScrollViewTo(page: self.currentPageIndex + 1)
+        //...
     }
     
     fileprivate func goFullScreen() {
@@ -307,6 +306,7 @@ extension ActionScreenViewController: ActionViewDelegate {
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
         }
+        contentScrollView.isScrollEnabled = false
     }
     
     fileprivate func exitFullscreen() {
@@ -316,6 +316,7 @@ extension ActionScreenViewController: ActionViewDelegate {
             self.view.layoutIfNeeded()
             self.header.selectTab(atIndex: self.lastTab)
         }
+        contentScrollView.isScrollEnabled = true
     }
     
 }
@@ -382,20 +383,15 @@ extension ActionScreenViewController: RoutinesPopupScreenDelegate {
         
         guard let routine = UserDataContainer.shared.routine else { return }
         //scroll to first routine screen
-        guard let pageIndex = getPageIndex(routine.actions.first!) else { return }
-        scrollContentScrollViewTo(page: pageIndex)
-        self.header.selectTab(atIndex: pageIndex)
+        guard let index = getPageIndex(routine.actions.first!) else { return }
+        scrollContentScrollViewTo(page: index)
+        self.header.selectTab(atIndex: index)
         
-        let page = pagesArray[pageIndex]
+        let page = pagesArray[index]
         page.changeStateTo(.Ready)
         
         //Lock the scroll view and header while executing routine
-        self.view.layoutIfNeeded()
-        self.headerHeightConstraint.constant = 0
-        UIView.animate(withDuration: 0.5) {
-            self.view.layoutIfNeeded()
-        }
-        contentScrollView.isScrollEnabled = false
+        self.goFullScreen()
         
         //play background music
         SoundManager.shared.playRandomMusic()

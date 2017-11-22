@@ -73,8 +73,8 @@ class FlossActionView: UIView, ActionViewProtocol {
         )?.first as? CircularBar else {
             return
         }
-        timer.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         calculateTimerFrame()
+        timer.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         embedView?.timerContainer.addSubview(timer)
         self.timer = timer
     }
@@ -83,9 +83,7 @@ class FlossActionView: UIView, ActionViewProtocol {
         if let containerFrame = embedView?.timerContainer.frame {
             if var timerFrame = timer?.frame {
                 timerFrame.size.height = containerFrame.size.height
-                timerFrame.size.width = timerFrame.size.height
-                timerFrame.origin.x = (containerFrame.size.width - timerFrame.size.width) / 2
-                timerFrame.origin.y = (containerFrame.size.height - timerFrame.size.height) / 2
+                timerFrame.size.width = containerFrame.size.width
                 timer?.frame = timerFrame
             }
         }
@@ -151,12 +149,11 @@ extension FlossActionView: ActionViewProxyDelegateProtocol {
                 SoundManager.shared.playSound(SoundType.sound(routine.type, .floss, .progress(0)))
                 embedView?.descriptionTextView.text = actionDescriptionString
             } else if newState == .Done {
-                guard let timer = self.timer else { return }
-                timer.centerLabel.text = "0:00"
-                timer.bar.angle = 0
-                embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("FLOSS", comment: ""), withState: .blue)
+                
+                resetTimer()
                 SoundManager.shared.playSound(SoundType.sound(routine.type, .floss, .done(.congratulations)))
                 embedView?.descriptionTextView.text = doneDescriptionString
+                
             } else if newState == .Initial {
                 embedView?.toggleDescriptionText(false)
                 return
@@ -169,15 +166,22 @@ extension FlossActionView: ActionViewProxyDelegateProtocol {
         } else {
             
             if newState == .Initial {
-                guard let timer = self.timer else { return }
-                timer.centerLabel.text = "0:00"
-                timer.bar.angle = 0
-                embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("FLOSS", comment: ""), withState: .blue)
+                resetTimer()
             } else {
                 embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("STOP", comment: ""), withState: .red)
             }
             
         }
+    }
+    
+    fileprivate func resetTimer() {
+        
+        embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("FLOSS", comment: ""), withState: .blue)
+        
+        guard let timer = self.timer else { return }
+        timer.centerLabel.text = "0:00"
+        timer.bar.angle = 0
+        
     }
     
 }

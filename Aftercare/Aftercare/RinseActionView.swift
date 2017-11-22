@@ -103,9 +103,7 @@ class RinseActionView: UIView, ActionViewProtocol {
         if let containerFrame = embedView?.timerContainer.frame {
             if var timerFrame = timer?.frame {
                 timerFrame.size.height = containerFrame.size.height
-                timerFrame.size.width = timerFrame.size.height
-                timerFrame.origin.x = (containerFrame.size.width - timerFrame.size.width) / 2
-                timerFrame.origin.y = (containerFrame.size.height - timerFrame.size.height) / 2
+                timerFrame.size.width = containerFrame.size.width
                 timer?.frame = timerFrame
             }
         }
@@ -204,10 +202,8 @@ extension RinseActionView: ActionViewProxyDelegateProtocol {
                 
             } else if newState == .Done {
                 
-                guard let timer = self.timer else { return }
-                timer.centerLabel.text = "0:00"
-                timer.bar.angle = 0
-                embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("RINSE", comment: ""), withState: .blue)
+                resetTimer()
+                
                 if routine.type == .evening {
                     embedView?.descriptionTextView.text = doneEveningDescriptionString
                 } else {
@@ -219,10 +215,6 @@ extension RinseActionView: ActionViewProxyDelegateProtocol {
                     }
                     SoundManager.shared.playSound(SoundType.sound(routine.type, .rinse, .done(.congratulations)))
                 }
-                
-                actionDescription01Flag = false
-                actionDescription02Flag = false
-                actionDoneFlag = false
                 
             } else if newState == .Initial {
                 embedView?.toggleDescriptionText(false)
@@ -236,15 +228,27 @@ extension RinseActionView: ActionViewProxyDelegateProtocol {
         } else {
             
             if newState == .Initial {
-                guard let timer = self.timer else { return }
-                timer.centerLabel.text = "0:00"
-                timer.bar.angle = 0
-                embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("RINSE", comment: ""), withState: .blue)
+                resetTimer()
             } else {
                 embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("STOP", comment: ""), withState: .red)
             }
             
         }
+    }
+    
+    fileprivate func resetTimer() {
+        
+        //reset the flags
+        actionDescription01Flag = false
+        actionDescription02Flag = false
+        actionDoneFlag = false
+        
+        embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("RINSE", comment: ""), withState: .blue)
+        
+        guard let timer = self.timer else { return }
+        timer.centerLabel.text = "0:00"
+        timer.bar.angle = 0
+        
     }
     
 }
