@@ -15,7 +15,7 @@ class BrushActionView: UIView, ActionViewProtocol {
     //MARK: - fileprivates
     
     fileprivate lazy var readyDescriptionString:String = {
-        return NSLocalizedString("Let's start with brushing your teeth. Make sure your toothbrush is not dry, and apply toothpaste as the size of peagrain. Press the start button when you are ready to brush.", comment: "")
+        return NSLocalizedString("Next step is brushing. Make sure your toothbrush is not dry, apply toothpaste as the size of pea grain. Press the start button when you are ready to brush.", comment: "")
     }()
     
     fileprivate var actionDescription01Flag = false
