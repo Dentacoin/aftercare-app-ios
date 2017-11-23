@@ -80,7 +80,7 @@ class ActionHeaderView: UIView {
     
     func selectTab(atIndex index: Int) {
         
-        if index == self.lastTabBarIndex { return }
+        //if index == self.lastTabBarIndex { return }
         
         let themeManager = ThemeManager.shared
         
@@ -88,25 +88,30 @@ class ActionHeaderView: UIView {
             themeManager.setDCBlueTheme(
                 to: lastPressed,
                 ofType: .ButtonTabStyle(
-                    label: NSLocalizedString((lastPressed.titleLabel?.text)!,
-                                             comment: "")
+                    label: (lastPressed.titleLabel?.text)!
                 )
             )
-            flossButton.addTarget(self, action: Selector.tabBarButtonPressed, for: .touchUpInside)
         }
         
-        if let selectButton = tabsArray?[index] {
-            themeManager.setDCBlueTheme(
-                to: selectButton,
-                ofType: .ButtonTabSelectedStyle(
-                    label: NSLocalizedString((selectButton.titleLabel?.text)!,
-                                             comment: "")
+        if let tabs = self.tabsArray, index >= 0 && index < tabs.count {
+            if let selectButton = tabsArray?[index] {
+                
+                themeManager.setDCBlueTheme(
+                    to: selectButton,
+                    ofType: .ButtonTabSelectedStyle(
+                        label: (selectButton.titleLabel?.text)!
+                    )
                 )
-            )
-            selectButton.addTarget(self, action: Selector.tabBarButtonPressed, for: .touchUpInside)
-            self.lastTabBarButtonPressed = selectButton
-            self.lastTabBarIndex = index
+                self.lastTabBarButtonPressed = selectButton
+                self.lastTabBarIndex = index
+                
+                return
+            }
         }
+            
+        self.lastTabBarButtonPressed = nil
+        self.lastTabBarIndex = -1
+        
     }
     
 }
@@ -124,10 +129,8 @@ extension ActionHeaderView {
         titleLabel.textColor = .white
         titleLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntHeaderTitleFontSize)
         
-        //default selected tab button
-        themeManager.setDCBlueTheme(to: flossButton, ofType: .ButtonTabSelectedStyle(label: NSLocalizedString("FLOSS", comment: "")))
+        themeManager.setDCBlueTheme(to: flossButton, ofType: .ButtonTabStyle(label: NSLocalizedString("FLOSS", comment: "")))
         flossButton.addTarget(self, action: Selector.tabBarButtonPressed, for: .touchUpInside)
-        self.lastTabBarButtonPressed = flossButton
         
         themeManager.setDCBlueTheme(to: brushButton, ofType: .ButtonTabStyle(label: NSLocalizedString("BRUSH", comment: "")))
         brushButton.addTarget(self, action: Selector.tabBarButtonPressed, for: .touchUpInside)
@@ -135,6 +138,8 @@ extension ActionHeaderView {
         themeManager.setDCBlueTheme(to: rinseButton, ofType: .ButtonTabStyle(label: NSLocalizedString("RINSE", comment: "")))
         rinseButton.addTarget(self, action: Selector.tabBarButtonPressed, for: .touchUpInside)
         
+        //default selected floss tab button
+        self.selectTab(atIndex: 0)
     }
     
 }

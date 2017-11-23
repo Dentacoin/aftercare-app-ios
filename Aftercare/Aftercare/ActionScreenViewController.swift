@@ -13,7 +13,7 @@ class ActionScreenViewController: UIViewController, ContentConformer {
     @IBOutlet weak var headerView: UIView?
     @IBOutlet weak var contentScrollView: UIScrollView!
     @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
-    
+    @IBOutlet weak var headerTopConstraint: NSLayoutConstraint!
     //MARK: - Public
     
     var header: ActionHeaderView! {
@@ -30,7 +30,11 @@ class ActionScreenViewController: UIViewController, ContentConformer {
     fileprivate var calculatedConstraints = false
     fileprivate var headerHeight: CGFloat = 0
     fileprivate var currentPageIndex = 0
-    fileprivate var lastTab: Int = 0
+    fileprivate var lastTab: Int = 0 {
+        didSet {
+            self.header.selectTab(atIndex: self.lastTab)
+        }
+    }
     fileprivate var tutorialsAlreadySetup = false
     
     fileprivate let goalPopupScreen: GoalPopupScreen = {
@@ -282,7 +286,6 @@ extension ActionScreenViewController: ActionViewDelegate {
                 scrollContentScrollViewTo(page: index)
                 let page = pagesArray[index]
                 page.changeStateTo(.Ready)
-                self.lastTab = index
                 
                 return
             } else {
@@ -302,7 +305,7 @@ extension ActionScreenViewController: ActionViewDelegate {
     
     fileprivate func goFullScreen() {
         self.view.layoutIfNeeded()
-        self.headerHeightConstraint.constant = 0
+        self.headerTopConstraint.constant = -self.headerHeight
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
         }
@@ -311,11 +314,12 @@ extension ActionScreenViewController: ActionViewDelegate {
     
     fileprivate func exitFullscreen() {
         self.view.layoutIfNeeded()
-        self.headerHeightConstraint.constant =  self.headerHeight
-        UIView.animate(withDuration: 0.5) {
+        self.headerTopConstraint.constant =  0
+        UIView.animate(withDuration: 0.5, animations: {
             self.view.layoutIfNeeded()
-            self.header.selectTab(atIndex: self.lastTab)
-        }
+        }, completion: { _ in
+            //...
+        })
         contentScrollView.isScrollEnabled = true
     }
     
@@ -369,7 +373,7 @@ extension ActionScreenViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let pageIndex = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
-        header.selectTab(atIndex: pageIndex)
+        self.lastTab = pageIndex
     }
     
 }
@@ -381,11 +385,13 @@ extension ActionScreenViewController: RoutinesPopupScreenDelegate {
     func onRoutinesButtonPressed() {
         routinesPopupScreen.removeFromSuperview()
         
+        //make all tabs unselected
+        self.lastTab = -1
+        
         guard let routine = UserDataContainer.shared.routine else { return }
         //scroll to first routine screen
         guard let index = getPageIndex(routine.actions.first!) else { return }
         scrollContentScrollViewTo(page: index)
-        self.header.selectTab(atIndex: index)
         
         let page = pagesArray[index]
         page.changeStateTo(.Ready)

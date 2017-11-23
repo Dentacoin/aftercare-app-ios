@@ -584,6 +584,7 @@
                     <connections>
                         <outlet property="contentScrollView" destination="3JR-CM-VUa" id="ytJ-EG-Ggv"/>
                         <outlet property="headerHeightConstraint" destination="UQM-hn-rXx" id="pvU-Li-CEa"/>
+                        <outlet property="headerTopConstraint" destination="OrY-WS-XFx" id="IPf-6P-P43"/>
                         <outlet property="headerView" destination="NRE-4g-8uy" id="iAL-Ae-ypd"/>
                     </connections>
                 </viewController>
