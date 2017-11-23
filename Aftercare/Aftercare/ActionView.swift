@@ -290,6 +290,14 @@ class ActionView: UIView {
         self.delegate?.stateChanged(newState)
     }
     
+    func screenWillEnterFullscreen() {
+        actionFootherContainer.isStatisticsButtonHidden = true
+    }
+    
+    func screenWillExitFullscreen() {
+        actionFootherContainer.isStatisticsButtonHidden = false
+    }
+    
     //MARK: - @IBAction
     
     @IBAction func onSwipeGueastureSettingsScreen(_ sender: UIScreenEdgePanGestureRecognizer) {
@@ -536,6 +544,8 @@ protocol ActionViewProtocol {
     var actionViewRecordType: ActionRecordType { get }
     func updateData(_ data: ActionScreenData)
     func showTutorials()
+    func screenWillEnterFullscreen()
+    func screenWillExitFullscreen()
     func changeStateTo(_ newState: ActionState)
 }
 

@@ -138,10 +138,18 @@ class BrushActionView: UIView, ActionViewProtocol {
         return formatedData
     }
     
-    //MARK: - Public
+    //MARK: - Public API
     
     func setupTutorials() {
         embedView?.showTutorials()
+    }
+    
+    func screenWillEnterFullscreen() {
+        embedView?.actionFootherContainer.isStatisticsButtonHidden = true
+    }
+    
+    func screenWillExitFullscreen() {
+        embedView?.actionFootherContainer.isStatisticsButtonHidden = false
     }
 }
 
@@ -232,9 +240,8 @@ extension BrushActionView: ActionViewProxyDelegateProtocol {
                 embedView?.toggleDescriptionText(false)
                 return
             }
-            if UserDataContainer.shared.routine != nil {
-                embedView?.toggleDescriptionText(true)
-            }
+            
+            embedView?.toggleDescriptionText(true)
             
         } else {
             

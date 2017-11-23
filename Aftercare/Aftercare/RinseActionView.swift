@@ -145,6 +145,15 @@ class RinseActionView: UIView, ActionViewProtocol {
         return 360 - (seconds * scale)
     }
     
+    //MARK: - Public API
+    
+    func screenWillEnterFullscreen() {
+        embedView?.actionFootherContainer.isStatisticsButtonHidden = true
+    }
+    
+    func screenWillExitFullscreen() {
+        embedView?.actionFootherContainer.isStatisticsButtonHidden = false
+    }
 }
 
 //MARK: - Proxy Delegate Protocol
@@ -220,10 +229,8 @@ extension RinseActionView: ActionViewProxyDelegateProtocol {
                 embedView?.toggleDescriptionText(false)
                 return
             }
-        
-            if UserDataContainer.shared.routine != nil {
-                embedView?.toggleDescriptionText(true)
-            }
+            
+            embedView?.toggleDescriptionText(true)
         
         } else {
             

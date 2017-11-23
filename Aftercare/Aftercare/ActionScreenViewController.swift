@@ -309,6 +309,12 @@ extension ActionScreenViewController: ActionViewDelegate {
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
         }
+        
+        //notify pages that screen will enter fullscreen
+        for page in self.pagesArray {
+            page.screenWillEnterFullscreen()
+        }
+        
         contentScrollView.isScrollEnabled = false
     }
     
@@ -320,6 +326,11 @@ extension ActionScreenViewController: ActionViewDelegate {
         }, completion: { _ in
             //...
         })
+        
+        //notify pages that screen will exit fullscreen
+        for page in self.pagesArray {
+            page.screenWillExitFullscreen()
+        }
         contentScrollView.isScrollEnabled = true
     }
     

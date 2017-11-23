@@ -124,6 +124,15 @@ class FlossActionView: UIView, ActionViewProtocol {
         return seconds * scale
     }
     
+    //MARK: - Public API
+    
+    func screenWillEnterFullscreen() {
+        embedView?.actionFootherContainer.isStatisticsButtonHidden = true
+    }
+    
+    func screenWillExitFullscreen() {
+        embedView?.actionFootherContainer.isStatisticsButtonHidden = false
+    }
 }
 
 //MARK: - Proxy Delegate Protocol
@@ -159,9 +168,7 @@ extension FlossActionView: ActionViewProxyDelegateProtocol {
                 return
             }
             
-            if UserDataContainer.shared.routine != nil {
-                embedView?.toggleDescriptionText(true)
-            }
+            embedView?.toggleDescriptionText(true)
             
         } else {
             

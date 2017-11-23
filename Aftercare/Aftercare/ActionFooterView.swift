@@ -18,6 +18,18 @@ class ActionFooterView: UIView {
     
     var delegate: ActionFooterViewDelegate?
     
+    //MARK: - public vars
+    
+    var isStatisticsButtonHidden: Bool = false {
+        didSet {
+            UIView.animate(withDuration: 0.5, animations: { [weak self] in
+                if let isHidden = self?.isStatisticsButtonHidden {
+                    self?.statisticsButton.alpha = isHidden ? 0 : 1
+                }
+            })
+        }
+    }
+    
     //MARK: - fileprivate vars
     
     fileprivate var contentView : UIView?
