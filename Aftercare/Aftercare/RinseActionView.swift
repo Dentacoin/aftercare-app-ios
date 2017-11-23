@@ -55,11 +55,11 @@ class RinseActionView: UIView, ActionViewProtocol {
     }()
     
     fileprivate lazy var doneEveningDescriptionString:String = {
-        return NSLocalizedString("You're done, spit the solution out in the sink You have completed your last brush for the day. Amazing job! Have a nice rest and come back in the morning.", comment: "")
+        return NSLocalizedString("You're done, now spit the solution out in the sink. You have completed your last brush for the day. Amazing job! Have a nice rest and come back in the morning.", comment: "")
     }()
     
     fileprivate lazy var doneMorningCongratsDescriptionString:String = {
-        return NSLocalizedString("Congratulations! NOW you are ready to Amaze the world with your beautiful smile.", comment: "")
+        return NSLocalizedString("Congratulations! NOW you are ready to Amaze the world with your beautiful smile. Make big things today and come back in the evening before going to bed. Have a nice day ahead.", comment: "")
     }()
     
     fileprivate lazy var doneMorningDescriptionString:String = {
@@ -218,12 +218,14 @@ extension RinseActionView: ActionViewProxyDelegateProtocol {
                 } else {
                     embedView?.descriptionTextView.text = doneMorningCongratsDescriptionString
                 }
-                SoundManager.shared.playSound(SoundType.sound(routine.type, .rinse, .done(.other))) { [weak self] in
-                    if routine.type == .morning {
-                        self?.embedView?.descriptionTextView.text = self?.doneMorningDescriptionString
-                    }
-                    SoundManager.shared.playSound(SoundType.sound(routine.type, .rinse, .done(.congratulations)))
-                }
+                SoundManager.shared.playSound(SoundType.sound(routine.type, .rinse, .done(.congratulations)))
+                
+//                SoundManager.shared.playSound(SoundType.sound(routine.type, .rinse, .done(.congratulations))) { [weak self] in
+//                    if routine.type == .morning {
+//                        self?.embedView?.descriptionTextView.text = self?.doneMorningDescriptionString
+//                    }
+//                    SoundManager.shared.playSound(SoundType.sound(routine.type, .rinse, .done(.other)))
+//                }
                 
             } else if newState == .Initial {
                 embedView?.toggleDescriptionText(false)
