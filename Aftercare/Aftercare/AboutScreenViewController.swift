@@ -60,11 +60,11 @@ class AboutScreenViewController: UIViewController, ContentConformer {
     fileprivate func setup() {
         
         //add app version at the bottom of the text field
-        //First get the nsObject by defining as an optional anyObject
         guard let dict = Bundle.main.infoDictionary else { return }
         guard let version: String = dict["CFBundleShortVersionString"] as? String else { return }
+        guard let build: String = dict["CFBundleVersion"] as? String else { return }
         
-        self.aboutTextView.text.append(NSLocalizedString(" \n\n\nApp Version: " + version, comment: ""))
+        self.aboutTextView.text.append(NSLocalizedString(" \n\n\nApp Version: \(version) (\(build))", comment: ""))
     }
     
 }
