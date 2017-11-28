@@ -28,6 +28,9 @@ struct NotificationsVisitTheApp: NotificationDataProtocol {
     
     func scheduleNotification() {
         
+        //Remove all already scheduled notifiations of this kind
+        cancelNotification()
+        
         let data = NotificationData(
             title: "",
             message: NSString.localizedUserNotificationString(forKey: "Hey there! You haven't checked in for a while.", arguments: nil)
@@ -38,16 +41,32 @@ struct NotificationsVisitTheApp: NotificationDataProtocol {
         content.body = data.message
         content.sound = UNNotificationSound.default()
         
-        let date = Date()
-        let triggerDaily = Calendar.current.dateComponents([.hour, .minute, .second], from: date)
-        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDaily, repeats: true)
+        let center = UNUserNotificationCenter.current()
+        let triggerDate = weekLater(afterDate: Date())//week later from now
         
-        let request = UNNotificationRequest(identifier: notificationIdentifier.rawValue, content: content, trigger: trigger)
+        var tDateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour], from: triggerDate)
+        tDateComponents.hour = 18
+        let trigger = UNCalendarNotificationTrigger(dateMatching: tDateComponents, repeats: false)
+        let request = UNNotificationRequest(
+            identifier: notificationIdentifier.rawValue,
+            content: content,
+            trigger: trigger
+        )
+        center.add(request, withCompletionHandler: nil)
     }
     
     func cancelNotification() {
         let center = UNUserNotificationCenter.current()
         center.removePendingNotificationRequests(withIdentifiers: [notificationIdentifier.rawValue])
     }
+    
+    //MARK: - Private Methods
+    
+    fileprivate func weekLater(afterDate date: Date) -> Date {
+        let calendar = Calendar.current
+        let weekLater = calendar.date(byAdding: .day, value: 7, to: date)!
+        return weekLater
+    }
+    
     
 }

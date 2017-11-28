@@ -28,9 +28,35 @@ struct NotificationsCollectDCN: NotificationDataProtocol {
     
     func scheduleNotification() {
         
+        //Remove all already scheduled notifiations of this kind
+        cancelNotification()
+        
+        guard let totalDCN = UserDataContainer.shared.actionScreenData?.totalDCN else {
+            print("NotificationsCollectDCN: Error trying to retrieved total DCNs for the User")
+            return
+        }
+        
+        guard let dateOfRegistrationRaw = UserDataContainer.shared.userInfo?.createdDate else {
+            print("NotificationsCollectDCN: Error : can't retreive user registration date")
+            return
+        }
+        
+        guard let regDate = DateFormatter.humanReadableWithHourComponentsFormat.date(from: dateOfRegistrationRaw) else {
+            print("NotificationsCollectDCN: Error : Wrong registration date format")
+            return
+        }
+        
+        if totalDCN < 1000 {
+            print("NotificationsCollectDCN: User doesn't have enough DCN to withdraw")
+            return
+        }
+        
         let data = NotificationData(
             title: "",
-            message: NSString.localizedUserNotificationString(forKey: "You have %d DCN in your account. You can collect them easily form the ''Dentacoin'' screen.", arguments: nil)
+            message: NSString.localizedUserNotificationString(
+                forKey: "You have \(totalDCN) DCN in your account. You can collect them easily from the ''Dentacoin'' screen.",
+                arguments: nil
+            )
         )
         
         let content = UNMutableNotificationContent()
@@ -38,15 +64,46 @@ struct NotificationsCollectDCN: NotificationDataProtocol {
         content.body = data.message
         content.sound = UNNotificationSound.default()
         
-        let date = Date()
-        let triggerDaily = Calendar.current.dateComponents([.hour, .minute, .second], from: date)
-        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDaily, repeats: true)
+        let center = UNUserNotificationCenter.current()
         
-        let request = UNNotificationRequest(identifier: notificationIdentifier.rawValue, content: content, trigger: trigger)
+        if let triggerDate = nextDateToRemindToCollect(afterRegistration: regDate) {
+            var tDateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour], from: triggerDate)
+            tDateComponents.hour = 13
+            let trigger = UNCalendarNotificationTrigger(dateMatching: tDateComponents, repeats: false)
+            let request = UNNotificationRequest(
+                identifier: notificationIdentifier.rawValue,
+                content: content,
+                trigger: trigger
+            )
+            center.add(request, withCompletionHandler: nil)
+        } else {
+            print("NotificationsCollectDCN: Error : Can't calculate next valid collect date")
+        }
+        
     }
     
     func cancelNotification() {
+        let center = UNUserNotificationCenter.current()
+        center.removePendingNotificationRequests(withIdentifiers: [notificationIdentifier.rawValue])
+    }
+    
+    //MARK: - Private Methods
+    
+    fileprivate func nextDateToRemindToCollect(afterRegistration date: Date) -> Date? {
         
+        let calendar = Calendar.current
+        let componentsSet = Set<Calendar.Component>([.month])
+        let now = Date()
+        let result = calendar.dateComponents(componentsSet, from: date, to: now)
+        
+        guard let months = result.month else {
+            return nil
+        }
+        let monthsLeft = 3 - (months % 3)
+        guard let nextDate = calendar.date(byAdding: .month, value: monthsLeft, to: now) else {
+            return nil
+        }
+        return nextDate
     }
     
 }

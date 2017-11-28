@@ -125,6 +125,9 @@ struct NotificationsHealthyHabitsData: NotificationDataProtocol {
     
     func scheduleNotification() {
         
+        //Remove all already scheduled notifiations of this kind
+        cancelNotification()
+        
         let now = Date()
         let calendar = Calendar.current
         let center = UNUserNotificationCenter.current()

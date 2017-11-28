@@ -29,13 +29,16 @@ struct NotificationsChangeBrushData: NotificationDataProtocol {
     
     func scheduleNotification() {
         
+        //Remove all already scheduled notifiations of this kind
+        cancelNotification()
+        
         guard let dateOfRegistrationRaw = UserDataContainer.shared.userInfo?.createdDate else {
             print("NotificationsChangeBrushData : Error : can't retreive user registration date")
             return
         }
         
         guard let dateOfRegistration = DateFormatter.humanReadableWithHourComponentsFormat.date(from: dateOfRegistrationRaw) else {
-            print("NotificationsChangeBrushData : Error : User Registration Date can't be processed")
+            print("NotificationsChangeBrushData : Error : User Registration Date can't be retrieved")
             return
         }
         
@@ -50,50 +53,71 @@ struct NotificationsChangeBrushData: NotificationDataProtocol {
         content.sound = UNNotificationSound.default()
         
         let center = UNUserNotificationCenter.current()
-        let calendar = Calendar.current
+        var triggerDate: Date = Date()
         
-        //If user registered within one week, schedule notification on the end of the first week
-        let now = Date()
-        let differenceInDays = Calendar.current.dateComponents([.day], from: dateOfRegistration, to: now).day ?? 0
-        if differenceInDays <= 7 {
-            
-            guard let weekAfter = calendar.date(byAdding: .day, value: 7, to: dateOfRegistration) else {
-                print("NotificationsChangeBrushData : Error : can't calculate the weekAfter date")
+        if self.isWithinTheFirstWeek(afterDate: dateOfRegistration) {
+            //If user registered within one week, schedule notification on the end of the first week
+            triggerDate = self.weekLater(afterDate: dateOfRegistration)
+        } else {
+            if let nextDate = nextDateToChangeBrush(afterRegistration: dateOfRegistration) {
+                triggerDate = nextDate
+            } else {
+                print("NotificationsChangeBrushData: Error while trying to calculate next date for changing the brush.")
                 return
             }
-            
-            let triggerDate = Calendar.current.dateComponents([.month, .day, .hour, .minute, .second], from: weekAfter)
-            let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
-            
-            let request = UNNotificationRequest(
-                identifier: notificationIdentifier.rawValue,
-                content: content,
-                trigger: trigger
-            )
-            
-            center.add(request, withCompletionHandler: nil)
-            
-        } else {
-            //if user registered in more than 1 week schedule notification 3 months after the date of registration
-            //and make it repeatable on every 3 months since then
-            
-            let date = Date()
-            let triggerDate = Calendar.current.dateComponents([.hour, .minute, .second], from: date)
-            let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
-            
-            let request = UNNotificationRequest(
-                identifier: notificationIdentifier.rawValue,
-                content: content,
-                trigger: trigger
-            )
-            center.add(request, withCompletionHandler: nil)
         }
         
+        var tDateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour], from: triggerDate)
+        tDateComponents.hour = 10
+        let trigger = UNCalendarNotificationTrigger(dateMatching: tDateComponents, repeats: false)
+        let request = UNNotificationRequest(
+            identifier: notificationIdentifier.rawValue,
+            content: content,
+            trigger: trigger
+        )
+        center.add(request, withCompletionHandler: nil)
     }
     
     func cancelNotification() {
         let center = UNUserNotificationCenter.current()
         center.removePendingNotificationRequests(withIdentifiers: [notificationIdentifier.rawValue])
+    }
+    
+    //MARK: - Private Methods
+    
+    fileprivate func isWithinTheFirstWeek(afterDate date: Date) -> Bool {
+        let componentsSet = Set<Calendar.Component>([.day])
+        let calendar = Calendar.current
+        let result = calendar.dateComponents(componentsSet, from: date, to: Date())
+        guard let day = result.day else {
+            return false
+        }
+        if day <= 7 {
+            return true
+        }
+        return false
+    }
+    
+    fileprivate func weekLater(afterDate date: Date) -> Date {
+        let calendar = Calendar.current
+        let weekLater = calendar.date(byAdding: .day, value: 7, to: date)!
+        return weekLater
+    }
+    
+    fileprivate func nextDateToChangeBrush(afterRegistration date: Date) -> Date? {
+        
+        let calendar = Calendar.current
+        let componentsSet = Set<Calendar.Component>([.month])
+        let result = calendar.dateComponents(componentsSet, from: date, to: Date())
+        
+        guard let months = result.month else {
+            return nil
+        }
+        let monthsLeft = 3 - (months % 3)
+        guard let nextDate = calendar.date(byAdding: .month, value: monthsLeft, to: date) else {
+            return nil
+        }
+        return nextDate
     }
     
 }

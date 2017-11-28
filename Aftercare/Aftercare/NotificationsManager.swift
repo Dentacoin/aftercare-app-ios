@@ -37,7 +37,6 @@ class NotificationsManager: NSObject {
             completionHandler: {_, _ in }
         )
         UIApplication.shared.registerForRemoteNotifications()
-        
         checkForAuthorizations()
     }
     

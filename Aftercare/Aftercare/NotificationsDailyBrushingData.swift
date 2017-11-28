@@ -28,6 +28,9 @@ struct NotificationsDailyBrushingData: NotificationDataProtocol {
     
     func scheduleNotification() {
         
+        //Remove all already scheduled notifiations of this kind
+        cancelNotification()
+        
         let data = NotificationData(
             title: "",
             message: NSString.localizedUserNotificationString(forKey: "Hey there! Did you brush your teeth yet?", arguments: nil)
@@ -39,9 +42,6 @@ struct NotificationsDailyBrushingData: NotificationDataProtocol {
         content.sound = UNNotificationSound.default()
         
         let center = UNUserNotificationCenter.current()
-        
-        //Remove all already scheduled notifiations of this kind
-        cancelNotification()
         
         //Get current date and schedule brushing reminders at 11:00AM for the next 14 days
         let now = Date()
