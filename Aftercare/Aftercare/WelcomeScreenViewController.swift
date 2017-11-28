@@ -76,8 +76,6 @@ extension WelcomeScreenViewController {
         _ = controller.view
         DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: { [weak self] in
             self?.presentContentViewController()
-            //Setup Notifications
-            _ = NotificationsManager.shared
         })
     }
     

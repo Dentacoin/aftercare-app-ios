@@ -80,9 +80,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     UserDataContainer.shared.userInfo = data
                     UserDataContainer.shared.syncWithServer()
                     
-                    //Setup Notifications
-                    NotificationsManager.shared.initialize()
-                    
                     self?.show(child: .main)
                     
                 } else if let error = error?.toNSError() {

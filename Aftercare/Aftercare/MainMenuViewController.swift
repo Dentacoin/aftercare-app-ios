@@ -50,6 +50,9 @@ final class MainMenuViewController: UIViewController {
         let homeScreen: ActionScreenViewController! = UIStoryboard.main.instantiateViewController()
         self.lastLoadedViewControllerID = String(describing: ActionScreenViewController.self)
         self.loadContent(homeScreen)
+        
+        //Setup Notifications
+        _ = NotificationsManager.shared
     }
     
 }
