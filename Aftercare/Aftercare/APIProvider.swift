@@ -151,6 +151,7 @@ struct APIProvider : APIProviderProtocol {
         }
     }
     
+    //TODO: rename this method to requestActionScreenData
     static func requestActionData(_ onComplete: @escaping (_ response: ActionScreenData?, _ error: ErrorData?) -> Void) {
         let urlRequest = APIRouter.RequestActionData.get()
         var errorData: ErrorData?
@@ -215,10 +216,10 @@ struct APIProvider : APIProviderProtocol {
         }
     }
     
-    static func recordAction(record: ActionRecordData, onComplete: @escaping (_ processedAction: ActionData?, _ error: ErrorData?) -> Void) {
+    static func recordAction(record: ActionRecordData, onComplete: @escaping (_ processedAction: ActionRecordData?, _ error: ErrorData?) -> Void) {
         var errorData: ErrorData?
         let urlRequest = APIRouter.RecordAction.post(parameters: record)
-        Alamofire.request(urlRequest).responseDecodableObject() { (response: DataResponse<ActionData>) in
+        Alamofire.request(urlRequest).responseDecodableObject() { (response: DataResponse<ActionRecordData>) in
             switch response.result {
                 case .success(let action):
                     onComplete(action, nil)

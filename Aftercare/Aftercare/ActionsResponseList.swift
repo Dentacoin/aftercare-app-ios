@@ -10,14 +10,14 @@ import Foundation
 
 struct ActionsResponseList: Decodable {
     
-    var successRecords: [ActionData]
-    var failedRecords: [FailedActionRecordData]
+    var success: [ActionRecordData]
+    var failed: [FailedActionRecordData]
     
 }
 
 struct FailedActionRecordData: Decodable {
     
-    var record: ActionData
+    var record: ActionRecordData
     var error: ErrorData
     
 }

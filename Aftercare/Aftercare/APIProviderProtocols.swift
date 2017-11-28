@@ -53,7 +53,7 @@ protocol APIProviderProtocol {
     
     static func recordAction(
         record: ActionRecordData,
-        onComplete: @escaping (_ processedAction: ActionData?, _ error: ErrorData?) -> Void
+        onComplete: @escaping (_ processedAction: ActionRecordData?, _ error: ErrorData?) -> Void
     )
     
     static func retreiveUserGoals(

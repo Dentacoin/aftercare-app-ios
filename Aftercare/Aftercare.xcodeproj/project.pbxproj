@@ -154,6 +154,7 @@
 		9F3FA4281F921E05005510FE /* ForgotYourPasswordScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3FA4271F921E05005510FE /* ForgotYourPasswordScreenViewController.swift */; };
 		9F3FA42A1F922BAA005510FE /* ResetPasswordData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3FA4291F922BAA005510FE /* ResetPasswordData.swift */; };
 		9F4190B41FCD4EBC00ADE2AC /* Notification.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9F4190B31FCD4EBC00ADE2AC /* Notification.wav */; };
+		9F4190B61FCE0D5D00ADE2AC /* ActionRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4190B51FCE0D5D00ADE2AC /* ActionRecord.swift */; };
 		9F42EBB81F8EB55A0061FEA3 /* UserSessionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F42EBB71F8EB55A0061FEA3 /* UserSessionData.swift */; };
 		9F4482D71F8B7CD700349A10 /* GoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4482D61F8B7CD700349A10 /* GoalData.swift */; };
 		9F4482DD1F8B8CB700349A10 /* TransactionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4482DC1F8B8CB700349A10 /* TransactionData.swift */; };
@@ -170,7 +171,6 @@
 		9FA7EAAC1F9F8C22003AD94A /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA7EAAB1F9F8C22003AD94A /* AnalyticsManager.swift */; };
 		9FA7EAAE1F9FC698003AD94A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FA7EAAD1F9FC698003AD94A /* Assets.xcassets */; };
 		9FB47F261F910A9D00FCE7B4 /* AuthenticationRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB47F251F910A9D00FCE7B4 /* AuthenticationRequests.swift */; };
-		9FBAA9C21F8D2E5B00489ABA /* ActionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBAA9C11F8D2E5B00489ABA /* ActionData.swift */; };
 		9FBAA9C41F8E4FF400489ABA /* ActionsResponseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBAA9C31F8E4FF400489ABA /* ActionsResponseList.swift */; };
 		9FBB8E261F83B522008C2C65 /* UploadImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBB8E251F83B522008C2C65 /* UploadImageButton.swift */; };
 		9FBB8E281F84AD5C008C2C65 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBB8E271F84AD5B008C2C65 /* UserData.swift */; };
@@ -429,6 +429,7 @@
 		9F3FA4271F921E05005510FE /* ForgotYourPasswordScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotYourPasswordScreenViewController.swift; sourceTree = "<group>"; };
 		9F3FA4291F922BAA005510FE /* ResetPasswordData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordData.swift; sourceTree = "<group>"; };
 		9F4190B31FCD4EBC00ADE2AC /* Notification.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Notification.wav; sourceTree = "<group>"; };
+		9F4190B51FCE0D5D00ADE2AC /* ActionRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionRecord.swift; sourceTree = "<group>"; };
 		9F42EBB71F8EB55A0061FEA3 /* UserSessionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionData.swift; sourceTree = "<group>"; };
 		9F4482D61F8B7CD700349A10 /* GoalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalData.swift; sourceTree = "<group>"; };
 		9F4482DC1F8B8CB700349A10 /* TransactionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionData.swift; sourceTree = "<group>"; };
@@ -446,7 +447,6 @@
 		9FA7EAAB1F9F8C22003AD94A /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		9FA7EAAD1F9FC698003AD94A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9FB47F251F910A9D00FCE7B4 /* AuthenticationRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRequests.swift; sourceTree = "<group>"; };
-		9FBAA9C11F8D2E5B00489ABA /* ActionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionData.swift; sourceTree = "<group>"; };
 		9FBAA9C31F8E4FF400489ABA /* ActionsResponseList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsResponseList.swift; sourceTree = "<group>"; };
 		9FBB8E251F83B522008C2C65 /* UploadImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImageButton.swift; sourceTree = "<group>"; };
 		9FBB8E271F84AD5B008C2C65 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
@@ -834,6 +834,7 @@
 				9FA7EAAB1F9F8C22003AD94A /* AnalyticsManager.swift */,
 				9F856CBD1FB4C750004B95BD /* SoundManager.swift */,
 				9F1E78471FB1C1C900A1A7D5 /* Routine.swift */,
+				9F4190B51FCE0D5D00ADE2AC /* ActionRecord.swift */,
 			);
 			name = Globals;
 			sourceTree = "<group>";
@@ -1211,7 +1212,6 @@
 			children = (
 				9F4482DC1F8B8CB700349A10 /* TransactionData.swift */,
 				9FBAA9C31F8E4FF400489ABA /* ActionsResponseList.swift */,
-				9FBAA9C11F8D2E5B00489ABA /* ActionData.swift */,
 				9F4482E51F8BB33D00349A10 /* HabitRecordData.swift */,
 				9FA77C951F827EA4002CF7C5 /* AvatarData.swift */,
 				9FBB8E271F84AD5B008C2C65 /* UserData.swift */,
@@ -1703,7 +1703,6 @@
 				9FBB8E261F83B522008C2C65 /* UploadImageButton.swift in Sources */,
 				9FE7CC131FB254070042EB14 /* FlossActionView.swift in Sources */,
 				9FCA68BA1FAA1F5F008B36DA /* secp256k1.c in Sources */,
-				9FBAA9C21F8D2E5B00489ABA /* ActionData.swift in Sources */,
 				9FCA68C81FAA1F5F008B36DA /* BlockInfo.m in Sources */,
 				9F254A5B1FB254B300BC001A /* RinseActionView.swift in Sources */,
 				9F1E78481FB1C1C900A1A7D5 /* Routine.swift in Sources */,
@@ -1722,6 +1721,7 @@
 				9F4482DF1F8BA21C00349A10 /* ActionScreenData.swift in Sources */,
 				9FF837721F6D3A0800E72CBC /* StatisticsOptionsCell.swift in Sources */,
 				9FCA68CF1FAA1F5F008B36DA /* RegEx.m in Sources */,
+				9F4190B61FCE0D5D00ADE2AC /* ActionRecord.swift in Sources */,
 				9FCA68C71FAA1F5F008B36DA /* Transaction.m in Sources */,
 				2430C8BE1F3CA8C700353EE1 /* UITextField+fixCaretPosition.swift in Sources */,
 				9FE7CC111FB205EA0042EB14 /* BrushBar.swift in Sources */,

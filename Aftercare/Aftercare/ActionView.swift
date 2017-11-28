@@ -409,23 +409,34 @@ class ActionView: UIView {
             
             let defaults = UserDefaults.standard
             if defaults.value(forKey: "startOf90DaysPeriod") == nil {
-                //If there is not start date of the 90 days period we create one
-                //this mean the 90 days period start from now
+                //If there is no start date to the 90 days period we create one
+                //this means the 90 days period starts from now
                 let now = Date()
                 let startOfThePeriod = now.iso8601
                 defaults.set(startOfThePeriod, forKey: "startOf90DaysPeriod")
             }
             
-            //API call to record the successfuly completed action
-            APIProvider.recordAction(record: record) { validAction, error in
-                if let action = validAction {
-                    print("Successfuly record new action: \(action)")
-                    UserDataContainer.shared.syncWithServer()
-                }
+            var allRecords = [record]
+            
+            if let allLocalRecords = ActionRecord.getAllSaved() {
+                allRecords.append(contentsOf: allLocalRecords)
+            }
+            
+            APIProvider.recordActions(allRecords, onComplete: { _, error in
+                
                 if let error = error {
                     print("Error on attempt to record new action: \(error)")
+                    ActionRecord.save(record)
+                    return
                 }
-            }
+                
+                //all local records are already recorded on the server so we can safely delete them
+                ActionRecord.deleteAllSaved()
+                
+                print("Successfuly record new action: \(record)")
+                UserDataContainer.shared.syncWithServer()
+                
+            })
             
             //Notify the delegate
             self.delegate?.actionComplete()
