@@ -50,7 +50,7 @@ struct NotificationsChangeBrushData: NotificationDataProtocol {
         let content = UNMutableNotificationContent()
         content.title = data.title
         content.body = data.message
-        content.sound = UNNotificationSound.default()
+        content.sound = UNNotificationSound(named: "Notification.wav")
         
         let center = UNUserNotificationCenter.current()
         var triggerDate: Date = Date()

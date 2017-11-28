@@ -329,6 +329,15 @@ enum MusicPath: Int, Pathable {
     }
 }
 
+enum NotificationSound: String, Pathable {
+    
+    case dncNotification = "Notification.wav"
+    
+    var path: String? {
+        return self.rawValue
+    }
+}
+
 //MARK: - Helpers
 
 private extension Array {

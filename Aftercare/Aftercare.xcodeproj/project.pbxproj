@@ -153,6 +153,7 @@
 		9F2A395A1F62B95E007D089F /* MainMenuSeparatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2A39591F62B95E007D089F /* MainMenuSeparatorCell.swift */; };
 		9F3FA4281F921E05005510FE /* ForgotYourPasswordScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3FA4271F921E05005510FE /* ForgotYourPasswordScreenViewController.swift */; };
 		9F3FA42A1F922BAA005510FE /* ResetPasswordData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3FA4291F922BAA005510FE /* ResetPasswordData.swift */; };
+		9F4190B41FCD4EBC00ADE2AC /* Notification.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9F4190B31FCD4EBC00ADE2AC /* Notification.wav */; };
 		9F42EBB81F8EB55A0061FEA3 /* UserSessionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F42EBB71F8EB55A0061FEA3 /* UserSessionData.swift */; };
 		9F4482D71F8B7CD700349A10 /* GoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4482D61F8B7CD700349A10 /* GoalData.swift */; };
 		9F4482DD1F8B8CB700349A10 /* TransactionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4482DC1F8B8CB700349A10 /* TransactionData.swift */; };
@@ -427,6 +428,7 @@
 		9F2A39591F62B95E007D089F /* MainMenuSeparatorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuSeparatorCell.swift; sourceTree = "<group>"; };
 		9F3FA4271F921E05005510FE /* ForgotYourPasswordScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotYourPasswordScreenViewController.swift; sourceTree = "<group>"; };
 		9F3FA4291F922BAA005510FE /* ResetPasswordData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordData.swift; sourceTree = "<group>"; };
+		9F4190B31FCD4EBC00ADE2AC /* Notification.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Notification.wav; sourceTree = "<group>"; };
 		9F42EBB71F8EB55A0061FEA3 /* UserSessionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionData.swift; sourceTree = "<group>"; };
 		9F4482D61F8B7CD700349A10 /* GoalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalData.swift; sourceTree = "<group>"; };
 		9F4482DC1F8B8CB700349A10 /* TransactionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionData.swift; sourceTree = "<group>"; };
@@ -951,6 +953,7 @@
 		9F17D3611FB56C4200FC96B5 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				9F4190B21FCD4E9900ADE2AC /* Notification */,
 				9F17D3901FB56C7100FC96B5 /* female */,
 				9F17D36C1FB56C7100FC96B5 /* male */,
 				9F17D3621FB56C7100FC96B5 /* music */,
@@ -1182,6 +1185,14 @@
 				9F29740D1F9B2F0500524F92 /* NotificationsHealthyHabitsData.swift */,
 			);
 			name = Notifications;
+			sourceTree = "<group>";
+		};
+		9F4190B21FCD4E9900ADE2AC /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				9F4190B31FCD4EBC00ADE2AC /* Notification.wav */,
+			);
+			path = Notification;
 			sourceTree = "<group>";
 		};
 		9F42EBB11F8EA60A0061FEA3 /* Requests */ = {
@@ -1531,6 +1542,7 @@
 				9F17D3DC1FB56C7200FC96B5 /* female-morning-brush-5.mp3 in Resources */,
 				9FF837701F6D387E00E72CBC /* StatisticsCircularBarsCell.xib in Resources */,
 				9F17D3C11FB56C7200FC96B5 /* male-morning-brush-7.mp3 in Resources */,
+				9F4190B41FCD4EBC00ADE2AC /* Notification.wav in Resources */,
 				9F0D45D11F69342E00E2A423 /* ActionView.xib in Resources */,
 				9F0A6C811F605832003AF65C /* Lato-Black.ttf in Resources */,
 				9F17D3E31FB56C7200FC96B5 /* female-morning-rinse-2.mp3 in Resources */,
