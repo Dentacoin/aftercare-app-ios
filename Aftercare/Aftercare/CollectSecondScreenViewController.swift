@@ -133,12 +133,8 @@ extension CollectSecondScreenViewController {
         
         collectValueOneLabel.textColor = UIColor.dntCeruleanBlue
         collectValueOneLabel.font = UIFont.dntLatoRegularFontWith(size: UIFont.dntLargeTitleFontSize)
-        let defaults = UserDefaults.standard
-        if let totalClaimed = defaults.value(forKey: "TotalDCNClaimed") as? Int {
-            collectValueOneLabel.text = String(totalClaimed) + "DCN"
-        } else {
-            collectValueOneLabel.text = "0 DCN"
-        }
+        collectValueOneLabel.text = "0 DCN"
+        getAllTransactionsAndCalculateClaimedAmount()
         
         separatorLineViewOne.backgroundColor = UIColor.dntCeruleanBlue
         separatorLineViewTwo.backgroundColor = UIColor.dntCeruleanBlue
@@ -172,6 +168,38 @@ extension CollectSecondScreenViewController {
         
         themeManager.setDCBlueTheme(to: collectButton, ofType: .ButtonDefaultBlueGradient)
         themeManager.setDCBlueTheme(to: whatIsDentacoinButton, ofType: .ButtonLinkWithColor(fontSize: UIFont.dntNoteFontSize, color: .dntCeruleanBlue))
+    }
+    
+    //MARK: - Private
+    
+    fileprivate func getAllTransactionsAndCalculateClaimedAmount() {
+        
+        APIProvider.getAllTransactions() { [weak self] transactions, error in
+            
+            if let error = error {
+                UIAlertController.show(
+                    controllerWithTitle: NSLocalizedString("Error", comment: ""),
+                    message: error.toNSError().localizedDescription,
+                    buttonTitle: NSLocalizedString("Ok", comment: "")
+                )
+                return
+            }
+            
+            guard let transactions = transactions else {
+                return
+            }
+            
+            var totalDCN: Int = 0
+            
+            for transaction in transactions {
+                if transaction.status == .approved {
+                    totalDCN += transaction.amount
+                }
+            }
+            self?.collectValueOneLabel.text = "\(totalDCN) DCN"
+            
+        }
+        
     }
     
 }
@@ -223,6 +251,8 @@ extension CollectSecondScreenViewController {
                     
                     APIProvider.requestCollectionOfDCN(parameters) { [weak self] result, error in
                         
+                        self?.showState(State(.none))
+                        
                         if let error = error {
                             UIAlertController.show(
                                 controllerWithTitle: NSLocalizedString("Error", comment: ""),
@@ -234,19 +264,7 @@ extension CollectSecondScreenViewController {
 
                         self?.amountTextField.text = ""
                         self?.amountTextField.errorMessage = nil
-
-                        //save in Defaults
-                        let defaults = UserDefaults.standard
-
-                        //add claimed DCN to already claimed before
-                        if let totalClaimed = defaults.value(forKey: "TotalDCNClaimed") as? Int {
-                            defaults.set(totalClaimed + claimedAmount, forKey: "TotalDCNClaimed")
-                        } else {
-                            defaults.set(claimedAmount, forKey: "TotalDCNClaimed")
-                        }
                         
-                        //change state to none and show next screen
-                        self?.showState(State(.none))
                         self?.showSuccessScreen(claimedAmount)
                         
                     }

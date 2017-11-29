@@ -184,37 +184,48 @@ extension CollectScreenViewController: QRCodeReaderViewControllerDelegate {
         dismiss(animated: true, completion: nil)
         
         //get scanned value
-        var ibanComponents = result.value.components(separatedBy: ":")
-        ibanComponents.removeFirst()
-        ibanComponents = ibanComponents.joined().components(separatedBy: "?amount=")
-        let ibanValue = ibanComponents.removeFirst()
-        let forthIndex = ibanValue.index(ibanValue.startIndex, offsetBy: 4)
-        let ibanBase36 = String(ibanValue[forthIndex...])
-        ibanComponents = ibanComponents.joined().components(separatedBy: "&token=")
-        guard let amount = Int(ibanComponents.removeFirst()) else { return }
-        guard let token = ibanComponents.last else { return }
-        
-        //Simple tuple that holds the processed data from the QR Code
-        let qrData: (iban: String, amount: Int, token: String) = (
-            iban: ibanBase36,
-            amount: amount,
-            token: token
-        )
-        
-        let bigNumb = BigNumber(base36String: qrData.iban)
-        if let walletAddress = bigNumb?.hexString {
-            walletAddressTextField.text = walletAddress
-            let valid = self.validateWalletAddress(walletAddress)
-            if !valid {
-                self.walletAddressTextField.errorMessage = self.wrongWalletError
-            } else {
-                self.walletAddressTextField.errorMessage = nil
-            }
+        if self.validateWalletAddress(result.value) {
+            
+            //clear if any error
+            self.walletAddressTextField.errorMessage = nil
+            return
+            
         } else {
-            self.walletAddressTextField.errorMessage = self.wrongWalletError
+            var ibanComponents = result.value.components(separatedBy: ":")
+            if ibanComponents.count == 0 {
+                self.walletAddressTextField.errorMessage = self.wrongWalletError
+                return
+            }
+            ibanComponents.removeFirst()
+            ibanComponents = ibanComponents.joined().components(separatedBy: "?amount=")
+            let ibanValue = ibanComponents.removeFirst()
+            let forthIndex = ibanValue.index(ibanValue.startIndex, offsetBy: 4)
+            let ibanBase36 = String(ibanValue[forthIndex...])
+            ibanComponents = ibanComponents.joined().components(separatedBy: "&token=")
+            guard let amount = Int(ibanComponents.removeFirst()) else { return }
+            guard let token = ibanComponents.last else { return }
+            
+            //Simple tuple that holds the processed data from the QR Code
+            let qrData: (iban: String, amount: Int, token: String) = (
+                iban: ibanBase36,
+                amount: amount,
+                token: token
+            )
+            
+            let bigNumb = BigNumber(base36String: qrData.iban)
+            if let walletAddress = bigNumb?.hexString {
+                walletAddressTextField.text = walletAddress
+                let valid = self.validateWalletAddress(walletAddress)
+                if !valid {
+                    self.walletAddressTextField.errorMessage = self.wrongWalletError
+                } else {
+                    self.walletAddressTextField.errorMessage = nil
+                }
+            } else {
+                self.walletAddressTextField.errorMessage = self.wrongWalletError
+            }
+            //print("BIG NUMBER TO HEX: \(bigNumb?.hexString)")
         }
-        //print("BIG NUMBER TO HEX: \(bigNumb?.hexString)")
-        
     }
     
     //This is an optional delegate method, that allows you to be notified when the user switches the cameraName
@@ -297,37 +308,6 @@ extension CollectScreenViewController {
     
     @IBAction func sendButtonPressed(_ sender: UIButton) {
         
-        guard let userRegDateString = UserDataContainer.shared.userInfo?.createdDate else {
-            self.cantCollectDCNNowError()
-            return
-        }
-        guard let userRegistrationDate = DateFormatter.humanReadableWithHourComponentsFormat.date(from: userRegDateString) else {
-            self.cantCollectDCNNowError()
-            return
-        }
-        
-        let nowDate = Date()
-        let calendar = Calendar.current
-        
-        let componentsSet = Set<Calendar.Component>([.year, .month, .day])
-        let result = calendar.dateComponents(componentsSet, from: userRegistrationDate, to: nowDate)
-        guard let years = result.year else {
-            self.cantCollectDCNNowError()
-            return
-        }
-        
-        guard let months = result.month else {
-            self.cantCollectDCNNowError()
-            return
-        }
-        
-        guard let totalDCN = UserDataContainer.shared.actionScreenData?.totalDCN else {
-            self.cantCollectDCNNowError()
-            return
-        }
-        
-        let monthsSinceUserRegistration = (years * 12) + months
-        
         guard let wallet = self.walletAddressTextField.text else {
             print("No Wallet Address")
             return
@@ -339,13 +319,9 @@ extension CollectScreenViewController {
             return
         }
         
-        if monthsSinceUserRegistration >= 3 && totalDCN >= 1000 {
-            let vcID = String(describing: CollectSecondScreenViewController.self)
-            contentDelegate?.requestLoadViewController(vcID, ["userWallet" : wallet])
-        } else {
-            self.cantCollectDCNNowError()
-        }
-
+        let vcID = String(describing: CollectSecondScreenViewController.self)
+        contentDelegate?.requestLoadViewController(vcID, ["userWallet" : wallet])
+        
     }
     
 }

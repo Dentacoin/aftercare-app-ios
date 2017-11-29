@@ -366,11 +366,36 @@ struct APIProvider : APIProviderProtocol {
     
     static func requestCollectionOfDCN(
         _ params: TransactionData,
-        onComplete: @escaping (_ transactions: [TransactionData]?, _ error: ErrorData?
-    ) -> Void) {
+        onComplete: @escaping (_ transactions: [TransactionData]?, _ error: ErrorData?) -> Void)
+    {
         
         var errorData: ErrorData?
         let urlRequest = APIRouter.Transaction.post(parameters: params)
+        Alamofire.request(urlRequest).responseDecodableObject() { (response: DataResponse<[TransactionData]>) in
+            switch response.result {
+            case .success(let history):
+                onComplete(history, nil)
+                break
+            case .failure(let error):
+                let nserror = error as NSError
+                errorData = ErrorData(code: nserror.code, errors: [nserror.localizedDescription])
+                break
+            }
+        }.responseDecodableObject() { (response: DataResponse<ErrorData>) in
+            if let error = response.result.value {
+                onComplete(nil, error)
+            } else if let error = errorData {
+                onComplete(nil, error)
+            }
+        }
+    }
+    
+    static func getAllTransactions(
+        _ onComplete: @escaping (_ transactions: [TransactionData]?, _ error: ErrorData?) -> Void
+        ) {
+        
+        var errorData: ErrorData?
+        let urlRequest = APIRouter.Transactions.get()
         Alamofire.request(urlRequest).responseDecodableObject() { (response: DataResponse<[TransactionData]>) in
             switch response.result {
             case .success(let history):

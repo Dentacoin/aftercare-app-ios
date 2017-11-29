@@ -76,7 +76,7 @@ extension NSError {
                 description = NSLocalizedString("Canceled Authentication By The User", comment: "")
                 break
             case .UserCannotWithdraw:
-                description = NSLocalizedString("User Can't withdraw yet!", comment: "")
+                description = NSLocalizedString("Sorry but you have to use Dentacare app for at least 3 months to be able to withdraw earned DCN!", comment: "")
                 break
             }
             

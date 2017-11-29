@@ -50,9 +50,10 @@ struct TransactionData: Codable {
         case date
     }
     
-    enum TransactionStatusType: String, Codable {
-        case pending = "pending approval"
-        case approved
-        case declined
-    }
+}
+
+public enum TransactionStatusType: String, Codable {
+    case pending = "pending approval"
+    case approved
+    case declined
 }

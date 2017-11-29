@@ -113,4 +113,9 @@ struct APIRouter: APIRouterProtocol {
         typealias EParameters = TransactionData
         var route: String = "transactions"
     }
+    
+    struct Transactions: Readable {
+        typealias EParameters = Dictionary<String, String>
+        var route: String = "transactions"
+    }
 }
