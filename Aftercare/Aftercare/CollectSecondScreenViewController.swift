@@ -192,7 +192,7 @@ extension CollectSecondScreenViewController {
             var totalDCN: Int = 0
             
             for transaction in transactions {
-                if transaction.status == .approved {
+                if transaction.status == .approved || transaction.status == .pending {
                     totalDCN += transaction.amount
                 }
             }
