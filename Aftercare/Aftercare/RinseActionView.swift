@@ -54,18 +54,6 @@ class RinseActionView: UIView, ActionViewProtocol {
         return NSLocalizedString("Don't worry if you can't get to the 30 seconds the first time, it gets easier each time you try.", comment: "")
     }()
     
-    fileprivate lazy var doneEveningDescriptionString:String = {
-        return NSLocalizedString("You're done, now spit the solution out in the sink. You have completed your last brush for the day. Amazing job! Have a nice rest and come back in the morning.", comment: "")
-    }()
-    
-    fileprivate lazy var doneMorningCongratsDescriptionString:String = {
-        return NSLocalizedString("Congratulations! NOW you are ready to Amaze the world with your beautiful smile. Make big things today and come back in the evening before going to bed. Have a nice day ahead.", comment: "")
-    }()
-    
-    fileprivate lazy var doneMorningDescriptionString:String = {
-        return NSLocalizedString("Make big things today and come back in the evening before going to bed.", comment: "")
-    }()
-    
     fileprivate var actionDoneFlag = false
     
     fileprivate func setupContent() {
@@ -118,7 +106,7 @@ class RinseActionView: UIView, ActionViewProtocol {
         embedView?.actionBarsContainer.earnedBar.setTitle(NSLocalizedString("DCN EARNED", comment: ""))
         
         embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("RINSE", comment: ""), withState: .blue)
-        
+        embedView?.autoDismissDoneStateAfter = 0
     }
     
     //MARK: - rinse specific logic
@@ -212,20 +200,6 @@ extension RinseActionView: ActionViewProxyDelegateProtocol {
             } else if newState == .Done {
                 
                 resetTimer()
-                
-                if routine.type == .evening {
-                    embedView?.descriptionTextView.text = doneEveningDescriptionString
-                } else {
-                    embedView?.descriptionTextView.text = doneMorningCongratsDescriptionString
-                }
-                SoundManager.shared.playSound(SoundType.sound(routine.type, .rinse, .done(.congratulations)))
-                
-//                SoundManager.shared.playSound(SoundType.sound(routine.type, .rinse, .done(.congratulations))) { [weak self] in
-//                    if routine.type == .morning {
-//                        self?.embedView?.descriptionTextView.text = self?.doneMorningDescriptionString
-//                    }
-//                    SoundManager.shared.playSound(SoundType.sound(routine.type, .rinse, .done(.other)))
-//                }
                 
             } else if newState == .Initial {
                 embedView?.toggleDescriptionText(false)

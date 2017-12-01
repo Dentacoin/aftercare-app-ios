@@ -38,4 +38,62 @@ struct RoutineType {
         self.actions = actions
         self.type = type
     }
+    
+    var isDone: Bool {
+        get {
+            switch self.type {
+                case .evening:
+                    return UserDataContainer.shared.isEveningRoutineDone
+                case .morning:
+                    return UserDataContainer.shared.isMorningRoutineDone
+            }
+            return false
+        }
+        
+        set {
+            switch self.type {
+                case .evening:
+                    UserDataContainer.shared.isEveningRoutineDone = newValue
+                case .morning:
+                    UserDataContainer.shared.isMorningRoutineDone = newValue
+            }
+        }
+    }
+    
+    var endTitle: String {
+        get {
+            return NSLocalizedString("Routine Completed", comment: "")
+        }
+    }
+    
+    var startDescription: String {
+        switch self.type {
+            case .evening:
+                return NSLocalizedString("Good evening, darling. Did you have a good day? Are you on the way to becoming a legend?", comment: "")
+            case .morning:
+                return NSLocalizedString("Good morning sunshine. It is a beautiful day. Let’s get you started properly. \n\n *You will receive your reward upon completion of the 90-day period.", comment: "")
+        }
+    }
+    
+    var endDescription: String {
+        switch self.type {
+            case .evening:
+                return NSLocalizedString("You have completed your last brush for the day. Amazing job! Have a nice rest and come back in the morning. Sweet dreams.", comment: "")
+            case .morning:
+                return NSLocalizedString("Congratulations!\nNow you are ready to Amaze the world with your beautiful smile. Make big things today and come back in the evening before going to bed. Have a nice day ahead.", comment: "")
+        }
+    }
+    
+    var startButtonTitle: String {
+        get {
+            switch self.type {
+                case .evening:
+                    return NSLocalizedString("Start Evening Routine", comment: "")
+                case .morning:
+                    return NSLocalizedString("Start Morning Routine", comment: "")
+            }
+        }
+    }
+    
 }
+

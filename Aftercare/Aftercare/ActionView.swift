@@ -28,6 +28,7 @@ class ActionView: UIView {
     //MARK: - Public
     
     var actionState: ActionState = .Initial
+    var autoDismissDoneStateAfter: Double = 4//time in seconds
     
     //MARK: - Fileprivates
     
@@ -493,12 +494,12 @@ extension ActionView: ActionFooterViewDelegate {
             } else if actionState == .Done {
                 actionState = .Initial
             } else {
-                //Change state to Done
+                
                 actionState = .Done
                 self.perform(Selector.executeActionSelector, with: nil, afterDelay: 0.0)
                 self.actionFootherContainer.actionButton.isEnabled = false
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: { [weak self] in
+                DispatchQueue.main.asyncAfter(deadline: .now() + self.autoDismissDoneStateAfter, execute: { [weak self] in
                     if self?.actionState == .Done {//if it's still Done change it automatically to Initial
                         self?.actionState = .Initial
                         self?.delegate?.stateChanged((self?.actionState)!)

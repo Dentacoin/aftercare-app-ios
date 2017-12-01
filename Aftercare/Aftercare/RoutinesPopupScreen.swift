@@ -6,6 +6,8 @@
 
 import Foundation
 import UIKit
+import FBSDKCoreKit
+import FBSDKShareKit
 
 class RoutinesPopupScreen: UIView {
     
@@ -14,16 +16,22 @@ class RoutinesPopupScreen: UIView {
     @IBOutlet weak var currentDayLabel: UILabel!
     @IBOutlet weak var daysTotalLabel: UILabel!
     @IBOutlet weak var startRoutineButton: UIButton!
+    @IBOutlet weak var shareWithFacebook: FBSDKShareButton!
     @IBOutlet weak var routineTextView: UITextView!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var closeButton: UIButton!
     
     //MARK: - Delegates
     
     var delegate: RoutinesPopupScreenDelegate?
     
-    //MARK: - Fileprivates
+    //MARK: - Public variables
     
-    fileprivate var currentDay: Int = 0
+    var popupType: RoutinesPopupType = .start {
+        didSet {
+            updateState()
+        }
+    }
     
     //MARK: - Lifecycle
     
@@ -32,20 +40,28 @@ class RoutinesPopupScreen: UIView {
         setup()
     }
     
+    //MARK: - Fileprivates
+    
+    fileprivate var currentDay: Int = 0
+    fileprivate var routine: RoutineType?
+    
+    //MARK: - Detect touches
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touch = touches.first {
+            let location = touch.location(in: self)
+            let frame = containerView.frame
+            if !frame.contains(location) {
+                self.delegate?.onRoutinesClosed()
+                self.removeFromSuperview()
+            }
+        }
+    }
+    
     //MARK: - Public API
     
-    func setCurrentDay(_ day: Int) {
-        currentDay = day
-        currentDayLabel.text = NSLocalizedString("Day", comment: "") + " " + String(currentDay)
-    }
-    
-    func setRoutinesDescription(_ description: String) {
-        routineTextView.text = description
-    }
-    
-    func setRoutinesStartLabel(_ label: String) {
-        startRoutineButton.setTitle(label, for: .normal)
-        startRoutineButton.setTitle(label, for: .highlighted)
+    func setup(_ routine: RoutineType) {
+        self.routine = routine
     }
     
     //MARK: - Theme and appearance
@@ -54,7 +70,7 @@ class RoutinesPopupScreen: UIView {
         
         currentDayLabel.textColor = .white
         currentDayLabel.font = UIFont.dntLatoBlackFont(size: UIFont.dntLargeTitleFontSize)
-        setCurrentDay(currentDay)
+        currentDayLabel.text = NSLocalizedString("Day", comment: "") + " 0"
         
         daysTotalLabel.textColor = UIColor.lightGray
         daysTotalLabel.font = UIFont.dntLatoRegularFontWith(size: UIFont.dntButtonFontSize)
@@ -72,16 +88,64 @@ class RoutinesPopupScreen: UIView {
         containerView.layer.shadowOpacity = 1
         containerView.layer.shadowRadius = 20
         
+        closeButton.tintColor = .white
+        
+        //create Facebook Share Button
+        let linkContent = FBSDKShareLinkContent()
+        linkContent.quote = "Improve your dental healt habits and earn some DCNs in the same time. Try Dentacare app available in the App Store."
+        linkContent.contentURL = URL(string: "https://itunes.apple.com/us/app/dentacare/id1274148338?ls=1&mt=8")
+        shareWithFacebook.shareContent = linkContent
+        let shareWithFBTitle = NSLocalizedString("Share With Facebook", comment: "")
+        shareWithFacebook.setTitle(shareWithFBTitle, for: .normal)
+        shareWithFacebook.setTitle(shareWithFBTitle, for: .highlighted)
+        self.layoutIfNeeded()
+        
         self.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         let themeManager = ThemeManager.shared
         
         themeManager.setDCBlueTheme(
             to: startRoutineButton,
             ofType: DCBlueThemeTypes.ButtonOptionStyle(
-                label: startRoutineButton.titleLabel?.text ?? "",
+                label: self.routine?.startButtonTitle ?? "",
                 selected: false
             )
         )
+    }
+    
+    fileprivate func updateState() {
+        
+        if self.popupType == .start {
+            
+            self.shareWithFacebook.isUserInteractionEnabled = false
+            self.shareWithFacebook.alpha = 0
+            self.startRoutineButton.isUserInteractionEnabled = true
+            self.startRoutineButton.alpha = 1
+            self.daysTotalLabel.alpha = 1
+            
+            self.currentDay = UserDataContainer.shared.dayNumberOf90DaysSession ?? 0
+            self.currentDayLabel.text = NSLocalizedString("Day", comment: "") + " \(currentDay)"
+            
+            self.routineTextView.text = self.routine?.startDescription
+            self.startRoutineButton.setTitle(self.routine?.startButtonTitle, for: .normal)
+            self.startRoutineButton.setTitle(self.routine?.startButtonTitle, for: .highlighted)
+            
+        } else {
+            
+            self.shareWithFacebook.isUserInteractionEnabled = true
+            self.shareWithFacebook.alpha = 1
+            self.startRoutineButton.isUserInteractionEnabled = false
+            self.startRoutineButton.alpha = 0
+            self.daysTotalLabel.alpha = 0
+            
+            self.currentDayLabel.text = self.routine?.endTitle
+            self.routineTextView.text = self.routine?.endDescription
+            
+            if let type = self.routine?.type {
+                SoundManager.shared.playSound(SoundType.sound(type, .rinse, .done(.congratulations)))
+            }
+            
+        }
+        
     }
     
     //MARK: - IBActions
@@ -89,10 +153,22 @@ class RoutinesPopupScreen: UIView {
         delegate?.onRoutinesButtonPressed()
     }
     
+    @IBAction func closeRoutinesButtonIsPressed(_ sender: UIButton) {
+        self.delegate?.onRoutinesClosed()
+        self.removeFromSuperview()
+    }
 }
 
 //MARK: - Delegate protocol
 
 protocol RoutinesPopupScreenDelegate {
     func onRoutinesButtonPressed()
+    func onRoutinesClosed()
+}
+
+//MARK: - Routines Popup Type
+
+enum RoutinesPopupType {
+    case start
+    case end
 }

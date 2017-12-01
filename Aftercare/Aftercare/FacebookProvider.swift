@@ -73,6 +73,9 @@ class FacebookProvider {
         var sessionData: [String : Any] = [:]
         
         let login = FBSDKLoginManager()
+        
+        //login.loginBehavior = .web
+        
         login.logIn(
             withReadPermissions: [FacebookUserPermissions.Email.rawValue, FacebookUserPermissions.PublicProfile.rawValue],
             from: controller

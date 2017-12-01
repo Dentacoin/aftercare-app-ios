@@ -162,6 +162,7 @@
 		9F4482E61F8BB33D00349A10 /* HabitRecordData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4482E51F8BB33D00349A10 /* HabitRecordData.swift */; };
 		9F4482E81F8BB62C00349A10 /* ActionRecordData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4482E71F8BB62C00349A10 /* ActionRecordData.swift */; };
 		9F4B6A511F99C41600B03C9A /* UpdateUserRequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4B6A501F99C41600B03C9A /* UpdateUserRequestData.swift */; };
+		9F5B08831FCFFF5B00F0E6BC /* UIView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5B08821FCFFF5B00F0E6BC /* UIView+Helpers.swift */; };
 		9F856CBE1FB4C750004B95BD /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F856CBD1FB4C750004B95BD /* SoundManager.swift */; };
 		9F8683B01FAB702F0073C0EB /* DateFormatter+AppFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8683AF1FAB702F0073C0EB /* DateFormatter+AppFormats.swift */; };
 		9F9EF2F31F9DD43B005BE398 /* user-agreement.html in Resources */ = {isa = PBXBuildFile; fileRef = 9F9EF2F21F9DD43B005BE398 /* user-agreement.html */; };
@@ -437,6 +438,7 @@
 		9F4482E51F8BB33D00349A10 /* HabitRecordData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitRecordData.swift; sourceTree = "<group>"; };
 		9F4482E71F8BB62C00349A10 /* ActionRecordData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionRecordData.swift; sourceTree = "<group>"; };
 		9F4B6A501F99C41600B03C9A /* UpdateUserRequestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserRequestData.swift; sourceTree = "<group>"; };
+		9F5B08821FCFFF5B00F0E6BC /* UIView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Helpers.swift"; sourceTree = "<group>"; };
 		9F856CBD1FB4C750004B95BD /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		9F8683AF1FAB702F0073C0EB /* DateFormatter+AppFormats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+AppFormats.swift"; sourceTree = "<group>"; };
 		9F9EF2F21F9DD43B005BE398 /* user-agreement.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "user-agreement.html"; sourceTree = "<group>"; };
@@ -736,6 +738,7 @@
 				9F13BF191FA3692300C15804 /* UIViewController+KeyboardPresenter.swift */,
 				9FE51F741FAB56C000771A34 /* NSURLRequest+AllowsAnyHTTPSCertificate.swift */,
 				9F8683AF1FAB702F0073C0EB /* DateFormatter+AppFormats.swift */,
+				9F5B08821FCFFF5B00F0E6BC /* UIView+Helpers.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1428,6 +1431,9 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -1766,6 +1772,7 @@
 				9F28A3A91F57DD1D0002FF53 /* SystemMethods.swift in Sources */,
 				9FCA68BC1FAA1F5F008B36DA /* bignum.c in Sources */,
 				9FCA68C61FAA1F5F008B36DA /* Hash.m in Sources */,
+				9F5B08831FCFFF5B00F0E6BC /* UIView+Helpers.swift in Sources */,
 				9FEA44251FB0ACF7000F7710 /* ActionFooterView.swift in Sources */,
 				9F1712A91F4C53EC00FB263B /* SignUpScreenPresenter.swift in Sources */,
 				9F1390231F6400ED006528F2 /* EditUserProfileScreenViewController.swift in Sources */,

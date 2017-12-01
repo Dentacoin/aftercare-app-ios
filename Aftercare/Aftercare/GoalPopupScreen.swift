@@ -8,11 +8,15 @@
 
 import Foundation
 import UIKit
+import FBSDKCoreKit
+import FBSDKShareKit
 
 class GoalPopupScreen: UIView {
     
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var popupPanel: UIImageView!
+    @IBOutlet weak var closeButton: UIButton!
+    @IBOutlet weak var shareWithFBButton: FBSDKShareButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
@@ -22,6 +26,10 @@ class GoalPopupScreen: UIView {
     @IBOutlet weak var starImage: UIImageView!
     @IBOutlet weak var ribbonImage: UIImageView!
     @IBOutlet weak var numberLabel: UILabel!
+    
+    @IBOutlet weak var shareWithFBButtonHeightConstraint: NSLayoutConstraint!
+    
+    
     //MARK: - fileprivates
     
     fileprivate var data: GoalData?
@@ -32,8 +40,21 @@ class GoalPopupScreen: UIView {
         super.didMoveToSuperview()
     }
     
+    override func didMoveToWindow() {
+        super.didMoveToWindow()
+        setup()
+    }
+    
+    //MARK: - Detect touches
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.removeFromSuperview()
+        if let touch = touches.first {
+            let location = touch.location(in: self)
+            let frame = containerView.frame
+            if !frame.contains(location) {
+                self.removeFromSuperview()
+            }
+        }
     }
 }
 
@@ -43,7 +64,6 @@ extension GoalPopupScreen {
     
     func config(_ data: GoalData) {
         self.data = data
-        setup()
     }
     
     fileprivate func setup() {
@@ -100,6 +120,18 @@ extension GoalPopupScreen {
         popupPanel.layer.cornerRadius = 10
         popupPanel.clipsToBounds = true
         
+        //create Facebook Share Button
+        let linkContent = FBSDKShareLinkContent()
+        linkContent.quote = "\((self.titleLabel.text ?? "")) achieved! Come join me in a 90 days dental jorney by downloading the Dentacare app from App Store. You can earn great amount of DCN and a healthy smile just by following all morning and evening routines."
+        linkContent.contentURL = URL(string: "https://itunes.apple.com/us/app/dentacare/id1274148338?ls=1&mt=8")
+        
+        shareWithFBButton.shareContent = linkContent
+        self.layoutIfNeeded()
+        
+        shareWithFBButtonHeightConstraint.constant = 40
+        shareWithFBButton.backgroundColor = .clear
+        shareWithFBButton.setTitle(NSLocalizedString("Share With Facebook", comment: ""), for: .normal)
+        
         self.backgroundColor = UIColor.dntCeruleanBlue.withAlphaComponent(0.6)
     }
     
@@ -127,6 +159,8 @@ extension GoalPopupScreen {
         popupPanel.layer.cornerRadius = 10
         popupPanel.clipsToBounds = true
         
+        shareWithFBButtonHeightConstraint.constant = 0
+        
         self.backgroundColor = UIColor.dntCharcoalGrey.withAlphaComponent(0.6)
     }
     
@@ -136,6 +170,12 @@ extension GoalPopupScreen {
         if id.contains(GoalStyles.month.rawValue) { return GoalColors.blue }
         if id.contains(GoalStyles.year.rawValue) { return GoalColors.yellow }
         return GoalColors.gray
+    }
+    
+    //MARK: - IBActions
+    
+    @IBAction func onCloseButtonPressed(_ sender: UIButton) {
+        self.removeFromSuperview()
     }
     
 }

@@ -121,7 +121,7 @@ class BrushActionView: UIView, ActionViewProtocol {
         embedView?.actionBarsContainer.earnedBar.setTitle(NSLocalizedString("DCN EARNED", comment: ""))
         
         embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("BRUSH", comment: ""), withState: .blue)
-        
+        embedView?.autoDismissDoneStateAfter = 4
     }
     
     //MARK: - brush specific logic

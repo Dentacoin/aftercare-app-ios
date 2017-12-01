@@ -55,22 +55,6 @@ class ActionScreenViewController: UIViewController, ContentConformer {
         return popup
     }()
     
-    fileprivate lazy var routineMorningStartButtonLabel: String = {
-       return NSLocalizedString("Start Morning Routine", comment: "")
-    }()
-    
-    fileprivate lazy var routineEveningStartButtonLabel: String = {
-        return NSLocalizedString("Start Evening Routine", comment: "")
-    }()
-    
-    fileprivate lazy var routineMorningDescriptionLabel: String = {
-        return NSLocalizedString("Good morning sunshine. It is a beautiful day. Let’s get you started properly. \n\n *You will receive your reward upon completion of the 90-day period.", comment: "")
-    }()
-    
-    fileprivate lazy var routineEveningDescriptionLabel: String = {
-        return NSLocalizedString("Good evening, darling. Did you have a good day? Are you on the way to becoming a legend?", comment: "")
-    }()
-    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -120,46 +104,26 @@ class ActionScreenViewController: UIViewController, ContentConformer {
             UserDataContainer.shared.isRoutineRequested = true
             
             let routine = Routine.getRoutineForNow()
-            if let routine = routine {
+            if var routine = routine {
                 
-                let buttonLabel: String?
-                let description: String?
-                let routinePath: RoutinePath?
-                if routine.startHour == 2 {
-                    if UserDataContainer.shared.isMorningRoutineDone {
-                        //the routine is already done
-                        return
-                    }
-                    UserDataContainer.shared.isMorningRoutineDone = true
-                    buttonLabel = routineMorningStartButtonLabel
-                    description = routineMorningDescriptionLabel
-                    routinePath = .morning
-                    //play routine greeting sound
-                    SoundManager.shared.playSound(SoundType.greeting(routinePath!))
-                } else {
-                    if UserDataContainer.shared.isEveningRoutineDone {
-                        //routine is alredy done
-                        return
-                    }
-                    UserDataContainer.shared.isEveningRoutineDone = true
-                    buttonLabel = routineEveningStartButtonLabel
-                    description = routineEveningDescriptionLabel
-                    routinePath = .evening
-                    //play routine greeting sound
-                    SoundManager.shared.playSound(SoundType.greeting(routinePath!))
+                guard routine.isDone == false else {
+                    return
                 }
                 
+                routine.isDone = true
+                
+                SoundManager.shared.playSound(SoundType.greeting(routine.type))
                 UserDataContainer.shared.routine = routine
                 
                 let routinesPopup = self.routinesPopupScreen
                 routinesPopup.delegate = self
-                routinesPopup.setCurrentDay(UserDataContainer.shared.dayNumberOf90DaysSession ?? 0)
-                routinesPopup.setRoutinesDescription(description!)
-                routinesPopup.setRoutinesStartLabel(buttonLabel!)
-                routinesPopup.delegate = self
+                
                 let frame = UIScreen.main.bounds
                 routinesPopup.frame = frame
                 self.view.addSubview(routinesPopup)
+                
+                routinesPopup.setup(routine)
+                routinesPopup.popupType = .start
             }
         }
     
@@ -289,10 +253,18 @@ extension ActionScreenViewController: ActionViewDelegate {
                 
                 return
             } else {
-                SoundManager.shared.stopMusic()
+                
+                let routinesPopup = self.routinesPopupScreen
+                routinesPopup.delegate = self
+                
+                let frame = UIScreen.main.bounds
+                routinesPopup.frame = frame
+                self.view.addSubview(routinesPopup)
+                
+                routinesPopup.setup(routine)
+                routinesPopup.popupType = .end
+                
             }
-            //we don't have any more screen in our routine so we set it's value to nil and exit
-            UserDataContainer.shared.routine = nil
         }
         
         exitFullscreen()
@@ -413,6 +385,13 @@ extension ActionScreenViewController: RoutinesPopupScreenDelegate {
         //play background music
         SoundManager.shared.playRandomMusic()
         
+    }
+    
+    func onRoutinesClosed() {
+        SoundManager.shared.stopSound()
+        SoundManager.shared.stopMusic()
+        
+        UserDataContainer.shared.routine = nil
     }
     
 }

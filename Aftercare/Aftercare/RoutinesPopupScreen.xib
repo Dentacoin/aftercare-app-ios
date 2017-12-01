@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -27,17 +27,17 @@
                             <rect key="frame" x="0.5" y="0.0" width="319" height="479"/>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="toothIcon" translatesAutoresizingMaskIntoConstraints="NO" id="ig0-dl-Ug0">
-                            <rect key="frame" x="122" y="16" width="75" height="95"/>
+                            <rect key="frame" x="122" y="16" width="75" height="95.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="75" id="Ueu-pB-bHF"/>
                                 <constraint firstAttribute="width" secondItem="ig0-dl-Ug0" secondAttribute="height" multiplier="15:19" id="j9b-Ys-rQq"/>
                             </constraints>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aSA-TI-Gw9">
-                            <rect key="frame" x="60" y="427.5" width="200" height="35.5"/>
+                            <rect key="frame" x="70" y="423" width="180" height="40"/>
                             <constraints>
-                                <constraint firstAttribute="width" secondItem="aSA-TI-Gw9" secondAttribute="height" multiplier="17:3" id="243-As-tiH"/>
-                                <constraint firstAttribute="width" constant="200" id="9vn-Oa-49c"/>
+                                <constraint firstAttribute="width" constant="180" id="9vn-Oa-49c"/>
+                                <constraint firstAttribute="height" constant="40" id="qIU-ob-aqL"/>
                             </constraints>
                             <state key="normal" title="Start">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -46,8 +46,15 @@
                                 <action selector="routineButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="RXG-cT-Rr8"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lSb-qs-SVS" customClass="FBSDKShareButton">
+                            <rect key="frame" x="70" y="423" width="180" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="180" id="B4Z-Mi-U2F"/>
+                                <constraint firstAttribute="height" constant="40" id="HwM-PK-rjx"/>
+                            </constraints>
+                        </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yI5-TN-607">
-                            <rect key="frame" x="0.5" y="119" width="319" height="20.5"/>
+                            <rect key="frame" x="0.5" y="119.5" width="319" height="20"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -58,6 +65,18 @@
                             <color key="textColor" red="0.8225047506568528" green="0.8225047506568528" blue="0.8225047506568528" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5mD-j5-V8g">
+                            <rect key="frame" x="277" y="12" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="5mD-j5-V8g" secondAttribute="height" multiplier="1:1" id="4bg-AL-dUH"/>
+                                <constraint firstAttribute="width" constant="30" id="oI4-Wc-sEd"/>
+                            </constraints>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" backgroundImage="close-icon"/>
+                            <connections>
+                                <action selector="closeRoutinesButtonIsPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="y3P-S4-zSC"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -66,20 +85,23 @@
                         <constraint firstAttribute="bottom" secondItem="oOI-fr-qiR" secondAttribute="bottom" id="Dhw-AZ-Wqf"/>
                         <constraint firstAttribute="width" secondItem="pmu-ah-xGb" secondAttribute="height" multiplier="1:1.5" id="FH6-PB-86Y"/>
                         <constraint firstItem="yI5-TN-607" firstAttribute="trailing" secondItem="oOI-fr-qiR" secondAttribute="trailing" id="HtL-Y4-rZE"/>
+                        <constraint firstItem="5mD-j5-V8g" firstAttribute="top" secondItem="pmu-ah-xGb" secondAttribute="top" constant="12" id="JSm-ch-w3Y"/>
                         <constraint firstItem="oOI-fr-qiR" firstAttribute="top" secondItem="pmu-ah-xGb" secondAttribute="top" id="RGb-fC-bmr"/>
+                        <constraint firstAttribute="trailing" secondItem="5mD-j5-V8g" secondAttribute="trailing" constant="12" id="T5V-0m-rrd"/>
                         <constraint firstItem="hqe-3N-KI2" firstAttribute="leading" secondItem="yI5-TN-607" secondAttribute="leading" id="Vhu-4H-0YH"/>
                         <constraint firstItem="aSA-TI-Gw9" firstAttribute="centerX" secondItem="oOI-fr-qiR" secondAttribute="centerX" id="WaV-qv-a5k"/>
                         <constraint firstItem="oOI-fr-qiR" firstAttribute="leading" secondItem="pmu-ah-xGb" secondAttribute="leading" id="XXW-Y1-81q"/>
                         <constraint firstItem="yI5-TN-607" firstAttribute="top" secondItem="ig0-dl-Ug0" secondAttribute="bottom" constant="8" id="Y4X-sQ-XX3"/>
                         <constraint firstItem="ig0-dl-Ug0" firstAttribute="top" secondItem="pmu-ah-xGb" secondAttribute="top" constant="16" id="Yux-3i-Mb1"/>
-                        <constraint firstItem="aSA-TI-Gw9" firstAttribute="bottom" secondItem="oOI-fr-qiR" secondAttribute="bottom" constant="-16" id="i8Y-dA-zyH"/>
+                        <constraint firstItem="lSb-qs-SVS" firstAttribute="centerX" secondItem="pmu-ah-xGb" secondAttribute="centerX" id="h3A-aJ-4mG"/>
+                        <constraint firstItem="aSA-TI-Gw9" firstAttribute="bottom" secondItem="pmu-ah-xGb" secondAttribute="bottom" constant="-16" id="i8Y-dA-zyH"/>
                         <constraint firstAttribute="trailing" secondItem="oOI-fr-qiR" secondAttribute="trailing" id="sda-Xu-oAI"/>
                         <constraint firstItem="hqe-3N-KI2" firstAttribute="trailing" secondItem="yI5-TN-607" secondAttribute="trailing" id="tOb-Hd-5qY"/>
                         <constraint firstItem="yI5-TN-607" firstAttribute="leading" secondItem="oOI-fr-qiR" secondAttribute="leading" id="yfq-VR-a88"/>
                     </constraints>
                 </view>
-                <textView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="unH-Uu-ISM">
-                    <rect key="frame" x="36" y="281" width="303" height="251"/>
+                <textView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="unH-Uu-ISM">
+                    <rect key="frame" x="36" y="281" width="303" height="246.5"/>
                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -91,6 +113,7 @@
                 <constraint firstItem="pmu-ah-xGb" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="2PK-La-DRE"/>
                 <constraint firstItem="unH-Uu-ISM" firstAttribute="trailing" secondItem="pmu-ah-xGb" secondAttribute="trailing" constant="-8" id="BrY-j4-aTg"/>
                 <constraint firstItem="pmu-ah-xGb" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="LHH-Ub-GGl"/>
+                <constraint firstItem="lSb-qs-SVS" firstAttribute="top" secondItem="unH-Uu-ISM" secondAttribute="bottom" id="MkO-xb-gnL"/>
                 <constraint firstItem="unH-Uu-ISM" firstAttribute="top" secondItem="hqe-3N-KI2" secondAttribute="bottom" constant="8" id="RCo-vb-B1Q"/>
                 <constraint firstItem="aSA-TI-Gw9" firstAttribute="topMargin" secondItem="unH-Uu-ISM" secondAttribute="bottom" constant="8" id="aEy-X3-uzr"/>
                 <constraint firstItem="pmu-ah-xGb" firstAttribute="width" secondItem="vUN-kp-3ea" secondAttribute="width" multiplier="0.85" id="hKm-xs-Vso"/>
@@ -99,16 +122,19 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
+                <outlet property="closeButton" destination="5mD-j5-V8g" id="m4o-48-OTM"/>
                 <outlet property="containerView" destination="pmu-ah-xGb" id="0ZB-yS-r4I"/>
                 <outlet property="currentDayLabel" destination="yI5-TN-607" id="eSL-br-rDv"/>
                 <outlet property="daysTotalLabel" destination="hqe-3N-KI2" id="zqx-c3-1He"/>
                 <outlet property="routineTextView" destination="unH-Uu-ISM" id="09a-iu-Qc1"/>
+                <outlet property="shareWithFacebook" destination="lSb-qs-SVS" id="vST-lL-hMi"/>
                 <outlet property="startRoutineButton" destination="aSA-TI-Gw9" id="XDc-0V-2Tp"/>
             </connections>
             <point key="canvasLocation" x="33.5" y="54.5"/>
         </view>
     </objects>
     <resources>
+        <image name="close-icon" width="192" height="192"/>
         <image name="gradientBlueBG" width="375" height="667"/>
         <image name="toothIcon" width="75" height="76"/>
     </resources>

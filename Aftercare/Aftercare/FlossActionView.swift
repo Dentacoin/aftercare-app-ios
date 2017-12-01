@@ -98,6 +98,7 @@ class FlossActionView: UIView, ActionViewProtocol {
         embedView?.actionBarsContainer.earnedBar.setTitle(NSLocalizedString("DCN EARNED", comment: ""))
         
         embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("FLOSS", comment: ""), withState: .blue)
+        embedView?.autoDismissDoneStateAfter = 4
         
     }
     
