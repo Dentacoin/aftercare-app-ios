@@ -188,12 +188,14 @@ extension CollectScreenViewController: QRCodeReaderViewControllerDelegate {
             
             //clear if any error
             self.walletAddressTextField.errorMessage = nil
+            walletAddressTextField.text = result.value
             return
             
         } else {
             var ibanComponents = result.value.components(separatedBy: ":")
             if ibanComponents.count == 0 {
                 self.walletAddressTextField.errorMessage = self.wrongWalletError
+                wrongWalletAddressError()
                 return
             }
             ibanComponents.removeFirst()
@@ -202,8 +204,16 @@ extension CollectScreenViewController: QRCodeReaderViewControllerDelegate {
             let forthIndex = ibanValue.index(ibanValue.startIndex, offsetBy: 4)
             let ibanBase36 = String(ibanValue[forthIndex...])
             ibanComponents = ibanComponents.joined().components(separatedBy: "&token=")
-            guard let amount = Int(ibanComponents.removeFirst()) else { return }
-            guard let token = ibanComponents.last else { return }
+            guard let amount = Int(ibanComponents.removeFirst()) else {
+                self.walletAddressTextField.errorMessage = self.wrongWalletError
+                wrongWalletAddressError()
+                return
+            }
+            guard let token = ibanComponents.last else {
+                self.walletAddressTextField.errorMessage = self.wrongWalletError
+                wrongWalletAddressError()
+                return
+            }
             
             //Simple tuple that holds the processed data from the QR Code
             let qrData: (iban: String, amount: Int, token: String) = (
@@ -214,15 +224,17 @@ extension CollectScreenViewController: QRCodeReaderViewControllerDelegate {
             
             let bigNumb = BigNumber(base36String: qrData.iban)
             if let walletAddress = bigNumb?.hexString {
-                walletAddressTextField.text = walletAddress
                 let valid = self.validateWalletAddress(walletAddress)
                 if !valid {
                     self.walletAddressTextField.errorMessage = self.wrongWalletError
+                    wrongWalletAddressError()
                 } else {
                     self.walletAddressTextField.errorMessage = nil
+                    walletAddressTextField.text = walletAddress
                 }
             } else {
                 self.walletAddressTextField.errorMessage = self.wrongWalletError
+                wrongWalletAddressError()
             }
             //print("BIG NUMBER TO HEX: \(bigNumb?.hexString)")
         }
