@@ -200,10 +200,27 @@ extension CollectScreenViewController: QRCodeReaderViewControllerDelegate {
             }
             ibanComponents.removeFirst()
             ibanComponents = ibanComponents.joined().components(separatedBy: "?amount=")
+            if ibanComponents.count == 0 {
+                self.walletAddressTextField.errorMessage = self.wrongWalletError
+                wrongWalletAddressError()
+                return
+            }
+            
             let ibanValue = ibanComponents.removeFirst()
+            if ibanValue == "" {
+                self.walletAddressTextField.errorMessage = self.wrongWalletError
+                wrongWalletAddressError()
+                return
+            }
             let forthIndex = ibanValue.index(ibanValue.startIndex, offsetBy: 4)
             let ibanBase36 = String(ibanValue[forthIndex...])
             ibanComponents = ibanComponents.joined().components(separatedBy: "&token=")
+            if ibanComponents.count == 0 {
+                self.walletAddressTextField.errorMessage = self.wrongWalletError
+                wrongWalletAddressError()
+                return
+            }
+            
             guard let amount = Int(ibanComponents.removeFirst()) else {
                 self.walletAddressTextField.errorMessage = self.wrongWalletError
                 wrongWalletAddressError()
