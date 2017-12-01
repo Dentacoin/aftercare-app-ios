@@ -10,17 +10,33 @@ import Foundation
 
 struct OralHealthData: Decodable {
     
-    var title: String?
+    var title: String
     var description: String?
-    var imageURL: URL?
-    var contentURL: URL?
+    var imageURL: String?
+    var contentURL: String?
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: OralHealthKeys.self)
-        self.title = try values.decode(String?.self, forKey: .title)
-        self.description = try values.decode(String?.self, forKey: .description)
-        self.imageURL = try values.decode(URL?.self, forKey: .imageURL)
-        self.contentURL = try values.decode(URL?.self, forKey: .contentURL)
+        
+        self.title = try values.decode(String.self, forKey: .title)
+        
+        do {
+            self.description = try values.decode(String?.self, forKey: .description)
+        } catch {
+            print("Parsing Error: OralHealthData ::  trying to parse description")
+        }
+        
+        do {
+            self.imageURL = try values.decode(String?.self, forKey: .imageURL)
+        } catch {
+            print("Parsing Error: OralHealthData ::  trying to parse imageURL")
+        }
+        
+        do {
+            self.contentURL = try values.decode(String?.self, forKey: .contentURL)
+        } catch {
+            print("Parsing Error: OralHealthData ::  trying to parse contentURL")
+        }
     }
     
     fileprivate enum OralHealthKeys: String, CodingKey {

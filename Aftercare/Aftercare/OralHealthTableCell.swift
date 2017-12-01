@@ -17,15 +17,13 @@ class OralHealthTableCell: UITableViewCell {
     
     func setup(_ data: OralHealthData) {
         
-        if let url = data.imageURL {
+        if let url = URL(string: data.imageURL ?? "") {
             backgroundImage.af_setImage(withURL: url)
         }
         
         titleLabel.textColor = .white
         titleLabel.font = UIFont.dntLatoRegularFontWith(size: UIFont.dntHeaderTitleFontSize)
-        if let title = data.title {
-            titleLabel.text = title
-        }
+        titleLabel.text = data.title
         
         descriptionLabel.textColor = .white
         descriptionLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntNormalTextSize)

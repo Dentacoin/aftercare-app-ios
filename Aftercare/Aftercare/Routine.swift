@@ -47,7 +47,6 @@ struct RoutineType {
                 case .morning:
                     return UserDataContainer.shared.isMorningRoutineDone
             }
-            return false
         }
         
         set {

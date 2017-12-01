@@ -160,7 +160,7 @@ extension OralHealthScreenViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         guard let data = self.oralHealthData?[indexPath.row] else { return }
-        guard let url = data.contentURL else { return }
+        guard let url = URL(string: data.contentURL ?? "") else { return }
         
         //open the url outside the app in browser
         //UIApplication.shared.open(url, options: [:], completionHandler: nil)
