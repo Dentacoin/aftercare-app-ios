@@ -52,7 +52,7 @@ final class MainMenuViewController: UIViewController {
         self.loadContent(homeScreen)
         
         //Setup Notifications
-        _ = NotificationsManager.shared
+        NotificationsManager.shared.initialize()
     }
     
 }

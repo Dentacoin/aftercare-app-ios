@@ -29,15 +29,10 @@ class NotificationsManager: NSObject {
     open func initialize() {
         
         //Setup Push Notifications
-        Messaging.messaging().delegate = self
-        UNUserNotificationCenter.current().delegate = self
-        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-        UNUserNotificationCenter.current().requestAuthorization(
-            options: authOptions,
-            completionHandler: {_, _ in }
-        )
-        UIApplication.shared.registerForRemoteNotifications()
-        checkForAuthorizations()
+        askAuthorizationAndSetupPushNotifications()
+        
+        //Setup Local Notifications
+        askAuthorizationAndSetupLocalNotifications()
     }
     
     open func toggleLocalNotification(withID id: NotificationIdentifiers, _ toggle: Bool) {
@@ -58,7 +53,18 @@ class NotificationsManager: NSObject {
     
     //MARK: - Private logic
     
-    fileprivate func checkForAuthorizations() {
+    fileprivate func askAuthorizationAndSetupPushNotifications() {
+        Messaging.messaging().delegate = self
+        UNUserNotificationCenter.current().delegate = self
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(
+            options: authOptions,
+            completionHandler: {_, _ in }
+        )
+        UIApplication.shared.registerForRemoteNotifications()
+    }
+    
+    fileprivate func askAuthorizationAndSetupLocalNotifications() {
         self.center.getNotificationSettings { [weak self] settings in
             if settings.authorizationStatus != .authorized {
                 self?.requestAuthorization()
@@ -84,7 +90,6 @@ class NotificationsManager: NSObject {
     }
     
     fileprivate func initNotifications() {
-        
         notifications.append(NotificationsDailyBrushingData())
         notifications.append(NotificationsChangeBrushData())
         notifications.append(NotificationsVisitDentist())
