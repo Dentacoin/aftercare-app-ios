@@ -238,10 +238,10 @@ struct APIProvider : APIProviderProtocol {
         }
     }
     
-    static func recordActions(_ records: [ActionRecordData], onComplete: @escaping (_ processedAction: [ActionsResponseList]?, _ error: ErrorData?) -> Void) {
+    static func recordActions(_ records: [ActionRecordData], onComplete: @escaping (_ processedAction: ActionsResponseList?, _ error: ErrorData?) -> Void) {
         var errorData: ErrorData?
         let urlRequest = APIRouter.RecordActions.post(parameters: records)
-        Alamofire.request(urlRequest).responseDecodableObject() { (response: DataResponse<[ActionsResponseList]>) in
+        Alamofire.request(urlRequest).responseDecodableObject() { (response: DataResponse<ActionsResponseList>) in
             switch response.result {
             case .success(let action):
                 onComplete(action, nil)

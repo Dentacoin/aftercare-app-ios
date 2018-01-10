@@ -35,7 +35,7 @@ protocol APIProviderProtocol {
     
     static func recordActions(
         _ records: [ActionRecordData],
-        onComplete: @escaping (_ processedAction: [ActionsResponseList]?, _ error: ErrorData?) -> Void
+        onComplete: @escaping (_ processedAction: ActionsResponseList?, _ error: ErrorData?) -> Void
     )
     
     static func retreiveOralHealthData(

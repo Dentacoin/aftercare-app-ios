@@ -27,9 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.isStatusBarHidden = true
         
         //Preload main view controller
-        if let rootViewController = self.window?.rootViewController as? MasterViewController {
-            rootViewController.preloadMainController = true
-        }
+//        if let rootViewController = self.window?.rootViewController as? MasterViewController {
+//            rootViewController.preloadMainController = true
+//        }
         
         #if DEBUG
         let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory,
