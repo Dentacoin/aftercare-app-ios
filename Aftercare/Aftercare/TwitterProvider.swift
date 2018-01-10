@@ -66,7 +66,7 @@ extension TwitterProvider: TwitterProviderProtocol {
     
     func requestAuthentication(from controller: UIViewController, completionHandler: @escaping LoginRequestResult) {
         
-        Twitter.sharedInstance().logIn(completion: { [weak self] (session, error) in
+        TWTRTwitter.sharedInstance().logIn(completion: { [weak self] (session, error) in
             if let session = session {
                 print("signed in as \(session.userName)")
                 

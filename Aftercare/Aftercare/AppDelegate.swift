@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // twitter initialization
         if let twitterKey = SystemMethods.Environment.value(forKey: .TwitterKey) {
             let twitterSecret = SystemMethods.Environment.value(forKey: .TwitterSecretKey) ?? ""
-            Twitter.sharedInstance().start(withConsumerKey: twitterKey, consumerSecret: twitterSecret)
+            TWTRTwitter.sharedInstance().start(withConsumerKey: twitterKey, consumerSecret: twitterSecret)
         } else {
             print("WARNING: Missing Twitter Key and Secret Key!")
         }
@@ -113,7 +113,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         
         //Twitter scheme
-        if Twitter.sharedInstance().application(app, open: url, options: options) {
+        if TWTRTwitter.sharedInstance().application(app, open: url, options: options) {
             return true
         }
         

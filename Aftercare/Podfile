@@ -14,7 +14,7 @@ target 'Aftercare' do
   pod 'FacebookCore'
   pod 'Firebase/Messaging'
   pod 'FacebookLogin'
-  pod 'FacebookShare', :git => 'https://github.com/1amageek/facebook-sdk-swift'
+  pod 'FacebookShare'
   
   #Simplify Twitter SignIn
   pod 'TwitterKit'
