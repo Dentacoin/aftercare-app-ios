@@ -148,6 +148,7 @@ extension GooglePlusProvider: GIDSignInUIDelegate {
             vc.present(viewController, animated: true, completion: nil)
             self.googleSignInViewController = viewController
         }
+        print("GooglePlusProvider :: present")
     }
     
     func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!) {
@@ -155,10 +156,13 @@ extension GooglePlusProvider: GIDSignInUIDelegate {
             //let sessionData: [String : String] = [GoogleDefaultsKeys.Canceled.rawValue : true]
             //completionHandler(sessionData)
         //}
+        print("GooglePlusProvider :: google VC dismissed")
     }
     
     func sign(inWillDispatch signIn: GIDSignIn!, error: Error!) {
-        //...
+        if error != nil {
+            print("GooglePlusProvider :: google sign-in with error: \(error)")
+        }
     }
     
     func signOut() {
@@ -176,20 +180,24 @@ extension GooglePlusProvider: GIDSignInUIDelegate {
 extension GooglePlusProvider: GIDSignInDelegate {
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
-        // ...
+        
         if let error = error as NSError? {
             if let completion = self.completion {
                 let errorData = ErrorData(code: error.code, errors: [error.localizedDescription])
                 completion(nil, errorData)
+                print("GooglePlusProvider :: google did fail to sign-in with error: \(error)")
             }
             return
         }
         
+        print("GooglePlusProvider :: google did sign-in")
+        
         guard let authentication = user.authentication else { return }
+        guard let clientID = user?.userID else { return }
         
         let sessionRequestData = GoogleRequestData(
             email: "",
-            id: authentication.clientID,
+            id: clientID,
             token: authentication.accessToken
         )
         
@@ -206,11 +214,15 @@ extension GooglePlusProvider: GIDSignInDelegate {
                 if let completion = self?.completion {
                     let errorData = ErrorData(code: error.code, errors: [error.localizedDescription])
                     completion(nil, errorData)
+                    print("GooglePlusProvider :: google user failed to authenticate :: error: \(error)")
                 }
                 return
             }
             
             if let user = user {
+                
+                //User successfully authenticated
+                print("GooglePlusProvider :: google user successfully authenticated")
                 
                 if let avatar = user.photoURL {
                     self?.defaults.set(avatar, forKey: GoogleDefaultsKeys.Avatar.rawValue)
@@ -229,10 +241,22 @@ extension GooglePlusProvider: GIDSignInDelegate {
                     sessionRequestData.email = email
                 }
                 
-                self?.defaults.synchronize()
-                if let completion = self?.completion {
-                    completion(sessionRequestData, nil)
-                }
+                user.getIDTokenForcingRefresh(true, completion: { [weak self] (token, error) in
+                    if let error = error {
+                        print("GooglePlusProvider :: Error: Failed to retreive new token \(error)")
+                        return
+                    }
+                    guard let token = token else {
+                        return
+                    }
+                    sessionRequestData.googleAccessToken = token
+                    
+                    self?.defaults.synchronize()
+                    if let completion = self?.completion {
+                        completion(sessionRequestData, nil)
+                    }
+                })
+                
             }
             
             self?.googleSignInViewController?.removeFromParentViewController()

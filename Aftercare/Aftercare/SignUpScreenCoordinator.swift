@@ -74,12 +74,15 @@ extension SignUpScreenCoordinator: SignUpScreenCoordinatorInputProtocol {
         }
     }
     
-    func requestSignUpUser(firstName: String, lastName: String, email: String, password: String) {
+    func requestSignUpUser(firstName: String, lastName: String, email: String, password: String, captchaId: Int, captchaCode: String) {
         
         let emailSignUpData = EmailRequestData(email: email, password: password)
         emailSignUpData.firstName = firstName
         emailSignUpData.lastName = lastName
         emailSignUpData.avatar64 = UserDataContainer.shared.userAvatar?.toBase64()
+        
+        emailSignUpData.captchaId = captchaId
+        emailSignUpData.captchaCode = captchaCode
         
         self.output.userRequestSignUp(emailSignUpData)
     }

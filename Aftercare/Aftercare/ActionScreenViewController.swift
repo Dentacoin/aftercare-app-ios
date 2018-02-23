@@ -10,10 +10,13 @@ import UIKit
 
 class ActionScreenViewController: UIViewController, ContentConformer {
     
+    //MARK: - IBOutlets
+    
     @IBOutlet weak var headerView: UIView?
     @IBOutlet weak var contentScrollView: UIScrollView!
     @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerTopConstraint: NSLayoutConstraint!
+    
     //MARK: - Public
     
     var header: ActionHeaderView! {
@@ -30,14 +33,23 @@ class ActionScreenViewController: UIViewController, ContentConformer {
     fileprivate var calculatedConstraints = false
     fileprivate var headerHeight: CGFloat = 0
     fileprivate var currentPageIndex = 0
+    
     fileprivate var lastTab: Int = 0 {
         didSet {
             self.header.selectTab(atIndex: self.lastTab)
         }
     }
-    fileprivate var tutorialsAlreadySetup = false
     
-    fileprivate let goalPopupScreen: GoalPopupScreen = {
+    fileprivate lazy var tutorialsPopup: TutorialsPopupScreen = {
+        let popup = Bundle.main.loadNibNamed(
+                String(describing: TutorialsPopupScreen.self),
+                owner: self,
+                options: nil
+            )?.first as! TutorialsPopupScreen
+        return popup
+    }()
+    
+    fileprivate lazy var goalPopupScreen: GoalPopupScreen = {
         let popup = Bundle.main.loadNibNamed(
             String(describing: GoalPopupScreen.self),
             owner: self,
@@ -46,7 +58,7 @@ class ActionScreenViewController: UIViewController, ContentConformer {
         return popup
     }()
     
-    fileprivate let routinesPopupScreen: RoutinesPopupScreen = {
+    fileprivate lazy var routinesPopupScreen: RoutinesPopupScreen = {
         let popup = Bundle.main.loadNibNamed(
             String(describing: RoutinesPopupScreen.self),
             owner: self,
@@ -59,16 +71,17 @@ class ActionScreenViewController: UIViewController, ContentConformer {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        header.delegate = self
-        contentScrollView.delegate = self
-        contentScrollView.clipsToBounds = false
-        UserDataContainer.shared.delegate = self
         setup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        requestDayRoutine()
+        
+        if UserDataContainer.shared.getTutorialsToggle() == true {
+            showTutorials()
+        } else {
+            requestDayRoutine()
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -78,10 +91,10 @@ class ActionScreenViewController: UIViewController, ContentConformer {
                 let topPadding = self.view.safeAreaInsets.top
                 headerHeightConstraint.constant += topPadding
                 
-                //If no routine, show tutorial on current page
+                //If no routine, show tooltip on current page
                 if UserDataContainer.shared.routine == nil {
                     if let page = pagesArray.first {
-                        page.showTutorials()
+                        page.showTooltips()
                     }
                 }
             }
@@ -103,7 +116,7 @@ class ActionScreenViewController: UIViewController, ContentConformer {
         if !UserDataContainer.shared.isRoutineRequested {
             UserDataContainer.shared.isRoutineRequested = true
             
-            let routine = Routine.getRoutineForNow()
+            let routine = Routines.getRoutineForNow()
             if var routine = routine {
                 
                 guard routine.isDone == false else {
@@ -129,6 +142,12 @@ class ActionScreenViewController: UIViewController, ContentConformer {
     
     }
     
+    fileprivate func showTutorials() {
+        tutorialsPopup.delegate = self
+        let tutorialsNavController = UINavigationController(rootViewController: tutorialsPopup)
+        self.present(tutorialsNavController, animated: true, completion: nil)
+    }
+    
     fileprivate func getPageIndex(_ type: ActionRecordType) -> Int? {
         for i in 0..<pagesArray.count {
             let page = pagesArray[i]
@@ -146,6 +165,11 @@ class ActionScreenViewController: UIViewController, ContentConformer {
 extension ActionScreenViewController {
     
     fileprivate func setup() {
+        
+        header.delegate = self
+        contentScrollView.delegate = self
+        contentScrollView.clipsToBounds = false
+        UserDataContainer.shared.delegate = self
         
         //Status Bar settings
         self.modalPresentationCapturesStatusBarAppearance = true
@@ -266,9 +290,7 @@ extension ActionScreenViewController: ActionViewDelegate {
                 
             }
         }
-        
         exitFullscreen()
-        
     }
     
     func actionComplete() {
@@ -392,6 +414,20 @@ extension ActionScreenViewController: RoutinesPopupScreenDelegate {
         SoundManager.shared.stopMusic()
         
         UserDataContainer.shared.routine = nil
+    }
+    
+}
+
+// MARK: - TutorialsPopupScreenDelegate
+
+extension ActionScreenViewController: TutorialsPopupScreenDelegate {
+    
+    func onTutorialsFinishedPressed() {
+        
+    }
+    
+    func onTutorialsClosed() {
+        self.tutorialsPopup.dismiss(animated: true, completion: nil)
     }
     
 }

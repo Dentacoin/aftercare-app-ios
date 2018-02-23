@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ReusableXibView: UIView {
+@objc class ReusableXibView: UIView {
     
     class func loadViewFromNib<T : UIView>() -> T? {
         let bundle = Bundle.main

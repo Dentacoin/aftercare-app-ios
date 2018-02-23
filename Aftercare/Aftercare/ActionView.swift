@@ -203,11 +203,11 @@ class ActionView: UIView {
         }
     }
     
-    open func showTutorials() {
+    open func showTooltips() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: { [weak self] in
-            self?.actionBarsContainer.showTutorials()
-            self?.actionFootherContainer.showTutorials()
-            self?.totalBar.showTutorials()
+            self?.actionBarsContainer.showTooltips()
+            self?.actionFootherContainer.showTooltips()
+            self?.totalBar.showTooltips()
         })
     }
     
@@ -555,7 +555,7 @@ enum ActionState {
 protocol ActionViewProtocol {
     var actionViewRecordType: ActionRecordType { get }
     func updateData(_ data: ActionScreenData)
-    func showTutorials()
+    func showTooltips()
     func screenWillEnterFullscreen()
     func screenWillExitFullscreen()
     func changeStateTo(_ newState: ActionState)
@@ -563,7 +563,7 @@ protocol ActionViewProtocol {
 
 //MARK: - Selectors
 
-extension Selector {
+fileprivate extension Selector {
     static let closeStatisticsSelector = #selector(ActionView.closeStatisticsNotification)
     static let openStatisticsSelector = #selector(ActionView.openStatisticsNotification)
     static let updateTimerSelector = #selector(ActionView.updateTimer)

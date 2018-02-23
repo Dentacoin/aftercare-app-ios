@@ -43,7 +43,7 @@ class RoutinesPopupScreen: UIView {
     //MARK: - Fileprivates
     
     fileprivate var currentDay: Int = 0
-    fileprivate var routine: RoutineType?
+    fileprivate var routine: Routine?
     
     //MARK: - Detect touches
     
@@ -60,7 +60,7 @@ class RoutinesPopupScreen: UIView {
     
     //MARK: - Public API
     
-    func setup(_ routine: RoutineType) {
+    func setup(_ routine: Routine) {
         self.routine = routine
     }
     
@@ -92,7 +92,7 @@ class RoutinesPopupScreen: UIView {
         
         //create Facebook Share Button
         let linkContent = FBSDKShareLinkContent()
-        linkContent.quote = "Improve your dental healt habits and earn some DCNs in the same time. Try Dentacare app available in the App Store."
+        linkContent.quote = NSLocalizedString("Improve your dental healt habits and earn some DCNs in the same time. Try Dentacare app available in the App Store.", comment: "")
         linkContent.contentURL = URL(string: "https://itunes.apple.com/us/app/dentacare/id1274148338?ls=1&mt=8")
         shareWithFacebook.shareContent = linkContent
         let shareWithFBTitle = NSLocalizedString("Share With Facebook", comment: "")

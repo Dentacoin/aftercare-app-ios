@@ -99,8 +99,8 @@ extension ActionViewProxyDelegateProtocol {
         }
     }
     
-    func showTutorials() {
-        embedView?.showTutorials()
+    func showTooltip() {
+        embedView?.showTooltips()
     }
     
     //delegate to sender methods

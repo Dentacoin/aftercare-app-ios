@@ -140,8 +140,8 @@ class BrushActionView: UIView, ActionViewProtocol {
     
     //MARK: - Public API
     
-    func setupTutorials() {
-        embedView?.showTutorials()
+    func showTooltips() {
+        embedView?.showTooltips()
     }
     
     func screenWillEnterFullscreen() {

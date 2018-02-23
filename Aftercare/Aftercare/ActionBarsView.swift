@@ -75,7 +75,7 @@ class ActionBarsView: UIView {
         self.earnedBar.setValue(String(value))
     }
     
-    func showTutorials() {
+    func showTooltips() {
         let tooltips: [(id: String ,text: String, forView: UIView, within: UIView, arrowAt: EasyTipView.ArrowPosition)] = [
             (
                 id: TutorialIDs.lastActivityTime.rawValue,
@@ -131,8 +131,8 @@ class ActionBarsView: UIView {
     fileprivate func showTooltip(_ text: String, forView: UIView, within superview: UIView, at position: EasyTipView.ArrowPosition, id: String) {
         
         //check if already seen by the user in this app session. "True" means still valid for this session
-        var active = UserDataContainer.shared.getTutorialSessionToggle(id)//session state
-        active = UserDataContainer.shared.getTutorialToggle(id)//between session state
+        var active = UserDataContainer.shared.getTooltipSessionToggle(id)//session state
+        active = UserDataContainer.shared.getTooltipToggle(id)//between session state
         
         if  active {
             
@@ -154,7 +154,7 @@ class ActionBarsView: UIView {
             )
             
             //set to false so next time user opens the same screen this will not show
-            UserDataContainer.shared.setTutorialSessionToggle(id, false)
+            UserDataContainer.shared.setTooltipSessionToggle(id, false)
             
         }
     }
@@ -167,7 +167,7 @@ extension ActionBarsView: EasyTipViewDelegate {
     
     func easyTipViewDidDismiss(_ tipView: EasyTipView) {
         //turn off tooltip if dismissed by the user
-        UserDataContainer.shared.setTutorialToggle(tipView.accessibilityIdentifier ?? "", false)
+        UserDataContainer.shared.setTooltipToggle(tipView.accessibilityIdentifier ?? "", false)
     }
     
 }

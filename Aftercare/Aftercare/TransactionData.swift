@@ -13,7 +13,7 @@ struct TransactionData: Codable {
     var amount: Int
     var wallet: String
     var status: TransactionStatusType?
-    var date: Date?
+    var date: Date?//TODO: make sure this Date object should be Date or a String
     
     init(amount: Int, wallet: String) {
         self.amount = amount

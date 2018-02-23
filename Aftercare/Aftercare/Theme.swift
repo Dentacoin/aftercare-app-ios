@@ -13,6 +13,15 @@ import EasyTipView
 // Color palette
 
 extension UIColor {
+    
+    @nonobjc class var dntTutorialDarkBlue: UIColor {
+        return UIColor(red: 63.0 / 255.0, green: 139.0 / 255.0, blue: 229.0 / 255.0, alpha: 1.0)
+    }
+    
+    @nonobjc class var dntTutorialLightBlue: UIColor {
+        return UIColor(red: 104.0 / 255.0, green: 224.0 / 255.0, blue: 236.0 / 255.0, alpha: 1.0)
+    }
+    
     @nonobjc class var dntBrightSkyBlue: UIColor {
         return UIColor(red: 10.0 / 255.0, green: 201.0 / 255.0, blue: 252.0 / 255.0, alpha: 1.0)
     }
@@ -138,6 +147,14 @@ class ThemeManager {
     typealias Component = UIView
     
     fileprivate var component: Component?
+    
+    open lazy var tutorialBackgroundTexture: UIImage = {
+        return createImageWithGradient(
+            CGRect(x: 0, y: 0, width: 100, height: 100),
+            (start: UIColor.dntTutorialLightBlue.cgColor, end: UIColor.dntTutorialDarkBlue.cgColor),
+            (start: CGPoint(x: 0.0, y: 0.0), end: CGPoint(x: 0.0, y: 1.0))
+        )
+    }()
     
     open var tooltipPreferences: EasyTipView.Preferences {
         get {

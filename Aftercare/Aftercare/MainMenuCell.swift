@@ -18,8 +18,8 @@ class MainMenuCell: UITableViewCell {
     
     func showTooltip(_ title: String, arrowPosition position: EasyTipView.ArrowPosition, id: String) {
         
-        var active = UserDataContainer.shared.getTutorialSessionToggle(id)
-        active = UserDataContainer.shared.getTutorialToggle(id)
+        var active = UserDataContainer.shared.getTooltipSessionToggle(id)
+        active = UserDataContainer.shared.getTooltipToggle(id)
         if !active { return }
         
         if activeTooltip { return }
@@ -43,7 +43,7 @@ class MainMenuCell: UITableViewCell {
         )
         
         //set to false so next time user opens the same screen this will not show
-        UserDataContainer.shared.setTutorialSessionToggle(title, false)
+        UserDataContainer.shared.setTooltipSessionToggle(title, false)
         
     }
     
@@ -56,7 +56,7 @@ extension MainMenuCell: EasyTipViewDelegate {
     func easyTipViewDidDismiss(_ tipView: EasyTipView) {
         //turn off tooltip if dismissed by the user
         activeTooltip = false
-        UserDataContainer.shared.setTutorialToggle(tipView.accessibilityIdentifier ?? "", false)
+        UserDataContainer.shared.setTooltipToggle(tipView.accessibilityIdentifier ?? "", false)
     }
     
 }

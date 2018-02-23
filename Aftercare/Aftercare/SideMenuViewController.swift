@@ -151,8 +151,8 @@ class SideMenuViewController: UIViewController {
         
         NotificationCenter.default.addObserver(
             self,
-            selector: Selector.resetTutorialsSelector,
-            name: NSNotification.Name(rawValue: "resetTutorials"),
+            selector: Selector.resetTooltipsSelector,
+            name: NSNotification.Name(rawValue: "resetTooltips"),
             object: nil
         )
         
@@ -202,9 +202,9 @@ class SideMenuViewController: UIViewController {
         })
     }
     
-    //Tutorials Setup
+    //Tooltips Setup
     
-    fileprivate func setupTutorials() {
+    fileprivate func setupTooltips() {
         
         let tooltips: [(id: String, text: String, forView: UIView, arrowAt: EasyTipView.ArrowPosition)] = [
             (
@@ -229,8 +229,8 @@ class SideMenuViewController: UIViewController {
     fileprivate func showTooltip(_ text: String, forView: UIView, at position: EasyTipView.ArrowPosition, id: String) {
         
         //check if already seen by the user in this app session. "True" means still valid for this session
-        var active = UserDataContainer.shared.getTutorialSessionToggle(id)//session state
-        active = UserDataContainer.shared.getTutorialToggle(id)//between session/global state
+        var active = UserDataContainer.shared.getTooltipSessionToggle(id)//session state
+        active = UserDataContainer.shared.getTooltipToggle(id)//between session/global state
         
         //local state
         if self.activeTooltipIDs.contains(id) {
@@ -260,12 +260,12 @@ class SideMenuViewController: UIViewController {
             self.activeTooltipIDs.append(id)
             
             //set to false so next time user opens the same screen this will not show
-            UserDataContainer.shared.setTutorialSessionToggle(id, false)
+            UserDataContainer.shared.setTooltipSessionToggle(id, false)
             
         }
     }
     
-    @objc func onResetTutorials() {
+    @objc func onResetTooltips() {
         self.tableViewTooltipRefresh = false
         menuOptionsTable.reloadData()
     }
@@ -285,7 +285,7 @@ extension SideMenuViewController: EasyTipViewDelegate {
         
         let tooltipID = tipView.accessibilityIdentifier ?? ""
         
-        UserDataContainer.shared.setTutorialToggle(tooltipID, false)
+        UserDataContainer.shared.setTooltipToggle(tooltipID, false)
         
         //reset tooltips local state
         if let index = activeTooltipIDs.index(of: tooltipID) {
@@ -388,7 +388,7 @@ extension SideMenuViewController: UITableViewDelegate {
                 if self.tableViewTooltipRefresh == false {//I HATE THIS HACK: this is necessary to make tooltips to show after table creation
                     self.tableViewTooltipRefresh = true
                     self.menuOptionsTable.reloadData()
-                    self.setupTutorials()
+                    self.setupTooltips()
                 }
             }
         }
@@ -433,6 +433,6 @@ fileprivate enum ActionIDs: String {
 //MARK: - Selectors
 
 fileprivate extension Selector {
-    static let resetTutorialsSelector = #selector(SideMenuViewController.onResetTutorials)
+    static let resetTooltipsSelector = #selector(SideMenuViewController.onResetTooltips)
 }
 

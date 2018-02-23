@@ -118,4 +118,9 @@ struct APIRouter: APIRouterProtocol {
         typealias EParameters = Dictionary<String, String>
         var route: String = "transactions"
     }
+    
+    struct RequestCaptcha: Readable {
+        typealias EParameters = CaptchaData
+        var route = "captcha"
+    }
 }

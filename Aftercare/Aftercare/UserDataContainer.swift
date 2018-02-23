@@ -18,7 +18,7 @@ class UserDataContainer {
     fileprivate var avatar: UIImage?
     fileprivate var emergencyScreenshot: UIImage?
     fileprivate var userData: UserData?
-    fileprivate var tutorialsSessionStates: [String : Bool] = [:]
+    fileprivate var tooltipsSessionStates: [String : Bool] = [:]
     
     //MARK: - Local model persistent file names
     
@@ -95,7 +95,7 @@ class UserDataContainer {
     
     //MARK: - Public properties
     
-    var routine: RoutineType?
+    var routine: Routine?
     
     var isRoutineRequested = false//this is the state for the current app session
     
@@ -284,36 +284,51 @@ class UserDataContainer {
         return nil
     }
     
-    //MARK: - Tutorials help methods
+    //MARK: - Tooltip & Tutorials help methods
     
-    open func getTutorialSessionToggle(_ id: String) -> Bool {
-        if let state = self.tutorialsSessionStates[id] {
+    open func getTutorialsToggle() -> Bool {
+        if let state = UserDefaults.standard.value(forKey: "tutorialsToggle") as? Bool {
             return state
         }
         return true
     }
     
-    open func setTutorialSessionToggle(_ id: String, _ toggle: Bool) {
-        self.tutorialsSessionStates.updateValue(toggle, forKey: id)
+    open func setTutorialsToggle(_ toggle: Bool) {
+        UserDefaults.standard.set(toggle, forKey: "tutorialsToggle")
     }
     
-    open func getTutorialToggle(_ id: String) -> Bool {
+    //Toggle state for the app session
+    open func getTooltipSessionToggle(_ id: String) -> Bool {
+        if let state = self.tooltipsSessionStates[id] {
+            return state
+        }
+        return true
+    }
+    
+    //Toggle state for the app session
+    open func setTooltipSessionToggle(_ id: String, _ toggle: Bool) {
+        self.tooltipsSessionStates.updateValue(toggle, forKey: id)
+    }
+    
+    //Toggle state for the across sessions
+    open func getTooltipToggle(_ id: String) -> Bool {
         if let state = UserDefaults.standard.value(forKey: id) as? Bool {
             return state
         }
         return true
     }
     
-    open func setTutorialToggle(_ id: String, _ toggle: Bool) {
+    //Toggle state for the across sessions
+    open func setTooltipToggle(_ id: String, _ toggle: Bool) {
         UserDefaults.standard.set(toggle, forKey: id)
     }
     
-    open func resetTutorialToggle(_ value: Bool) {
+    open func resetTooltipToggle(_ value: Bool) {
         let defaults = UserDefaults.standard
-        for tutorialID in TutorialIDs.all {
-            defaults.set(value, forKey: tutorialID.rawValue)
+        for tooltipID in TutorialIDs.all {
+            defaults.set(value, forKey: tooltipID.rawValue)
         }
-        self.tutorialsSessionStates = [:]
+        self.tooltipsSessionStates = [:]
     }
     
     //MARK: - Progress bars helper methods

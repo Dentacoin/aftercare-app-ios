@@ -19,11 +19,16 @@ class SignUpScreenViewController : UIViewController {
     @IBOutlet weak var lastNameTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var emailTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var passwordTextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var captchaCodeTextField: SkyFloatingLabelTextField!
+    
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var createButton: UIButton!
     @IBOutlet weak var connectWithLabel: UILabel!
     @IBOutlet weak var facebookButton: UIButton!
     @IBOutlet weak var twitterButton: UIButton!
     @IBOutlet weak var googlePlusButton: UIButton!
+    
+    @IBOutlet weak var captchaView: CaptchaView!
     
     fileprivate var uiIsBlocked = false
     fileprivate var newAvatarUploaded = false
@@ -32,19 +37,23 @@ class SignUpScreenViewController : UIViewController {
     //MARK: - error message lazy init strings
     
     fileprivate lazy var errorFirstNameString: String = {
-        return NSLocalizedString("Wrong first name, should be 2 symbols min.", comment: "Wrong first name message")
+        return NSLocalizedString("Wrong first name, should be 2 symbols min", comment: "Wrong first name message")
     }()
     
     fileprivate lazy var errorLastNameString: String = {
-        return NSLocalizedString("Wrong last name, should be 2 symbols min.", comment: "Wrong last name message")
+        return NSLocalizedString("Wrong last name, should be 2 symbols min", comment: "Wrong last name message")
     }()
     
     fileprivate lazy var errorEmailString: String = {
-        return  NSLocalizedString("Wrong email.", comment: "Wrong email")
+        return  NSLocalizedString("Wrong email", comment: "Wrong email")
     }()
     
     fileprivate lazy var errorPasswordString: String = {
-        return NSLocalizedString("Password is too short.", comment: "Password is too short")
+        return NSLocalizedString("Password is too short", comment: "Password is too short")
+    }()
+    
+    fileprivate lazy var errorWrongCaptchaCodeString: String = {
+        return NSLocalizedString("Wrong Code", comment: "")
     }()
     
     //MARK: - Clean Swift
@@ -92,6 +101,7 @@ class SignUpScreenViewController : UIViewController {
         self.lastNameTextField.delegate = self
         self.emailTextField.delegate = self
         self.passwordTextField.delegate = self
+        self.captchaCodeTextField.delegate = self
         
         self.addListenersForKeyboard()
         
@@ -106,6 +116,10 @@ class SignUpScreenViewController : UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    @IBAction func onScrollViewTapGuesture(_ sender: UITapGestureRecognizer) {
+        self.scrollView.endEditing(true)
     }
     
 }
@@ -207,6 +221,25 @@ extension SignUpScreenViewController {
         passwordTextField.attributedPlaceholder = passwordPlaceholder
         passwordTextField.autocorrectionType = .no
         
+        let captchaPlaceholder = NSAttributedString.init(
+            string: NSLocalizedString("Enter Code", comment: ""),
+            attributes: [
+                NSAttributedStringKey.foregroundColor: UIColor.white,
+                NSAttributedStringKey.font: UIFont.dntLatoLightFont(
+                    size: UIFont.dntLabelFontSize
+                    )!,
+                NSAttributedStringKey.paragraphStyle: paragraph
+            ]
+        )
+        
+        themeManager.setDCBlueTheme(
+            to: self.captchaCodeTextField,
+            ofType: .TextFieldDefaut
+        )
+        
+        captchaCodeTextField.attributedPlaceholder = captchaPlaceholder
+        captchaCodeTextField.autocorrectionType = .no
+        
         themeManager.setDCBlueTheme(
             to: self.createButton,
             ofType: .ButtonDefault
@@ -272,6 +305,12 @@ extension SignUpScreenViewController {
             return
         }
         
+        _ = textFieldShouldEndEditing(captchaCodeTextField)
+        if let error = captchaCodeTextField.errorMessage, error != "" {
+            captchaCodeTextField.becomeFirstResponder()
+            return
+        }
+        
         if uiIsBlocked == true {
             return
         }
@@ -282,7 +321,9 @@ extension SignUpScreenViewController {
             firstName: firstNameTextField.text!,
             lastName: lastNameTextField.text!,
             email: emailTextField.text!,
-            password: passwordTextField.text!
+            password: passwordTextField.text!,
+            captchaId: captchaView.data?.id ?? 0,
+            captchaCode: captchaCodeTextField.text!
         )
     }
     
@@ -356,6 +397,9 @@ extension SignUpScreenViewController: UITextFieldDelegate {
             passwordTextField.becomeFirstResponder()
         } else if textField == passwordTextField {
             passwordTextField.resignFirstResponder()
+            captchaCodeTextField.becomeFirstResponder()
+        } else if textField == captchaCodeTextField {
+            captchaCodeTextField.resignFirstResponder()
             self.validateAndSignUp()
         }
         
@@ -393,6 +437,12 @@ extension SignUpScreenViewController: UITextFieldDelegate {
                 passwordTextField.errorMessage = ""
             } else {
                 passwordTextField.errorMessage = errorPasswordString
+            }
+        } else if textField == captchaCodeTextField {
+            if let captchaCode = captchaCodeTextField.text, captchaCode != "" {
+                captchaCodeTextField.errorMessage = ""
+            } else {
+                captchaCodeTextField.errorMessage = errorWrongCaptchaCodeString
             }
         }
         
@@ -447,6 +497,7 @@ extension SignUpScreenViewController: SignUpScreenControllerInputProtocol {
         uiIsBlocked = false
         let noneState = State(.none)
         self.showState(noneState)
+        UserDataContainer.shared.userAvatar = nil
     }
     
     func showWelcomeScreen() {
@@ -493,7 +544,7 @@ extension SignUpScreenViewController: SignUpScreenControllerInputProtocol {
 
 protocol SignUpScreenControllerInputProtocol: ViewControllerInputProtocol, SignUpScreenPresenterOutputProtocol {}
 protocol SignUpScreenControllerOutputProtocol: ViewControllerOutputProtocol {
-    func requestSignUpUser(firstName: String, lastName: String, email: String, password: String)
+    func requestSignUpUser(firstName: String, lastName: String, email: String, password: String, captchaId: Int, captchaCode: String)
     func requestLoginWith(provider: SocialLoginProviderProtocol, in controller: UIViewController)
 }
 

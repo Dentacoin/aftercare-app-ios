@@ -78,6 +78,10 @@ protocol APIProviderProtocol {
     static func getAllTransactions(
         _ onComplete: @escaping (_ transactions: [TransactionData]?, _ error: ErrorData?) -> Void
     )
+    
+    static func requestCaptcha(
+        _ onComplete: @escaping (_ captcha: CaptchaData?, _ error: ErrorData?) -> Void
+    )
 }
 
 typealias AuthenticationResult = (_ result: UserSessionData?, _ error: ErrorData?) -> Void

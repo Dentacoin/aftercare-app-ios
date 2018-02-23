@@ -6,18 +6,18 @@
 
 import Foundation
 
-struct Routine {
+struct Routines {
     
-    static func getRoutineForNow() -> RoutineType? {
+    static func getRoutineForNow() -> Routine? {
         let now = Date()
         let calendar = Calendar.current
         let components = calendar.dateComponents([.hour], from: now)
         if let hour = components.hour {
             
             if hour >= 2, hour <= 11 {
-                return RoutineType(startHour: 2, toEndHour: 11, withActions: [ActionRecordType.brush, ActionRecordType.rinsed], .morning)
+                return Routine(startHour: 2, toEndHour: 11, withActions: [ActionRecordType.brush, ActionRecordType.rinsed], .morning)
             } else if hour >= 17, hour <= 24 {
-                return RoutineType(startHour: 17, toEndHour: 24, withActions: [ActionRecordType.flossed, ActionRecordType.brush, ActionRecordType.rinsed], .evening)
+                return Routine(startHour: 17, toEndHour: 24, withActions: [ActionRecordType.flossed, ActionRecordType.brush, ActionRecordType.rinsed], .evening)
             }
         }
         return nil
@@ -25,7 +25,7 @@ struct Routine {
     
 }
 
-struct RoutineType {
+struct Routine {
     
     var startHour: Int = 0
     var endHour: Int = 0

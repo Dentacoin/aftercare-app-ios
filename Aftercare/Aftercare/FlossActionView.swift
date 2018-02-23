@@ -134,6 +134,10 @@ class FlossActionView: UIView, ActionViewProtocol {
     func screenWillExitFullscreen() {
         embedView?.actionFootherContainer.isStatisticsButtonHidden = false
     }
+    
+    func showTooltips() {
+        embedView?.showTooltips()
+    }
 }
 
 //MARK: - Proxy Delegate Protocol

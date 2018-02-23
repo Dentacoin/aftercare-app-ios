@@ -415,6 +415,28 @@ struct APIProvider : APIProviderProtocol {
         }
     }
     
+    static func requestCaptcha(_ onComplete: @escaping (CaptchaData?, ErrorData?) -> Void) {
+        var errorData: ErrorData?
+        let urlRequest = APIRouter.RequestCaptcha.get()
+        Alamofire.request(urlRequest).responseDecodableObject() { (response: DataResponse<CaptchaData>) in
+            switch response.result {
+                case .success(let captcha):
+                    onComplete(captcha, nil)
+                    break
+                case .failure(let error):
+                    let nserror = error as NSError
+                    errorData = ErrorData(code: nserror.code, errors: [nserror.localizedDescription])
+                    break
+            }
+        }.responseDecodableObject() { (response: DataResponse<ErrorData>) in
+            if let error = response.result.value {
+                onComplete(nil, error)
+            } else if let error = errorData {
+                onComplete(nil, error)
+            }
+        }
+    }
+    
     //MARK: Internal methods
     
 //    internal func makeRequest<T>(request: RequestConverter<T>, responseType: Y) {

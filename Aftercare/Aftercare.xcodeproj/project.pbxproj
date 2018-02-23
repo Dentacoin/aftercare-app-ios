@@ -133,7 +133,7 @@
 		9F1E78421FB0D97200A1A7D5 /* ActionBarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1E78411FB0D97200A1A7D5 /* ActionBarsView.swift */; };
 		9F1E78441FB199BE00A1A7D5 /* RoutinesPopupScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F1E78431FB199BE00A1A7D5 /* RoutinesPopupScreen.xib */; };
 		9F1E78461FB19DEE00A1A7D5 /* RoutinesPopupScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1E78451FB19DEE00A1A7D5 /* RoutinesPopupScreen.swift */; };
-		9F1E78481FB1C1C900A1A7D5 /* Routine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1E78471FB1C1C900A1A7D5 /* Routine.swift */; };
+		9F1E78481FB1C1C900A1A7D5 /* Routines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1E78471FB1C1C900A1A7D5 /* Routines.swift */; };
 		9F254A5B1FB254B300BC001A /* RinseActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F254A5A1FB254B300BC001A /* RinseActionView.swift */; };
 		9F28A3961F504E340002FF53 /* APIRouterProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F28A3951F504E340002FF53 /* APIRouterProtocols.swift */; };
 		9F28A3991F504EAA0002FF53 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F28A3981F504EAA0002FF53 /* APIRouter.swift */; };
@@ -224,6 +224,14 @@
 		9FE7CC111FB205EA0042EB14 /* BrushBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE7CC101FB205EA0042EB14 /* BrushBar.swift */; };
 		9FE7CC131FB254070042EB14 /* FlossActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE7CC121FB254070042EB14 /* FlossActionView.swift */; };
 		9FE7CC151FB254400042EB14 /* BrushActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE7CC141FB254400042EB14 /* BrushActionView.swift */; };
+		9FE84EF32032454D00C35AB6 /* Tutorials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84EF22032454D00C35AB6 /* Tutorials.swift */; };
+		9FE84EF52032FEEA00C35AB6 /* TutorialsPopupScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84EF42032FEEA00C35AB6 /* TutorialsPopupScreen.swift */; };
+		9FE84EF72032FFBE00C35AB6 /* TutorialsPopupScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FE84EF62032FFBE00C35AB6 /* TutorialsPopupScreen.xib */; };
+		9FE84EF9203454D600C35AB6 /* TutorialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FE84EF8203454D600C35AB6 /* TutorialView.xib */; };
+		9FE84EFB2035C16E00C35AB6 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84EFA2035C16E00C35AB6 /* TutorialView.swift */; };
+		9FE84EFD2036EB9300C35AB6 /* CaptchaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84EFC2036EB9300C35AB6 /* CaptchaData.swift */; };
+		9FE84EFF2037031800C35AB6 /* CaptchaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84EFE2037031800C35AB6 /* CaptchaView.swift */; };
+		9FE84F012037032900C35AB6 /* CaptchaView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FE84F002037032900C35AB6 /* CaptchaView.xib */; };
 		9FE993691F8697690007D759 /* OralHealthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE993681F8697690007D759 /* OralHealthData.swift */; };
 		9FE9936B1F86CBCC0007D759 /* OralHealthTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FE9936A1F86CBCC0007D759 /* OralHealthTableCell.xib */; };
 		9FE9936D1F86CD350007D759 /* OralHealthTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE9936C1F86CD350007D759 /* OralHealthTableCell.swift */; };
@@ -409,7 +417,7 @@
 		9F1E78411FB0D97200A1A7D5 /* ActionBarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionBarsView.swift; sourceTree = "<group>"; };
 		9F1E78431FB199BE00A1A7D5 /* RoutinesPopupScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoutinesPopupScreen.xib; sourceTree = "<group>"; };
 		9F1E78451FB19DEE00A1A7D5 /* RoutinesPopupScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinesPopupScreen.swift; sourceTree = "<group>"; };
-		9F1E78471FB1C1C900A1A7D5 /* Routine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routine.swift; sourceTree = "<group>"; };
+		9F1E78471FB1C1C900A1A7D5 /* Routines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routines.swift; sourceTree = "<group>"; };
 		9F254A5A1FB254B300BC001A /* RinseActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RinseActionView.swift; sourceTree = "<group>"; };
 		9F28A3951F504E340002FF53 /* APIRouterProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRouterProtocols.swift; sourceTree = "<group>"; };
 		9F28A3981F504EAA0002FF53 /* APIRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
@@ -545,6 +553,14 @@
 		9FE7CC101FB205EA0042EB14 /* BrushBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrushBar.swift; sourceTree = "<group>"; };
 		9FE7CC121FB254070042EB14 /* FlossActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlossActionView.swift; sourceTree = "<group>"; };
 		9FE7CC141FB254400042EB14 /* BrushActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrushActionView.swift; sourceTree = "<group>"; };
+		9FE84EF22032454D00C35AB6 /* Tutorials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tutorials.swift; sourceTree = "<group>"; };
+		9FE84EF42032FEEA00C35AB6 /* TutorialsPopupScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialsPopupScreen.swift; sourceTree = "<group>"; };
+		9FE84EF62032FFBE00C35AB6 /* TutorialsPopupScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorialsPopupScreen.xib; sourceTree = "<group>"; };
+		9FE84EF8203454D600C35AB6 /* TutorialView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorialView.xib; sourceTree = "<group>"; };
+		9FE84EFA2035C16E00C35AB6 /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
+		9FE84EFC2036EB9300C35AB6 /* CaptchaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptchaData.swift; sourceTree = "<group>"; };
+		9FE84EFE2037031800C35AB6 /* CaptchaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptchaView.swift; sourceTree = "<group>"; };
+		9FE84F002037032900C35AB6 /* CaptchaView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CaptchaView.xib; sourceTree = "<group>"; };
 		9FE993681F8697690007D759 /* OralHealthData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OralHealthData.swift; sourceTree = "<group>"; };
 		9FE9936A1F86CBCC0007D759 /* OralHealthTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OralHealthTableCell.xib; sourceTree = "<group>"; };
 		9FE9936C1F86CD350007D759 /* OralHealthTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OralHealthTableCell.swift; sourceTree = "<group>"; };
@@ -805,8 +821,11 @@
 				9FF837691F6C14B400E72CBC /* SmallCircularBar.swift */,
 				9FF8377D1F6FD1A300E72CBC /* GoalPopupScreen.swift */,
 				9F1E78451FB19DEE00A1A7D5 /* RoutinesPopupScreen.swift */,
+				9FE84EF42032FEEA00C35AB6 /* TutorialsPopupScreen.swift */,
 				9FBB8E251F83B522008C2C65 /* UploadImageButton.swift */,
 				9FFC8BB71FA20BBA0043F7BC /* ReusableXibView.swift */,
+				9FE84EFA2035C16E00C35AB6 /* TutorialView.swift */,
+				9FE84EFE2037031800C35AB6 /* CaptchaView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -836,7 +855,8 @@
 				9F16E3481F9A9F030081D244 /* NotificationsManager.swift */,
 				9FA7EAAB1F9F8C22003AD94A /* AnalyticsManager.swift */,
 				9F856CBD1FB4C750004B95BD /* SoundManager.swift */,
-				9F1E78471FB1C1C900A1A7D5 /* Routine.swift */,
+				9F1E78471FB1C1C900A1A7D5 /* Routines.swift */,
+				9FE84EF22032454D00C35AB6 /* Tutorials.swift */,
 				9F4190B51FCE0D5D00ADE2AC /* ActionRecord.swift */,
 			);
 			name = Globals;
@@ -878,6 +898,9 @@
 				9FFC8BBB1FA20DBF0043F7BC /* LoadingState.xib */,
 				9FFC8BBD1FA210420043F7BC /* ErrorState.xib */,
 				9F1E78431FB199BE00A1A7D5 /* RoutinesPopupScreen.xib */,
+				9FE84EF62032FFBE00C35AB6 /* TutorialsPopupScreen.xib */,
+				9FE84EF8203454D600C35AB6 /* TutorialView.xib */,
+				9FE84F002037032900C35AB6 /* CaptchaView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1223,6 +1246,7 @@
 				9F4482D61F8B7CD700349A10 /* GoalData.swift */,
 				9FC525FC1F8E535D00F9D8A4 /* ErrorData.swift */,
 				9F42EBB71F8EB55A0061FEA3 /* UserSessionData.swift */,
+				9FE84EFC2036EB9300C35AB6 /* CaptchaData.swift */,
 			);
 			name = Responses;
 			sourceTree = "<group>";
@@ -1488,6 +1512,7 @@
 				9F17D3E81FB56C7200FC96B5 /* female-evening-floss-2.mp3 in Resources */,
 				9FF837681F6C139E00E72CBC /* SmallCircularBar.xib in Resources */,
 				9FFC8BBC1FA20DBF0043F7BC /* LoadingState.xib in Resources */,
+				9FE84EF72032FFBE00C35AB6 /* TutorialsPopupScreen.xib in Resources */,
 				24B7D0991F32259400797685 /* Login.storyboard in Resources */,
 				9F9EF2F31F9DD43B005BE398 /* user-agreement.html in Resources */,
 				9F1390041F62F1C5006528F2 /* ActionHeaderView.xib in Resources */,
@@ -1498,6 +1523,7 @@
 				9F17D3C01FB56C7200FC96B5 /* male-morning-brush-3.mp3 in Resources */,
 				9FF8376E1F6D37D100E72CBC /* StatisticsLabelCell.xib in Resources */,
 				9F17D3E91FB56C7200FC96B5 /* female-evening-brush-1.mp3 in Resources */,
+				9FE84EF9203454D600C35AB6 /* TutorialView.xib in Resources */,
 				9F17D3DF1FB56C7200FC96B5 /* female-morning-brush-3.mp3 in Resources */,
 				24657E8D1F13EA390057B846 /* Main.storyboard in Resources */,
 				9F17D3EE1FB56C7200FC96B5 /* female-evening-brush-4.mp3 in Resources */,
@@ -1541,6 +1567,7 @@
 				9F17D3BD1FB56C7200FC96B5 /* male-morning-greeting.mp3 in Resources */,
 				9F17D3CE1FB56C7200FC96B5 /* male-evening-brush-6.mp3 in Resources */,
 				9F17D3B81FB56C7200FC96B5 /* music-1.mp3 in Resources */,
+				9FE84F012037032900C35AB6 /* CaptchaView.xib in Resources */,
 				9F17D3BE1FB56C7200FC96B5 /* male-morning-brush-1.mp3 in Resources */,
 				9F17D3C81FB56C7200FC96B5 /* male-morning-rinse-2.mp3 in Resources */,
 				9F17D3BF1FB56C7200FC96B5 /* male-morning-brush-2.mp3 in Resources */,
@@ -1704,6 +1731,7 @@
 				9F4B6A511F99C41600B03C9A /* UpdateUserRequestData.swift in Sources */,
 				24ED18261F38C74500C1A11A /* UIImageView+Extension.swift in Sources */,
 				9FCA68B51FAA1F5F008B36DA /* hmac.c in Sources */,
+				9FE84EF32032454D00C35AB6 /* Tutorials.swift in Sources */,
 				9F1712A51F4C53BE00FB263B /* SignUpScreenRouter.swift in Sources */,
 				9FCA68CA1FAA1F5F008B36DA /* BigNumber.m in Sources */,
 				9FCA68B71FAA1F5F008B36DA /* rand.c in Sources */,
@@ -1715,7 +1743,7 @@
 				9FCA68BA1FAA1F5F008B36DA /* secp256k1.c in Sources */,
 				9FCA68C81FAA1F5F008B36DA /* BlockInfo.m in Sources */,
 				9F254A5B1FB254B300BC001A /* RinseActionView.swift in Sources */,
-				9F1E78481FB1C1C900A1A7D5 /* Routine.swift in Sources */,
+				9F1E78481FB1C1C900A1A7D5 /* Routines.swift in Sources */,
 				9FCA68D61FAA1F5F008B36DA /* Payment.m in Sources */,
 				24ED18241F38C5FD00C1A11A /* UIImage+Helpers.swift in Sources */,
 				9F1E78421FB0D97200A1A7D5 /* ActionBarsView.swift in Sources */,
@@ -1775,7 +1803,9 @@
 				9FEA44181FB09ACE000F7710 /* TotalDCNBar.swift in Sources */,
 				9F28A3A91F57DD1D0002FF53 /* SystemMethods.swift in Sources */,
 				9FCA68BC1FAA1F5F008B36DA /* bignum.c in Sources */,
+				9FE84EF52032FEEA00C35AB6 /* TutorialsPopupScreen.swift in Sources */,
 				9FCA68C61FAA1F5F008B36DA /* Hash.m in Sources */,
+				9FE84EFF2037031800C35AB6 /* CaptchaView.swift in Sources */,
 				9F5B08831FCFFF5B00F0E6BC /* UIView+Helpers.swift in Sources */,
 				9FEA44251FB0ACF7000F7710 /* ActionFooterView.swift in Sources */,
 				9F1712A91F4C53EC00FB263B /* SignUpScreenPresenter.swift in Sources */,
@@ -1796,11 +1826,13 @@
 				9FF8379E1F7D2F0B00E72CBC /* DescribeCaseScreenViewController.swift in Sources */,
 				9FF8374F1F6A825700E72CBC /* KDCircularProgress.swift in Sources */,
 				9FCA68C91FAA1F5F008B36DA /* mpi.c in Sources */,
+				9FE84EFB2035C16E00C35AB6 /* TutorialView.swift in Sources */,
 				9FCA68B31FAA1F5F008B36DA /* bip39.c in Sources */,
 				9FCA68BB1FAA1F5F008B36DA /* aes_modes.c in Sources */,
 				9FCA68C21FAA1F5F008B36DA /* base58.c in Sources */,
 				9FFC8BB61FA20A5B0043F7BC /* UIViewController+States.swift in Sources */,
 				9F29740E1F9B2F0500524F92 /* NotificationsHealthyHabitsData.swift in Sources */,
+				9FE84EFD2036EB9300C35AB6 /* CaptchaData.swift in Sources */,
 				2430C8BA1F3CA87400353EE1 /* SkyFloatingLabelTextField.swift in Sources */,
 				9FF0AEA31F593A3E0056846B /* ImageRequest.swift in Sources */,
 				9F3FA4281F921E05005510FE /* ForgotYourPasswordScreenViewController.swift in Sources */,

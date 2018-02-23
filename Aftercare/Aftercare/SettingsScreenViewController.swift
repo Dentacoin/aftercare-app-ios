@@ -37,10 +37,10 @@ class SettingsScreenViewController: UIViewController, ContentConformer {
     fileprivate var menuData: [SettingsSection] = {
         let data = [
             (
-                title: NSLocalizedString("Tutorials", comment: ""),
+                title: NSLocalizedString("Help", comment: ""),
                 items: [
                     (
-                        label: NSLocalizedString("Show Tutorials", comment: ""),
+                        label: NSLocalizedString("Tooltips & Tutorials", comment: ""),
                         cellType: String(describing: SettingsClearButtonTableCell.self),
                         id: "",
                         state: true
@@ -253,12 +253,13 @@ extension SettingsScreenViewController: UITableViewDelegate {
 
 extension SettingsScreenViewController: SettingsClearButtonTableCellDelegate {
     
+    //TODO: fix the name of the selector. Should be Reset
     func onClearButtonPressed(_ indexPath: IndexPath) {
         let section = indexPath.section
         if section == 0 {
-            UserDataContainer.shared.resetTutorialToggle(true)
-            //TODO: fix the name of the selector
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resetTutorials"), object: nil)
+            UserDataContainer.shared.resetTooltipToggle(true)
+            UserDataContainer.shared.setTutorialsToggle(true)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resetTooltips"), object: nil)
             return
         }
     }

@@ -11,7 +11,7 @@ import Foundation
 struct HabitRecordData: Decodable {
     
     var type: HabitType
-    var date: Date?
+    var date: Date?//TODO: make sure this Date object should be Date or a String
     
     enum HabitType: String, Codable {
         case wakeup

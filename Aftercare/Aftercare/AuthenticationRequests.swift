@@ -156,6 +156,8 @@ class EmailRequestData: Encodable, AuthenticationRequestProtocol {
     var lastName: String?
     var gender: GenderType?
     var avatar64: String?
+    var captchaCode: String?
+    var captchaId: Int?
     
     init(email: String, password: String) {
         self.email = email
@@ -180,6 +182,12 @@ class EmailRequestData: Encodable, AuthenticationRequestProtocol {
         if let avatar = self.avatar64 {
             try! container.encode(avatar, forKey: .avatar64)
         }
+        if let captchaCode = self.captchaCode {
+            try! container.encode(captchaCode, forKey: .captchaCode)
+        }
+        if let captchaId = self.captchaId {
+            try! container.encode(captchaId, forKey: .captchaId)
+        }
     }
     
     enum EmailRequestKeys: String, CodingKey {
@@ -189,6 +197,8 @@ class EmailRequestData: Encodable, AuthenticationRequestProtocol {
         case lastName = "lastname"
         case gender
         case avatar64 = "avatar_64"
+        case captchaCode
+        case captchaId
     }
     
 }
