@@ -41,15 +41,13 @@ class CollectScreenViewController: UIViewController, ContentConformer {
         return NSLocalizedString("Your Wallet address is not in correct format.", comment: "")
     }()
     
+    fileprivate var calculatedConstraints = false
+    
     //MARK: - Public
     
     var header: InitialPageHeaderView! {
         return headerView as! InitialPageHeaderView
     }
-    
-    //MARK: - fileprivates
-    
-    fileprivate var calculatedConstraints = false
     
     //MARK: - Lifecycle
     

@@ -61,6 +61,10 @@ extension UIColor {
     @nonobjc class var dntDarkRed: UIColor {
         return UIColor(red: 237.0 / 255.0, green: 34.0 / 255.0, blue: 36.0 / 255.0, alpha: 1.0)
     }
+    
+    @nonobjc class var dntDarkGreen: UIColor {
+        return UIColor(red: 87.0 / 255.0, green: 189.0 / 255.0, blue: 68.0 / 255.0, alpha: 1.0)
+    }
 }
 
 //MARK - Image IDs

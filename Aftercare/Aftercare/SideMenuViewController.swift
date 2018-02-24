@@ -51,6 +51,11 @@ class SideMenuViewController: UIViewController {
                 CellDataKeys.value : String(describing: CollectScreenViewController.self)
             ],[
                 CellDataKeys.type : CellTypes.content.rawValue,
+                CellDataKeys.title : NSLocalizedString("Withdraw", comment: ""),
+                CellDataKeys.icon : "withdrawsIcon",
+                CellDataKeys.value : String(describing: WithdrawsScreenViewController.self)
+            ],[
+                CellDataKeys.type : CellTypes.content.rawValue,
                 CellDataKeys.title : NSLocalizedString("Goals", comment: ""),
                 CellDataKeys.icon : "goalsIcon",
                 CellDataKeys.value : String(describing: GoalsScreenViewController.self)

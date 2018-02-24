@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WithdrawsCell" rowHeight="127" id="tsJ-P1-Moy" customClass="WithdrawsCell" customModule="Aftercare" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tsJ-P1-Moy" id="RrL-l2-wx2">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SOI-LP-FBt">
+                        <rect key="frame" x="8" y="8" width="221" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="DQn-VO-iH5"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jUM-Jd-ofu">
+                        <rect key="frame" x="237" y="8" width="130" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="130" id="JFe-bh-dtW"/>
+                            <constraint firstAttribute="height" constant="25" id="tRE-6N-jNH"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="frB-36-TGA">
+                        <rect key="frame" x="8" y="41" width="359" height="71"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="jUM-Jd-ofu" firstAttribute="leading" secondItem="SOI-LP-FBt" secondAttribute="trailing" constant="8" id="26D-Nz-cYo"/>
+                    <constraint firstItem="frB-36-TGA" firstAttribute="top" secondItem="SOI-LP-FBt" secondAttribute="bottom" constant="8" id="A7E-Z2-UcD"/>
+                </constraints>
+            </tableViewCellContentView>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="frB-36-TGA" secondAttribute="bottom" constant="8" id="2kS-FP-Zzv"/>
+                <constraint firstAttribute="trailing" secondItem="jUM-Jd-ofu" secondAttribute="trailing" constant="8" id="DVz-fe-nr5"/>
+                <constraint firstItem="SOI-LP-FBt" firstAttribute="leading" secondItem="tsJ-P1-Moy" secondAttribute="leading" constant="8" id="H1y-kc-JBx"/>
+                <constraint firstItem="jUM-Jd-ofu" firstAttribute="top" secondItem="tsJ-P1-Moy" secondAttribute="top" constant="8" id="SbF-KH-LYQ"/>
+                <constraint firstItem="frB-36-TGA" firstAttribute="leading" secondItem="tsJ-P1-Moy" secondAttribute="leading" constant="8" id="fBH-ed-QiP"/>
+                <constraint firstAttribute="trailing" secondItem="frB-36-TGA" secondAttribute="trailing" constant="8" id="jIE-Cs-mvN"/>
+                <constraint firstItem="SOI-LP-FBt" firstAttribute="top" secondItem="tsJ-P1-Moy" secondAttribute="top" constant="8" id="kAo-eg-4hu"/>
+            </constraints>
+            <connections>
+                <outlet property="descriptionLabel" destination="frB-36-TGA" id="OpB-xm-bsL"/>
+                <outlet property="statusLabel" destination="jUM-Jd-ofu" id="V6n-XX-cTp"/>
+                <outlet property="valueLabel" destination="SOI-LP-FBt" id="aEd-hl-hbM"/>
+            </connections>
+            <point key="canvasLocation" x="89.5" y="32"/>
+        </tableViewCell>
+    </objects>
+</document>
