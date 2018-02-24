@@ -18,66 +18,54 @@ extension NSError {
         if let key = ErrorKeys(rawValue: errorKey) {
         
             switch key {
-            case .PasswordShort:
-                description = NSLocalizedString("Password is too short", comment: "")
-                break
-            case .InvalidEmailOrPassword:
-                description = NSLocalizedString("Invalid Email or Password", comment: "")
-                break
-            case .InvalidGender:
-                description = NSLocalizedString("Invalid Gender Type", comment: "")
-                break
-            case .InvalidCountry:
-                description = NSLocalizedString("Invalid Country", comment: "")
-                break
-            case .InvalidBirthDay:
-                description = NSLocalizedString("Invalid Birth Date", comment: "")
-                break
-            case .InvalidAvatar:
-                description = NSLocalizedString("Invalid Avatar format", comment: "")
-                break
-            case .UserNotExist:
-                description = NSLocalizedString("User Doesn't exist ", comment: "")
-                break
-            case .MissingEmail:
-                description = NSLocalizedString("Missing Email", comment: "")
-                break
-            case .InvalidEmail:
-                description = NSLocalizedString("Invalid Email Address", comment: "")
-                break
-            case .MissingPassword:
-                description = NSLocalizedString("Missing Password", comment: "")
-                break
-            case .EmailAlreadyRegistered:
-                description = NSLocalizedString("Email Address Already Registered", comment: "")
-                break
-            case .MissignFBID:
-                description = NSLocalizedString("Missing Facebook ID", comment: "")
-                break
-            case .MissingFBToken:
-                description = NSLocalizedString("Missing Facebook Token", comment: "")
-                break
-            case .MissingGoogleID:
-                description = NSLocalizedString("Missing Google ID", comment: "")
-                break
-            case .MissingGoogleToken:
-                description = NSLocalizedString("Missing Google Token", comment: "")
-                break
-            case .MissingTwitterID:
-                description = NSLocalizedString("Missing Twitter ID", comment: "")
-                break
-            case .MissingTwitterToken:
-                description = NSLocalizedString("Missing Twitter Token", comment: "")
-                break
-            case .MissingTwitterTokenSecret:
-                description = NSLocalizedString("Missing Twitter Token Secret", comment: "")
-                break
-            case .CanceledAuthentication:
-                description = NSLocalizedString("Canceled Authentication By The User", comment: "")
-                break
-            case .UserCannotWithdraw:
-                description = NSLocalizedString("Sorry but you have to use Dentacare app for at least 3 months to be able to withdraw earned DCN!", comment: "")
-                break
+                case .passwordShort:
+                    description = NSLocalizedString("Password is too short", comment: "")
+                case .invalidEmailOrPassword:
+                    description = NSLocalizedString("Invalid Email or Password", comment: "")
+                case .invalidGender:
+                    description = NSLocalizedString("Invalid Gender Type", comment: "")
+                case .invalidCountry:
+                    description = NSLocalizedString("Invalid Country", comment: "")
+                case .invalidBirthDay:
+                    description = NSLocalizedString("Invalid Birth Date", comment: "")
+                case .invalidAvatar:
+                    description = NSLocalizedString("Invalid Avatar format", comment: "")
+                case .userNotExist:
+                    description = NSLocalizedString("User Doesn't exist ", comment: "")
+                case .missingEmail:
+                    description = NSLocalizedString("Missing Email", comment: "")
+                case .invalidEmail:
+                    description = NSLocalizedString("Invalid Email Address", comment: "")
+                case .missingPassword:
+                    description = NSLocalizedString("Missing Password", comment: "")
+                case .emailAlreadyRegistered:
+                    description = NSLocalizedString("Email Address Already Registered", comment: "")
+                case .missignFBID:
+                    description = NSLocalizedString("Missing Facebook ID", comment: "")
+                case .missingFBToken:
+                    description = NSLocalizedString("Missing Facebook Token", comment: "")
+                case .missingGoogleID:
+                    description = NSLocalizedString("Missing Google ID", comment: "")
+                case .missingGoogleToken:
+                    description = NSLocalizedString("Missing Google Token", comment: "")
+                case .missingTwitterID:
+                    description = NSLocalizedString("Missing Twitter ID", comment: "")
+                case .missingTwitterToken:
+                    description = NSLocalizedString("Missing Twitter Token", comment: "")
+                case .missingTwitterTokenSecret:
+                    description = NSLocalizedString("Missing Twitter Token Secret", comment: "")
+                case .canceledAuthentication:
+                    description = NSLocalizedString("Canceled Authentication By The User", comment: "")
+                case .userCannotWithdraw:
+                    description = NSLocalizedString("Sorry but you have to use Dentacare app for at least 3 months to be able to withdraw earned DCN!", comment: "")
+                case .userEmailConfirmed:
+                    description = NSLocalizedString("User Email Already Confirmed", comment: "")
+                case .userEmailConfirmationOverload:
+                    description = NSLocalizedString("Too many email confirmation requests!", comment: "")
+                case .failedDueToUnconfirmedEmail:
+                    description = NSLocalizedString("Operation failed due to unconfirmed email address.", comment: "")
+                case .invalidCaptchaCode:
+                    description = NSLocalizedString("Invalid Captcha Code! Please go back and re-enter the captcha code.", comment: "")
             }
             
         }
@@ -90,33 +78,39 @@ extension NSError {
     }
     
     class func createCancelAuthenticationError() -> NSError {
-        return NSError(code: -1, errorKey: ErrorKeys.CanceledAuthentication.rawValue)
+        return NSError(code: -1, errorKey: ErrorKeys.canceledAuthentication.rawValue)
     }
     
 }
 
 enum ErrorKeys: String, RawRepresentable {
     
-    case PasswordShort = "password_short"
-    case InvalidEmailOrPassword = "invalid_email_password"
-    case InvalidGender = "invalid_gender"
-    case InvalidCountry = "invalid_country"
-    case InvalidBirthDay = "invalid_birthday"
-    case InvalidAvatar = "invalid_avatar"
-    case UserNotExist = "user_not_exist"
+    case passwordShort = "password_short"
+    case invalidEmailOrPassword = "invalid_email_password"
+    case invalidGender = "invalid_gender"
+    case invalidCountry = "invalid_country"
+    case invalidBirthDay = "invalid_birthday"
+    case invalidAvatar = "invalid_avatar"
+    case userNotExist = "user_not_exist"
     
-    case MissingEmail = "missing_email"
-    case InvalidEmail = "invalid_email"
-    case MissingPassword = "missing_password"
-    case EmailAlreadyRegistered = "email_already_registered"
-    case MissignFBID = "missing_facebook_id"
-    case MissingFBToken = "missing_facebook_token"
-    case MissingGoogleID = "missing_google_id"
-    case MissingGoogleToken = "missing_google_token"
-    case MissingTwitterID = "missing_twitter_id"
-    case MissingTwitterToken = "missing_twitter_token"
-    case MissingTwitterTokenSecret = "missing_twitter_token_secret"
+    case missingEmail = "missing_email"
+    case invalidEmail = "invalid_email"
+    case missingPassword = "missing_password"
+    case emailAlreadyRegistered = "email_already_registered"
+    case missignFBID = "missing_facebook_id"
+    case missingFBToken = "missing_facebook_token"
+    case missingGoogleID = "missing_google_id"
+    case missingGoogleToken = "missing_google_token"
+    case missingTwitterID = "missing_twitter_id"
+    case missingTwitterToken = "missing_twitter_token"
+    case missingTwitterTokenSecret = "missing_twitter_token_secret"
     
-    case CanceledAuthentication = "canceled_authentication_by_the_user"
-    case UserCannotWithdraw = "user_cannot_withdraw"
+    case canceledAuthentication = "canceled_authentication_by_the_user"
+    case userCannotWithdraw = "user_cannot_withdraw"
+    
+    case userEmailConfirmed = "user_already_confirmed"
+    case userEmailConfirmationOverload = "too_many_requests"
+    
+    case failedDueToUnconfirmedEmail = "email_not_confirmed"
+    case invalidCaptchaCode = "invalid_captcha_code"
 }

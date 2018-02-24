@@ -15,6 +15,7 @@ class UserProfileScreenViewController: UIViewController, ContentConformer {
     
     @IBOutlet weak var headerView: UIView?
     @IBOutlet weak var userAvatarImage: UIImageView!
+    @IBOutlet weak var verifiedIconImage: UIImageView!
     @IBOutlet weak var fullNameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
@@ -24,6 +25,9 @@ class UserProfileScreenViewController: UIViewController, ContentConformer {
     @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomContentPadding: NSLayoutConstraint!
     
+    @IBOutlet weak var emailNotVerifiedLabel: UILabel!
+    @IBOutlet weak var resendEmailVerificationButton: UIButton!
+    @IBOutlet weak var emailVerificationViewHeightConstraint: NSLayoutConstraint!
     //MARK: - Delegate
     
     var contentDelegate: ContentDelegate?
@@ -37,6 +41,7 @@ class UserProfileScreenViewController: UIViewController, ContentConformer {
     //MARK: - fileprivates
     
     fileprivate var calculatedConstraints = false
+    fileprivate var emailConfirmationRequested = false
     
     //MARK: - Lifecycle
     
@@ -69,9 +74,24 @@ class UserProfileScreenViewController: UIViewController, ContentConformer {
 
 extension UserProfileScreenViewController {
     
-    func setup() {
+    fileprivate func setup() {
         
         header.updateTitle(NSLocalizedString("My Profile", comment: ""))
+        
+        emailNotVerifiedLabel.textColor = .red
+        emailNotVerifiedLabel.font = UIFont.dntLatoRegularFontWith(size: UIFont.dntLabelFontSize)
+        emailNotVerifiedLabel.text = NSLocalizedString("Your email is not verified!", comment: "")
+        
+        let themeManager = ThemeManager.shared
+        themeManager.setDCBlueTheme(
+            to: resendEmailVerificationButton,
+            ofType: .ButtonOptionStyle(
+                label: NSLocalizedString("Resend verification email", comment: ""),
+                selected: false
+            )
+        )
+        
+        userEmailConfirationUpdated()
         
         guard let data = UserDataContainer.shared.userInfo else { return }
         
@@ -120,8 +140,22 @@ extension UserProfileScreenViewController {
         userAvatarImage.layer.cornerRadius = userAvatarImage.frame.size.width / 2
         userAvatarImage.layer.masksToBounds = true
         
-        let themeManager = ThemeManager.shared
         themeManager.setDCBlueTheme(to: editProfileButton, ofType: .ButtonDefault)
+    }
+    
+    fileprivate func userEmailConfirationUpdated() {
+        
+        let confirmed = UserDataContainer.shared.getUserEmailConfirmed()
+        
+        verifiedIconImage.isHidden = !confirmed
+        emailVerificationViewHeightConstraint.constant = confirmed ? 0 : 80
+        emailNotVerifiedLabel.isHidden = confirmed
+        resendEmailVerificationButton.isHidden = confirmed
+        
+    }
+    
+    fileprivate func sendNotificationForUserEmailConfirmationUpdate() {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "userEmailConfirmationUpdated"), object: nil)
     }
     
 }
@@ -140,9 +174,52 @@ extension UserProfileScreenViewController: InitialPageHeaderViewDelegate {
 
 extension UserProfileScreenViewController {
     
-    @IBAction func editButtonPressed(_ sender: Any) {
+    @IBAction func editButtonPressed(_ sender: UIButton) {
         let vcID = String(describing: EditUserProfileScreenViewController.self)
         contentDelegate?.requestLoadViewController(vcID, nil)
+    }
+    
+    @IBAction func onResendUserEmailVerificationPressed(_ sender: UIButton) {
+        
+        if emailConfirmationRequested == true {
+            return
+        }
+        
+        emailConfirmationRequested = true
+        
+        // Set email confirmation button to disabled state
+        let themeManager = ThemeManager.shared
+        themeManager.setDCBlueTheme(
+            to: resendEmailVerificationButton,
+            ofType: .ButtonOptionStyle(
+                label: NSLocalizedString("Resend verification email", comment: ""),
+                selected: false
+            )
+        )
+        
+        APIProvider.requestEmailConfirmation() { [weak self] confirmed, error in
+            
+            if let error = error {
+                
+                if error.errors.first == ErrorKeys.userEmailConfirmed.rawValue {
+                    UserDataContainer.shared.setUserEmailConfirmed(true)
+                    self?.userEmailConfirationUpdated()
+                    self?.sendNotificationForUserEmailConfirmationUpdate()
+                }
+                
+                UIAlertController.show(
+                    controllerWithTitle: NSLocalizedString("Error", comment: ""),
+                    message: error.toNSError().localizedDescription,
+                    buttonTitle: NSLocalizedString("Ok", comment: "")
+                )
+                
+                return
+            }
+            
+            UserDataContainer.shared.setUserEmailConfirmed(true)
+            self?.userEmailConfirationUpdated()
+            self?.sendNotificationForUserEmailConfirmationUpdate()
+        }
     }
     
 }

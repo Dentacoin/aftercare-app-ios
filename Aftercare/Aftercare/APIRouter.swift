@@ -104,6 +104,11 @@ struct APIRouter: APIRouterProtocol {
         var route: String = "user"
     }
     
+    struct EmailConfirmation: Readable {
+        typealias EParameters = Dictionary<String, String>
+        var route: String = "confirm"
+    }
+    
     struct RequestOralHealth: Readable {
         typealias EParameters = Dictionary<String, String>
         var route: String = "oralhealth"

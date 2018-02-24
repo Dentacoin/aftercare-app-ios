@@ -90,11 +90,6 @@ class SignUpScreenViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.addListenersForKeyboard()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
         self.uploadUserAvatarButton.delegate = self
         self.firstNameTextField.delegate = self
@@ -104,12 +99,21 @@ class SignUpScreenViewController : UIViewController {
         self.captchaCodeTextField.delegate = self
         
         self.addListenersForKeyboard()
-        
         setup()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.captchaCodeTextField.text = ""
+        self.captchaView.invalidate()
+        
+        self.addListenersForKeyboard()
     }
     
     deinit {
         self.removeListenersForKeyboard()
+        self.captchaView.disposeCaptcha()
     }
     
     //MARK: - resign first responder

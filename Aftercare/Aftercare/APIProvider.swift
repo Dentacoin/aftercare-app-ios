@@ -415,6 +415,31 @@ struct APIProvider : APIProviderProtocol {
         }
     }
     
+    static func requestEmailConfirmation (
+        _ onComplete: @escaping (_ confirmationResent: Bool, _ error: ErrorData?) -> Void
+        ) {
+
+        var errorData: ErrorData?
+        let urlRequest = APIRouter.EmailConfirmation.get()
+        Alamofire.request(urlRequest).responseDecodableObject() { (response: DataResponse<[TransactionData]>) in
+            switch response.result {
+            case .success:
+                onComplete(true, nil)
+                break
+            case .failure(let error):
+                let nserror = error as NSError
+                errorData = ErrorData(code: nserror.code, errors: [nserror.localizedDescription])
+                break
+            }
+        }.responseDecodableObject() { (response: DataResponse<ErrorData>) in
+            if let error = response.result.value {
+                onComplete(false, error)
+            } else if let error = errorData {
+                onComplete(false, error)
+            }
+        }
+    }
+    
     static func requestCaptcha(_ onComplete: @escaping (CaptchaData?, ErrorData?) -> Void) {
         var errorData: ErrorData?
         let urlRequest = APIRouter.RequestCaptcha.get()

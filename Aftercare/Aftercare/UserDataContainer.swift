@@ -284,6 +284,17 @@ class UserDataContainer {
         return nil
     }
     
+    open func setUserEmailConfirmed(_ state: Bool) {
+        UserDefaults.standard.set(state, forKey: "UserEmailConfirmed")
+    }
+    
+    open func getUserEmailConfirmed() -> Bool {
+        if let state = UserDefaults.standard.value(forKey: "UserEmailConfirmed") as? Bool {
+            return state
+        }
+        return false
+    }
+    
     //MARK: - Tooltip & Tutorials help methods
     
     open func getTutorialsToggle() -> Bool {

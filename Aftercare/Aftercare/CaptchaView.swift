@@ -56,30 +56,13 @@ class CaptchaView: UIView {
         stopTimer()
     }
     
-    // MARK: - Internal
+    // MARK: - Public methods
     
-    fileprivate func setup() {
+    func requestNewCaptcha() {
         
-        guard let view = loadViewFromNib() else { return }
-        addSubview(view)
-        contentView = view
-        contentView?.translatesAutoresizingMaskIntoConstraints = false
-        contentView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        contentView?.backgroundColor = .clear
-        
-        if state == .invalid {
-            requestNewCaptcha()
+        if state != .invalid {
+            return
         }
-    }
-    
-    fileprivate func loadViewFromNib() -> UIView? {
-        let bundle = Bundle(identifier: nibName)
-        let nib = UINib(nibName: nibName, bundle: bundle)
-        return nib.instantiate(withOwner: self, options: nil).first as? UIView
-    }
-    
-    fileprivate func requestNewCaptcha() {
-        
         state = .requested
         
         APIProvider.requestCaptcha() { [weak self] data, error in
@@ -110,6 +93,38 @@ class CaptchaView: UIView {
             
         }
         
+    }
+    
+    func invalidate() {
+        //invalidate current captcha and request new one
+        disposeCaptcha()
+        requestNewCaptcha()
+    }
+    
+    func disposeCaptcha() {
+        //invalidate current captcha
+        stopTimer()
+        state = .invalid
+        image.image = nil
+        timerTrailingConstraint.constant = 0
+    }
+    
+    // MARK: - Internal
+    
+    fileprivate func setup() {
+        
+        guard let view = loadViewFromNib() else { return }
+        addSubview(view)
+        contentView = view
+        contentView?.translatesAutoresizingMaskIntoConstraints = false
+        contentView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        contentView?.backgroundColor = .clear
+    }
+    
+    fileprivate func loadViewFromNib() -> UIView? {
+        let bundle = Bundle(identifier: nibName)
+        let nib = UINib(nibName: nibName, bundle: bundle)
+        return nib.instantiate(withOwner: self, options: nil).first as? UIView
     }
     
     fileprivate func startTimer() {

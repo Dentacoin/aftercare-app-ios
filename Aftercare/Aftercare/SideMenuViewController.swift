@@ -21,6 +21,7 @@ class SideMenuViewController: UIViewController {
     @IBOutlet weak var fullNameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var avatarImage: UIImageView!
+    @IBOutlet weak var verifiedIconImage: UIImageView!
     
     @IBOutlet weak var headerContentTopPadding: NSLayoutConstraint!
     @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
@@ -129,6 +130,8 @@ class SideMenuViewController: UIViewController {
     
     fileprivate func setup() {
         
+        onUserEmailConfirmationUpdated()
+        
         menuOptionsTable.backgroundColor = .clear
         menuOptionsTable.separatorStyle = .none
         menuOptionsTable.register(
@@ -158,6 +161,13 @@ class SideMenuViewController: UIViewController {
             self,
             selector: Selector.resetTooltipsSelector,
             name: NSNotification.Name(rawValue: "resetTooltips"),
+            object: nil
+        )
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: Selector.userEmailConfirmationUpdated,
+            name: NSNotification.Name(rawValue: "userEmailConfirmationUpdated"),
             object: nil
         )
         
@@ -273,6 +283,10 @@ class SideMenuViewController: UIViewController {
     @objc func onResetTooltips() {
         self.tableViewTooltipRefresh = false
         menuOptionsTable.reloadData()
+    }
+    
+    @objc func onUserEmailConfirmationUpdated() {
+        verifiedIconImage.isHidden = !UserDataContainer.shared.getUserEmailConfirmed()
     }
     
     deinit {
@@ -439,5 +453,6 @@ fileprivate enum ActionIDs: String {
 
 fileprivate extension Selector {
     static let resetTooltipsSelector = #selector(SideMenuViewController.onResetTooltips)
+    static let userEmailConfirmationUpdated = #selector(SideMenuViewController.onUserEmailConfirmationUpdated)
 }
 
