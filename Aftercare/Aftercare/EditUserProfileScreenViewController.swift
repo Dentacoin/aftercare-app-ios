@@ -17,6 +17,7 @@ class EditUserProfileScreenViewController: UIViewController, ContentConformer {
     
     @IBOutlet weak var headerView: UIView?
     @IBOutlet weak var uploadAvatarButton: UploadImageButton!
+    @IBOutlet weak var cancelIconImage: UIImageView!
     @IBOutlet weak var firstNameTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var lastNameTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var passwordTextField: SkyFloatingLabelTextField!
@@ -274,7 +275,10 @@ extension EditUserProfileScreenViewController {
             ofType: .ButtonOptionStyle(label: femaleButtonLabel, selected: self.genderType == .female ? true : false)
         )
         if let image = UserDataContainer.shared.userAvatar {
+            self.cancelIconImage.isHidden = false
             self.uploadAvatarButton.setPlaceholderImage(image)
+        } else {
+            self.cancelIconImage.isHidden = true
         }
         
     }
@@ -433,6 +437,7 @@ extension EditUserProfileScreenViewController: UploadImageButtonDelegate {
         uiIsBlocked = false
         UserDataContainer.shared.userAvatar = image
         newAvatarUploaded = true
+        cancelIconImage.isHidden = false
     }
     
 }

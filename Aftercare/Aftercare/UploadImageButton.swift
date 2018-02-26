@@ -14,6 +14,7 @@ class UploadImageButton: UIButton {
     weak var delegate: UploadImageButtonDelegate?
     
     fileprivate var imagePicker = UIImagePickerController()
+    var hasLoadedAvatar: Bool = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -37,6 +38,7 @@ class UploadImageButton: UIButton {
     //MARK: - Public API
     
     func setPlaceholderImage(_ image: UIImage) {
+        self.hasLoadedAvatar = true
         self.setBackgroundImage(image, for: .normal)
         self.setNeedsLayout()
     }
@@ -118,14 +120,10 @@ extension UploadImageButton : UIImagePickerControllerDelegate {
             delegate?.optionsCanceled()
             
         } else {
-            
             imagePicker.sourceType = sourceType
             imagePicker.allowsEditing = true
-            //imagePicker.preferredContentSize = CGSize(width: 512, height: 512)
             imagePicker.delegate = self
-            
             delegate?.optionPicked(imagePicker)
-            
         }
         
     }
@@ -151,6 +149,8 @@ extension UploadImageButton : UIImagePickerControllerDelegate {
         }
         
         if let img = choosedImage {
+            
+            hasLoadedAvatar = true
             
             choosedImageMaxSize = img.resize(
                 toSize: CGSize(width: 512, height: 512),

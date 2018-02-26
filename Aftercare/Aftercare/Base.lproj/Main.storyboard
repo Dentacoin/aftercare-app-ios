@@ -29,7 +29,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="799" y="136"/>
+            <point key="canvasLocation" x="57" y="134"/>
         </scene>
         <!--Side Menu View Controller-->
         <scene sceneID="3Jx-nX-JhS">
@@ -166,7 +166,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fdp-Yg-SDR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1277" y="136"/>
+            <point key="canvasLocation" x="847" y="134"/>
         </scene>
         <!--Main Menu View Controller-->
         <scene sceneID="qYT-bK-Elw">
@@ -182,7 +182,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C5O-CC-BD7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1746" y="136"/>
+            <point key="canvasLocation" x="1545" y="135"/>
         </scene>
         <!--User Profile Screen View Controller-->
         <scene sceneID="28Y-V0-Rza">
@@ -518,6 +518,13 @@
                                             <constraint firstItem="asz-9N-OHV" firstAttribute="width" secondItem="J8h-Oa-MvK" secondAttribute="width" id="Zvl-pj-wep"/>
                                         </constraints>
                                     </stackView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cancelIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Ad9-2H-8zx">
+                                        <rect key="frame" x="226" y="24" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Ad9-2H-8zx" secondAttribute="height" multiplier="1:1" id="5wX-do-g8D"/>
+                                            <constraint firstAttribute="width" constant="20" id="hIm-V0-1Nz"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="6UT-Ib-iop" firstAttribute="width" secondItem="YUe-lw-1pZ" secondAttribute="width" multiplier="0.92" id="62a-bt-TgH"/>
@@ -526,10 +533,12 @@
                                     <constraint firstAttribute="bottom" secondItem="J8h-Oa-MvK" secondAttribute="bottom" constant="20" id="ItF-HM-YdL"/>
                                     <constraint firstAttribute="trailing" secondItem="J8h-Oa-MvK" secondAttribute="trailing" id="LbA-gG-AXB"/>
                                     <constraint firstItem="YUe-lw-1pZ" firstAttribute="centerX" secondItem="1SF-uH-Bc2" secondAttribute="centerX" id="XZD-VH-TZb"/>
+                                    <constraint firstItem="Ad9-2H-8zx" firstAttribute="trailing" secondItem="6UT-Ib-iop" secondAttribute="trailing" constant="12" id="aO0-rK-owG"/>
                                     <constraint firstItem="J8h-Oa-MvK" firstAttribute="leading" secondItem="1SF-uH-Bc2" secondAttribute="leading" id="bqs-6U-Uf2"/>
                                     <constraint firstItem="J8h-Oa-MvK" firstAttribute="width" secondItem="1SF-uH-Bc2" secondAttribute="width" id="cGZ-o4-ULm"/>
                                     <constraint firstItem="AcS-pI-C5W" firstAttribute="width" secondItem="1SF-uH-Bc2" secondAttribute="width" multiplier="0.8" id="hIe-44-mUm"/>
                                     <constraint firstItem="6UT-Ib-iop" firstAttribute="centerY" secondItem="YUe-lw-1pZ" secondAttribute="centerY" id="kjf-hr-jCh"/>
+                                    <constraint firstItem="Ad9-2H-8zx" firstAttribute="top" secondItem="6UT-Ib-iop" secondAttribute="top" id="nmb-go-wTF"/>
                                     <constraint firstItem="J8h-Oa-MvK" firstAttribute="top" secondItem="6UT-Ib-iop" secondAttribute="bottom" constant="20" id="ptf-Ro-dBJ"/>
                                 </constraints>
                                 <connections>
@@ -585,6 +594,7 @@
                     <connections>
                         <outlet property="birthDateTextField" destination="b1R-TS-0NV" id="bLA-g0-5aN"/>
                         <outlet property="bottomContentPadding" destination="Apv-da-Fkd" id="Yc2-jo-nPL"/>
+                        <outlet property="cancelIconImage" destination="Ad9-2H-8zx" id="VGb-xC-ply"/>
                         <outlet property="cityCountryTextField" destination="PBk-nA-UQi" id="CYX-xP-NtV"/>
                         <outlet property="deleteProfileButton" destination="fas-5e-4DE" id="Bh2-Ep-IsR"/>
                         <outlet property="femaleButton" destination="r3b-sT-CLm" id="LC2-Zn-Bd4"/>
@@ -608,7 +618,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2740" y="-674"/>
+            <point key="canvasLocation" x="3016.8000000000002" y="-674.21289355322347"/>
         </scene>
         <!--Action Screen View Controller-->
         <scene sceneID="Pz3-78-F0t">
@@ -660,7 +670,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i2K-Or-OyK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2230" y="136"/>
+            <point key="canvasLocation" x="2230" y="134"/>
         </scene>
         <!--Collect Screen View Controller-->
         <scene sceneID="13U-Mk-BHW">
@@ -936,7 +946,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="msO-h3-Et7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2704" y="918"/>
+            <point key="canvasLocation" x="3017" y="918"/>
         </scene>
         <!--Successfully Collected Screen View Controller-->
         <scene sceneID="688-ai-Kes">
@@ -996,7 +1006,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zs7-8p-Nc1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3195" y="919"/>
+            <point key="canvasLocation" x="3798" y="918"/>
         </scene>
         <!--Goals Screen View Controller-->
         <scene sceneID="qkO-Xt-0g2">
@@ -1615,7 +1625,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="evA-My-ouq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2710" y="4765"/>
+            <point key="canvasLocation" x="2946" y="4764"/>
         </scene>
         <!--Thank You Screen View Controller-->
         <scene sceneID="587-R3-AmF">
@@ -1674,7 +1684,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sgB-4m-Crz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3226" y="4765"/>
+            <point key="canvasLocation" x="3678" y="4764"/>
         </scene>
         <!--About Screen View Controller-->
         <scene sceneID="bVA-8J-ISA">
@@ -1781,6 +1791,7 @@ www.dentacoin.com</string>
     </scenes>
     <resources>
         <image name="avatar-container" width="187" height="187"/>
+        <image name="cancelIcon" width="48" height="48"/>
         <image name="dentacareBlueLogo" width="215" height="69"/>
         <image name="dentacoinBlueLogo" width="40" height="40"/>
         <image name="dentacoinSymbol" width="77" height="77"/>
