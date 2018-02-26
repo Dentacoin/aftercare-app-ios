@@ -22,7 +22,6 @@ class NotificationsManager: NSObject {
     
     fileprivate let center = UNUserNotificationCenter.current()
     fileprivate var notificationOptions: UNAuthorizationOptions = [.sound, .alert]
-    fileprivate let defaults = UserDefaults.standard
     fileprivate var notifications: [NotificationDataProtocol] = []
     //MARK: - Public API
     
@@ -36,7 +35,7 @@ class NotificationsManager: NSObject {
     }
     
     open func toggleLocalNotification(withID id: NotificationIdentifiers, _ toggle: Bool) {
-        defaults.set(toggle, forKey: id.rawValue)
+        UserDefaultsManager.shared.setValue(toggle, forKey: id.rawValue)
         let notification = notificationData(byID: id)
         if toggle {
             //schedule notification
@@ -48,7 +47,7 @@ class NotificationsManager: NSObject {
     }
     
     open func localNotificationIsEnabled(withID id: NotificationIdentifiers) -> Bool {
-        return defaults.value(forKey: id.rawValue) as? Bool ?? true//all notifications are enabled by default
+        return UserDefaultsManager.shared.getValue(forKey: id.rawValue) ?? true//all notifications are enabled by default
     }
     
     //MARK: - Private logic
@@ -101,7 +100,7 @@ class NotificationsManager: NSObject {
     fileprivate func scheduleLocalNotifications() {
         for notification in notifications {
             let id = notification.notificationIdentifier.rawValue
-            if let isEnabled = defaults.value(forKey: id) as? Bool {
+            if let isEnabled: Bool = UserDefaultsManager.shared.getValue(forKey: id) {
                 if isEnabled == true {
                     notification.scheduleNotification()
                 }
@@ -223,7 +222,7 @@ extension NotificationsManager: MessagingDelegate {
     }
     
     //    func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
-    //        UserDefaults.standard.set(fcmToken, forKey: "firebase-pushnotifications-token")
+    //        UserDefaultsManager.shared.setValue(fcmToken, forKey: "firebase-pushnotifications-token")
     //    }
 }
 

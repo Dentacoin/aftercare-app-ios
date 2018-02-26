@@ -11,10 +11,6 @@ import UIKit
 
 class EmailProvider: EmailProviderProtocol, UserDataProviderProtocol {
     
-    //MARK: - constants
-    
-    fileprivate let defaults = UserDefaults.standard
-    
     //MARK: - fileprivate vars
     
     fileprivate var loggedIn = false
@@ -26,7 +22,7 @@ class EmailProvider: EmailProviderProtocol, UserDataProviderProtocol {
     
     var firstName: String? {
         get {
-            if let name = defaults.value(forKey: UserDefaultsKeys.FirstName.rawValue) as? String {
+            if let name: String = UserDefaultsManager.shared.getValue(forKey: UserDefaultsKeys.FirstName.rawValue) {
                 return name
             }
             return nil
@@ -35,7 +31,7 @@ class EmailProvider: EmailProviderProtocol, UserDataProviderProtocol {
     
     var lastName: String? {
         get {
-            if let name = defaults.value(forKey: UserDefaultsKeys.LastName.rawValue) as? String {
+            if let name: String = UserDefaultsManager.shared.getValue(forKey: UserDefaultsKeys.LastName.rawValue) {
                 return name
             }
             return nil
@@ -44,7 +40,7 @@ class EmailProvider: EmailProviderProtocol, UserDataProviderProtocol {
     
     var email: String? {
         get {
-            if let emailAddress = defaults.value(forKey: UserDefaultsKeys.Email.rawValue) as? String {
+            if let emailAddress: String = UserDefaultsManager.shared.getValue(forKey: UserDefaultsKeys.Email.rawValue) {
                 return emailAddress
             }
             return nil
@@ -53,7 +49,7 @@ class EmailProvider: EmailProviderProtocol, UserDataProviderProtocol {
     
     var avatarURL: String? {
         get {
-            if let avatar = defaults.value(forKey: UserDefaultsKeys.Avatar.rawValue) as? String {
+            if let avatar: String = UserDefaultsManager.shared.getValue(forKey: UserDefaultsKeys.Avatar.rawValue) {
                 return avatar
             }
             return nil
@@ -62,7 +58,7 @@ class EmailProvider: EmailProviderProtocol, UserDataProviderProtocol {
     
     var gender: String? {
         get {
-            if let gend = defaults.value(forKey: UserDefaultsKeys.Gender.rawValue) as? String {
+            if let gend: String = UserDefaultsManager.shared.getValue(forKey: UserDefaultsKeys.Gender.rawValue) {
                 return gend
             }
             return nil
@@ -77,7 +73,7 @@ class EmailProvider: EmailProviderProtocol, UserDataProviderProtocol {
     
     var password: String? {
         get {
-            if let pass = defaults.value(forKey: UserDefaultsKeys.Password.rawValue) as? String {
+            if let pass: String = UserDefaultsManager.shared.getValue(forKey: UserDefaultsKeys.Password.rawValue) {
                 return pass
             }
             return nil
@@ -88,23 +84,22 @@ class EmailProvider: EmailProviderProtocol, UserDataProviderProtocol {
     
     func logout() {
         
-        defaults.setValue(nil, forKey: UserDefaultsKeys.Token.rawValue)
-        defaults.setValue(nil, forKey: UserDefaultsKeys.TokenValidTo.rawValue)
-        defaults.setValue(nil, forKey: UserDefaultsKeys.Email.rawValue)
-        defaults.setValue(nil, forKey: UserDefaultsKeys.Password.rawValue)
-        defaults.setValue(nil, forKey: UserDefaultsKeys.Avatar.rawValue)
-        defaults.setValue(nil, forKey: UserDefaultsKeys.FirstName.rawValue)
-        defaults.setValue(nil, forKey: UserDefaultsKeys.LastName.rawValue)
-        defaults.setValue(nil, forKey: UserDefaultsKeys.Gender.rawValue)
+        UserDefaultsManager.shared.clearValue(forKey: UserDefaultsKeys.Token.rawValue)
+        UserDefaultsManager.shared.clearValue(forKey: UserDefaultsKeys.Token.rawValue)
+        UserDefaultsManager.shared.clearValue(forKey: UserDefaultsKeys.TokenValidTo.rawValue)
+        UserDefaultsManager.shared.clearValue(forKey: UserDefaultsKeys.Email.rawValue)
+        UserDefaultsManager.shared.clearValue(forKey: UserDefaultsKeys.Password.rawValue)
+        UserDefaultsManager.shared.clearValue(forKey: UserDefaultsKeys.Avatar.rawValue)
+        UserDefaultsManager.shared.clearValue(forKey: UserDefaultsKeys.FirstName.rawValue)
+        UserDefaultsManager.shared.clearValue(forKey: UserDefaultsKeys.LastName.rawValue)
+        UserDefaultsManager.shared.clearValue(forKey: UserDefaultsKeys.Gender.rawValue)
         
         loggedIn = false
     }
     
     func saveUserSession(_ session: UserSessionData) {
-        self.defaults.setValue(session.token, forKey: "token")
-        self.defaults.setValue(session.validTo, forKey: "token_valid_to")
-        defaults.synchronize()
-        
+        UserDefaultsManager.shared.setGlobalValue(session.token, forKey: "token")
+        UserDefaultsManager.shared.setGlobalValue(session.validTo, forKey: "token_valid_to")
     }
     
     //MARK: - fileprivate methods

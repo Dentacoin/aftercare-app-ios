@@ -408,13 +408,12 @@ class ActionView: UIView {
             guard let type = self.actionViewRecordType else { return }
             let record = ActionRecordData(startTime: startTime.iso8601, endTime: endTime.iso8601, type: type)
             
-            let defaults = UserDefaults.standard
-            if defaults.value(forKey: "startOf90DaysPeriod") == nil {
+            if UserDefaultsManager.shared.getValue(forKey: "startOf90DaysPeriod") == nil {
                 //If there is no start date to the 90 days period we create one
                 //this means the 90 days period starts from now
                 let now = Date()
                 let startOfThePeriod = now.iso8601
-                defaults.set(startOfThePeriod, forKey: "startOf90DaysPeriod")
+                UserDefaultsManager.shared.setValue(startOfThePeriod, forKey: "startOf90DaysPeriod")
             }
             
             var allRecords = [record]

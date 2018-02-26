@@ -82,8 +82,7 @@ struct SystemMethods {
             let path = fileInDocumentsDirectory(filename: imageId + ".jpg")
             let jpgImageData: Data? = UIImageJPEGRepresentation(image, 1.0)
             try! jpgImageData?.write(to: URL(fileURLWithPath: path))
-            UserDefaults.standard.set(path, forKey: imageId)
-            UserDefaults.standard.synchronize()
+            UserDefaultsManager.shared.setValue(path, forKey: imageId)
         }
         
         //decode image
@@ -113,8 +112,7 @@ struct SystemMethods {
                 print("SystemMethods.Goals : Can't retreive goalsData")
                 return nil
             }
-            let defaults = UserDefaults.standard
-            guard var achievedGoals = defaults.value(forKey: DefaultsKeyAchievedGoals) as? [String] else {
+            guard var achievedGoals: [String] = UserDefaultsManager.shared.getValue(forKey: DefaultsKeyAchievedGoals) else {
                 print("SystemMethods.Goals :  : no record for achieved goals")
                 
                 var newGoalsIDs: [String] = []
@@ -127,8 +125,7 @@ struct SystemMethods {
                 
                 //save all achieved in Defaults and return all achieved
                 if newGoalsIDs.count > 0 {
-                    defaults.set(newGoalsIDs, forKey: DefaultsKeyAchievedGoals)
-                    defaults.synchronize()
+                    UserDefaultsManager.shared.setValue(newGoalsIDs, forKey: DefaultsKeyAchievedGoals)
                 }
                 
                 return nil
@@ -152,8 +149,7 @@ struct SystemMethods {
             
             //save all in User Defaults
             if achievedGoals.count > 0 {
-                defaults.set(achievedGoals, forKey: DefaultsKeyAchievedGoals)
-                defaults.synchronize()
+                UserDefaultsManager.shared.setValue(achievedGoals, forKey: DefaultsKeyAchievedGoals)
             }
             
             return newlyAchieved

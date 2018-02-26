@@ -14,10 +14,6 @@ class TwitterProvider {
     static let shared = TwitterProvider()
     private init() { }
     
-    //MARK: - fileprivate constants
-    
-    fileprivate let defaults = UserDefaults.standard
-    
     //MARK: - fileprivate vars
     
     fileprivate var loggedIn = false
@@ -27,7 +23,7 @@ class TwitterProvider {
     
     var userID: String? {
         get {
-            if let id = defaults.value(forKey: TwitterDefaultsKeys.UserTwitterID.rawValue) as? String {
+            if let id: String = UserDefaultsManager.shared.getValue(forKey: TwitterDefaultsKeys.UserTwitterID.rawValue) {
                 return id
             }
             return nil
@@ -36,7 +32,7 @@ class TwitterProvider {
     
     var token: String? {
         get {
-            if let token = defaults.value(forKey: TwitterDefaultsKeys.Token.rawValue) as? String {
+            if let token: String = UserDefaultsManager.shared.getValue(forKey: TwitterDefaultsKeys.Token.rawValue) {
                 return token
             }
             return nil
@@ -45,7 +41,7 @@ class TwitterProvider {
     
     var tokenSecret: String? {
         get {
-            if let secret = defaults.value(forKey: TwitterDefaultsKeys.TokenSecret.rawValue) as? String {
+            if let secret: String = UserDefaultsManager.shared.getValue(forKey: TwitterDefaultsKeys.TokenSecret.rawValue) {
                 return secret
             }
             return nil
@@ -78,10 +74,10 @@ extension TwitterProvider: TwitterProviderProtocol {
                 )
                 
                 var fullNameArr = session.userName.components(separatedBy: " ")
-                self?.defaults.set(fullNameArr[0], forKey: TwitterDefaultsKeys.FirstName.rawValue)
+                UserDefaultsManager.shared.setValue(fullNameArr[0], forKey: TwitterDefaultsKeys.FirstName.rawValue)
                 
                 if fullNameArr.count > 1 {
-                    self?.defaults.set(fullNameArr[1], forKey: TwitterDefaultsKeys.LastName.rawValue)
+                    UserDefaultsManager.shared.setValue(fullNameArr[1], forKey: TwitterDefaultsKeys.LastName.rawValue)
                 }
                 
                 //Request user email address required for login on the dentacoin server
@@ -126,7 +122,7 @@ extension TwitterProvider: UserDataProviderProtocol {
     
     var email: String? {
         get {
-            if let emailAddress = defaults.value(forKey: TwitterDefaultsKeys.Email.rawValue) as? String {
+            if let emailAddress: String = UserDefaultsManager.shared.getValue(forKey: TwitterDefaultsKeys.Email.rawValue) {
                 return emailAddress
             }
             return nil
@@ -135,7 +131,7 @@ extension TwitterProvider: UserDataProviderProtocol {
     
     var firstName: String? {
         get {
-            if let name = defaults.value(forKey: TwitterDefaultsKeys.FirstName.rawValue) as? String {
+            if let name: String = UserDefaultsManager.shared.getValue(forKey: TwitterDefaultsKeys.FirstName.rawValue) {
                 return name
             }
             return nil
@@ -144,7 +140,7 @@ extension TwitterProvider: UserDataProviderProtocol {
     
     var lastName: String? {
         get {
-            if let name = defaults.value(forKey: TwitterDefaultsKeys.LastName.rawValue) as? String {
+            if let name: String = UserDefaultsManager.shared.getValue(forKey: TwitterDefaultsKeys.LastName.rawValue) {
                 return name
             }
             return nil
@@ -153,7 +149,7 @@ extension TwitterProvider: UserDataProviderProtocol {
     
     var avatarURL: String? {
         get {
-            if let avatar = defaults.value(forKey: TwitterDefaultsKeys.Avatar.rawValue) as? String {
+            if let avatar: String = UserDefaultsManager.shared.getValue(forKey: TwitterDefaultsKeys.Avatar.rawValue) {
                 return avatar
             }
             return nil
@@ -162,7 +158,7 @@ extension TwitterProvider: UserDataProviderProtocol {
     
     var gender: String? {
         get {
-            if let gend = defaults.value(forKey: TwitterDefaultsKeys.Gender.rawValue) as? String {
+            if let gend: String = UserDefaultsManager.shared.getValue(forKey: TwitterDefaultsKeys.Gender.rawValue) {
                 return gend
             }
             return nil

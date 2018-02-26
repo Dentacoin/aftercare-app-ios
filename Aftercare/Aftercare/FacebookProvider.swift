@@ -14,10 +14,6 @@ class FacebookProvider {
     static let shared = FacebookProvider()
     private init() { }
     
-    //MARK: - fileprivate constants
-    
-    fileprivate let defaults = UserDefaults.standard
-    
     //MARK: - fileprivate vars
     
     fileprivate var userFacebookID: String?
@@ -30,7 +26,7 @@ class FacebookProvider {
     var userID: String? {
         get {
             
-            if let id = defaults.value(forKey: FacebookDefaultsKeys.UserFacebookID.rawValue) as? String {
+            if let id: String = UserDefaultsManager.shared.getValue(forKey: FacebookDefaultsKeys.UserFacebookID.rawValue) {
                 return id
             }
             return nil
@@ -39,7 +35,7 @@ class FacebookProvider {
     
     var token: String? {
         get {
-            if let token = defaults.value(forKey: FacebookDefaultsKeys.Token.rawValue) as? String {
+            if let token: String = UserDefaultsManager.shared.getValue(forKey: FacebookDefaultsKeys.Token.rawValue) {
                 return token
             }
             return nil
@@ -48,7 +44,7 @@ class FacebookProvider {
     
     var tokenValidTo: Date? {
         get {
-            if let date = defaults.value(forKey: FacebookDefaultsKeys.TokenValidTo.rawValue) as? Date {
+            if let date: Date = UserDefaultsManager.shared.getValue(forKey: FacebookDefaultsKeys.TokenValidTo.rawValue) {
                 return date
             }
             return nil
@@ -106,10 +102,9 @@ class FacebookProvider {
                         sessionData.updateValue(id, forKey: FacebookDefaultsKeys.UserFacebookID.rawValue)
                     }
                     
-                    self.defaults.set(token, forKey: FacebookDefaultsKeys.Token.rawValue)
-                    self.defaults.set(result?.token.expirationDate, forKey: FacebookDefaultsKeys.TokenValidTo.rawValue)
-                    self.defaults.set(result?.token.userID, forKey: FacebookDefaultsKeys.UserFacebookID.rawValue)
-                    self.defaults.synchronize()
+                    UserDefaultsManager.shared.setValue(token, forKey: FacebookDefaultsKeys.Token.rawValue)
+                    UserDefaultsManager.shared.setValue(result?.token.expirationDate, forKey: FacebookDefaultsKeys.TokenValidTo.rawValue)
+                    UserDefaultsManager.shared.setValue(result?.token.userID, forKey: FacebookDefaultsKeys.UserFacebookID.rawValue)
                     
                     print("token: \(token), userID: \(String(describing: result?.token.userID)), expires on: \(String(describing: result?.token.expirationDate))")
                     
@@ -123,7 +118,7 @@ class FacebookProvider {
     
     fileprivate func validateCurrentSession(_ onCompletion: (_ valid: Bool) -> Void) {
         let now = Date()
-        if let tokenValidTo = defaults.value(forKey: FacebookDefaultsKeys.TokenValidTo.rawValue) as? Date {
+        if let tokenValidTo: Date = UserDefaultsManager.shared.getValue(forKey: FacebookDefaultsKeys.TokenValidTo.rawValue) {
             if now < tokenValidTo {
                 //we still have valid session
                 loggedIn = true
@@ -155,28 +150,27 @@ class FacebookProvider {
                     var sessionData: [String : Any] = [:]
                     
                     if let firstName = data["first_name"] as? String {
-                        self.defaults.set(firstName, forKey: FacebookDefaultsKeys.FirstName.rawValue)
+                        UserDefaultsManager.shared.setValue(firstName, forKey: FacebookDefaultsKeys.FirstName.rawValue)
                     }
                     if let lastName = data["last_name"] as? String {
-                        self.defaults.set(lastName, forKey: FacebookDefaultsKeys.LastName.rawValue)
+                        UserDefaultsManager.shared.setValue(lastName, forKey: FacebookDefaultsKeys.LastName.rawValue)
                     }
                     if let email = data["email"] as? String {
-                        self.defaults.set(email, forKey: FacebookDefaultsKeys.Email.rawValue)
+                        UserDefaultsManager.shared.setValue(email, forKey: FacebookDefaultsKeys.Email.rawValue)
                         sessionData.updateValue(email, forKey: "email")
                     }
                     if let gender = data["gender"] as? String {
-                        self.defaults.set(gender, forKey: FacebookDefaultsKeys.Gender.rawValue)
+                        UserDefaultsManager.shared.setValue(gender, forKey: FacebookDefaultsKeys.Gender.rawValue)
                     }
                     
                     if let picUserData = data["picture"] as? NSDictionary {
                         if let picData = picUserData["data"] as? NSDictionary {
                             if let url = picData["url"] as? String {
-                                self.defaults.set(url, forKey: FacebookDefaultsKeys.AvatarURL.rawValue)
+                                UserDefaultsManager.shared.setValue(url, forKey: FacebookDefaultsKeys.AvatarURL.rawValue)
                             }
                         }
                     }
                     
-                    self.defaults.synchronize()
                     onComplete(sessionData, nil)
                 }
             })
@@ -250,7 +244,7 @@ extension FacebookProvider: UserDataProviderProtocol {
     
     var email: String? {
         get {
-            if let email = defaults.value(forKey: FacebookDefaultsKeys.Email.rawValue) as? String {
+            if let email: String = UserDefaultsManager.shared.getValue(forKey: FacebookDefaultsKeys.Email.rawValue) {
                 return email
             }
             return nil
@@ -259,7 +253,7 @@ extension FacebookProvider: UserDataProviderProtocol {
     
     var avatarURL: String? {
         get {
-            if let url = defaults.value(forKey: FacebookDefaultsKeys.AvatarURL.rawValue) as? String {
+            if let url: String = UserDefaultsManager.shared.getValue(forKey: FacebookDefaultsKeys.AvatarURL.rawValue) {
                 return url
             }
             return nil
@@ -268,7 +262,7 @@ extension FacebookProvider: UserDataProviderProtocol {
     
     var firstName: String? {
         get {
-            if let name = defaults.value(forKey: FacebookDefaultsKeys.FirstName.rawValue) as? String {
+            if let name: String = UserDefaultsManager.shared.getValue(forKey: FacebookDefaultsKeys.FirstName.rawValue) {
                 return name
             }
             return nil
@@ -277,7 +271,7 @@ extension FacebookProvider: UserDataProviderProtocol {
     
     var lastName: String? {
         get {
-            if let name = defaults.value(forKey: FacebookDefaultsKeys.LastName.rawValue) as? String {
+            if let name: String = UserDefaultsManager.shared.getValue(forKey: FacebookDefaultsKeys.LastName.rawValue) {
                 return name
             }
             return nil
@@ -286,7 +280,7 @@ extension FacebookProvider: UserDataProviderProtocol {
     
     var gender: String? {
         get {
-            if let gend = defaults.value(forKey: FacebookDefaultsKeys.Gender.rawValue) as? String {
+            if let gend: String = UserDefaultsManager.shared.getValue(forKey: FacebookDefaultsKeys.Gender.rawValue) {
                 return gend
             }
             return nil

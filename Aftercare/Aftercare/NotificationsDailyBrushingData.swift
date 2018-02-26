@@ -18,10 +18,8 @@ struct NotificationsDailyBrushingData: NotificationDataProtocol {
     //MARK: - Public
     
     init() {
-        let defaults = UserDefaults.standard
-        guard let _ = defaults.value(forKey: notificationIdentifier.rawValue) else {
-            defaults.set(true, forKey: notificationIdentifier.rawValue)
-            defaults.synchronize()
+        guard let _: Bool = UserDefaultsManager.shared.getValue(forKey: notificationIdentifier.rawValue) else {
+            UserDefaultsManager.shared.setValue(true, forKey: notificationIdentifier.rawValue)
             return
         }
     }

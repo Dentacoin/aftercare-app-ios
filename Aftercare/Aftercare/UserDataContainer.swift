@@ -13,11 +13,17 @@ class UserDataContainer {
     
     //MARK: - fileprivate properties
     
-    fileprivate let defaults = UserDefaults.standard
-    
     fileprivate var avatar: UIImage?
     fileprivate var emergencyScreenshot: UIImage?
-    fileprivate var userData: UserData?
+    fileprivate var userData: UserData? {
+        didSet {
+            if let data = userData {
+                if UserDefaultsManager.shared.userKey != data.email {
+                    UserDefaultsManager.shared.userKey = data.email
+                }
+            }
+        }
+    }
     fileprivate var tooltipsSessionStates: [String : Bool] = [:]
     
     //MARK: - Local model persistent file names
@@ -101,13 +107,13 @@ class UserDataContainer {
     
     var isMorningRoutineDone: Bool {
         get {
-            if let lastDoneMorningRoutine = defaults.value(forKey: "MorningRoutineDone") as? String {
+            if let lastDoneMorningRoutine: String = UserDefaultsManager.shared.getValue(forKey: "MorningRoutineDone") {
                 guard let date = lastDoneMorningRoutine.dateFromISO8601 else { return false }
                 let diff = Calendar.current.dateComponents([.day], from: date, to: Date())
                 if diff.day == 0 {
                     return true
                 } else {
-                    defaults.set(nil, forKey: "MorningRoutineDone")
+                    UserDefaultsManager.shared.clearValue(forKey: "MorningRoutineDone")
                     return false
                 }
             }
@@ -116,22 +122,22 @@ class UserDataContainer {
         set {
             if newValue {
                 let now = Date().iso8601
-                defaults.set(now, forKey: "MorningRoutineDone")
+                UserDefaultsManager.shared.setValue(now, forKey: "MorningRoutineDone")
             } else {
-                defaults.set(nil, forKey: "MorningRoutineDone")
+                UserDefaultsManager.shared.clearValue(forKey: "MorningRoutineDone")
             }
         }
     }
     
     var isEveningRoutineDone: Bool {
         get {
-            if let lastDoneMorningRoutine = defaults.value(forKey: "EveningRoutineDone") as? String {
+            if let lastDoneMorningRoutine: String = UserDefaultsManager.shared.getValue(forKey: "EveningRoutineDone") {
                 guard let date = lastDoneMorningRoutine.dateFromISO8601 else { return false }
                 let diff = Calendar.current.dateComponents([.day], from: date, to: Date())
                 if diff.day == 0 {
                     return true
                 } else {
-                    defaults.set(nil, forKey: "EveningRoutineDone")
+                    UserDefaultsManager.shared.clearValue(forKey: "EveningRoutineDone")
                     return false
                 }
             }
@@ -140,9 +146,9 @@ class UserDataContainer {
         set {
             if newValue {
                 let now = Date().iso8601
-                defaults.set(now, forKey: "EveningRoutineDone")
+                UserDefaultsManager.shared.setValue(now, forKey: "EveningRoutineDone")
             } else {
-                defaults.set(nil, forKey: "EveningRoutineDone")
+                UserDefaultsManager.shared.clearValue(forKey: "EveningRoutineDone")
             }
         }
     }
@@ -235,10 +241,10 @@ class UserDataContainer {
     
     var hasValidSession: Bool {
         get {
-            if let _ = defaults.value(forKey: "token") {
+            if let _: String = UserDefaultsManager.shared.getGlobalValue(forKey: "token") {
                 //check for email session only
                 let now = Date()
-                if let tokenValidTo = defaults.value(forKey: "token_valid_to") as? String {
+                if let tokenValidTo: String = UserDefaultsManager.shared.getGlobalValue(forKey: "token_valid_to") {
                     if let validToDate = SystemMethods.Utils.dateFrom(string: tokenValidTo) {
                         if now < validToDate {
                             //we still have valid session
@@ -253,7 +259,7 @@ class UserDataContainer {
     
     var sessionToken: String? {
         get {
-            if let token = defaults.value(forKey: "token") as? String {
+            if let token: String = UserDefaultsManager.shared.getGlobalValue(forKey: "token") {
                 return token
             }
             return nil
@@ -262,7 +268,7 @@ class UserDataContainer {
     
     var dayNumberOf90DaysSession: Int? {
         
-        if let startDate = defaults.value(forKey: "startOf90DaysPeriod") as? String {
+        if let startDate: String = UserDefaultsManager.shared.getValue(forKey: "startOf90DaysPeriod") {
             guard let date = startDate.dateFromISO8601 else { return 0 }
             
             let nowDate = Date()
@@ -274,7 +280,7 @@ class UserDataContainer {
             if let day = result.day {
                 if day >= 91 {
                     //delete the old period and allow user to start new period from the next action started
-                    defaults.set(nil, forKey: "startOf90DaysPeriod")
+                    UserDefaultsManager.shared.clearValue(forKey: "startOf90DaysPeriod")
                     return nil
                 }
                 return day
@@ -285,11 +291,11 @@ class UserDataContainer {
     }
     
     open func setUserEmailConfirmed(_ state: Bool) {
-        UserDefaults.standard.set(state, forKey: "UserEmailConfirmed")
+        UserDefaultsManager.shared.setValue(state, forKey: "UserEmailConfirmed")
     }
     
     open func getUserEmailConfirmed() -> Bool {
-        if let state = UserDefaults.standard.value(forKey: "UserEmailConfirmed") as? Bool {
+        if let state: Bool = UserDefaultsManager.shared.getValue(forKey: "UserEmailConfirmed") {
             return state
         }
         return false
@@ -298,14 +304,14 @@ class UserDataContainer {
     //MARK: - Tooltip & Tutorials help methods
     
     open func getTutorialsToggle() -> Bool {
-        if let state = UserDefaults.standard.value(forKey: "tutorialsToggle") as? Bool {
+        if let state: Bool = UserDefaultsManager.shared.getValue(forKey: "tutorialsToggle") {
             return state
         }
         return true
     }
     
     open func setTutorialsToggle(_ toggle: Bool) {
-        UserDefaults.standard.set(toggle, forKey: "tutorialsToggle")
+        UserDefaultsManager.shared.setValue(toggle, forKey: "tutorialsToggle")
     }
     
     //Toggle state for the app session
@@ -323,7 +329,7 @@ class UserDataContainer {
     
     //Toggle state for the across sessions
     open func getTooltipToggle(_ id: String) -> Bool {
-        if let state = UserDefaults.standard.value(forKey: id) as? Bool {
+        if let state: Bool = UserDefaultsManager.shared.getValue(forKey: id) {
             return state
         }
         return true
@@ -331,13 +337,12 @@ class UserDataContainer {
     
     //Toggle state for the across sessions
     open func setTooltipToggle(_ id: String, _ toggle: Bool) {
-        UserDefaults.standard.set(toggle, forKey: id)
+        UserDefaultsManager.shared.setValue(toggle, forKey: id)
     }
     
     open func resetTooltipToggle(_ value: Bool) {
-        let defaults = UserDefaults.standard
         for tooltipID in TutorialIDs.all {
-            defaults.set(value, forKey: tooltipID.rawValue)
+            UserDefaultsManager.shared.setValue(value, forKey: tooltipID.rawValue)
         }
         self.tooltipsSessionStates = [:]
     }
@@ -446,12 +451,12 @@ class UserDataContainer {
     open func getStatisticsAverageTimeProgress(_ value: Double, _ type: ActionRecordType) -> Double {
         var maxValue: Double = 0
         switch type {
-        case .brush:
-            maxValue = self.BrushActionDurationInSeconds
-        case .flossed:
-            maxValue = self.FlossActionDurationInSeconds
-        case .rinsed:
-            maxValue = self.RinseActionDurationInSeconds
+            case .brush:
+                maxValue = self.BrushActionDurationInSeconds
+            case .flossed:
+                maxValue = self.FlossActionDurationInSeconds
+            case .rinsed:
+                maxValue = self.RinseActionDurationInSeconds
         }
         let one = 360 / maxValue
         return one * value
@@ -462,8 +467,8 @@ class UserDataContainer {
     func logout() {
         
         //delete saved email session
-        defaults.set(nil, forKey: "token")
-        defaults.set(nil, forKey: "token_valid_to")
+        UserDefaultsManager.shared.clearGlobalValue(forKey: "token")
+        UserDefaultsManager.shared.clearGlobalValue(forKey: "token_valid_to")
         
         for provider in providers {//delete all social network providers sessions if any
             provider.logout()

@@ -115,10 +115,8 @@ struct NotificationsHealthyHabitsData: NotificationDataProtocol {
         allNotifications.insert((title: notificationTitle09, message: notificationMessage09), at: 0)
         allNotifications.insert((title: notificationTitle10, message: notificationMessage10), at: 0)
         
-        let defaults = UserDefaults.standard
-        guard let _ = defaults.value(forKey: notificationIdentifier.rawValue) else {
-            defaults.set(true, forKey: notificationIdentifier.rawValue)
-            defaults.synchronize()
+        guard let _: Bool = UserDefaultsManager.shared.getValue(forKey: notificationIdentifier.rawValue) else {
+            UserDefaultsManager.shared.setValue(true, forKey: notificationIdentifier.rawValue)
             return
         }
     }

@@ -179,6 +179,7 @@
 		9FBAEE8E20434745009FD69A /* DeleteUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBAEE8D20434745009FD69A /* DeleteUserRequest.swift */; };
 		9FBAEE90204357A1009FD69A /* ConfirmDeleteProfilePopupScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FBAEE8F204357A1009FD69A /* ConfirmDeleteProfilePopupScreen.xib */; };
 		9FBAEE92204357E9009FD69A /* ConfirmDeleteProfilePopupScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBAEE91204357E9009FD69A /* ConfirmDeleteProfilePopupScreen.swift */; };
+		9FBAEE94204468D0009FD69A /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBAEE93204468D0009FD69A /* UserDefaultsManager.swift */; };
 		9FBB8E261F83B522008C2C65 /* UploadImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBB8E251F83B522008C2C65 /* UploadImageButton.swift */; };
 		9FBB8E281F84AD5C008C2C65 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBB8E271F84AD5B008C2C65 /* UserData.swift */; };
 		9FC525FD1F8E535D00F9D8A4 /* ErrorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC525FC1F8E535D00F9D8A4 /* ErrorData.swift */; };
@@ -470,6 +471,7 @@
 		9FBAEE8D20434745009FD69A /* DeleteUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteUserRequest.swift; sourceTree = "<group>"; };
 		9FBAEE8F204357A1009FD69A /* ConfirmDeleteProfilePopupScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfirmDeleteProfilePopupScreen.xib; sourceTree = "<group>"; };
 		9FBAEE91204357E9009FD69A /* ConfirmDeleteProfilePopupScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmDeleteProfilePopupScreen.swift; sourceTree = "<group>"; };
+		9FBAEE93204468D0009FD69A /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		9FBB8E251F83B522008C2C65 /* UploadImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImageButton.swift; sourceTree = "<group>"; };
 		9FBB8E271F84AD5B008C2C65 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		9FC525FC1F8E535D00F9D8A4 /* ErrorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorData.swift; sourceTree = "<group>"; };
@@ -865,6 +867,7 @@
 			isa = PBXGroup;
 			children = (
 				24B7D0931F3205A200797685 /* Theme.swift */,
+				9FBAEE93204468D0009FD69A /* UserDefaultsManager.swift */,
 				9F28A3A61F56E1E50002FF53 /* UserDataContainer.swift */,
 				9F28A3A81F57DD1D0002FF53 /* SystemMethods.swift */,
 				9F16E3481F9A9F030081D244 /* NotificationsManager.swift */,
@@ -1841,6 +1844,7 @@
 				9FFC8BB81FA20BBA0043F7BC /* ReusableXibView.swift in Sources */,
 				9FCA68D51FAA1F5F008B36DA /* Address.m in Sources */,
 				9FBAA9C41F8E4FF400489ABA /* ActionsResponseList.swift in Sources */,
+				9FBAEE94204468D0009FD69A /* UserDefaultsManager.swift in Sources */,
 				9FE7CC151FB254400042EB14 /* BrushActionView.swift in Sources */,
 				9FE22F841F7FAFAF00238DBB /* NSError+Parser.swift in Sources */,
 				9FDE781F1F9B406E0013719F /* NotificationsVisitDentist.swift in Sources */,

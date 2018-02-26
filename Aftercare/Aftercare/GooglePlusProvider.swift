@@ -14,10 +14,6 @@ class GooglePlusProvider: NSObject {
     
     static let shared = GooglePlusProvider()//singleton instance
     
-    //MARK: - fileprivate constants
-    
-    fileprivate let defaults = UserDefaults.standard
-    
     //MARK: - fileprivate vars
     
     fileprivate var loggedIn = false
@@ -64,7 +60,7 @@ extension GooglePlusProvider: UserDataProviderProtocol {
     
     var email: String? {
         get {
-            if let emailAddress = defaults.value(forKey: GoogleDefaultsKeys.Email.rawValue) as? String {
+            if let emailAddress: String = UserDefaultsManager.shared.getValue(forKey: GoogleDefaultsKeys.Email.rawValue) {
                 return emailAddress
             }
             return nil
@@ -73,7 +69,7 @@ extension GooglePlusProvider: UserDataProviderProtocol {
     
     var firstName: String? {
         get {
-            if let name = defaults.value(forKey: GoogleDefaultsKeys.FirstName.rawValue) as? String {
+            if let name: String = UserDefaultsManager.shared.getValue(forKey: GoogleDefaultsKeys.FirstName.rawValue) {
                 return name
             }
             return nil
@@ -82,7 +78,7 @@ extension GooglePlusProvider: UserDataProviderProtocol {
     
     var lastName: String? {
         get {
-            if let name = defaults.value(forKey: GoogleDefaultsKeys.LastName.rawValue) as? String {
+            if let name: String = UserDefaultsManager.shared.getValue(forKey: GoogleDefaultsKeys.LastName.rawValue) {
                 return name
             }
             return nil
@@ -91,7 +87,7 @@ extension GooglePlusProvider: UserDataProviderProtocol {
     
     var avatarURL: String? {
         get {
-            if let url = defaults.value(forKey: GoogleDefaultsKeys.Avatar.rawValue) as? String {
+            if let url: String = UserDefaultsManager.shared.getValue(forKey: GoogleDefaultsKeys.Avatar.rawValue) {
                 return url
             }
             return nil
@@ -100,7 +96,7 @@ extension GooglePlusProvider: UserDataProviderProtocol {
     
     var gender: String? {
         get {
-            if let gend = defaults.value(forKey: GoogleDefaultsKeys.Gender.rawValue) as? String {
+            if let gend: String = UserDefaultsManager.shared.getValue(forKey: GoogleDefaultsKeys.Gender.rawValue) {
                 return gend
             }
             return nil
@@ -115,7 +111,7 @@ extension GooglePlusProvider: UserDataProviderProtocol {
     
     var userID: String? {
         get {
-            if let id = defaults.value(forKey: GoogleDefaultsKeys.UserID.rawValue) as? String {
+            if let id: String = UserDefaultsManager.shared.getValue(forKey: GoogleDefaultsKeys.UserID.rawValue) {
                 return id
             }
             return nil
@@ -124,7 +120,7 @@ extension GooglePlusProvider: UserDataProviderProtocol {
     
     var token: String? {
         get {
-            if let token = defaults.value(forKey: GoogleDefaultsKeys.Token.rawValue) as? String {
+            if let token: String = UserDefaultsManager.shared.getValue(forKey: GoogleDefaultsKeys.Token.rawValue) {
                 return token
             }
             return nil
@@ -225,15 +221,15 @@ extension GooglePlusProvider: GIDSignInDelegate {
                 print("GooglePlusProvider :: google user successfully authenticated")
                 
                 if let avatar = user.photoURL {
-                    self?.defaults.set(avatar, forKey: GoogleDefaultsKeys.Avatar.rawValue)
+                    UserDefaultsManager.shared.setValue(avatar, forKey: GoogleDefaultsKeys.Avatar.rawValue)
                 }
                 if let fullName = user.displayName {
                     
                     var fullNameArr = fullName.components(separatedBy: " ")
-                    self?.defaults.set(fullNameArr[0], forKey: GoogleDefaultsKeys.FirstName.rawValue)
+                    UserDefaultsManager.shared.setValue(fullNameArr[0], forKey: GoogleDefaultsKeys.FirstName.rawValue)
                     
                     if fullNameArr.count > 1 {
-                        self?.defaults.set(fullNameArr[1], forKey: GoogleDefaultsKeys.LastName.rawValue)
+                        UserDefaultsManager.shared.setValue(fullNameArr[1], forKey: GoogleDefaultsKeys.LastName.rawValue)
                     }
                     
                 }
@@ -251,7 +247,6 @@ extension GooglePlusProvider: GIDSignInDelegate {
                     }
                     sessionRequestData.googleAccessToken = token
                     
-                    self?.defaults.synchronize()
                     if let completion = self?.completion {
                         completion(sessionRequestData, nil)
                     }

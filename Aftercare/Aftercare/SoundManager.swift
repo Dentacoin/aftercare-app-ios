@@ -28,52 +28,46 @@ class SoundManager {
     
     var soundType: VoicePath {
         get {
-            let defaults = UserDefaults.standard
-            if let type = defaults.value(forKey: "soundVoice") {
-                return VoicePath(rawValue: type as! String)!
+            if let type: String = UserDefaultsManager.shared.getValue(forKey: "soundVoice") {
+                return VoicePath(rawValue: type)!
             } else {
-                defaults.set(VoicePath.male.rawValue, forKey: "soundVoice")
+                UserDefaultsManager.shared.setValue(VoicePath.male.rawValue, forKey: "soundVoice")
                 return VoicePath.male
             }
         }
         
         set {
-            let defaults = UserDefaults.standard
-            defaults.set(newValue.rawValue, forKey: "soundVoice")
+            UserDefaultsManager.shared.setValue(newValue.rawValue, forKey: "soundVoice")
         }
     }
     
     var soundOn: Bool {
         get {
-            let defaults = UserDefaults.standard
-            if let on = defaults.value(forKey: "soundOn") as? Bool {
+            if let on: Bool = UserDefaultsManager.shared.getValue(forKey: "soundOn") {
                 return on
             } else {
-                defaults.set(true, forKey: "soundOn")
+                UserDefaultsManager.shared.setValue(true, forKey: "soundOn")
                 return true
             }
         }
         
         set {
-            let defaults = UserDefaults.standard
-            defaults.set(newValue, forKey: "soundOn")
+            UserDefaultsManager.shared.setValue(newValue, forKey: "soundOn")
         }
     }
     
     var musicOn: Bool {
         get {
-            let defaults = UserDefaults.standard
-            if let on = defaults.value(forKey: "musicOn") as? Bool {
+            if let on: Bool = UserDefaultsManager.shared.getValue(forKey: "musicOn") {
                 return on
             } else {
-                defaults.set(true, forKey: "musicOn")
+                UserDefaultsManager.shared.setValue(true, forKey: "musicOn")
                 return true
             }
         }
         
         set {
-            let defaults = UserDefaults.standard
-            defaults.set(newValue, forKey: "musicOn")
+            UserDefaultsManager.shared.setValue(newValue, forKey: "musicOn")
         }
     }
     
