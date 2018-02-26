@@ -33,6 +33,7 @@ class ActionScreenViewController: UIViewController, ContentConformer {
     fileprivate var calculatedConstraints = false
     fileprivate var headerHeight: CGFloat = 0
     fileprivate var currentPageIndex = 0
+    fileprivate var tooltipsShown = false
     
     fileprivate var lastTab: Int = 0 {
         didSet {
@@ -90,13 +91,15 @@ class ActionScreenViewController: UIViewController, ContentConformer {
             if !calculatedConstraints {
                 let topPadding = self.view.safeAreaInsets.top
                 headerHeightConstraint.constant += topPadding
-                
-                //If no routine, show tooltip on current page
-                if UserDataContainer.shared.routine == nil {
-                    if let page = pagesArray.first {
-                        page.showTooltips()
-                    }
-                }
+            }
+        }
+        
+        //If no routine, show tooltip on current page
+        if UserDataContainer.shared.routine == nil, tooltipsShown == false {
+            tooltipsShown = true
+            if let page = pagesArray.first {
+                //Show tooltips only in first sub-screen e.g. Floss screen
+                page.showTooltips()
             }
         }
         
