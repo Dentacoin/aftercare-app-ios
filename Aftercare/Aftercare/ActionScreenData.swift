@@ -9,14 +9,16 @@
 import Foundation
 
 struct ActionScreenData: Codable {
-    
-    public var totalDCN: Int?
+
+    public var earnedDCN: Int
+    public var pendingDCN: Int
     public var flossed: ActionDashboardData
     public var brush: ActionDashboardData
     public var rinsed: ActionDashboardData
     
-    init(totalDCN: Int?, flossed: ActionDashboardData, brush: ActionDashboardData, rinsed: ActionDashboardData) {
-        self.totalDCN = totalDCN
+    init(earnedDCN: Int, pendingDCN: Int, flossed: ActionDashboardData, brush: ActionDashboardData, rinsed: ActionDashboardData) {
+        self.earnedDCN = earnedDCN
+        self.pendingDCN = pendingDCN
         self.flossed = flossed
         self.brush = brush
         self.rinsed = rinsed

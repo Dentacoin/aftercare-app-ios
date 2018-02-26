@@ -48,7 +48,7 @@ class CollectSecondScreenViewController: UIViewController, ContentConformer {
     }()
     
     fileprivate lazy var invalidAmountClaimedError: String = {
-        let totalDCN = UserDataContainer.shared.actionScreenData?.totalDCN ?? 0
+        let totalDCN = UserDataContainer.shared.actionScreenData?.earnedDCN ?? 0
         return NSLocalizedString("Please claim valid amount of DCN. More than 0 and less than \(totalDCN) DCN", comment: "")
     }()
     
@@ -146,7 +146,7 @@ extension CollectSecondScreenViewController {
         collectValueTwoLabel.textColor = UIColor.dntCeruleanBlue
         collectValueTwoLabel.font = UIFont.dntLatoRegularFontWith(size: UIFont.dntLargeTitleFontSize)
         
-        if let totalDCN = UserDataContainer.shared.actionScreenData?.totalDCN {
+        if let totalDCN = UserDataContainer.shared.actionScreenData?.earnedDCN {
             collectValueTwoLabel.text = String(totalDCN) + " DCN"
         }
         
@@ -236,7 +236,7 @@ extension CollectSecondScreenViewController {
             return
         }
         if let claimedAmount = Int(claimedAmountString) {
-            if let totalDCN = UserDataContainer.shared.actionScreenData?.totalDCN {
+            if let totalDCN = UserDataContainer.shared.actionScreenData?.earnedDCN {
                 if claimedAmount <= totalDCN, claimedAmount > 0 {
                     
                     guard let wallet = self.data?["userWallet"] as? String else {

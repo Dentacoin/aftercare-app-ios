@@ -29,7 +29,7 @@ struct NotificationsCollectDCN: NotificationDataProtocol {
         //Remove all already scheduled notifiations of this kind
         cancelNotification()
         
-        guard let totalDCN = UserDataContainer.shared.actionScreenData?.totalDCN else {
+        guard let totalDCN = UserDataContainer.shared.actionScreenData?.earnedDCN else {
             print("NotificationsCollectDCN: Error trying to retrieved total DCNs for the User")
             return
         }

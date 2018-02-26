@@ -21,6 +21,11 @@ class UserDataContainer {
                 if UserDefaultsManager.shared.userKey != data.email {
                     UserDefaultsManager.shared.userKey = data.email
                 }
+                
+                if data.confirmed == true {
+                    UserDataContainer.shared.setUserEmailConfirmed(true)
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "userEmailConfirmationUpdated"), object: nil)
+                }
             }
         }
     }
@@ -584,7 +589,7 @@ class UserDataContainer {
                 monthly: rinsedMonthly
             )
             
-            self.actionScreenData = ActionScreenData(totalDCN: 0, flossed: flossed, brush: brush, rinsed: rinsed)
+            self.actionScreenData = ActionScreenData(earnedDCN: 0, pendingDCN: 0, flossed: flossed, brush: brush, rinsed: rinsed)
             
         }
         

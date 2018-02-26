@@ -236,9 +236,7 @@ class ActionView: UIView {
     
     func updateData(_ data: ActionScreenData) {
         
-        if let total = data.totalDCN {
-            totalBar.setTotalValue(total)
-        }
+        totalBar.setTotalValue(data.earnedDCN)
         
         var screenDashboardData: ActionDashboardData?
         

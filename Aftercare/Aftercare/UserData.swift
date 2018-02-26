@@ -24,6 +24,7 @@ struct UserData: Codable {
     var lastLoginDate: String?
     var createdDate: String?
     var lastModifiedDate: String?
+    var confirmed: Bool = false
     var password: String?
     var avatar: AvatarData?
     var avatar_64: String?
@@ -113,22 +114,27 @@ struct UserData: Codable {
         do {
             self.birthDay = try values.decode(String?.self, forKey: .birthDay)
         } catch {
-            print("Parsing Error: UserData ::  trying to parse birthDay")
+            print("Parsing Error: UserData :: trying to parse birthDay")
         }
         do {
             self.lastLoginDate = try values.decode(String?.self, forKey: .lastLoginDate)
         } catch {
-            print("Parsing Error: UserData ::  trying to parse lastLoginDate")
+            print("Parsing Error: UserData :: trying to parse lastLoginDate")
         }
         do {
             self.createdDate = try values.decode(String?.self, forKey: .createdDate)
         } catch {
-            print("Parsing Error: UserData ::  trying to parse createdDate")
+            print("Parsing Error: UserData :: trying to parse createdDate")
         }
         do {
             self.lastModifiedDate = try values.decode(String?.self, forKey: .lastModifiedDate)
         } catch {
-            print("Parsing Error: UserData ::  trying to parse lastModifiedDate")
+            print("Parsing Error: UserData :: trying to parse lastModifiedDate")
+        }
+        do {
+            self.confirmed = try values.decode(Bool.self, forKey: .confirmed)
+        } catch {
+            print("Parsing Error: UserData :: trying to parse confirmed")
         }
         do {
             self.password = try values.decode(String?.self, forKey: .password)
@@ -157,6 +163,7 @@ struct UserData: Codable {
         try! container.encode(self.lastLoginDate, forKey: .lastLoginDate)
         try! container.encode(self.createdDate, forKey: .createdDate)
         try! container.encode(self.lastModifiedDate, forKey: .lastModifiedDate)
+        try! container.encode(self.confirmed, forKey: .confirmed)
         try! container.encode(self.password, forKey: .password)
         try! container.encode(self.avatar, forKey: .avatar)
     }
@@ -174,6 +181,7 @@ struct UserData: Codable {
         case lastLoginDate
         case createdDate
         case lastModifiedDate
+        case confirmed
         case password
         case avatar
     }
