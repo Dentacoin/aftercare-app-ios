@@ -216,12 +216,14 @@ extension UserProfileScreenViewController {
                 selected: false
             )
         )
+        resendEmailVerificationButton.alpha = 0.5
         
         APIProvider.requestEmailConfirmation() { [weak self] confirmed, error in
             
             if let error = error {
                 
                 if error.errors.first == ErrorKeys.userEmailConfirmed.rawValue {
+                    //User already confirmed error
                     UserDataContainer.shared.setUserEmailConfirmed(true)
                     self?.userEmailConfirationUpdated()
                     self?.sendNotificationForUserEmailConfirmationUpdate()
@@ -236,9 +238,12 @@ extension UserProfileScreenViewController {
                 return
             }
             
-            UserDataContainer.shared.setUserEmailConfirmed(true)
-            self?.userEmailConfirationUpdated()
-            self?.sendNotificationForUserEmailConfirmationUpdate()
+            UIAlertController.show(
+                controllerWithTitle: NSLocalizedString("Confirmation sent", comment: ""),
+                message: NSLocalizedString("Please check your email, and click on the verification link.", comment: ""),
+                buttonTitle: NSLocalizedString("Ok", comment: "")
+            )
+            
         }
     }
     

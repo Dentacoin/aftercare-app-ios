@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -57,14 +57,12 @@
             </subviews>
             <constraints>
                 <constraint firstItem="ZM2-xb-eM8" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="25n-d3-ACN"/>
-                <constraint firstAttribute="trailing" secondItem="ZM2-xb-eM8" secondAttribute="trailing" constant="138" id="2ye-JT-Fvg"/>
                 <constraint firstAttribute="bottom" secondItem="xby-Az-GhX" secondAttribute="bottom" id="4Wu-ZG-xWf"/>
                 <constraint firstItem="xby-Az-GhX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="6xQ-i4-xAB"/>
                 <constraint firstItem="ZM2-xb-eM8" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="BTY-6u-O4O"/>
                 <constraint firstItem="JdQ-kB-8aU" firstAttribute="centerX" secondItem="ZM2-xb-eM8" secondAttribute="centerX" id="FC5-2p-ufU"/>
                 <constraint firstItem="aeo-jd-LDn" firstAttribute="centerX" secondItem="ZM2-xb-eM8" secondAttribute="centerX" id="Jjf-pg-Utp"/>
                 <constraint firstItem="xby-Az-GhX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="RCT-0T-pbg"/>
-                <constraint firstItem="ZM2-xb-eM8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="137" id="RaA-NH-nhz"/>
                 <constraint firstAttribute="trailing" secondItem="xby-Az-GhX" secondAttribute="trailing" id="gdX-bv-P3Z"/>
                 <constraint firstItem="JdQ-kB-8aU" firstAttribute="top" secondItem="aeo-jd-LDn" secondAttribute="bottom" constant="8" id="nTJ-e7-4HO"/>
                 <constraint firstItem="aeo-jd-LDn" firstAttribute="centerY" secondItem="ZM2-xb-eM8" secondAttribute="centerY" id="rDA-i7-1yb"/>

@@ -173,6 +173,7 @@
 		9FA7EAAC1F9F8C22003AD94A /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA7EAAB1F9F8C22003AD94A /* AnalyticsManager.swift */; };
 		9FA7EAAE1F9FC698003AD94A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FA7EAAD1F9FC698003AD94A /* Assets.xcassets */; };
 		9FB47F261F910A9D00FCE7B4 /* AuthenticationRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB47F251F910A9D00FCE7B4 /* AuthenticationRequests.swift */; };
+		9FB6513D2044BFA300C2D705 /* SuccessResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB6513C2044BFA300C2D705 /* SuccessResponse.swift */; };
 		9FBAA9C41F8E4FF400489ABA /* ActionsResponseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBAA9C31F8E4FF400489ABA /* ActionsResponseList.swift */; };
 		9FBAEE8A20417EFE009FD69A /* WithdrawsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FBAEE8920417EFE009FD69A /* WithdrawsCell.xib */; };
 		9FBAEE8C20417F3A009FD69A /* WithdrawsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBAEE8B20417F3A009FD69A /* WithdrawsCell.swift */; };
@@ -465,6 +466,7 @@
 		9FA7EAAB1F9F8C22003AD94A /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		9FA7EAAD1F9FC698003AD94A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9FB47F251F910A9D00FCE7B4 /* AuthenticationRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRequests.swift; sourceTree = "<group>"; };
+		9FB6513C2044BFA300C2D705 /* SuccessResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessResponse.swift; sourceTree = "<group>"; };
 		9FBAA9C31F8E4FF400489ABA /* ActionsResponseList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsResponseList.swift; sourceTree = "<group>"; };
 		9FBAEE8920417EFE009FD69A /* WithdrawsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WithdrawsCell.xib; sourceTree = "<group>"; };
 		9FBAEE8B20417F3A009FD69A /* WithdrawsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawsCell.swift; sourceTree = "<group>"; };
@@ -1257,6 +1259,7 @@
 		9F42EBB21F8EA6190061FEA3 /* Responses */ = {
 			isa = PBXGroup;
 			children = (
+				9FB6513C2044BFA300C2D705 /* SuccessResponse.swift */,
 				9F4482DC1F8B8CB700349A10 /* TransactionData.swift */,
 				9FBAA9C31F8E4FF400489ABA /* ActionsResponseList.swift */,
 				9F4482E51F8BB33D00349A10 /* HabitRecordData.swift */,
@@ -1897,6 +1900,7 @@
 				9FA7EAAC1F9F8C22003AD94A /* AnalyticsManager.swift in Sources */,
 				9FE51F751FAB56C000771A34 /* NSURLRequest+AllowsAnyHTTPSCertificate.swift in Sources */,
 				24B7D0A51F34D8F700797685 /* MasterViewController.swift in Sources */,
+				9FB6513D2044BFA300C2D705 /* SuccessResponse.swift in Sources */,
 				249A97081F38949B003ABB8D /* SplashScreenViewController.swift in Sources */,
 				9FF0AEA51F593AA30056846B /* DecodeOperation.swift in Sources */,
 				9F1712A71F4C53D900FB263B /* LoginScreenPresenter.swift in Sources */,

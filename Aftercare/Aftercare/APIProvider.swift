@@ -421,15 +421,17 @@ struct APIProvider : APIProviderProtocol {
 
         var errorData: ErrorData?
         let urlRequest = APIRouter.EmailConfirmation.get()
-        Alamofire.request(urlRequest).responseDecodableObject() { (response: DataResponse<[TransactionData]>) in
+        Alamofire.request(urlRequest).responseDecodableObject() { (response: DataResponse<SuccessResponse>) in
             switch response.result {
             case .success:
                 onComplete(true, nil)
-                break
             case .failure(let error):
                 let nserror = error as NSError
+                if nserror.code == 200 {
+                    onComplete(true, nil)
+                    return
+                }
                 errorData = ErrorData(code: nserror.code, errors: [nserror.localizedDescription])
-                break
             }
         }.responseDecodableObject() { (response: DataResponse<ErrorData>) in
             if let error = response.result.value {
