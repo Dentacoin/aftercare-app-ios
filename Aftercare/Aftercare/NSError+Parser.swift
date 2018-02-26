@@ -61,7 +61,7 @@ extension NSError {
                 case .userEmailConfirmed:
                     description = NSLocalizedString("User Email Already Confirmed", comment: "")
                 case .userEmailConfirmationOverload:
-                    description = NSLocalizedString("Too many email confirmation requests!", comment: "")
+                    description = NSLocalizedString("Too many email confirmation requests! Please try again later.", comment: "")
                 case .failedDueToUnconfirmedEmail:
                     description = NSLocalizedString("Operation failed due to unconfirmed email address.", comment: "")
                 case .invalidCaptchaCode:

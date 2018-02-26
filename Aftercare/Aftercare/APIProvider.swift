@@ -423,14 +423,14 @@ struct APIProvider : APIProviderProtocol {
         let urlRequest = APIRouter.EmailConfirmation.get()
         Alamofire.request(urlRequest).responseDecodableObject() { (response: DataResponse<SuccessResponse>) in
             switch response.result {
-            case .success:
-                onComplete(true, nil)
+            case .success(let success):
+                // Code still can be == 400 is too many verification request are sent by the user
+                // so we double check for the code to be == 200
+                if success.code == 200 {
+                    onComplete(true, nil)
+                }
             case .failure(let error):
                 let nserror = error as NSError
-                if nserror.code == 200 {
-                    onComplete(true, nil)
-                    return
-                }
                 errorData = ErrorData(code: nserror.code, errors: [nserror.localizedDescription])
             }
         }.responseDecodableObject() { (response: DataResponse<ErrorData>) in

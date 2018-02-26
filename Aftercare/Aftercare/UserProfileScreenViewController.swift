@@ -239,7 +239,7 @@ extension UserProfileScreenViewController {
             }
             
             UIAlertController.show(
-                controllerWithTitle: NSLocalizedString("Confirmation sent", comment: ""),
+                controllerWithTitle: NSLocalizedString("Verification sent", comment: ""),
                 message: NSLocalizedString("Please check your email, and click on the verification link.", comment: ""),
                 buttonTitle: NSLocalizedString("Ok", comment: "")
             )

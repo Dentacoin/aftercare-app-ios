@@ -457,6 +457,10 @@ extension EditUserProfileScreenViewController: InsidePageHeaderViewDelegate {
     
     func backButtonIsPressed() {
         if uiIsBlocked == true { return }
+        
+        //clear if there is any selected avatar
+        UserDataContainer.shared.userAvatar = nil
+        
         contentDelegate?.backButtonIsPressed()
     }
     
