@@ -22,6 +22,12 @@ extension DateFormatter {
         return dateFormatter
     }()
     
+    static let dateWithHourComponentsFormat: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        return dateFormatter
+    }()
+    
     static let fromSystemStringFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"

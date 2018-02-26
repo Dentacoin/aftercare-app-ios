@@ -95,6 +95,15 @@ class EditUserProfileScreenViewController: UIViewController, ContentConformer {
         datePickerView.minimumDate = minimumDate
         datePickerView.maximumDate = maximumDate
         
+        if let userInfo = UserDataContainer.shared.userInfo {
+            if let birthDay = userInfo.birthDay {
+                let formatter = DateFormatter.humanReadableFormat
+                if let date = formatter.date(from: birthDay) {
+                    // set default selected date, to current user birthday
+                    datePickerView.date = date
+                }
+            }
+        }
         return datePickerView
     }()
     
@@ -296,7 +305,7 @@ extension EditUserProfileScreenViewController {
     }
     
     @objc fileprivate func datePickerValueChanged(_ sender: UIDatePicker) {
-        birthDateTextField.text = DateFormatter.humanReadableFormat.string(from: datePickerView.date)
+        birthDateTextField.text = DateFormatter.humanReadableFormat.string(from: sender.date)
     }
     
 }

@@ -36,7 +36,7 @@ struct NotificationsVisitDentist: NotificationDataProtocol {
             return
         }
         
-        guard let dateOfRegistration = DateFormatter.humanReadableWithHourComponentsFormat.date(from: dateOfRegistrationRaw) else {
+        guard let dateOfRegistration = DateFormatter.dateWithHourComponentsFormat.date(from: dateOfRegistrationRaw) else {
             print("NotificationsVisitDentist : Error : User Registration Date can't be retrieved")
             return
         }

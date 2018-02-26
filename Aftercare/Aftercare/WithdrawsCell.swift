@@ -46,7 +46,7 @@ class WithdrawsCell: UITableViewCell {
         descriptionLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)
         
         if let date = data.date {
-            let readableDate = DateFormatter.humanReadableFormat.string(from: date)
+            let readableDate = DateFormatter.humanReadableWithHourComponentsFormat.string(from: date)
             descriptionLabel.text = "to: \n\(data.wallet) \n\(readableDate)"
         } else {
             descriptionLabel.text = "to: \n\(data.wallet) \n"

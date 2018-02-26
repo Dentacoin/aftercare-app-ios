@@ -104,6 +104,31 @@ extension WithdrawsScreenViewController {
             
             self?.showNoneState()
             
+//            var withdraw1 = TransactionData(amount: 2000, wallet: "0xasdqowdkoasdaoskndoasndk")
+//            withdraw1.date = Date()
+//            withdraw1.status = TransactionStatusType.approved
+//
+//            var withdraw2 = TransactionData(amount: 3000, wallet: "0xasdqowdkoasdaoskndoasndk")
+//            withdraw2.date = Date()
+//            withdraw2.status = TransactionStatusType.declined
+//
+//            var withdraw3 = TransactionData(amount: 4000, wallet: "0xasdqowdkoasdaoskndoasndk")
+//            withdraw3.date = Date()
+//            withdraw3.status = TransactionStatusType.pending
+//
+//            var withdraw4 = TransactionData(amount: 15000, wallet: "0xasdqowdkoasdaoskndoasndk")
+//            withdraw4.date = Date()
+//            withdraw4.status = TransactionStatusType.approved
+//
+//            self?.withdrawsDataSource = [
+//                withdraw1,
+//                withdraw2,
+//                withdraw3,
+//                withdraw4
+//            ]
+//
+//            self?.withdrawsTableView.reloadData()
+            
             if transactions.count > 0 {
                 self?.withdrawsDataSource = transactions
                 self?.withdrawsTableView.reloadData()

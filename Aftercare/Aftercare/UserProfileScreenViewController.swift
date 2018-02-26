@@ -28,6 +28,7 @@ class UserProfileScreenViewController: UIViewController, ContentConformer {
     @IBOutlet weak var emailNotVerifiedLabel: UILabel!
     @IBOutlet weak var resendEmailVerificationButton: UIButton!
     @IBOutlet weak var emailVerificationViewHeightConstraint: NSLayoutConstraint!
+    
     //MARK: - Delegate
     
     var contentDelegate: ContentDelegate?
@@ -48,11 +49,12 @@ class UserProfileScreenViewController: UIViewController, ContentConformer {
     override func viewDidLoad() {
         super.viewDidLoad()
         header.delegate = self
+        setup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setup()
+        updateContent()
     }
     
     override func viewDidLayoutSubviews() {
@@ -93,10 +95,36 @@ extension UserProfileScreenViewController {
         
         userEmailConfirationUpdated()
         
-        guard let data = UserDataContainer.shared.userInfo else { return }
-        
         fullNameLabel.textColor = .white
         fullNameLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntTitleFontSize)
+        
+        emailLabel.textColor = .white
+        emailLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntLargeTextSize)
+        
+        
+        addressLabel.textColor = .white
+        addressLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntLargeTextSize)
+        
+        
+        ageLabel.textColor = .white
+        ageLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntLargeTextSize)
+        
+        
+        genderLabel.textColor = .white
+        genderLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntLargeTextSize)
+        
+        if let image = UserDataContainer.shared.userAvatar {
+            userAvatarImage.image = image
+        }
+        userAvatarImage.layer.cornerRadius = userAvatarImage.frame.size.width / 2
+        userAvatarImage.layer.masksToBounds = true
+        
+        themeManager.setDCBlueTheme(to: editProfileButton, ofType: .ButtonDefault)
+    }
+    
+    fileprivate func updateContent() {
+        guard let data = UserDataContainer.shared.userInfo else { return }
+        
         if let first = data.firstName {
             var fullName = first
             if let last = data.lastName {
@@ -105,14 +133,10 @@ extension UserProfileScreenViewController {
             fullNameLabel.text = fullName
         }
         
-        emailLabel.textColor = .white
-        emailLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntLargeTextSize)
         if let email = data.email {
             emailLabel.text = email
         }
         
-        addressLabel.textColor = .white
-        addressLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntLargeTextSize)
         var address = ""
         if let postal = data.postalCode {
             address += postal
@@ -124,23 +148,19 @@ extension UserProfileScreenViewController {
             address += " " + country
         }
         
-        ageLabel.textColor = .white
-        ageLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntLargeTextSize)
-        if let age = data.birthDay {
-            ageLabel.text = age.description
+        let formatter = DateFormatter.humanReadableFormat
+        if let birthDay = data.birthDay {
+            if let age = formatter.date(from: birthDay) {
+                let calendar = Calendar.current
+                let components = calendar.dateComponents([.year], from: age, to: Date())
+                if let years = components.year {
+                    ageLabel.text = "\(String(describing: years)) years old"
+                }
+            }
         }
         
-        genderLabel.textColor = .white
-        genderLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntLargeTextSize)
         genderLabel.text = data.gender.rawValue
         
-        if let image = UserDataContainer.shared.userAvatar {
-            userAvatarImage.image = image
-        }
-        userAvatarImage.layer.cornerRadius = userAvatarImage.frame.size.width / 2
-        userAvatarImage.layer.masksToBounds = true
-        
-        themeManager.setDCBlueTheme(to: editProfileButton, ofType: .ButtonDefault)
     }
     
     fileprivate func userEmailConfirationUpdated() {

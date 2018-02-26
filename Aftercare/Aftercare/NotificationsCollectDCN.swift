@@ -41,7 +41,7 @@ struct NotificationsCollectDCN: NotificationDataProtocol {
             return
         }
         
-        guard let regDate = DateFormatter.humanReadableWithHourComponentsFormat.date(from: dateOfRegistrationRaw) else {
+        guard let regDate = DateFormatter.dateWithHourComponentsFormat.date(from: dateOfRegistrationRaw) else {
             print("NotificationsCollectDCN: Error : Wrong registration date format")
             return
         }
