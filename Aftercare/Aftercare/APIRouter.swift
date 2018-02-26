@@ -109,6 +109,11 @@ struct APIRouter: APIRouterProtocol {
         var route: String = "confirm"
     }
     
+    struct DeleteUser: Creatable {
+        typealias EParameters = DeleteUserRequest
+        var route: String = "user/delete"
+    }
+    
     struct RequestOralHealth: Readable {
         typealias EParameters = Dictionary<String, String>
         var route: String = "oralhealth"

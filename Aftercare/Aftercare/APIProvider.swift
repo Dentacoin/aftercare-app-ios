@@ -440,6 +440,23 @@ struct APIProvider : APIProviderProtocol {
         }
     }
     
+    static func requestDeleteUser(
+        _ params: DeleteUserRequest,
+        _ onComplete: @escaping (_ deleted: Bool, _ error: ErrorData?
+    ) -> Void) {
+        
+        let urlRequest = APIRouter.DeleteUser.post(parameters: params)
+        Alamofire.request(urlRequest).responseDecodableObject() { (response: DataResponse<ErrorData>) in
+            
+            let response = response.result.value
+            if response?.code == 200 {
+                onComplete(true, nil)
+            } else {
+                onComplete(false, response)
+            }
+        }
+    }
+    
     static func requestCaptcha(_ onComplete: @escaping (CaptchaData?, ErrorData?) -> Void) {
         var errorData: ErrorData?
         let urlRequest = APIRouter.RequestCaptcha.get()

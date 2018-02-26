@@ -360,7 +360,7 @@ class ThemeManager {
         button.setTitleColor(.white, for: .normal)
         
         //highlighted state settings
-        button.setTitleColor(.dntCeruleanBlue, for: .highlighted)
+        button.setTitleColor(.white, for: .highlighted)
         
         let normalImage = createImageWithGradient(
             CGRect(x: 0, y: 0, width: width, height: height),
@@ -368,10 +368,12 @@ class ThemeManager {
             (start: CGPoint(x: 0.0, y: 0.5), end: CGPoint(x: 1.0, y: 0.5))
         )
         
-        let focusedImage = createImageWithColor(
-            button.frame,
-            UIColor.black.withAlphaComponent(0.0).cgColor
+        var focusedImage = createImageWithGradient(
+            CGRect(x: 0, y: 0, width: width, height: height),
+            (start: UIColor.dntLightRed.cgColor, end: UIColor.dntDarkRed.cgColor),
+            (start: CGPoint(x: 0.0, y: 0.5), end: CGPoint(x: 1.0, y: 0.5))
         )
+        focusedImage = focusedImage.alpha(0.7)
         
         button.setBackgroundImage(normalImage, for: .normal)
         button.setBackgroundImage(focusedImage, for: .highlighted)

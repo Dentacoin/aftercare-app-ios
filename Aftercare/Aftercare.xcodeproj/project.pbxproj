@@ -176,6 +176,9 @@
 		9FBAA9C41F8E4FF400489ABA /* ActionsResponseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBAA9C31F8E4FF400489ABA /* ActionsResponseList.swift */; };
 		9FBAEE8A20417EFE009FD69A /* WithdrawsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FBAEE8920417EFE009FD69A /* WithdrawsCell.xib */; };
 		9FBAEE8C20417F3A009FD69A /* WithdrawsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBAEE8B20417F3A009FD69A /* WithdrawsCell.swift */; };
+		9FBAEE8E20434745009FD69A /* DeleteUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBAEE8D20434745009FD69A /* DeleteUserRequest.swift */; };
+		9FBAEE90204357A1009FD69A /* ConfirmDeleteProfilePopupScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FBAEE8F204357A1009FD69A /* ConfirmDeleteProfilePopupScreen.xib */; };
+		9FBAEE92204357E9009FD69A /* ConfirmDeleteProfilePopupScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBAEE91204357E9009FD69A /* ConfirmDeleteProfilePopupScreen.swift */; };
 		9FBB8E261F83B522008C2C65 /* UploadImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBB8E251F83B522008C2C65 /* UploadImageButton.swift */; };
 		9FBB8E281F84AD5C008C2C65 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBB8E271F84AD5B008C2C65 /* UserData.swift */; };
 		9FC525FD1F8E535D00F9D8A4 /* ErrorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC525FC1F8E535D00F9D8A4 /* ErrorData.swift */; };
@@ -464,6 +467,9 @@
 		9FBAA9C31F8E4FF400489ABA /* ActionsResponseList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsResponseList.swift; sourceTree = "<group>"; };
 		9FBAEE8920417EFE009FD69A /* WithdrawsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WithdrawsCell.xib; sourceTree = "<group>"; };
 		9FBAEE8B20417F3A009FD69A /* WithdrawsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawsCell.swift; sourceTree = "<group>"; };
+		9FBAEE8D20434745009FD69A /* DeleteUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteUserRequest.swift; sourceTree = "<group>"; };
+		9FBAEE8F204357A1009FD69A /* ConfirmDeleteProfilePopupScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfirmDeleteProfilePopupScreen.xib; sourceTree = "<group>"; };
+		9FBAEE91204357E9009FD69A /* ConfirmDeleteProfilePopupScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmDeleteProfilePopupScreen.swift; sourceTree = "<group>"; };
 		9FBB8E251F83B522008C2C65 /* UploadImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImageButton.swift; sourceTree = "<group>"; };
 		9FBB8E271F84AD5B008C2C65 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		9FC525FC1F8E535D00F9D8A4 /* ErrorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorData.swift; sourceTree = "<group>"; };
@@ -829,6 +835,7 @@
 				9FF8377D1F6FD1A300E72CBC /* GoalPopupScreen.swift */,
 				9F1E78451FB19DEE00A1A7D5 /* RoutinesPopupScreen.swift */,
 				9FE84EF42032FEEA00C35AB6 /* TutorialsPopupScreen.swift */,
+				9FBAEE91204357E9009FD69A /* ConfirmDeleteProfilePopupScreen.swift */,
 				9FBB8E251F83B522008C2C65 /* UploadImageButton.swift */,
 				9FFC8BB71FA20BBA0043F7BC /* ReusableXibView.swift */,
 				9FE84EFA2035C16E00C35AB6 /* TutorialView.swift */,
@@ -909,6 +916,7 @@
 				9FE84EF62032FFBE00C35AB6 /* TutorialsPopupScreen.xib */,
 				9FE84EF8203454D600C35AB6 /* TutorialView.xib */,
 				9FE84F002037032900C35AB6 /* CaptchaView.xib */,
+				9FBAEE8F204357A1009FD69A /* ConfirmDeleteProfilePopupScreen.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1238,6 +1246,7 @@
 				9F4B6A501F99C41600B03C9A /* UpdateUserRequestData.swift */,
 				9F4482E71F8BB62C00349A10 /* ActionRecordData.swift */,
 				9F3FA4291F922BAA005510FE /* ResetPasswordData.swift */,
+				9FBAEE8D20434745009FD69A /* DeleteUserRequest.swift */,
 			);
 			name = Requests;
 			sourceTree = "<group>";
@@ -1555,6 +1564,7 @@
 				9F17D3DE1FB56C7200FC96B5 /* female-morning-brush-1.mp3 in Resources */,
 				9F17D3CB1FB56C7200FC96B5 /* male-evening-floss-1.mp3 in Resources */,
 				9F1390251F655D9A006528F2 /* SettingsSwitchTableCell.xib in Resources */,
+				9FBAEE90204357A1009FD69A /* ConfirmDeleteProfilePopupScreen.xib in Resources */,
 				9F2A39561F629748007D089F /* MainMenuCell.xib in Resources */,
 				9F17D3D31FB56C7200FC96B5 /* male-evening-brush-3.mp3 in Resources */,
 				9F17D3C91FB56C7200FC96B5 /* male-morning-rinse-3.mp3 in Resources */,
@@ -1771,6 +1781,7 @@
 				9FF837721F6D3A0800E72CBC /* StatisticsOptionsCell.swift in Sources */,
 				9FCA68CF1FAA1F5F008B36DA /* RegEx.m in Sources */,
 				9F4190B61FCE0D5D00ADE2AC /* ActionRecord.swift in Sources */,
+				9FBAEE92204357E9009FD69A /* ConfirmDeleteProfilePopupScreen.swift in Sources */,
 				9FCA68C71FAA1F5F008B36DA /* Transaction.m in Sources */,
 				2430C8BE1F3CA8C700353EE1 /* UITextField+fixCaretPosition.swift in Sources */,
 				9FE7CC111FB205EA0042EB14 /* BrushBar.swift in Sources */,
@@ -1836,6 +1847,7 @@
 				9FCA68CE1FAA1F5F008B36DA /* Utilities.m in Sources */,
 				9FBAEE8C20417F3A009FD69A /* WithdrawsCell.swift in Sources */,
 				9FF8379E1F7D2F0B00E72CBC /* DescribeCaseScreenViewController.swift in Sources */,
+				9FBAEE8E20434745009FD69A /* DeleteUserRequest.swift in Sources */,
 				9FF8374F1F6A825700E72CBC /* KDCircularProgress.swift in Sources */,
 				9FCA68C91FAA1F5F008B36DA /* mpi.c in Sources */,
 				9FE84EFB2035C16E00C35AB6 /* TutorialView.swift in Sources */,

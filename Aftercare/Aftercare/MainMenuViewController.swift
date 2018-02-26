@@ -134,9 +134,9 @@ extension MainMenuViewController: SideMenuDelegate {
     
     func logout() {
         
-        UserDataContainer.shared.logout()
-        
         if let navController = self.navigationController {
+            
+            UserDataContainer.shared.logout()
             
             let controller: SplashScreenViewController! =
                 UIStoryboard.login.instantiateViewController()

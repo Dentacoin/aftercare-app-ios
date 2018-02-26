@@ -131,7 +131,7 @@ class CaptchaView: UIView {
         
         invalidationAfter = CAPTCHA_INVALIDATION_TIME
         timerStep = self.frame.width / CAPTCHA_INVALIDATION_TIME
-        timerTrailingConstraint.constant = self.frame.width
+        timerTrailingConstraint.constant = self.image.frame.width
         
         if timer == nil {
             timer = Timer.scheduledTimer(
@@ -155,15 +155,15 @@ class CaptchaView: UIView {
         
         invalidationAfter -= 1
         timerTrailingConstraint.constant = (timerStep * invalidationAfter) * -1
-        print("timerStep: \(timerStep), invalidationAfter: \(invalidationAfter), const: \(timerTrailingConstraint.constant)")
-        print("Captcha Invalidation update :: time left \(invalidationAfter) seconds")
+        //print("timerStep: \(timerStep), invalidationAfter: \(invalidationAfter), const: \(timerTrailingConstraint.constant)")
+        //print("Captcha Invalidation update :: time left \(invalidationAfter) seconds")
         
         if invalidationAfter <= 0 {
             state = .invalid
             stopTimer()
             requestNewCaptcha()
             timerTrailingConstraint.constant = self.image.frame.width
-            print("Captcha Invalidation update :: current captcha is invalid, new captcha requested...")
+            //print("Captcha Invalidation update :: current captcha is invalid, new captcha requested...")
         }
     }
     

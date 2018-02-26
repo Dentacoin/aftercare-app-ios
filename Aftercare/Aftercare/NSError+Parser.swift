@@ -66,6 +66,12 @@ extension NSError {
                     description = NSLocalizedString("Operation failed due to unconfirmed email address.", comment: "")
                 case .invalidCaptchaCode:
                     description = NSLocalizedString("Invalid Captcha Code! Please go back and re-enter the captcha code.", comment: "")
+                case .errorDeletingCode:
+                    description = NSLocalizedString("Something whent wrong, and we couldn't delete your profile. Please try again later.", comment: "")
+                case .missingCaptchaCode:
+                    description = NSLocalizedString("Missing captcha code!", comment: "")
+                case .missingCaptchaId:
+                    description = NSLocalizedString("Internal error: Missing captcha ID!", comment: "")
             }
             
         }
@@ -113,4 +119,7 @@ enum ErrorKeys: String, RawRepresentable {
     
     case failedDueToUnconfirmedEmail = "email_not_confirmed"
     case invalidCaptchaCode = "invalid_captcha_code"
+    case errorDeletingCode = "error_deleting_user"
+    case missingCaptchaId = "missing_captcha_id"
+    case missingCaptchaCode = "missing_captcha_code"
 }

@@ -107,8 +107,6 @@ class SignUpScreenViewController : UIViewController {
         
         self.captchaCodeTextField.text = ""
         self.captchaView.invalidate()
-        
-        self.addListenersForKeyboard()
     }
     
     deinit {

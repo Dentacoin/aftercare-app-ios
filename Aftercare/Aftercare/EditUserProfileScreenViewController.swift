@@ -26,6 +26,7 @@ class EditUserProfileScreenViewController: UIViewController, ContentConformer {
     @IBOutlet weak var maleButton: UIButton!
     @IBOutlet weak var femaleButton: UIButton!
     @IBOutlet weak var updateButton: UIButton!
+    @IBOutlet weak var deleteProfileButton: UIButton!
     @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomContentPadding: NSLayoutConstraint!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -96,6 +97,15 @@ class EditUserProfileScreenViewController: UIViewController, ContentConformer {
         return datePickerView
     }()
     
+    fileprivate lazy var deleteProfilePopupScreen: ConfirmDeleteProfilePopupScreen = {
+        let popup = Bundle.main.loadNibNamed(
+            String(describing: ConfirmDeleteProfilePopupScreen.self),
+            owner: self,
+            options: nil
+            )?.first as! ConfirmDeleteProfilePopupScreen
+        return popup
+    }()
+    
     //MARK: - lifecycle
     
     override func viewDidLoad() {
@@ -157,7 +167,16 @@ extension EditUserProfileScreenViewController {
         header.updateTitle(NSLocalizedString("My Profile", comment: ""))
         
         let themeManager = ThemeManager.shared
+        
+        let updateButtonTitle = NSLocalizedString("Update", comment: "")
+        updateButton.setTitle(updateButtonTitle, for: .highlighted)
+        updateButton.setTitle(updateButtonTitle, for: .selected)
         themeManager.setDCBlueTheme(to: updateButton, ofType: .ButtonDefault)
+        
+        let deleteProfileButtonTitle = NSLocalizedString("Delete My Profile", comment: "")
+        deleteProfileButton.setTitle(deleteProfileButtonTitle, for: .highlighted)
+        deleteProfileButton.setTitle(deleteProfileButtonTitle, for: .selected)
+        themeManager.setDCBlueTheme(to: deleteProfileButton, ofType: .ButtonDefaultRedGradient)
         
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .left
@@ -369,6 +388,22 @@ extension EditUserProfileScreenViewController {
         }
     }
     
+    @IBAction func deleteUserProfileButtonPressed(_ sender: UIButton) {
+        if uiIsBlocked == true { return }
+        uiIsBlocked = true
+        
+        let popup = self.deleteProfilePopupScreen
+        let frame = UIScreen.main.bounds
+        popup.frame = frame
+        self.view.addSubview(popup)
+        popup.delegate = self
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            popup.alpha = 1
+        })
+        
+    }
+    
 }
 
 //MARK: - UploadImageButtonDelegate
@@ -530,6 +565,31 @@ extension EditUserProfileScreenViewController: GMSAutocompleteViewControllerDele
     func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
+    
+}
+
+// MARK: - ConfirmDeleteProfileDelegate
+
+extension EditUserProfileScreenViewController: ConfirmDeleteProfileDelegate {
+    
+    func deleteProfileConfirmed() {
+        uiIsBlocked = false
+        
+        if let navController = self.navigationController {
+            
+            UserDataContainer.shared.logout()
+            
+            let controller: SplashScreenViewController! =
+                UIStoryboard.login.instantiateViewController()
+            
+            navController.pushViewController(controller, animated: true)
+        }
+    }
+    
+    func deleteProfileCancaled() {
+        uiIsBlocked = false
+    }
+    
     
 }
 
