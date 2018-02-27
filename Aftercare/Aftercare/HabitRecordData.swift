@@ -11,7 +11,7 @@ import Foundation
 struct HabitRecordData: Decodable {
     
     var type: HabitType
-    var date: Date?//TODO: make sure this Date object should be Date or a String
+    var date: String?//TODO: make all date object stored like strings in the model to be parsed and stored as a real Date object
     
     enum HabitType: String, Codable {
         case wakeup

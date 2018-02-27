@@ -23,7 +23,9 @@ class WithdrawsCell: UITableViewCell {
         
         valueLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntLargeTextSize)
         valueLabel.textColor = UIColor.dntCeruleanBlue
-        valueLabel.text = "DCN \(data.amount)"
+        if let amount = data.amount {
+            valueLabel.text = "DCN \(amount)"
+        }
         
         statusLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntLargeTextSize)
         
@@ -45,12 +47,16 @@ class WithdrawsCell: UITableViewCell {
         
         descriptionLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)
         
-        if let date = data.date {
-            let readableDate = DateFormatter.humanReadableWithHourComponentsFormat.string(from: date)
-            descriptionLabel.text = "to: \n\(data.wallet) \n\(readableDate)"
-        } else {
-            descriptionLabel.text = "to: \n\(data.wallet) \n"
+        guard let date = data.date else {
+            return
         }
+        
+        guard let wallet = data.wallet else {
+            return
+        }
+        
+        let readableDate = DateFormatter.humanReadableWithHourComponentsFormat.string(from: date)
+        descriptionLabel.text = "to: \n\(wallet) \n\(readableDate)"
         
     }
     

@@ -10,22 +10,32 @@ import Foundation
 
 struct TransactionData: Codable {
     
-    var amount: Int
-    var wallet: String
+    var amount: Int?
+    var wallet: String?
     var status: TransactionStatusType?
     var date: Date?//TODO: make sure this Date object should be Date or a String
     
-    init(amount: Int, wallet: String) {
-        self.amount = amount
-        self.wallet = wallet
+    init() {
+        
     }
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: TransactionKeys.self)
-        self.amount = try values.decode(Int.self, forKey: .amount)
-        self.wallet = try values.decode(String.self, forKey: .wallet)
+        
+        if let amountRaw = try values.decode(String?.self, forKey: .amount) {
+            if let value = amountRaw.components(separatedBy: ".").first {
+                self.amount = Int(value)
+            } else {
+                self.amount = Int(amountRaw)
+            }
+        }
+        
+        self.wallet = try values.decode(String?.self, forKey: .wallet)
         self.status = try values.decode(TransactionStatusType?.self, forKey: .status)
-        self.date = try values.decode(Date?.self, forKey: .date)
+        
+        if let dateRaw = try values.decode(String?.self, forKey: .date) {
+            self.date = DateFormatter.fromSystemStringFormatter.date(from: dateRaw)
+        }
     }
 
     func encode(to encoder: Encoder) throws {

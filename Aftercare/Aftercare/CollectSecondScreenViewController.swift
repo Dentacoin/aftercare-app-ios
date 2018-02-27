@@ -20,7 +20,6 @@ class CollectSecondScreenViewController: UIViewController, ContentConformer {
     @IBOutlet weak var separatorLineViewTwo: UIView!
     @IBOutlet weak var collectTitleTwoLabel: UILabel!
     @IBOutlet weak var collectValueTwoLabel: UILabel!
-    @IBOutlet weak var amountTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var collectButton: UIButton!
     @IBOutlet weak var whatIsDentacoinButton: UIButton!
     @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
@@ -45,11 +44,6 @@ class CollectSecondScreenViewController: UIViewController, ContentConformer {
     fileprivate lazy var webViewController: UIViewController = {
         let controller = UIViewController()
         return controller
-    }()
-    
-    fileprivate lazy var invalidAmountClaimedError: String = {
-        let totalDCN = UserDataContainer.shared.actionScreenData?.earnedDCN ?? 0
-        return NSLocalizedString("Please claim valid amount of DCN. More than 0 and less than \(totalDCN) DCN", comment: "")
     }()
     
     //MARK: - public
@@ -106,17 +100,6 @@ class CollectSecondScreenViewController: UIViewController, ContentConformer {
     func config(_ data: [String: Any]) {
         self.data = data
     }
-    
-    //MARK: - Private Logic
-    
-    fileprivate func showInvalidAmountClaimedError() {
-        UIAlertController.show(
-            controllerWithTitle: NSLocalizedString("Error", comment: ""),
-            message: invalidAmountClaimedError,
-            buttonTitle: NSLocalizedString("Ok", comment: "")
-        )
-        self.amountTextField.errorMessage = invalidAmountClaimedError
-    }
 }
 
 //MARK: - Theme and appearance
@@ -129,77 +112,37 @@ extension CollectSecondScreenViewController {
         
         collectTitleOneLabel.textColor = UIColor.dntCharcoalGrey
         collectTitleOneLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntLargeTitleFontSize)
-        collectTitleOneLabel.text = NSLocalizedString("Collect DCN in Wallet", comment: "")
+        collectTitleOneLabel.text = NSLocalizedString("Total amount", comment: "")
         
         collectValueOneLabel.textColor = UIColor.dntCeruleanBlue
         collectValueOneLabel.font = UIFont.dntLatoRegularFontWith(size: UIFont.dntLargeTitleFontSize)
-        collectValueOneLabel.text = "0 DCN"
-        getAllTransactionsAndCalculateClaimedAmount()
+        
+        guard let earned = UserDataContainer.shared.actionScreenData?.earnedDCN else {
+            return
+        }
+        guard let pending = UserDataContainer.shared.actionScreenData?.pendingDCN else {
+            return
+        }
+        collectValueOneLabel.text = "DCN \(earned + pending)"
         
         separatorLineViewOne.backgroundColor = UIColor.dntCeruleanBlue
         separatorLineViewTwo.backgroundColor = UIColor.dntCeruleanBlue
         
         collectTitleTwoLabel.textColor = UIColor.dntCharcoalGrey
         collectTitleTwoLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntLargeTitleFontSize)
-        collectTitleTwoLabel.text = NSLocalizedString("Current Balance in App", comment: "")
+        collectTitleTwoLabel.text = NSLocalizedString("Withdrawable amount", comment: "")
         
         collectValueTwoLabel.textColor = UIColor.dntCeruleanBlue
         collectValueTwoLabel.font = UIFont.dntLatoRegularFontWith(size: UIFont.dntLargeTitleFontSize)
-        
-        if let totalDCN = UserDataContainer.shared.actionScreenData?.earnedDCN {
-            collectValueTwoLabel.text = String(totalDCN) + " DCN"
-        }
+        collectValueTwoLabel.text = "DCN \(earned)"
         
         let themeManager = ThemeManager.shared
         
-        let paragraph = NSMutableParagraphStyle()
-        paragraph.alignment = .left
-        
-        themeManager.setDCBlueTheme(to: self.amountTextField, ofType: .TextFieldDarkBlue)
-        let amountPlaceholder = NSAttributedString.init(
-            string: NSLocalizedString("Amount", comment: ""),
-            attributes: [
-                NSAttributedStringKey.foregroundColor: UIColor.dntCeruleanBlue,
-                NSAttributedStringKey.font: UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)!,
-                NSAttributedStringKey.paragraphStyle: paragraph
-            ])
-        self.amountTextField.attributedPlaceholder = amountPlaceholder
-        amountTextField.keyboardType = .numberPad
-        
         themeManager.setDCBlueTheme(to: collectButton, ofType: .ButtonDefaultBlueGradient)
+        
+        collectButton.isEnabled = !(earned <= 0)
+        
         themeManager.setDCBlueTheme(to: whatIsDentacoinButton, ofType: .ButtonLinkWithColor(fontSize: UIFont.dntNoteFontSize, color: .dntCeruleanBlue))
-    }
-    
-    //MARK: - Private
-    
-    fileprivate func getAllTransactionsAndCalculateClaimedAmount() {
-        
-        APIProvider.getAllTransactions() { [weak self] transactions, error in
-            
-            if let error = error {
-                UIAlertController.show(
-                    controllerWithTitle: NSLocalizedString("Error", comment: ""),
-                    message: error.toNSError().localizedDescription,
-                    buttonTitle: NSLocalizedString("Ok", comment: "")
-                )
-                return
-            }
-            
-            guard let transactions = transactions else {
-                return
-            }
-            
-            var totalDCN: Int = 0
-            
-            for transaction in transactions {
-                if transaction.status == .approved || transaction.status == .pending {
-                    totalDCN += transaction.amount
-                }
-            }
-            self?.collectValueOneLabel.text = "\(totalDCN) DCN"
-            
-        }
-        
     }
     
 }
@@ -231,52 +174,37 @@ extension CollectSecondScreenViewController {
     
     @IBAction func collectButtonPressed(_ sender: UIButton) {
         //Validate the ammount claimed by the user
-        guard let claimedAmountString = self.amountTextField.text else {
-            self.showInvalidAmountClaimedError()
+        guard let earnedAmount = UserDataContainer.shared.actionScreenData?.earnedDCN else {
             return
         }
-        if let claimedAmount = Int(claimedAmountString) {
-            if let totalDCN = UserDataContainer.shared.actionScreenData?.earnedDCN {
-                if claimedAmount <= totalDCN, claimedAmount > 0 {
-                    
-                    guard let wallet = self.data?["userWallet"] as? String else {
-                        print("Invalid Wallet")
-                        return
-                    }
-                    
-                    let parameters = TransactionData(amount: claimedAmount, wallet: wallet)
-                    
-                    let loadingState = State(.loadingState, NSLocalizedString("Loading...", comment: ""))
-                    self.showState(loadingState)
-                    
-                    APIProvider.requestCollectionOfDCN(parameters) { [weak self] result, error in
-                        
-                        self?.showState(State(.none))
-                        
-                        if let error = error {
-                            UIAlertController.show(
-                                controllerWithTitle: NSLocalizedString("Error", comment: ""),
-                                message: error.toNSError().localizedDescription,
-                                buttonTitle: NSLocalizedString("Ok", comment: "")
-                            )
-                            return
-                        }
-
-                        self?.amountTextField.text = ""
-                        self?.amountTextField.errorMessage = nil
-                        
-                        self?.showSuccessScreen(claimedAmount)
-                        
-                    }
-                    
-                } else {
-                    self.showInvalidAmountClaimedError()
-                }
-            } else {
-                self.showInvalidAmountClaimedError()
+        
+        guard let wallet = self.data?["userWallet"] as? String else {
+            print("Invalid Wallet")
+            return
+        }
+        
+        var parameters = TransactionData()
+        parameters.amount = earnedAmount
+        parameters.wallet = wallet
+        
+        let loadingState = State(.loadingState, NSLocalizedString("Loading...", comment: ""))
+        self.showState(loadingState)
+        
+        APIProvider.requestCollectionOfDCN(parameters) { [weak self] result, error in
+            
+            self?.showState(State(.none))
+            
+            if let error = error {
+                UIAlertController.show(
+                    controllerWithTitle: NSLocalizedString("Error", comment: ""),
+                    message: error.toNSError().localizedDescription,
+                    buttonTitle: NSLocalizedString("Ok", comment: "")
+                )
+                return
             }
-        } else {
-            self.showInvalidAmountClaimedError()
+            
+            self?.showSuccessScreen(earnedAmount)
+            
         }
     }
     

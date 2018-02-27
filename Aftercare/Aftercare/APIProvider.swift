@@ -398,13 +398,13 @@ struct APIProvider : APIProviderProtocol {
         let urlRequest = APIRouter.Transactions.get()
         Alamofire.request(urlRequest).responseDecodableObject() { (response: DataResponse<[TransactionData]>) in
             switch response.result {
-            case .success(let history):
-                onComplete(history, nil)
-                break
-            case .failure(let error):
-                let nserror = error as NSError
-                errorData = ErrorData(code: nserror.code, errors: [nserror.localizedDescription])
-                break
+                case .success(let history):
+                    onComplete(history, nil)
+                    break
+                case .failure(let error):
+                    let nserror = error as NSError
+                    errorData = ErrorData(code: nserror.code, errors: [nserror.localizedDescription])
+                    break
             }
         }.responseDecodableObject() { (response: DataResponse<ErrorData>) in
             if let error = response.result.value {

@@ -814,14 +814,14 @@
                                     <constraint firstAttribute="height" constant="100" id="MHD-Gn-w7j"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collect DCN in Wallet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTe-Ss-JFX">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total amount" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTe-Ss-JFX">
                                 <rect key="frame" x="8" y="140" width="359" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 DCN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Xi-bn-jwG">
-                                <rect key="frame" x="8" y="169" width="359" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DCN 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Xi-bn-jwG">
+                                <rect key="frame" x="8" y="169" width="359" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -847,14 +847,14 @@
                                     <constraint firstAttribute="height" constant="1" id="pFS-qQ-dG4"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Balance in App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PBA-ES-FJA">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Withdrawable amount" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PBA-ES-FJA">
                                 <rect key="frame" x="8" y="275.5" width="359" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 DCN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PuA-SQ-31a">
-                                <rect key="frame" x="8" y="304.5" width="359" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DCN 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PuA-SQ-31a">
+                                <rect key="frame" x="8" y="304.5" width="359" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -881,15 +881,6 @@
                                     <action selector="collectButtonPressed:" destination="L15-yY-7zd" eventType="touchUpInside" id="yEx-81-klj"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hkm-EN-X8U" customClass="SkyFloatingLabelTextField" customModule="Aftercare" customModuleProvider="target">
-                                <rect key="frame" x="16" y="340.5" width="343" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Amount"/>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -905,12 +896,9 @@
                             <constraint firstItem="Ogz-Ia-oP9" firstAttribute="top" secondItem="ynw-jf-dPT" secondAttribute="bottom" constant="8" id="Nat-fO-tv9"/>
                             <constraint firstItem="9tV-4C-LSA" firstAttribute="top" secondItem="Cth-jN-llO" secondAttribute="top" id="SZP-Ut-Iaz"/>
                             <constraint firstItem="bzD-th-RKp" firstAttribute="centerY" secondItem="wFo-q5-jDL" secondAttribute="centerY" id="UGM-rx-eni"/>
-                            <constraint firstItem="Hkm-EN-X8U" firstAttribute="leading" secondItem="u6a-Ag-Bbo" secondAttribute="leading" constant="16" id="ULS-TR-FrD"/>
-                            <constraint firstItem="u6a-Ag-Bbo" firstAttribute="trailing" secondItem="Hkm-EN-X8U" secondAttribute="trailing" constant="16" id="UPA-8t-bf3"/>
                             <constraint firstItem="u6a-Ag-Bbo" firstAttribute="trailing" secondItem="3Xi-bn-jwG" secondAttribute="trailing" constant="8" id="Vv0-eb-f8X"/>
                             <constraint firstItem="aTe-Ss-JFX" firstAttribute="leading" secondItem="u6a-Ag-Bbo" secondAttribute="leading" constant="8" id="W04-eC-khR"/>
                             <constraint firstItem="u6a-Ag-Bbo" firstAttribute="trailing" secondItem="aTe-Ss-JFX" secondAttribute="trailing" constant="8" id="aWf-fl-c0l"/>
-                            <constraint firstItem="Hkm-EN-X8U" firstAttribute="top" secondItem="PuA-SQ-31a" secondAttribute="bottom" constant="16" id="b87-hR-DEI"/>
                             <constraint firstItem="PBA-ES-FJA" firstAttribute="top" secondItem="wFo-q5-jDL" secondAttribute="bottom" constant="16" id="chQ-5e-iLB"/>
                             <constraint firstItem="ynw-jf-dPT" firstAttribute="centerX" secondItem="u6a-Ag-Bbo" secondAttribute="centerX" id="e4Z-6b-Zwd"/>
                             <constraint firstItem="Ogz-Ia-oP9" firstAttribute="centerX" secondItem="u6a-Ag-Bbo" secondAttribute="centerX" id="g2u-IW-v4w"/>
@@ -930,7 +918,6 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="amountTextField" destination="Hkm-EN-X8U" id="56Z-ym-aaq"/>
                         <outlet property="bottomContentPadding" destination="4gs-EI-JXS" id="Xbv-yZ-St4"/>
                         <outlet property="collectButton" destination="ynw-jf-dPT" id="apl-Vn-0br"/>
                         <outlet property="collectTitleOneLabel" destination="aTe-Ss-JFX" id="HVo-a3-tQJ"/>

@@ -72,6 +72,8 @@ extension NSError {
                     description = NSLocalizedString("Missing captcha code!", comment: "")
                 case .missingCaptchaId:
                     description = NSLocalizedString("Internal error: Missing captcha ID!", comment: "")
+                case .jurneyNotStartedYet:
+                    description = NSLocalizedString("User didn't start any jurney yet.", comment: "")
             }
             
         }
@@ -122,4 +124,6 @@ enum ErrorKeys: String, RawRepresentable {
     case errorDeletingCode = "error_deleting_user"
     case missingCaptchaId = "missing_captcha_id"
     case missingCaptchaCode = "missing_captcha_code"
+    
+    case jurneyNotStartedYet = "not_started_yet"
 }
