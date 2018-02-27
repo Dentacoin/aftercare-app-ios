@@ -82,6 +82,16 @@ protocol APIProviderProtocol {
     static func requestCaptcha(
         _ onComplete: @escaping (_ captcha: CaptchaData?, _ error: ErrorData?) -> Void
     )
+    
+    static func requestEmailConfirmation (
+        _ onComplete: @escaping (_ confirmationResent: Bool, _ error: ErrorData?) -> Void
+    )
+    
+    static func requestDeleteUser(
+        _ params: DeleteUserRequest,
+        _ onComplete: @escaping (_ deleted: Bool, _ error: ErrorData?) -> Void
+    )
+    
 }
 
 typealias AuthenticationResult = (_ result: UserSessionData?, _ error: ErrorData?) -> Void
