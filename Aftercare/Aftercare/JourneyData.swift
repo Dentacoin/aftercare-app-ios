@@ -6,7 +6,7 @@
 
 import Foundation
 
-struct JurneyData: Codable {
+struct JourneyData: Codable {
     
     var startDate: String
     var targetDays: Int

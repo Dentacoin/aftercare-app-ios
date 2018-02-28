@@ -34,6 +34,7 @@ class ActionScreenViewController: UIViewController, ContentConformer {
     fileprivate var headerHeight: CGFloat = 0
     fileprivate var currentPageIndex = 0
     fileprivate var tooltipsShown = false
+    fileprivate var routineRecordData: RoutineData?
     
     fileprivate var lastTab: Int = 0 {
         didSet {
@@ -59,12 +60,12 @@ class ActionScreenViewController: UIViewController, ContentConformer {
         return popup
     }()
     
-    fileprivate lazy var routinesPopupScreen: RoutinesPopupScreen = {
+    fileprivate lazy var missionPopupScreen: MissionPopupScreen = {
         let popup = Bundle.main.loadNibNamed(
-            String(describing: RoutinesPopupScreen.self),
+            String(describing: MissionPopupScreen.self),
             owner: self,
             options: nil
-            )?.first as! RoutinesPopupScreen
+            )?.first as! MissionPopupScreen
         return popup
     }()
     
@@ -116,33 +117,113 @@ class ActionScreenViewController: UIViewController, ContentConformer {
     
     fileprivate func requestDayRoutine() {
         
-        if !UserDataContainer.shared.isRoutineRequested {
-            UserDataContainer.shared.isRoutineRequested = true
-            
-            let routine = Routines.getRoutineForNow()
-            if var routine = routine {
-                
-                guard routine.isDone == false else {
+//        let journey = JourneyData(startDate: "2018-02-27T18:47:24+02:00", targetDays: 90, tolerance: 20, completed: false, day: 8, skipped: 3, lastRoutine: [])
+//        UserDataContainer.shared.journey = journey
+//        showFailedJourneyPopup(journey, Routines.getRoutineForNow()!)
+//        showStartJourneyPopup(journey, Routines.getRoutineForNow()!)
+//        showRoutinesPopup(forRoutine: Routines.getRoutineForNow()!)
+        
+        APIProvider.retreiveCurrentJourney() { [weak self] journey, error in
+
+            if let error = error {
+                if error.code == 400, error.errors.first! == "not_started_yet" {
+                    // No started Journey - [Show Routine Popup]
+                    if let routine = Routines.getRoutineForNow() {
+                        self?.showStartRoutinePopup(forRoutine: routine)
+                    }
+                } else {
+                    // Someting whent wrong
+                    UIAlertController.show(
+                        controllerWithTitle: NSLocalizedString("Error", comment: ""),
+                        message: error.toNSError().localizedDescription,
+                        buttonTitle: NSLocalizedString("Ok", comment: "")
+                    )
                     return
                 }
-                
-                routine.isDone = true
-                
-                SoundManager.shared.playSound(SoundType.greeting(routine.type))
-                UserDataContainer.shared.routine = routine
-                
-                let routinesPopup = self.routinesPopupScreen
-                routinesPopup.delegate = self
-                
-                let frame = UIScreen.main.bounds
-                routinesPopup.frame = frame
-                self.view.addSubview(routinesPopup)
-                
-                routinesPopup.setup(routine)
-                routinesPopup.popupType = .start
+            }
+
+            guard let journey = journey else {
+                return
+            }
+
+            if let routine = Routines.getRoutineForNow() {
+
+                if let lastPresentRoutine = UserDataContainer.shared.lastTimeRoutinePopupPresented {
+                    if Date.passedMinutes(30, fromDate: lastPresentRoutine) == false {
+                        //last routine popup shown within last 30 min.
+                        return
+                    }
+                }
+
+                if journey.lastRoutine?.count == 1, journey.skipped == 0 {
+                    // Journey just started. [Show Start Journey Popup]
+                    self?.routineRecordData = RoutineData(startTime: Date(), type: routine.type)
+                    self?.showStartJourneyPopup(journey, routine)
+                    return
+                }
+
+                if journey.skipped >= journey.tolerance {
+                    // Journey failed [Show Failed Journey Popup]
+                    self?.routineRecordData = RoutineData(startTime: Date(), type: routine.type)
+                    self?.showFailedJourneyPopup(journey, routine)
+                    return
+                }
+
+                if let lastRoutine = journey.lastRoutine?.first {
+                    let lastRoutineType = lastRoutine.type
+                    if routine.type == lastRoutineType {//same type routine
+                        guard let lastRoutineEnd = lastRoutine.endTime?.dateFromISO8601 else {
+                            return
+                        }
+                        let days = Date.passedDaysSince(lastRoutineEnd)
+                        if days > 0 {// routine is from previous day
+                            self?.routineRecordData = RoutineData(startTime: Date(), type: routine.type)
+                            self?.showStartRoutinePopup(forRoutine: routine)
+
+                        } else {
+                            // This routine is already done
+                            //print("This routine is already done")
+                            return
+                        }
+                    } else {
+                        //different type routine
+                        self?.routineRecordData = RoutineData(startTime: Date(), type: routine.type)
+                        self?.showStartRoutinePopup(forRoutine: routine)
+                    }
+                }
             }
         }
+    }
     
+    fileprivate func showStartRoutinePopup(forRoutine routine: Routine) {
+        UserDataContainer.shared.routine = routine
+        UserDataContainer.shared.lastTimeRoutinePopupPresented = Date()
+        createMissionPopup()
+        MissionPopupConfigurator.config(missionPopupScreen, forType: .routineStart)
+        SoundManager.shared.playSound(SoundType.greeting(routine.type))
+    }
+    
+    fileprivate func showEndRoutinePopup(forRoutine routine: Routine) {
+        createMissionPopup()
+        MissionPopupConfigurator.config(missionPopupScreen, forType: .routineEnd)
+        //play end routine popup sound
+        SoundManager.shared.playSound(SoundType.sound(routine.type, .rinse, .done(.congratulations)))
+    }
+    
+    fileprivate func showStartJourneyPopup(_ journey: JourneyData, _ routine: Routine) {
+        UserDataContainer.shared.routine = routine
+        UserDataContainer.shared.journey = journey
+        UserDataContainer.shared.lastTimeRoutinePopupPresented = Date()
+        createMissionPopup()
+        MissionPopupConfigurator.config(missionPopupScreen, forType: .journeyStart)
+    }
+    
+    fileprivate func showFailedJourneyPopup(_ journey: JourneyData, _ routine: Routine) {
+        UserDataContainer.shared.routine = routine
+        UserDataContainer.shared.journey = journey
+        UserDataContainer.shared.lastTimeRoutinePopupPresented = Date()
+        createMissionPopup()
+        MissionPopupConfigurator.config(missionPopupScreen, forType: .journeyFailed)
     }
     
     fileprivate func showTutorials() {
@@ -278,26 +359,68 @@ extension ActionScreenViewController: ActionViewDelegate {
                 let page = pagesArray[index]
                 page.changeStateTo(.Ready)
                 
-                return
-            } else {
-                
-                let routinesPopup = self.routinesPopupScreen
-                routinesPopup.delegate = self
-                
-                let frame = UIScreen.main.bounds
-                routinesPopup.frame = frame
-                self.view.addSubview(routinesPopup)
-                
-                routinesPopup.setup(routine)
-                routinesPopup.popupType = .end
-                
             }
         }
-        exitFullscreen()
     }
     
-    func actionComplete() {
-        //...
+    func actionComplete(_ newRecord: ActionRecordData?) {
+        
+        if let newRecord = newRecord {
+            guard var routineRecord = self.routineRecordData else {
+                return
+            }
+            if var records = routineRecord.records {
+                records.append(newRecord)
+                routineRecord.records = records
+            } else {
+                routineRecord.records = [newRecord]
+            }
+        }
+        
+        // If this is the last action in the routine, try to record the routine
+        
+        guard let routine = UserDataContainer.shared.routine else {
+            return
+        }
+        
+        if routine.actions.count == 0 {//Routine Complete
+            
+            guard let routineRecord = self.routineRecordData else {
+                return
+            }
+            APIProvider.recordRoutine(routineRecord, onComplete: { [weak self] (routineData, error) in
+                
+                if let error = error {
+                    UIAlertController.show(
+                        controllerWithTitle: NSLocalizedString("Error", comment: ""),
+                        message: error.toNSError().localizedDescription,
+                        buttonTitle: NSLocalizedString("Ok", comment: "")
+                    )
+                    return
+                }
+                
+                if let journey = UserDataContainer.shared.journey {
+                    if journey.completed == false {
+                        self?.showFailedJourneyPopup(journey, routine)
+                    } else {
+                        self?.showEndRoutinePopup(forRoutine: routine)
+                    }
+                } else {
+                    self?.showEndRoutinePopup(forRoutine: routine)
+                }
+                
+                self?.exitFullscreen()
+                self?.clearPastRoutineData()
+            })
+            
+        }
+        
+    }
+    
+    fileprivate func clearPastRoutineData() {
+        UserDataContainer.shared.journey = nil
+        UserDataContainer.shared.routine = nil
+        self.routineRecordData = nil
     }
     
     fileprivate func goFullScreen() {
@@ -329,6 +452,15 @@ extension ActionScreenViewController: ActionViewDelegate {
             page.screenWillExitFullscreen()
         }
         contentScrollView.isScrollEnabled = true
+    }
+    
+    fileprivate func createMissionPopup() {
+        let missionPopup = self.missionPopupScreen
+        missionPopup.delegate = self
+        
+        let frame = UIScreen.main.bounds
+        missionPopup.frame = frame
+        self.view.addSubview(missionPopup)
     }
     
 }
@@ -386,12 +518,12 @@ extension ActionScreenViewController: UIScrollViewDelegate {
     
 }
 
-//MARK: - RoutinesPopupScreenDelegate
+//MARK: - MissionPopupScreenDelegate
 
-extension ActionScreenViewController: RoutinesPopupScreenDelegate {
+extension ActionScreenViewController: MissionPopupScreenDelegate {
     
-    func onRoutinesButtonPressed() {
-        routinesPopupScreen.removeFromSuperview()
+    func onActionButtonPressed() {
+        missionPopupScreen.removeFromSuperview()
         
         //make all tabs unselected
         self.lastTab = -1
@@ -412,10 +544,9 @@ extension ActionScreenViewController: RoutinesPopupScreenDelegate {
         
     }
     
-    func onRoutinesClosed() {
+    func onPopupClosed() {
         SoundManager.shared.stopSound()
         SoundManager.shared.stopMusic()
-        
         UserDataContainer.shared.routine = nil
     }
     

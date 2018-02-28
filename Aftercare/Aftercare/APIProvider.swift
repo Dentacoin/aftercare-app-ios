@@ -238,13 +238,117 @@ struct APIProvider : APIProviderProtocol {
         }
     }
     
-    static func recordActions(_ records: [ActionRecordData], onComplete: @escaping (_ processedAction: ActionsResponseList?, _ error: ErrorData?) -> Void) {
+    static func recordActions(
+        _ records: [ActionRecordData],
+        onComplete: @escaping (_ processedAction: ActionsResponseList?, _ error: ErrorData?) -> Void
+        ) {
         var errorData: ErrorData?
         let urlRequest = APIRouter.RecordActions.post(parameters: records)
         Alamofire.request(urlRequest).responseDecodableObject() { (response: DataResponse<ActionsResponseList>) in
             switch response.result {
             case .success(let action):
                 onComplete(action, nil)
+                break
+            case .failure(let error):
+                let nserror = error as NSError
+                errorData = ErrorData(code: nserror.code, errors: [nserror.localizedDescription])
+                break
+            }
+        }.responseDecodableObject() { (response: DataResponse<ErrorData>) in
+            if let error = response.result.value {
+                onComplete(nil, error)
+            } else if let error = errorData {
+                onComplete(nil, error)
+            }
+        }
+    }
+    
+    /*
+     
+     struct RecordRoutine: Creatable {
+         typealias EParameters = RoutineData
+         var route: String = "jouney/routines"
+     }
+     
+     struct RequestRoutines: Readable {
+         typealias EParameters = [RoutineData]
+         var route: String = "journey/routines"
+     }
+     
+     struct RequestJourney: Readable {
+         typealias EParameters = JourneyData
+         var route: String = "journey"
+     }
+     
+     */
+    
+    // MARK: - Retrieve the current journey | GET /journey
+    
+    static func retreiveCurrentJourney(
+        onComplete: @escaping (_ journey: JourneyData?, _ error: ErrorData?) -> Void
+        ) {
+        
+        var errorData: ErrorData?
+        let urlRequest = APIRouter.RequestJourney.get()
+        Alamofire.request(urlRequest).responseDecodableObject() { (response: DataResponse<JourneyData>) in
+            switch response.result {
+            case .success(let journey):
+                onComplete(journey, nil)
+                break
+            case .failure(let error):
+                let nserror = error as NSError
+                errorData = ErrorData(code: nserror.code, errors: [nserror.localizedDescription])
+                break
+            }
+        }.responseDecodableObject() { (response: DataResponse<ErrorData>) in
+            if let error = response.result.value {
+                onComplete(nil, error)
+            } else if let error = errorData {
+                onComplete(nil, error)
+            }
+        }
+    }
+    
+    // MARK: - Adding routine record to a journey | POST /journey/routine
+    
+    static func recordRoutine(
+        _ routine: RoutineData,
+        onComplete: @escaping (_ routine: RoutineData?, _ error: ErrorData?) -> Void
+        ) {
+        
+        var errorData: ErrorData?
+        let urlRequest = APIRouter.RecordRoutine.post(parameters: routine)
+        Alamofire.request(urlRequest).responseDecodableObject() { (response: DataResponse<RoutineData>) in
+            switch response.result {
+            case .success(let routine):
+                onComplete(routine, nil)
+                break
+            case .failure(let error):
+                let nserror = error as NSError
+                errorData = ErrorData(code: nserror.code, errors: [nserror.localizedDescription])
+                break
+            }
+        }.responseDecodableObject() { (response: DataResponse<ErrorData>) in
+            if let error = response.result.value {
+                onComplete(nil, error)
+            } else if let error = errorData {
+                onComplete(nil, error)
+            }
+        }
+    }
+    
+    // MARK: - Retrieving recorded routines for the journey | GET /journey/routines
+    
+    static func retreiveRecordRoutines(
+        onComplete: @escaping (_ routine: [RoutineData]?, _ error: ErrorData?) -> Void
+        ) {
+        
+        var errorData: ErrorData?
+        let urlRequest = APIRouter.RequestRoutines.get()
+        Alamofire.request(urlRequest).responseDecodableObject() { (response: DataResponse<[RoutineData]>) in
+            switch response.result {
+            case .success(let routines):
+                onComplete(routines, nil)
                 break
             case .failure(let error):
                 let nserror = error as NSError

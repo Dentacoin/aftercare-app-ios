@@ -89,6 +89,21 @@ struct APIRouter: APIRouterProtocol {
         var route: String = "multiple-records"
     }
     
+    struct RecordRoutine: Creatable {
+        typealias EParameters = RoutineData
+        var route: String = "jouney/routines"
+    }
+    
+    struct RequestRoutines: Readable {
+        typealias EParameters = [RoutineData]
+        var route: String = "journey/routines"
+    }
+    
+    struct RequestJourney: Readable {
+        typealias EParameters = JourneyData
+        var route: String = "journey"
+    }
+    
     struct RequestActionData: Readable {
         typealias EParameters = [ActionScreenData]
         var route: String = "dashboard"

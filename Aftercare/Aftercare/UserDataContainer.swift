@@ -107,56 +107,59 @@ class UserDataContainer {
     //MARK: - Public properties
     
     var routine: Routine?
+    var journey: JourneyData?
     
-    var isRoutineRequested = false//this is the state for the current app session
+    var lastTimeRoutinePopupPresented: Date?
     
-    var isMorningRoutineDone: Bool {
-        get {
-            if let lastDoneMorningRoutine: String = UserDefaultsManager.shared.getValue(forKey: "MorningRoutineDone") {
-                guard let date = lastDoneMorningRoutine.dateFromISO8601 else { return false }
-                let diff = Calendar.current.dateComponents([.day], from: date, to: Date())
-                if diff.day == 0 {
-                    return true
-                } else {
-                    UserDefaultsManager.shared.clearValue(forKey: "MorningRoutineDone")
-                    return false
-                }
-            }
-            return false
-        }
-        set {
-            if newValue {
-                let now = Date().iso8601
-                UserDefaultsManager.shared.setValue(now, forKey: "MorningRoutineDone")
-            } else {
-                UserDefaultsManager.shared.clearValue(forKey: "MorningRoutineDone")
-            }
-        }
-    }
+//    var isRoutineRequested = false//this is the state for the current app session
     
-    var isEveningRoutineDone: Bool {
-        get {
-            if let lastDoneMorningRoutine: String = UserDefaultsManager.shared.getValue(forKey: "EveningRoutineDone") {
-                guard let date = lastDoneMorningRoutine.dateFromISO8601 else { return false }
-                let diff = Calendar.current.dateComponents([.day], from: date, to: Date())
-                if diff.day == 0 {
-                    return true
-                } else {
-                    UserDefaultsManager.shared.clearValue(forKey: "EveningRoutineDone")
-                    return false
-                }
-            }
-            return false
-        }
-        set {
-            if newValue {
-                let now = Date().iso8601
-                UserDefaultsManager.shared.setValue(now, forKey: "EveningRoutineDone")
-            } else {
-                UserDefaultsManager.shared.clearValue(forKey: "EveningRoutineDone")
-            }
-        }
-    }
+//    var isMorningRoutineDone: Bool {
+//        get {
+//            if let lastDoneMorningRoutine: String = UserDefaultsManager.shared.getValue(forKey: "MorningRoutineDone") {
+//                guard let date = lastDoneMorningRoutine.dateFromISO8601 else { return false }
+//                let diff = Calendar.current.dateComponents([.day], from: date, to: Date())
+//                if diff.day == 0 {
+//                    return true
+//                } else {
+//                    UserDefaultsManager.shared.clearValue(forKey: "MorningRoutineDone")
+//                    return false
+//                }
+//            }
+//            return false
+//        }
+//        set {
+//            if newValue {
+//                let now = Date().iso8601
+//                UserDefaultsManager.shared.setValue(now, forKey: "MorningRoutineDone")
+//            } else {
+//                UserDefaultsManager.shared.clearValue(forKey: "MorningRoutineDone")
+//            }
+//        }
+//    }
+//
+//    var isEveningRoutineDone: Bool {
+//        get {
+//            if let lastDoneMorningRoutine: String = UserDefaultsManager.shared.getValue(forKey: "EveningRoutineDone") {
+//                guard let date = lastDoneMorningRoutine.dateFromISO8601 else { return false }
+//                let diff = Calendar.current.dateComponents([.day], from: date, to: Date())
+//                if diff.day == 0 {
+//                    return true
+//                } else {
+//                    UserDefaultsManager.shared.clearValue(forKey: "EveningRoutineDone")
+//                    return false
+//                }
+//            }
+//            return false
+//        }
+//        set {
+//            if newValue {
+//                let now = Date().iso8601
+//                UserDefaultsManager.shared.setValue(now, forKey: "EveningRoutineDone")
+//            } else {
+//                UserDefaultsManager.shared.clearValue(forKey: "EveningRoutineDone")
+//            }
+//        }
+//    }
     
     var emergencyScreenImage: UIImage? {
         get {
@@ -269,30 +272,6 @@ class UserDataContainer {
             }
             return nil
         }
-    }
-    
-    var dayNumberOf90DaysSession: Int? {
-        
-        if let startDate: String = UserDefaultsManager.shared.getValue(forKey: "startOf90DaysPeriod") {
-            guard let date = startDate.dateFromISO8601 else { return 0 }
-            
-            let nowDate = Date()
-            let calendar = Calendar.current
-            
-            let componentsSet = Set<Calendar.Component>([.day])
-            let result = calendar.dateComponents(componentsSet, from: date, to: nowDate)
-            
-            if let day = result.day {
-                if day >= 91 {
-                    //delete the old period and allow user to start new period from the next action started
-                    UserDefaultsManager.shared.clearValue(forKey: "startOf90DaysPeriod")
-                    return nil
-                }
-                return day
-            }
-        }
-        
-        return nil
     }
     
     open func setUserEmailConfirmed(_ state: Bool) {

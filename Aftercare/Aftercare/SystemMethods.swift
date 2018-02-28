@@ -183,7 +183,7 @@ struct SystemMethods {
     struct Utils {
         
         static func dateFrom(string dateString: String) -> Date? {
-            return DateFormatter.fromSystemStringFormatter.date(from: dateString)
+            return DateFormatter.iso8601.date(from: dateString)
         }
         
         static func secondsToHumanReadableFormat(_ seconds: Int) -> String {

@@ -15,9 +15,9 @@ struct Routines {
         if let hour = components.hour {
             
             if hour >= 2, hour <= 11 {
-                return Routine(startHour: 2, toEndHour: 11, withActions: [ActionRecordType.brush, ActionRecordType.rinsed], .morning)
+                return Routine(startHour: 2, toEndHour: 11, withActions: [.brush, .rinsed], .morning)
             } else if hour >= 17, hour <= 24 {
-                return Routine(startHour: 17, toEndHour: 24, withActions: [ActionRecordType.flossed, ActionRecordType.brush, ActionRecordType.rinsed], .evening)
+                return Routine(startHour: 17, toEndHour: 24, withActions: [.flossed, .brush, .rinsed], .evening)
             }
         }
         return nil
@@ -29,34 +29,14 @@ struct Routine {
     
     var startHour: Int = 0
     var endHour: Int = 0
-    var type: RoutinePath = .morning
+    var type: RoutineType = .morning
     var actions: [ActionRecordType] = []
     
-    init(startHour start: Int, toEndHour end: Int, withActions actions: [ActionRecordType], _ type: RoutinePath) {
+    init(startHour start: Int, toEndHour end: Int, withActions actions: [ActionRecordType], _ type: RoutineType) {
         self.startHour = start
         self.endHour = end
         self.actions = actions
         self.type = type
-    }
-    
-    var isDone: Bool {
-        get {
-            switch self.type {
-                case .evening:
-                    return UserDataContainer.shared.isEveningRoutineDone
-                case .morning:
-                    return UserDataContainer.shared.isMorningRoutineDone
-            }
-        }
-        
-        set {
-            switch self.type {
-                case .evening:
-                    UserDataContainer.shared.isEveningRoutineDone = newValue
-                case .morning:
-                    UserDataContainer.shared.isMorningRoutineDone = newValue
-            }
-        }
     }
     
     var endTitle: String {
@@ -70,7 +50,7 @@ struct Routine {
             case .evening:
                 return NSLocalizedString("Good evening, darling. Did you have a good day? Are you on the way to becoming a legend?", comment: "")
             case .morning:
-                return NSLocalizedString("Good morning sunshine. It is a beautiful day. Let’s get you started properly. \n\n *You will receive your reward upon completion of the 90-day period.", comment: "")
+                return NSLocalizedString("Good morning sunshine. It is a beautiful day. Let’s get you started properly.", comment: "")
         }
     }
     

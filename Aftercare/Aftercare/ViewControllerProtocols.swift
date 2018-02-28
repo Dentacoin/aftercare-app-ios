@@ -53,7 +53,7 @@ protocol ActionViewDelegate: class {
     func timerStopped()
     func timerUpdated(_ milliseconds: Double)
     func stateChanged(_ newState: ActionState)
-    func actionComplete()
+    func actionComplete(_ newRecord: ActionRecordData?)
 }
 
 //MARK: - embedView Proxy ActionViewDelegate
@@ -61,6 +61,7 @@ protocol ActionViewProxyDelegateProtocol: ActionViewDelegate {
     var delegate: ActionViewDelegate? { get set }
     var embedView: ActionView? { get }
     func changeStateTo(_ newState: ActionState)
+    func actionComplete(_ newRecord: ActionRecordData?)
 }
 
 protocol StatisticsDelegate: class {
@@ -127,8 +128,8 @@ extension ActionViewProxyDelegateProtocol {
         delegate?.timerStopped()
     }
     
-    func actionComplete() {
-        delegate?.actionComplete()
+    func actionComplete(_ newRecord: ActionRecordData?) {
+        delegate?.actionComplete(newRecord)
     }
 }
 

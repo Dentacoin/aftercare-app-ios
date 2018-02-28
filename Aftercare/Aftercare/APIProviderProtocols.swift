@@ -56,6 +56,19 @@ protocol APIProviderProtocol {
         onComplete: @escaping (_ processedAction: ActionRecordData?, _ error: ErrorData?) -> Void
     )
     
+    static func retreiveCurrentJourney(
+        onComplete: @escaping (_ routine: JourneyData?, _ error: ErrorData?) -> Void
+    )
+    
+    static func recordRoutine(
+        _ routine: RoutineData,
+        onComplete: @escaping (_ routine: RoutineData?, _ error: ErrorData?) -> Void
+    )
+    
+    static func retreiveRecordRoutines(
+        onComplete: @escaping (_ routine: [RoutineData]?, _ error: ErrorData?) -> Void
+    )
+    
     static func retreiveUserGoals(
         onComplete: @escaping (_ response: [GoalData]?, _ error: ErrorData?) -> Void
     )

@@ -160,8 +160,8 @@ class SoundManager {
 }
 
 enum SoundType {
-    case greeting(RoutinePath)
-    case sound(RoutinePath, ActionPath, StatusPath)
+    case greeting(RoutineType)
+    case sound(RoutineType, ActionPath, StatusPath)
 }
 
 protocol Pathable {
@@ -180,10 +180,9 @@ enum VoicePath: String, Pathable {
     }
 }
 
-enum RoutinePath: Pathable {
+enum RoutineType: String, Pathable, Codable {
     case morning
     case evening
-    
     var path: String? {
         switch self {
         case .morning: return "morning"
@@ -223,7 +222,7 @@ enum SoundPathError: Error {
 }
 
 enum SoundPath {
-    static func greeting(voice: VoicePath, routine: RoutinePath) throws -> String {
+    static func greeting(voice: VoicePath, routine: RoutineType) throws -> String {
         guard let voicePath = voice.path else {
             throw SoundPathError.invalidPath
         }
@@ -237,7 +236,7 @@ enum SoundPath {
         return soundName//voicePath + "/" + routinePath + "/" + soundName
     }
     
-    static func sound(voice: VoicePath, routine: RoutinePath, action: ActionPath, status: StatusPath) throws -> String {
+    static func sound(voice: VoicePath, routine: RoutineType, action: ActionPath, status: StatusPath) throws -> String {
         guard let voicePath = voice.path else {
             throw SoundPathError.invalidPath
         }

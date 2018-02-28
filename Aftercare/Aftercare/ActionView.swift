@@ -406,14 +406,6 @@ class ActionView: UIView {
             guard let type = self.actionViewRecordType else { return }
             let record = ActionRecordData(startTime: startTime.iso8601, endTime: endTime.iso8601, type: type)
             
-            if UserDefaultsManager.shared.getValue(forKey: "startOf90DaysPeriod") == nil {
-                //If there is no start date to the 90 days period we create one
-                //this means the 90 days period starts from now
-                let now = Date()
-                let startOfThePeriod = now.iso8601
-                UserDefaultsManager.shared.setValue(startOfThePeriod, forKey: "startOf90DaysPeriod")
-            }
-            
             var allRecords = [record]
             
             if let allLocalRecords = ActionRecord.getAllSaved() {
@@ -437,7 +429,11 @@ class ActionView: UIView {
             })
             
             //Notify the delegate
-            self.delegate?.actionComplete()
+            self.delegate?.actionComplete(record)
+            
+        } else {
+            //action complete with invalid record
+            self.delegate?.actionComplete(nil)
         }
     }
     

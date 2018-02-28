@@ -34,7 +34,7 @@ struct TransactionData: Codable {
         self.status = try values.decode(TransactionStatusType?.self, forKey: .status)
         
         if let dateRaw = try values.decode(String?.self, forKey: .date) {
-            self.date = DateFormatter.fromSystemStringFormatter.date(from: dateRaw)
+            self.date = DateFormatter.iso8601.date(from: dateRaw)
         }
     }
 

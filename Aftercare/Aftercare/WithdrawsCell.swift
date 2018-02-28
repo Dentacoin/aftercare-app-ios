@@ -47,6 +47,7 @@ class WithdrawsCell: UITableViewCell {
         
         descriptionLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)
         
+        //data.date?.description(with: Locale.autoupdatingCurrent)
         guard let date = data.date else {
             return
         }
@@ -55,8 +56,15 @@ class WithdrawsCell: UITableViewCell {
             return
         }
         
-        let readableDate = DateFormatter.humanReadableWithHourComponentsFormat.string(from: date)
-        descriptionLabel.text = "to: \n\(wallet) \n\(readableDate)"
+        let calendar = Calendar.current
+        let year = calendar.component(.year, from: date)
+        let month = calendar.component(.month, from: date)
+        let day = calendar.component(.day, from: date)
+        let hour = calendar.component(.hour, from: date)
+        let minute = calendar.component(.minute, from: date)
+        let seconds = calendar.component(.second, from: date)
+        
+        descriptionLabel.text = "to: \n\(wallet) \n\(year)/\(month)/\(day) \(hour):\(minute):\(seconds)"
         
     }
     
