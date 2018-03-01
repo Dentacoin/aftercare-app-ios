@@ -62,10 +62,17 @@ struct MissionPopupConfigurator {
             return
         }
         
+        if let record = UserDataContainer.shared.lastRoutineRecord {
+            popup.titleLabel.text?.append("\nDCN \(String(describing: record.earnedDCN)) earned!")
+        } else {
+            print("MissionPopupConfigurator : Missing routine record")
+        }
+        
         toggleFacebookButton(true, forPopup: popup)
         
         popup.titleLabel.text = routine.endTitle
-        popup.subTitleLabel.alpha = 1
+        
+        popup.subTitleLabel.alpha = 0
         popup.descriptionTextView.text = routine.endDescription
         
         let linkContent = FBSDKShareLinkContent()

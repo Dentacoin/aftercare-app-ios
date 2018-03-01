@@ -401,9 +401,18 @@ class ActionView: UIView {
     fileprivate func tryToCreateNewRecord() {
         if self.secondsCount >= UserDataContainer.shared.ActionMinimumRecordTimeInSeconds {
             //create new record
-            guard let startTime = self.startCountdownTime else { return }
-            guard let endTime = self.endCountdownTime else { return }
-            guard let type = self.actionViewRecordType else { return }
+            guard let startTime = self.startCountdownTime else {
+                self.delegate?.actionComplete(nil)//action complete with invalid record
+                return
+            }
+            guard let endTime = self.endCountdownTime else {
+                self.delegate?.actionComplete(nil)//action complete with invalid record
+                return
+            }
+            guard let type = self.actionViewRecordType else {
+                self.delegate?.actionComplete(nil)//action complete with invalid record
+                return
+            }
             let record = ActionRecordData(startTime: startTime.iso8601, endTime: endTime.iso8601, type: type)
             
             var allRecords = [record]
@@ -417,6 +426,7 @@ class ActionView: UIView {
                 if let error = error {
                     print("Error on attempt to record new action: \(error)")
                     ActionRecord.save(record)
+                    //unable to record current action...
                     return
                 }
                 

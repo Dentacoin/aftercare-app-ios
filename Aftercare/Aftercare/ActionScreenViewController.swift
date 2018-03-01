@@ -34,7 +34,11 @@ class ActionScreenViewController: UIViewController, ContentConformer {
     fileprivate var headerHeight: CGFloat = 0
     fileprivate var currentPageIndex = 0
     fileprivate var tooltipsShown = false
-    fileprivate var routineRecordData: RoutineData?
+    fileprivate var routineRecordData: RoutineData? {
+        didSet {
+            UserDataContainer.shared.lastRoutineRecord = routineRecordData
+        }
+    }
     
     fileprivate var lastTab: Int = 0 {
         didSet {
@@ -128,7 +132,16 @@ class ActionScreenViewController: UIViewController, ContentConformer {
             if let error = error {
                 if error.code == 400, error.errors.first! == "not_started_yet" {
                     // No started Journey - [Show Routine Popup]
+                    
+                    if let lastPresentRoutine = UserDataContainer.shared.lastTimeRoutinePopupPresented {
+                        if Date.passedMinutes(30, fromDate: lastPresentRoutine) == false {
+                            //last routine popup shown within last 30 min.
+                            return
+                        }
+                    }
+                    
                     if let routine = Routines.getRoutineForNow() {
+                        self?.routineRecordData = RoutineData(startTime: Date(), type: routine.type)
                         self?.showStartRoutinePopup(forRoutine: routine)
                     }
                 } else {
@@ -391,13 +404,10 @@ extension ActionScreenViewController: ActionViewDelegate {
             APIProvider.recordRoutine(routineRecord, onComplete: { [weak self] (routineData, error) in
                 
                 if let error = error {
-                    UIAlertController.show(
-                        controllerWithTitle: NSLocalizedString("Error", comment: ""),
-                        message: error.toNSError().localizedDescription,
-                        buttonTitle: NSLocalizedString("Ok", comment: "")
-                    )
-                    return
+                    print("ActionScreenViewController : actionComplete Error: \(error)")
                 }
+                
+                UserDataContainer.shared.lastRoutineRecord = routineData
                 
                 if let journey = UserDataContainer.shared.journey {
                     if journey.completed == false {

@@ -263,25 +263,6 @@ struct APIProvider : APIProviderProtocol {
         }
     }
     
-    /*
-     
-     struct RecordRoutine: Creatable {
-         typealias EParameters = RoutineData
-         var route: String = "jouney/routines"
-     }
-     
-     struct RequestRoutines: Readable {
-         typealias EParameters = [RoutineData]
-         var route: String = "journey/routines"
-     }
-     
-     struct RequestJourney: Readable {
-         typealias EParameters = JourneyData
-         var route: String = "journey"
-     }
-     
-     */
-    
     // MARK: - Retrieve the current journey | GET /journey
     
     static func retreiveCurrentJourney(

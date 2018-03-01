@@ -106,6 +106,7 @@ class UserDataContainer {
     
     //MARK: - Public properties
     
+    var lastRoutineRecord: RoutineData?
     var routine: Routine?
     var journey: JourneyData?
     
