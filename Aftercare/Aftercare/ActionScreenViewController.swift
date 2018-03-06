@@ -398,9 +398,11 @@ extension ActionScreenViewController: ActionViewDelegate {
         
         if routine.actions.count == 0 {//Routine Complete
             
-            guard let routineRecord = self.routineRecordData else {
+            guard var routineRecord = self.routineRecordData else {
                 return
             }
+            routineRecord.endTime = Date().description(with: Locale.autoupdatingCurrent)
+            
             APIProvider.recordRoutine(routineRecord, onComplete: { [weak self] (routineData, error) in
                 
                 if let error = error {

@@ -74,12 +74,11 @@ extension WithdrawsScreenViewController {
             forCellReuseIdentifier: withdrawCellIdentifier
         )
         
-        withdrawsTableView.dataSource = self
-        withdrawsTableView.rowHeight = 120
+        withdrawsTableView.estimatedRowHeight = 40
+        withdrawsTableView.rowHeight = UITableViewAutomaticDimension
         withdrawsTableView.allowsSelection = false
-        
+        withdrawsTableView.dataSource = self
         showLoadingScreenState()
-        
         requestWithdrawsData()
     }
     
@@ -146,12 +145,10 @@ extension WithdrawsScreenViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let data = withdrawsDataSource?[indexPath.row] else {
-            print("This should not happen ever")
-            return UITableViewCell()
+        let cell: WithdrawsCell = withdrawsTableView.dequeueReusableCell(withIdentifier: withdrawCellIdentifier, for: indexPath) as! WithdrawsCell
+        if let data = withdrawsDataSource?[indexPath.row] {
+            cell.config(data)
         }
-        let cell: WithdrawsCell = withdrawsTableView.dequeueReusableCell(withIdentifier: withdrawCellIdentifier) as! WithdrawsCell
-        cell.config(data)
         return cell
     }
     

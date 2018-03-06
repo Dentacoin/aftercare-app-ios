@@ -22,14 +22,7 @@ struct TransactionData: Codable {
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: TransactionKeys.self)
         
-        if let amountRaw = try values.decode(String?.self, forKey: .amount) {
-            if let value = amountRaw.components(separatedBy: ".").first {
-                self.amount = Int(value)
-            } else {
-                self.amount = Int(amountRaw)
-            }
-        }
-        
+        self.amount = try values.decode(Int?.self, forKey: .amount)
         self.wallet = try values.decode(String?.self, forKey: .wallet)
         self.status = try values.decode(TransactionStatusType?.self, forKey: .status)
         

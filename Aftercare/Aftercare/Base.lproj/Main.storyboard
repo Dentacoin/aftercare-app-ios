@@ -557,10 +557,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fas-5e-4DE">
-                                <rect key="frame" x="48" y="609" width="280" height="50"/>
+                                <rect key="frame" x="119" y="609" width="138" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="5yS-bd-AP3"/>
-                                    <constraint firstAttribute="width" constant="280" id="kqa-f5-RuH"/>
                                 </constraints>
                                 <state key="normal" title="Delete My Profile"/>
                                 <connections>
@@ -1088,7 +1087,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h9p-6K-1PZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2230" y="1696"/>
+            <point key="canvasLocation" x="2229.5999999999999" y="1695.2023988005999"/>
         </scene>
         <!--Statistic Screen View Controller-->
         <scene sceneID="LmH-a1-7C2">
