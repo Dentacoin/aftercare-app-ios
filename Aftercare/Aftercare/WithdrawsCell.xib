@@ -59,7 +59,7 @@
                             <constraint firstItem="jUM-Jd-ofu" firstAttribute="trailing" secondItem="6JK-cf-exS" secondAttribute="trailing" constant="-8" id="b50-ew-RRs"/>
                             <constraint firstItem="jUM-Jd-ofu" firstAttribute="top" secondItem="6JK-cf-exS" secondAttribute="top" constant="8" id="nnC-bF-xOz"/>
                             <constraint firstAttribute="trailing" secondItem="frB-36-TGA" secondAttribute="trailing" constant="8" id="v6s-ZB-eKi"/>
-                            <constraint firstAttribute="bottom" secondItem="frB-36-TGA" secondAttribute="bottom" constant="7.5" id="v92-CX-3sE"/>
+                            <constraint firstAttribute="bottom" secondItem="frB-36-TGA" secondAttribute="bottom" constant="8" id="v92-CX-3sE"/>
                         </constraints>
                     </view>
                 </subviews>
