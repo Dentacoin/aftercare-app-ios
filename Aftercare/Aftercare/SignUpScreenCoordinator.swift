@@ -55,11 +55,16 @@ extension SignUpScreenCoordinator: SignUpScreenCoordinatorInputProtocol {
             if let result = result {
                 
                 if let dataContainer: UserDataProviderProtocol = provider as? UserDataProviderProtocol {
+                    guard let email = dataContainer.email else {
+                        return print("Fatal Error: missing user email")
+                    }
+                    
                     self?.userInfo = UserData(
+                        id: 0,
+                        email: email,
                         firstName: dataContainer.firstName,
                         lastName: dataContainer.lastName,
                         gender: GenderType(rawValue: dataContainer.gender ?? GenderType.unspecified.rawValue)!,
-                        email: dataContainer.email,
                         postalCode: nil,
                         country: nil,
                         city: nil,

@@ -557,9 +557,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fas-5e-4DE">
-                                <rect key="frame" x="119" y="609" width="138" height="50"/>
+                                <rect key="frame" x="48" y="609" width="280" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="5yS-bd-AP3"/>
+                                    <constraint firstAttribute="width" constant="280" id="aCq-8a-0Hz"/>
                                 </constraints>
                                 <state key="normal" title="Delete My Profile"/>
                                 <connections>

@@ -69,9 +69,10 @@ class EditUserProfileScreenViewController: UIViewController, ContentConformer {
     fileprivate var newAvatarUploaded = false
     fileprivate var calculatedConstraints = false
     fileprivate var genderType: GenderType = GenderType.unspecified
+    fileprivate var newAvatar: UIImage?
     
     fileprivate let datePickerView: UIDatePicker = {
-        let datePickerView:UIDatePicker = UIDatePicker()
+        let datePickerView: UIDatePicker = UIDatePicker()
         datePickerView.datePickerMode = UIDatePickerMode.date
         
         let nowDate = Date()
@@ -354,7 +355,7 @@ extension EditUserProfileScreenViewController {
         }
         
         var avatarData: String?
-        if newAvatarUploaded == true, let avatar = UserDataContainer.shared.userAvatar {
+        if newAvatarUploaded == true, let avatar = newAvatar {
             avatarData = avatar.toBase64()
             updateUserRequestData.avatarBase64 = avatarData
         }
@@ -392,9 +393,22 @@ extension EditUserProfileScreenViewController {
         APIProvider.updateUser(updateUserRequestData) { [weak self] response, error in
             if let error = error {
                 print("Update User Request: Error \(error)")
+                
+//                self?.newAvatar = nil
+//                self?.newAvatarUploaded = false
+                
+                UIAlertController.show(
+                    controllerWithTitle: NSLocalizedString("Error", comment: ""),
+                    message: error.toNSError().localizedDescription,
+                    buttonTitle: NSLocalizedString("Ok", comment: "")
+                )
+                
+                self?.clearState()
+                return
             }
             if let userData = response {
                 UserDataContainer.shared.userInfo = userData
+                UserDataContainer.shared.userAvatar = self?.newAvatar
             }
             self?.clearState()
             self?.backButtonIsPressed()
@@ -444,7 +458,7 @@ extension EditUserProfileScreenViewController: UploadImageButtonDelegate {
     
     func optionDidFinishPickingMedia(_ image: UIImage?) {
         uiIsBlocked = false
-        UserDataContainer.shared.userAvatar = image
+        newAvatar = image
         newAvatarUploaded = true
         cancelIconImage.isHidden = false
     }
@@ -457,10 +471,6 @@ extension EditUserProfileScreenViewController: InsidePageHeaderViewDelegate {
     
     func backButtonIsPressed() {
         if uiIsBlocked == true { return }
-        
-        //clear if there is any selected avatar
-        UserDataContainer.shared.userAvatar = nil
-        
         contentDelegate?.backButtonIsPressed()
     }
     

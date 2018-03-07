@@ -15,20 +15,7 @@ class UserDataContainer {
     
     fileprivate var avatar: UIImage?
     fileprivate var emergencyScreenshot: UIImage?
-    fileprivate var userData: UserData? {
-        didSet {
-            if let data = userData {
-                if UserDefaultsManager.shared.userKey != data.email {
-                    UserDefaultsManager.shared.userKey = data.email
-                }
-                
-                if data.confirmed == true {
-                    UserDataContainer.shared.setUserEmailConfirmed(true)
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "userEmailConfirmationUpdated"), object: nil)
-                }
-            }
-        }
-    }
+    fileprivate var userData: UserData?
     fileprivate var tooltipsSessionStates: [String : Bool] = [:]
     
     //MARK: - Local model persistent file names
@@ -78,13 +65,13 @@ class UserDataContainer {
     open let ActionMinimumRecordTimeInSeconds: Double = 15
     
     //how many times can be taken per day, week, month for every kind of action
-    open let maximumFlossessPerDay: Double = 2//2 times per day
+    open let maximumFlossesPerDay: Double = 2//2 times per day
     open let maximumBrushesPerDay: Double = 2
     open let maximumRinsesPerDay: Double = 2
-    open let maximumFlossessPerWeek: Double = 14//14 times per week
+    open let maximumFlossesPerWeek: Double = 14//14 times per week
     open let maximumBrushesPerWeek: Double = 14
     open let maximumRinsesPerWeek: Double = 14
-    open let maximumFlossessPerMonth: Double = 60//60 times per month - we use average month length = 30 days
+    open let maximumFlossesPerMonth: Double = 60//60 times per month - we use average month length = 30 days
     open let maximumBrushesPerMonth: Double = 60
     open let maximumRinsesPerMonth: Double = 60
     
@@ -111,56 +98,6 @@ class UserDataContainer {
     var journey: JourneyData?
     
     var lastTimeRoutinePopupPresented: Date?
-    
-//    var isRoutineRequested = false//this is the state for the current app session
-    
-//    var isMorningRoutineDone: Bool {
-//        get {
-//            if let lastDoneMorningRoutine: String = UserDefaultsManager.shared.getValue(forKey: "MorningRoutineDone") {
-//                guard let date = lastDoneMorningRoutine.dateFromISO8601 else { return false }
-//                let diff = Calendar.current.dateComponents([.day], from: date, to: Date())
-//                if diff.day == 0 {
-//                    return true
-//                } else {
-//                    UserDefaultsManager.shared.clearValue(forKey: "MorningRoutineDone")
-//                    return false
-//                }
-//            }
-//            return false
-//        }
-//        set {
-//            if newValue {
-//                let now = Date().iso8601
-//                UserDefaultsManager.shared.setValue(now, forKey: "MorningRoutineDone")
-//            } else {
-//                UserDefaultsManager.shared.clearValue(forKey: "MorningRoutineDone")
-//            }
-//        }
-//    }
-//
-//    var isEveningRoutineDone: Bool {
-//        get {
-//            if let lastDoneMorningRoutine: String = UserDefaultsManager.shared.getValue(forKey: "EveningRoutineDone") {
-//                guard let date = lastDoneMorningRoutine.dateFromISO8601 else { return false }
-//                let diff = Calendar.current.dateComponents([.day], from: date, to: Date())
-//                if diff.day == 0 {
-//                    return true
-//                } else {
-//                    UserDefaultsManager.shared.clearValue(forKey: "EveningRoutineDone")
-//                    return false
-//                }
-//            }
-//            return false
-//        }
-//        set {
-//            if newValue {
-//                let now = Date().iso8601
-//                UserDefaultsManager.shared.setValue(now, forKey: "EveningRoutineDone")
-//            } else {
-//                UserDefaultsManager.shared.clearValue(forKey: "EveningRoutineDone")
-//            }
-//        }
-//    }
     
     var emergencyScreenImage: UIImage? {
         get {
@@ -190,11 +127,11 @@ class UserDataContainer {
     
     var email: String? {
         get {
-            if let data = self.userData, let uemail = data.email {
-                return uemail
+            if let data = self.userData {
+                return data.email
             } else {
                 for provider in providers {
-                    if let emailAddress = provider.email, emailAddress != "" {
+                    if let emailAddress = provider.email, !emailAddress.isEmpty {
                         return emailAddress
                     }
                 }
@@ -207,11 +144,7 @@ class UserDataContainer {
         get {
             
             if self.userData == nil {
-                do {//try to load from local persistent storage
-                    self.userData = try Disk.retrieve(userDataLocalFile, from: .caches, as: UserData.self)
-                } catch {
-                    print("Error: Disk faild to load UserData from local caches :: \(error)")
-                }
+                tryToLoadLastLocalUserInfo()
             }
             
             return self.userData
@@ -223,8 +156,19 @@ class UserDataContainer {
                 guard let data = self.userData else { return }
                 try Disk.save(data, to: .caches, as: self.userDataLocalFile)
             } catch {
-                print("Error: Disk faild to save UserData from local caches :: \(error)")
+                print("Error: Disk failed to save UserData to local caches :: \(error)")
             }
+            
+            if let data = userData {
+                if UserDefaultsManager.shared.userKey != data.email {
+                    UserDefaultsManager.shared.userKey = data.email
+                }
+                UserDataContainer.shared.setUserEmailConfirmed(data.confirmed)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "userEmailConfirmationUpdated"), object: nil)
+            } else {
+                UserDefaultsManager.shared.userKey = "unknown"
+            }
+            
         }
     }
     
@@ -274,6 +218,8 @@ class UserDataContainer {
             return nil
         }
     }
+    
+    // MARK: - Open methods
     
     open func setUserEmailConfirmed(_ state: Bool) {
         UserDefaultsManager.shared.setValue(state, forKey: "UserEmailConfirmed")
@@ -338,14 +284,11 @@ class UserDataContainer {
         let maxValue: Double?
         switch type {
             case .flossed:
-                maxValue = self.maximumFlossessPerDay
-                break
+                maxValue = self.maximumFlossesPerDay
             case .brush:
                 maxValue = self.maximumBrushesPerDay
-                break
             case .rinsed:
                 maxValue = self.maximumRinsesPerDay
-                break
         }
         guard let max = maxValue else { return 0.0 }
         let one = 360 / max
@@ -368,66 +311,42 @@ class UserDataContainer {
     }
     
     open func getStatisticsActionsTakenProgress(_ value: Double, forKind kind: ActionRecordType, ofType type: ScheduleOptionTypes) -> Double {
-        
         var maxValue: Double?
-        
         switch type {
             case .dailyData:
-                
                 if kind == .brush { maxValue = self.maximumBrushesPerDay }
-                if kind == .flossed { maxValue = self.maximumFlossessPerDay }
+                if kind == .flossed { maxValue = self.maximumFlossesPerDay }
                 if kind == .rinsed { maxValue = self.maximumRinsesPerDay }
-                
-                break
             case .weeklyData:
-                
                 if kind == .brush { maxValue = self.maximumBrushesPerWeek }
-                if kind == .flossed { maxValue = self.maximumFlossessPerWeek }
+                if kind == .flossed { maxValue = self.maximumFlossesPerWeek }
                 if kind == .rinsed { maxValue = self.maximumRinsesPerWeek }
-                
-                break
             case .monthlyData:
-                
                 if kind == .brush { maxValue = self.maximumBrushesPerMonth }
-                if kind == .flossed { maxValue = self.maximumFlossessPerMonth }
+                if kind == .flossed { maxValue = self.maximumFlossesPerMonth }
                 if kind == .rinsed { maxValue = self.maximumRinsesPerMonth }
-                
-                break
         }
-        
         guard let max = maxValue else { return 0 }
         let one = 360 / max
         return one * value
     }
     
     open func getStatisticsTimeLeftProgress(_ value: Double, forKind kind: ActionRecordType, ofType type: ScheduleOptionTypes) -> Double {
-        
         var maxValue: Double?
-        
         switch type {
-        case .dailyData:
-            
-            if kind == .brush { maxValue = self.maximumBrushTimePerDay }
-            if kind == .flossed { maxValue = self.maximumFlossTimePerDay }
-            if kind == .rinsed { maxValue = self.maximumRinseTimePerDay }
-            
-            break
-        case .weeklyData:
-            
-            if kind == .brush { maxValue = self.maximumBrushTimePerWeek }
-            if kind == .flossed { maxValue = self.maximumFlossTimePerWeek }
-            if kind == .rinsed { maxValue = self.maximumRinseTimePerWeek }
-            
-            break
-        case .monthlyData:
-            
-            if kind == .brush { maxValue = self.maximumBrushTimePerMonth }
-            if kind == .flossed { maxValue = self.maximumFlossTimePerMonth }
-            if kind == .rinsed { maxValue = self.maximumRinseTimePerMonth }
-            
-            break
+            case .dailyData:
+                if kind == .brush { maxValue = self.maximumBrushTimePerDay }
+                if kind == .flossed { maxValue = self.maximumFlossTimePerDay }
+                if kind == .rinsed { maxValue = self.maximumRinseTimePerDay }
+            case .weeklyData:
+                if kind == .brush { maxValue = self.maximumBrushTimePerWeek }
+                if kind == .flossed { maxValue = self.maximumFlossTimePerWeek }
+                if kind == .rinsed { maxValue = self.maximumRinseTimePerWeek }
+            case .monthlyData:
+                if kind == .brush { maxValue = self.maximumBrushTimePerMonth }
+                if kind == .flossed { maxValue = self.maximumFlossTimePerMonth }
+                if kind == .rinsed { maxValue = self.maximumRinseTimePerMonth }
         }
-        
         guard let max = maxValue else { return 0 }
         let one = 360 / max
         return one * value
@@ -449,7 +368,7 @@ class UserDataContainer {
     
     //MARK: - Public methods
     
-    func logout() {
+    open func logout() {
         
         //delete saved email session
         UserDefaultsManager.shared.clearGlobalValue(forKey: "token")
@@ -460,15 +379,9 @@ class UserDataContainer {
         }
         
         self.userAvatar = nil
-        
-        //remove whole user persistent domain
-//        if let bundle = Bundle.main.bundleIdentifier {
-//            defaults.removePersistentDomain(forName: bundle)
-//            defaults.synchronize()
-//        }
     }
     
-    func syncWithServer() {
+    open func syncWithServer() {
         self.requestActionScreenData()
         self.requestGoalsData()
         self.loadUserAvatar() { success in
@@ -476,7 +389,7 @@ class UserDataContainer {
         }
     }
     
-    func loadUserAvatar(_ onComplete: ((_ success: Bool) -> Void)? = nil) {
+    open func loadUserAvatar(_ onComplete: ((_ success: Bool) -> Void)? = nil) {
         if let path = self.userAvatarPath {
             APIProvider.loadUserAvatar(path) { [weak self] image, error in
                 if let error = error {
@@ -492,6 +405,16 @@ class UserDataContainer {
         }
     }
     
+    // MARK: - Fileprivate methods
+    
+    func tryToLoadLastLocalUserInfo() {
+        do {//try to load from local persistent storage
+            self.userInfo = try Disk.retrieve(userDataLocalFile, from: .caches, as: UserData.self)
+        } catch {
+            print("Error: Disk failed to load UserData from local caches :: \(error)")
+        }
+    }
+    
     fileprivate func requestGoalsData() {
         APIProvider.retreiveUserGoals() { [weak self] response, error in
             if let response = response {
@@ -502,7 +425,7 @@ class UserDataContainer {
                     let fileName = self?.goalsDataLocalFile ?? ""
                     try Disk.save(data, to: .caches, as: fileName)
                 } catch {
-                    print("Error: Disk faild to save UserData from local caches :: \(error)")
+                    print("Error: Disk failed to save UserData to local caches :: \(error)")
                 }
                 return
             }
@@ -516,7 +439,7 @@ class UserDataContainer {
                     let fileName = self?.goalsDataLocalFile ?? ""
                     self?.goalsData = try Disk.retrieve(fileName, from: .caches, as: [GoalData].self)
                 } catch {
-                    print("Error: Disk faild to load UserData from local caches :: \(error)")
+                    print("Error: Disk failed to load UserData from local caches :: \(error)")
                 }
             }
         }
@@ -525,12 +448,11 @@ class UserDataContainer {
     fileprivate func requestActionScreenData() {
         
         if self.actionScreenData == nil {
-            
             //try to load from local persistent storage
             do {
                 self.actionScreenData = try Disk.retrieve(self.actionScreenLocalFile, from: .caches, as: ActionScreenData.self)
             } catch {
-                print("Error: Disk faild to load ActionScreenData from local caches :: \(error)")
+                print("Error: Disk failed to load ActionScreenData from local caches :: \(error)")
             }
             
             let flossedDaily = ScheduleData(times: 0, left: 0, average: 0)
@@ -583,7 +505,7 @@ class UserDataContainer {
                     guard let fileName = self?.actionScreenLocalFile else { return }
                     try Disk.save(response, to: .caches, as: fileName)
                 } catch {
-                    print("Error: Disk faild to save ActionScreenData :: \(error)")
+                    print("Error: Disk failed to save ActionScreenData :: \(error)")
                 }
                 return
             }
@@ -591,13 +513,12 @@ class UserDataContainer {
             if let error = error {
                 let nsError = error.toNSError()
                 print("Error: \(nsError.localizedDescription)")
-                
                 //try to load from local persistent storage
                 do {
                     guard let fileName = self?.actionScreenLocalFile else { return }
                     self?.actionScreenData = try Disk.retrieve(fileName, from: .caches, as: ActionScreenData.self)
                 } catch {
-                    print("Error: Disk faild to load ActionScreenData from local caches :: \(error)")
+                    print("Error: Disk failed to load ActionScreenData from local caches :: \(error)")
                 }
             }
         }

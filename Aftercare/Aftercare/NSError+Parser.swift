@@ -15,8 +15,9 @@ extension NSError {
         let domain = "com.dentacoin.mobileapp.api.error"
         var description: String = NSLocalizedString("Unknown Error: \(errorKey)", comment: "")
         
-        if let key = ErrorKeys(rawValue: errorKey) {
-        
+        if code == -1009 {
+            description = NSLocalizedString("The Internet connection appears to be offline.", comment: "")
+        } else  if let key = ErrorKeys(rawValue: errorKey) {
             switch key {
                 case .passwordShort:
                     description = NSLocalizedString("Password is too short", comment: "")

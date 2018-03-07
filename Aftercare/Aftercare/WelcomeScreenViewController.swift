@@ -21,8 +21,6 @@ class WelcomeScreenViewController : UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setup()
-        //sync data with the server
-        UserDataContainer.shared.syncWithServer()
     }
     
     fileprivate let controller: MainMenuViewController! =

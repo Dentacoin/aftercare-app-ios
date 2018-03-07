@@ -12,11 +12,12 @@ struct UserData: Codable {
     
     //MARK: - fileprivate vars
     
-    var id: Int?
+    var id: Int
+    var email: String
+    
     var firstName: String?
     var lastName: String?
     var gender = GenderType.unspecified
-    var email: String?
     var postalCode: String?
     var country: String?
     var city: String?
@@ -30,10 +31,11 @@ struct UserData: Codable {
     var avatar_64: String?
     
     init(
+        id: Int,
+        email: String,
         firstName: String?,
         lastName: String?,
         gender: GenderType = .unspecified,
-        email: String?,
         postalCode: String?,
         country: String?,
         city: String?,
@@ -42,11 +44,11 @@ struct UserData: Codable {
         avatar_64: String?
         ) {
         
-        self.id = nil
+        self.id = id
+        self.email = email
         self.firstName = firstName
         self.lastName = lastName
         self.gender = gender
-        self.email = email
         self.postalCode = postalCode
         self.country = country
         self.city = city
@@ -63,11 +65,8 @@ struct UserData: Codable {
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: UserKeys.self)
         
-        do {
-            self.id = try values.decode(Int?.self, forKey: .id)
-        } catch {
-            print("Parsing Error: UserData :: id property is missing!")
-        }
+        self.id = try! values.decode(Int.self, forKey: .id)
+        self.email = try! values.decode(String.self, forKey: .email)
         
         do {
             self.firstName = try values.decode(String?.self, forKey: .firstName)
@@ -85,12 +84,6 @@ struct UserData: Codable {
             self.gender = try values.decode(GenderType.self, forKey: .gender)
         } catch {
             print("Parsing Error: UserData :: gender property is missing!")
-        }
-        
-        do {
-            self.email = try values.decode(String?.self, forKey: .email)
-        } catch {
-            print("Parsing Error: UserData :: email property is missing!")
         }
         
         do {
@@ -141,21 +134,18 @@ struct UserData: Codable {
         } catch {
             print("Parsing Error: UserData :: trying to parse password")
         }
-        do {
-            self.avatar = try values.decode(AvatarData?.self, forKey: .avatar)
-        } catch {
-            print("Parsing Error: UserData :: avatar property is missing!")
-        }
+        
+        self.avatar = try? values.decode(AvatarData.self, forKey: .avatar)
         
     }
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: UserKeys.self)
         try! container.encode(self.id, forKey: .id)
+        try! container.encode(self.email, forKey: .email)
         try! container.encode(self.firstName, forKey: .firstName)
         try! container.encode(self.lastName, forKey: .lastName)
         try! container.encode(self.gender, forKey: .gender)
-        try! container.encode(self.email, forKey: .email)
         try! container.encode(self.birthDay, forKey: .birthDay)
         try! container.encode(self.postalCode, forKey: .postalCode)
         try! container.encode(self.country, forKey: .country)

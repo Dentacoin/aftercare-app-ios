@@ -75,26 +75,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if UserDataContainer.shared.hasValidSession {
             APIProvider.retreiveUserInfo() { [weak self] userData, error in
+                
                 if let data = userData {
-                    
                     UserDataContainer.shared.userInfo = data
                     UserDataContainer.shared.syncWithServer()
-                    
-                    self?.show(child: .main)
-                    
-                } else if let error = error?.toNSError() {
-                    
-                    //something went wrong
-                    UIAlertController.show(
-                        controllerWithTitle: NSLocalizedString("Error", comment: ""),
-                        message: error.localizedDescription,
-                        buttonTitle: NSLocalizedString("Ok", comment: "")
-                    )
-                    
-                    UserDataContainer.shared.logout()
-                    self?.show(child: .splash)
-                    
                 }
+                
+                if let _ = error {
+                    //something went wrong. No internet connection or bad server response
+                    UserDataContainer.shared.tryToLoadLastLocalUserInfo()
+                }
+                
+                self?.show(child: .main)
+                
             }
         } else {
             show(child: .splash)

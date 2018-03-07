@@ -11,44 +11,19 @@ import UIKit
 
 struct AvatarData: Codable {
     
-    fileprivate var userAvatarID: Int?
-    fileprivate var userAvatarLowQualityURL: String?
-    fileprivate var userAvatar1xURL: String?
-    fileprivate var userAvatar2xURL: String?
-    fileprivate var userAvatar3xURL: String?
+    fileprivate var userAvatarID: Int
+    fileprivate var userAvatarLowQualityURL: String
+    fileprivate var userAvatar1xURL: String
+    fileprivate var userAvatar2xURL: String
+    fileprivate var userAvatar3xURL: String
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: AvatarDataKeys.self)
-        
-        do {
-            self.userAvatarID = try values.decode(Int?.self, forKey: .avatarID)
-        } catch {
-            print("Parsing Error: AvatarData :: userAvatarID property is missing!")
-        }
-        
-        do {
-            self.userAvatarLowQualityURL = try values.decode(String?.self, forKey: .avatarLowQuality)
-        } catch {
-            print("Parsing Error: AvatarData :: userAvatarLowQualityURL property is missing!")
-        }
-        
-        do {
-            self.userAvatar1xURL = try values.decode(String?.self, forKey: .avatar1x)
-        } catch {
-            print("Parsing Error: AvatarData :: userAvatar1xURL property is missing!")
-        }
-        
-        do {
-            self.userAvatar2xURL = try values.decode(String?.self, forKey: .avatar2x)
-        } catch {
-            print("Parsing Error: AvatarData :: userAvatar2xURL property is missing!")
-        }
-        
-        do {
-            self.userAvatar3xURL = try values.decode(String?.self, forKey: .avatar3x)
-        } catch {
-            print("Parsing Error: AvatarData :: userAvatar3xURL property is missing!")
-        }
+        self.userAvatarID = try values.decode(Int.self, forKey: .avatarID)
+        self.userAvatarLowQualityURL = try values.decode(String.self, forKey: .avatarLowQuality)
+        self.userAvatar1xURL = try values.decode(String.self, forKey: .avatar1x)
+        self.userAvatar2xURL = try values.decode(String.self, forKey: .avatar2x)
+        self.userAvatar3xURL = try values.decode(String.self, forKey: .avatar3x)
     }
     
     var avatarID: Int? {
@@ -61,14 +36,14 @@ struct AvatarData: Codable {
         get {
             let scale = UIScreen.main.scale
             switch scale {
-            case 1:
-                return self.userAvatar1xURL
-            case 2:
-                return self.userAvatar2xURL
-            case 3:
-                return self.userAvatar3xURL
-            default:
-                return self.userAvatar3xURL
+                case 1:
+                    return self.userAvatar1xURL
+                case 2:
+                    return self.userAvatar2xURL
+                case 3:
+                    return self.userAvatar3xURL
+                default:
+                    return self.userAvatar3xURL
             }
         }
     }

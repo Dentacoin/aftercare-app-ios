@@ -101,21 +101,15 @@ extension UserProfileScreenViewController {
         emailLabel.textColor = .white
         emailLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntLargeTextSize)
         
-        
         addressLabel.textColor = .white
         addressLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntLargeTextSize)
-        
         
         ageLabel.textColor = .white
         ageLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntLargeTextSize)
         
-        
         genderLabel.textColor = .white
         genderLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntLargeTextSize)
         
-        if let image = UserDataContainer.shared.userAvatar {
-            userAvatarImage.image = image
-        }
         userAvatarImage.layer.cornerRadius = userAvatarImage.frame.size.width / 2
         userAvatarImage.layer.masksToBounds = true
         
@@ -133,9 +127,7 @@ extension UserProfileScreenViewController {
             fullNameLabel.text = fullName
         }
         
-        if let email = data.email {
-            emailLabel.text = email
-        }
+        emailLabel.text = data.email
         
         var address = ""
         if let postal = data.postalCode {
@@ -148,6 +140,12 @@ extension UserProfileScreenViewController {
             address += " " + country
         }
         
+        addressLabel.text = address
+        
+        if let image = UserDataContainer.shared.userAvatar {
+            userAvatarImage.image = image
+        }
+        
         let formatter = DateFormatter.humanReadableFormat
         if let birthDay = data.birthDay {
             if let age = formatter.date(from: birthDay) {
@@ -158,9 +156,9 @@ extension UserProfileScreenViewController {
                 }
             }
         }
-        
-        genderLabel.text = data.gender.rawValue
-        
+        if data.gender != .unspecified {
+            genderLabel.text = data.gender.rawValue
+        }
     }
     
     fileprivate func userEmailConfirationUpdated() {
