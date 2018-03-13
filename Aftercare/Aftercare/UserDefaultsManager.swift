@@ -80,6 +80,10 @@ class UserDefaultsManager {
         return value
     }
     
+    func getAllForUserKey(_ key: String) -> Dictionary<String, Any>? {
+        return defaults.value(forKey: key) as? Dictionary<String, Any>
+    }
+    
     // MARK: - global variable
     
     func setGlobalValue<T>(_ value: T, forKey key: String) {

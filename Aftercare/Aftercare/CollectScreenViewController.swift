@@ -162,7 +162,11 @@ extension CollectScreenViewController {
                 NSAttributedStringKey.font: UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)!,
                 NSAttributedStringKey.paragraphStyle: paragraph
             ])
-        self.walletAddressTextField.attributedPlaceholder = walletAddressPlaceholder
+        if let wallet: String = UserDefaultsManager.shared.getValue(forKey: "wallet") {
+            self.walletAddressTextField.text = wallet
+        } else {
+            self.walletAddressTextField.attributedPlaceholder = walletAddressPlaceholder
+        }
         
         themeManager.setDCBlueTheme(to: sendButton, ofType: .ButtonDefaultBlueGradient)
         
@@ -186,7 +190,9 @@ extension CollectScreenViewController: QRCodeReaderViewControllerDelegate {
             
             //clear if any error
             self.walletAddressTextField.errorMessage = nil
-            walletAddressTextField.text = result.value
+            let walletAddress = result.value
+            walletAddressTextField.text = walletAddress
+            UserDefaultsManager.shared.setValue(walletAddress, forKey: "wallet")
             return
             
         } else {
@@ -246,6 +252,7 @@ extension CollectScreenViewController: QRCodeReaderViewControllerDelegate {
                 } else {
                     self.walletAddressTextField.errorMessage = nil
                     walletAddressTextField.text = walletAddress
+                    UserDefaultsManager.shared.setValue(walletAddress, forKey: "wallet")
                 }
             } else {
                 self.walletAddressTextField.errorMessage = self.wrongWalletError
@@ -344,6 +351,8 @@ extension CollectScreenViewController {
             self.wrongWalletAddressError()
             self.walletAddressTextField.errorMessage = self.wrongWalletError
             return
+        } else {
+            UserDefaultsManager.shared.setValue(wallet, forKey: "wallet")
         }
         
         let vcID = String(describing: CollectSecondScreenViewController.self)
