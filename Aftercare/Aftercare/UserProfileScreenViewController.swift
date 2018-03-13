@@ -159,6 +159,17 @@ extension UserProfileScreenViewController {
         if data.gender != .unspecified {
             genderLabel.text = data.gender.rawValue
         }
+        
+        APIProvider.retreiveUserInfo() { [weak self] userData, error in
+            if let error = error {
+                print("UserProfileScreenViewController :: UpdateContent :: Unable to retreive userData \(error.errors)")
+                return
+            }
+            if let data = userData {
+                UserDataContainer.shared.userInfo = data
+                self?.userEmailConfirationUpdated()
+            }
+        }
     }
     
     fileprivate func userEmailConfirationUpdated() {

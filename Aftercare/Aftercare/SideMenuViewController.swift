@@ -193,6 +193,17 @@ class SideMenuViewController: UIViewController {
         }
         avatarImage.layer.cornerRadius = avatarImage.frame.size.width / 2
         avatarImage.layer.masksToBounds = true
+        
+        APIProvider.retreiveUserInfo() { [weak self] userData, error in
+            if let error = error {
+                print("SideMenuViewController :: updateUserData :: Unable to retreive userData \(error.errors)")
+                return
+            }
+            if let data = userData {
+                UserDataContainer.shared.userInfo = data
+                self?.onUserEmailConfirmationUpdated()
+            }
+        }
     }
     
     fileprivate func setupAndUpdateMenuData() {
