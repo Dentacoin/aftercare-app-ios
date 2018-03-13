@@ -69,7 +69,9 @@ extension GoalPopupScreen {
     fileprivate func setup() {
         self.titleLabel.text = self.data?.title
         self.descriptionLabel.text = self.data?.description
-        
+        if let reward = self.data?.reward {
+            self.descriptionLabel.text?.append("\n\n DCN \(reward)")
+        }
         let completed = self.data?.completed ?? false
         
         titleLabel.font = UIFont.dntLatoRegularFontWith(size: UIFont.dntLargeTextSize)
@@ -88,6 +90,8 @@ extension GoalPopupScreen {
         containerView.layer.shadowOffset =  CGSize(width: 1.0, height: 2.0)
         containerView.layer.shadowOpacity = 1
         containerView.layer.shadowRadius = 20
+        
+        self.backgroundColor = UIColor.dntCharcoalGrey.withAlphaComponent(0.6)
         
         if completed {
             self.achievedStyle()
@@ -130,9 +134,15 @@ extension GoalPopupScreen {
         
         shareWithFBButtonHeightConstraint.constant = 40
         shareWithFBButton.backgroundColor = .clear
-        shareWithFBButton.setTitle(NSLocalizedString("Share With Facebook", comment: ""), for: .normal)
         
-        self.backgroundColor = UIColor.dntCeruleanBlue.withAlphaComponent(0.6)
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.alignment = .center
+        
+        let shareTitle = NSAttributedString(
+            string: NSLocalizedString("Share", comment: ""),
+            attributes: [NSAttributedStringKey.paragraphStyle: paragraph]
+        )
+        shareWithFBButton.setAttributedTitle(shareTitle, for: .normal)
     }
     
     fileprivate func unachievedStyle() {
@@ -161,7 +171,6 @@ extension GoalPopupScreen {
         
         shareWithFBButtonHeightConstraint.constant = 0
         
-        self.backgroundColor = UIColor.dntCharcoalGrey.withAlphaComponent(0.6)
     }
     
     fileprivate func getColorStyle(byID id: String) -> GoalColors {

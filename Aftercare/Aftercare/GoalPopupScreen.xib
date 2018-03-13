@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -33,7 +33,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="262.5" height="370"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H9a-0f-Ekg">
-                            <rect key="frame" x="8" y="215.5" width="247" height="20.5"/>
+                            <rect key="frame" x="8" y="218.5" width="247" height="17.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -48,7 +48,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ribbon-purple" translatesAutoresizingMaskIntoConstraints="NO" id="sD4-EY-FNU">
-                            <rect key="frame" x="81" y="135" width="101" height="50.5"/>
+                            <rect key="frame" x="100" y="157" width="63" height="31.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="sD4-EY-FNU" secondAttribute="height" multiplier="1:0.5" id="e6t-EN-7Bf"/>
                             </constraints>
@@ -94,11 +94,11 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lfE-cB-qh0" customClass="FBSDKShareButton">
-                            <rect key="frame" x="41.5" y="322" width="180" height="40"/>
+                            <rect key="frame" x="56.5" y="322" width="150" height="40"/>
                             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="DRz-xe-NCi"/>
-                                <constraint firstAttribute="width" constant="180" id="jWu-dK-ZtB"/>
+                                <constraint firstAttribute="width" constant="150" id="jWu-dK-ZtB"/>
                             </constraints>
                             <state key="normal">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -107,7 +107,7 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="sD4-EY-FNU" firstAttribute="width" secondItem="scP-bD-V99" secondAttribute="width" multiplier="0.8" id="2Hu-1W-GNQ"/>
+                        <constraint firstItem="sD4-EY-FNU" firstAttribute="width" secondItem="scP-bD-V99" secondAttribute="width" multiplier="0.5" id="2Hu-1W-GNQ"/>
                         <constraint firstAttribute="height" constant="370" id="2JG-R8-VMi"/>
                         <constraint firstItem="q6X-CY-Wni" firstAttribute="trailing" secondItem="lAa-Gt-d3P" secondAttribute="trailing" constant="-8" id="2jd-Nh-flS"/>
                         <constraint firstItem="lfE-cB-qh0" firstAttribute="top" secondItem="q6X-CY-Wni" secondAttribute="bottom" constant="8" id="2oy-1m-CSZ"/>
@@ -116,7 +116,7 @@
                         <constraint firstItem="lAa-Gt-d3P" firstAttribute="top" secondItem="RAq-OD-HFc" secondAttribute="top" id="8cz-Q0-oRe"/>
                         <constraint firstItem="ink-hg-Eea" firstAttribute="centerY" secondItem="scP-bD-V99" secondAttribute="centerY" id="Bma-DU-I9B"/>
                         <constraint firstItem="scP-bD-V99" firstAttribute="centerY" secondItem="ljJ-F0-NYO" secondAttribute="centerY" id="CgL-ZF-HBL"/>
-                        <constraint firstItem="sD4-EY-FNU" firstAttribute="top" secondItem="scP-bD-V99" secondAttribute="centerY" constant="33" id="DUt-uI-6bD"/>
+                        <constraint firstItem="sD4-EY-FNU" firstAttribute="top" secondItem="scP-bD-V99" secondAttribute="centerY" constant="55" id="DUt-uI-6bD"/>
                         <constraint firstItem="ljJ-F0-NYO" firstAttribute="top" secondItem="lAa-Gt-d3P" secondAttribute="top" constant="32" id="Gl3-11-sHo"/>
                         <constraint firstItem="28a-x1-HhG" firstAttribute="top" secondItem="RAq-OD-HFc" secondAttribute="top" constant="12" id="Kc6-6g-YDX"/>
                         <constraint firstAttribute="trailing" secondItem="28a-x1-HhG" secondAttribute="trailing" constant="12" id="Lxg-Rh-wy6"/>
