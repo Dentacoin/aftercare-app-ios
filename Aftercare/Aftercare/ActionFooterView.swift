@@ -78,10 +78,8 @@ class ActionFooterView: UIView {
         switch state {
             case .blue:
                 themeManager.setDCBlueTheme(to: actionButton, ofType: .ButtonDefaultBlueGradient)
-                break
             case .red:
                 themeManager.setDCBlueTheme(to: actionButton, ofType: .ButtonDefaultRedGradient)
-                break
         }
         
     }

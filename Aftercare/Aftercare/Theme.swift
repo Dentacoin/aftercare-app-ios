@@ -187,13 +187,10 @@ class ThemeManager {
         switch component {
             case is UIButton:
                 self.styleButton(component as! UIButton, type: type)
-                break
             case is SkyFloatingLabelTextField:
                 self.styleSFLTextField(component as! SkyFloatingLabelTextField, type: type)
-                break
             case is UITabBar:
                 self.styleTabBar(component as! UITabBar, type: type)
-                break
             default:
                 print("Unsupported component by the Theme Manager")
         }

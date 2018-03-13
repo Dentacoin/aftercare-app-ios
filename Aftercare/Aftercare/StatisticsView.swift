@@ -89,30 +89,24 @@ class StatisticsView: UIView {
                 statisticsLabel = NSLocalizedString("Brush Statistics", comment: "")
                 actionBarLabel = NSLocalizedString("TIMES BRUSHED", comment: "")
                 actionData = data.brush
-                break
             case ActionRecordType.flossed:
                 statisticsLabel = NSLocalizedString("Flossed Statistics", comment: "")
                 actionBarLabel = NSLocalizedString("TIMES FLOSSED", comment: "")
                 actionData = data.flossed
-                break
             case ActionRecordType.rinsed:
                 statisticsLabel = NSLocalizedString("Rinsed Statistics", comment: "")
                 actionBarLabel = NSLocalizedString("TIMES RINSED", comment: "")
                 actionData = data.rinsed
-                break
         }
         
         if let selected = self.selectedOptionsButton {
             switch selected {
                 case dailyOptionButton:
                     scheduleData = actionData?.daily
-                    break
                 case weeklyOptionButton:
                     scheduleData = actionData?.weekly
-                    break
                 case monthlyOptionButton:
                     scheduleData = actionData?.monthly
-                    break
                 default:
                     return
             }

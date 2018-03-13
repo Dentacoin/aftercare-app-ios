@@ -365,21 +365,18 @@ extension SideMenuViewController: UITableViewDelegate {
                             arrowPosition: .bottom,
                             id: TutorialIDs.collectDcn.rawValue
                         )
-                        break
                     case 2:
                         cell.showTooltip(
                             NSLocalizedString("Achieve goals & earn DCN", comment: ""),
                             arrowPosition: .top,
                             id: TutorialIDs.goals.rawValue
                         )
-                        break
                     case 5:
                         cell.showTooltip(
                             NSLocalizedString("Send us emergency request", comment: ""),
                             arrowPosition: .top,
                             id: TutorialIDs.emergencyMenu.rawValue
                         )
-                        break
                     default:
                         break
                 }

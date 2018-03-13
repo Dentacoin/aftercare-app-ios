@@ -77,10 +77,8 @@ extension SmallCircularBar {
         switch style {
             case .dark:
                 darkThemed()
-                break
             case .light:
                 lightThemed()
-                break
         }
     }
     

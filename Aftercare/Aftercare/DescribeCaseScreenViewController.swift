@@ -280,7 +280,6 @@ extension DescribeCaseScreenViewController: MFMailComposeViewControllerDelegate 
         case .sent:
             let vcID = String(describing: ThankYouScreenViewController.self)
             contentDelegate?.requestLoadViewController(vcID, nil)
-            break
         }
         
     }

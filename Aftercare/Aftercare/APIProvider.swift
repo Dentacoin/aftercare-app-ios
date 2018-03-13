@@ -34,11 +34,9 @@ struct APIProvider : APIProviderProtocol {
             switch response.result {
                 case .success(let userSession):
                     onComplete(userSession, nil)
-                break
                 case .failure(let error):
                     let nserror = error as NSError
                     errorData = ErrorData(code: nserror.code, errors: [nserror.localizedDescription])
-                break
             }
         }.responseDecodableObject() { (response: DataResponse<ErrorData>) in
             if let error = response.result.value {
@@ -74,11 +72,9 @@ struct APIProvider : APIProviderProtocol {
             switch response.result {
                 case .success(let userSession):
                     onComplete(userSession, nil)
-                break
                 case .failure(let error):
                     let nserror = error as NSError
                     errorData = ErrorData(code: nserror.code, errors: [nserror.localizedDescription])
-                break
             }
         }.responseDecodableObject() { (response: DataResponse<ErrorData>) in
             if let error = response.result.value {
@@ -99,11 +95,9 @@ struct APIProvider : APIProviderProtocol {
             switch response.result {
                 case .success(let userSession):
                     onComplete(userSession, nil)
-                break
                 case .failure(let error):
                     let nserror = error as NSError
                     errorData = ErrorData(code: nserror.code, errors: [nserror.localizedDescription])
-                break
             }
         }.responseDecodableObject() { (response: DataResponse<ErrorData>) in
             if let error = response.result.value {
@@ -136,11 +130,9 @@ struct APIProvider : APIProviderProtocol {
             switch response.result {
                 case .success(let session):
                     onComplete(session, nil)
-                break
                 case .failure(let error):
                     let nserror = error as NSError
                     errorData = ErrorData(code: nserror.code, errors: [nserror.localizedDescription])
-                break
             }
         }.responseDecodableObject() { (response: DataResponse<ErrorData>) in
             if let error = response.result.value {
@@ -159,11 +151,9 @@ struct APIProvider : APIProviderProtocol {
             switch response.result {
             case .success(let data):
                 onComplete(data, nil)
-                break
             case .failure(let error):
                 let nserror = error as NSError
                 errorData = ErrorData(code: nserror.code, errors: [nserror.localizedDescription])
-                break
             }
             
         }.responseDecodableObject() { (response: DataResponse<ErrorData>) in
@@ -182,7 +172,6 @@ struct APIProvider : APIProviderProtocol {
                 switch response.result {
                 case .success(let value):
                     print("logout() :: successful logout \(value)")
-                    break
                 case .failure(let error):
                     print("logout() :: response error: \(String(describing: error))")
                 }
@@ -201,11 +190,9 @@ struct APIProvider : APIProviderProtocol {
             switch response.result {
             case .success(let action):
                 onComplete(action, nil)
-                break
             case .failure(let error):
                 let nserror = error as NSError
                 errorData = ErrorData(code: nserror.code, errors: [nserror.localizedDescription])
-                break
             }
         }.responseDecodableObject() { (response: DataResponse<ErrorData>) in
             if let error = response.result.value {
@@ -223,11 +210,9 @@ struct APIProvider : APIProviderProtocol {
             switch response.result {
                 case .success(let action):
                     onComplete(action, nil)
-                break
                 case .failure(let error):
                     let nserror = error as NSError
                     errorData = ErrorData(code: nserror.code, errors: [nserror.localizedDescription])
-                break
             }
         }.responseDecodableObject() { (response: DataResponse<ErrorData>) in
             if let error = response.result.value {
@@ -248,11 +233,9 @@ struct APIProvider : APIProviderProtocol {
             switch response.result {
             case .success(let action):
                 onComplete(action, nil)
-                break
             case .failure(let error):
                 let nserror = error as NSError
                 errorData = ErrorData(code: nserror.code, errors: [nserror.localizedDescription])
-                break
             }
         }.responseDecodableObject() { (response: DataResponse<ErrorData>) in
             if let error = response.result.value {
@@ -275,11 +258,9 @@ struct APIProvider : APIProviderProtocol {
             switch response.result {
             case .success(let journey):
                 onComplete(journey, nil)
-                break
             case .failure(let error):
                 let nserror = error as NSError
                 errorData = ErrorData(code: nserror.code, errors: [nserror.localizedDescription])
-                break
             }
         }.responseDecodableObject() { (response: DataResponse<ErrorData>) in
             if let error = response.result.value {
@@ -303,11 +284,9 @@ struct APIProvider : APIProviderProtocol {
             switch response.result {
             case .success(let routine):
                 onComplete(routine, nil)
-                break
             case .failure(let error):
                 let nserror = error as NSError
                 errorData = ErrorData(code: nserror.code, errors: [nserror.localizedDescription])
-                break
             }
         }.responseDecodableObject() { (response: DataResponse<ErrorData>) in
             if let error = response.result.value {
@@ -330,11 +309,9 @@ struct APIProvider : APIProviderProtocol {
             switch response.result {
             case .success(let routines):
                 onComplete(routines, nil)
-                break
             case .failure(let error):
                 let nserror = error as NSError
                 errorData = ErrorData(code: nserror.code, errors: [nserror.localizedDescription])
-                break
             }
         }.responseDecodableObject() { (response: DataResponse<ErrorData>) in
             if let error = response.result.value {
@@ -352,11 +329,9 @@ struct APIProvider : APIProviderProtocol {
             switch response.result {
                 case .success(let oralHealthArray):
                     onComplete(oralHealthArray, nil)
-                break
                 case .failure(let error):
                     let nserror = error as NSError
                     errorData = ErrorData(code: nserror.code, errors: [nserror.localizedDescription])
-                break
             }
         }.responseDecodableObject() { (response: DataResponse<ErrorData>) in
             if let error = response.result.value {
@@ -374,11 +349,9 @@ struct APIProvider : APIProviderProtocol {
             switch response.result {
             case .success(let userData):
                 onComplete(userData, nil)
-                break
             case .failure(let error):
                 let nserror = error as NSError
                 errorData = ErrorData(code: nserror.code, errors: [nserror.localizedDescription])
-                break
             }
         }.responseDecodableObject() { (response: DataResponse<ErrorData>) in
             if let error = response.result.value {
@@ -401,11 +374,9 @@ struct APIProvider : APIProviderProtocol {
             switch response.result {
             case .success(let userGoals):
                 onComplete(userGoals, nil)
-                break
             case .failure(let error):
                 let nserror = error as NSError
                 errorData = ErrorData(code: nserror.code, errors: [nserror.localizedDescription])
-                break
             }
         }.responseDecodableObject() { (response: DataResponse<ErrorData>) in
             if let error = response.result.value {
@@ -433,11 +404,9 @@ struct APIProvider : APIProviderProtocol {
             switch response.result {
                 case .success(let image):
                     onComplete(image, nil)
-                    break
                 case .failure(let error):
                     let nserror = error as NSError
                     errorData = ErrorData(code: nserror.code, errors: [nserror.localizedDescription])
-                    break
                 }
             }.responseDecodableObject() { (response: DataResponse<ErrorData>) in
                 if let error = response.result.value {
@@ -460,11 +429,9 @@ struct APIProvider : APIProviderProtocol {
             switch response.result {
             case .success(let history):
                 onComplete(history, nil)
-                break
             case .failure(let error):
                 let nserror = error as NSError
                 errorData = ErrorData(code: nserror.code, errors: [nserror.localizedDescription])
-                break
             }
         }.responseDecodableObject() { (response: DataResponse<ErrorData>) in
             if let error = response.result.value {
@@ -485,11 +452,9 @@ struct APIProvider : APIProviderProtocol {
             switch response.result {
                 case .success(let history):
                     onComplete(history, nil)
-                    break
                 case .failure(let error):
                     let nserror = error as NSError
                     errorData = ErrorData(code: nserror.code, errors: [nserror.localizedDescription])
-                    break
             }
         }.responseDecodableObject() { (response: DataResponse<ErrorData>) in
             if let error = response.result.value {
@@ -551,11 +516,9 @@ struct APIProvider : APIProviderProtocol {
             switch response.result {
                 case .success(let captcha):
                     onComplete(captcha, nil)
-                    break
                 case .failure(let error):
                     let nserror = error as NSError
                     errorData = ErrorData(code: nserror.code, errors: [nserror.localizedDescription])
-                    break
             }
         }.responseDecodableObject() { (response: DataResponse<ErrorData>) in
             if let error = response.result.value {
@@ -573,12 +536,10 @@ struct APIProvider : APIProviderProtocol {
 //            switch response.result {
 //            case .success(let result):
 //                onComplete(result, nil)
-//                break
 //            case .failure(let error):
 //                let nserror = error as NSError
 //                let errorData = ErrorData(code: nserror.code, errors: [nserror.localizedDescription])
 //                onComplete(nil, errorData)
-//                break
 //            }
 //        }.responseDecodableObject() { (response: DataResponse<ErrorData>) in
 //            if let error = response.result.value {

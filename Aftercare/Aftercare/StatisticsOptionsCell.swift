@@ -24,13 +24,10 @@ class StatisticsOptionsCell: UITableViewCell {
         switch option {
         case .dailyData:
             toggleOptionsButton(dailyOptionButton)
-            break
         case .weeklyData:
             toggleOptionsButton(weeklyOptionButton)
-            break
         case .monthlyData:
             toggleOptionsButton(monthlyOptionButton)
-            break
         }
         
     }
@@ -72,16 +69,12 @@ class StatisticsOptionsCell: UITableViewCell {
         switch sender {
             case self.dailyOptionButton:
                 option = .dailyData
-                break
             case self.weeklyOptionButton:
                 option = .weeklyData
-                break
             case self.monthlyOptionButton:
                 option = .monthlyData
-                break
             default:
                 option = .dailyData
-                break
         }
         
         self.delegate?.optionChanged(option)

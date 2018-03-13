@@ -98,13 +98,10 @@ extension UploadImageButton : UIImagePickerControllerDelegate {
             switch sourceType {
             case .camera:
                 sourceTypeName = NSLocalizedString("Camera", comment: "")
-                break
             case .photoLibrary:
                 sourceTypeName = NSLocalizedString("Photo Library", comment: "")
-                break
             case .savedPhotosAlbum:
                 sourceTypeName = NSLocalizedString("Photo Album", comment: "")
-                break
             }
             
             let errorMessage = NSLocalizedString("Device has no \(sourceTypeName)!", comment: "")

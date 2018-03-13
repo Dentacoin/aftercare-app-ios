@@ -244,13 +244,10 @@ class ActionView: UIView {
         switch type {
         case .brush:
             screenDashboardData = data.brush
-            break
         case .flossed:
             screenDashboardData = data.flossed
-            break
         case .rinsed:
             screenDashboardData = data.rinsed
-            break
         }
         
         guard let dashboard = screenDashboardData else { return }

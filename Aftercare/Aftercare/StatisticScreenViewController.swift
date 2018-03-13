@@ -202,13 +202,10 @@ extension StatisticScreenViewController: UITableViewDelegate {
                 switch self.selectedOption {
                     case .dailyData:
                         data = optionData.daily
-                        break
                     case .weeklyData:
                         data = optionData.weekly
-                        break
                     case .monthlyData:
                         data = optionData.monthly
-                        break
                 }
                 
                 if let actionsTakenData = data?.times {

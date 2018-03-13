@@ -171,16 +171,12 @@ extension ActionHeaderView {
         switch sender {
             case flossButton:
                 delegate?.tabBarButtonPressed(0)
-                break
             case brushButton:
                 delegate?.tabBarButtonPressed(1)
-                break
             case rinseButton:
                 delegate?.tabBarButtonPressed(2)
-                break
             default:
                 print("unknown tab bar pressed")
-                break
         }
     }
     
