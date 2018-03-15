@@ -118,7 +118,7 @@ extension StatisticScreenViewController {
     
     fileprivate func setup() {
         
-        header.updateTitle(NSLocalizedString("Statistic", comment: ""))
+        header.updateTitle(NSLocalizedString("Statistics", comment: ""))
         
         tableView.register(
                 UINib(

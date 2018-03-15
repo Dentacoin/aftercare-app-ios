@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,12 +26,12 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hRo-Lr-zL5">
-                    <rect key="frame" x="15" y="15" width="25" height="25"/>
+                    <rect key="frame" x="10" y="10" width="35" height="35"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="25" id="B8W-0W-icM"/>
+                        <constraint firstAttribute="width" constant="35" id="B8W-0W-icM"/>
                         <constraint firstAttribute="width" secondItem="hRo-Lr-zL5" secondAttribute="height" multiplier="1:1" id="dck-8K-7rb"/>
                     </constraints>
-                    <state key="normal" title="==">
+                    <state key="normal">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -39,7 +39,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qRe-Rb-qG1">
-                    <rect key="frame" x="40" y="15" width="295" height="20.5"/>
+                    <rect key="frame" x="40" y="10" width="295" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -53,9 +53,9 @@
                 <constraint firstItem="qRe-Rb-qG1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="40" id="Dsi-i9-fdN"/>
                 <constraint firstAttribute="bottom" secondItem="079-Yn-juf" secondAttribute="bottom" id="MQX-dY-zAo"/>
                 <constraint firstItem="qRe-Rb-qG1" firstAttribute="top" secondItem="hRo-Lr-zL5" secondAttribute="top" id="Tx4-NW-LlI"/>
-                <constraint firstItem="hRo-Lr-zL5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="Wh5-rs-5yM"/>
+                <constraint firstItem="hRo-Lr-zL5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="Wh5-rs-5yM"/>
                 <constraint firstItem="079-Yn-juf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Xlc-pt-C4h"/>
-                <constraint firstItem="hRo-Lr-zL5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="n3T-Sa-GH6"/>
+                <constraint firstItem="hRo-Lr-zL5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="n3T-Sa-GH6"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="33.5" y="55"/>

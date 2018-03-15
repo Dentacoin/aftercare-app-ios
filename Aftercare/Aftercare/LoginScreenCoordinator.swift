@@ -55,7 +55,7 @@ extension LoginScreenCoordinator: LoginScreenCoordinatorInputProtocol {
             
             if let result = result {
                 
-                if let dataContainer: UserDataProviderProtocol = provider as? UserDataProviderProtocol {
+                if let dataContainer: UserDataProviderProtocol = result as? UserDataProviderProtocol {
                     
                     guard let email = dataContainer.email else {
                         return print("Fatal Error: missing user email")

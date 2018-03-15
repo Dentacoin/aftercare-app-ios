@@ -220,7 +220,7 @@ extension GooglePlusProvider: GIDSignInDelegate {
                 //User successfully authenticated
                 print("GooglePlusProvider :: google user successfully authenticated")
                 
-                if let avatar = user.photoURL {
+                if let avatar = user.photoURL?.absoluteString {
                     UserDefaultsManager.shared.setValue(avatar, forKey: GoogleDefaultsKeys.Avatar.rawValue)
                 }
                 if let fullName = user.displayName {

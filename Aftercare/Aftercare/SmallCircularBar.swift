@@ -87,7 +87,7 @@ extension SmallCircularBar {
         bar.startAngle = -90
         bar.progressThickness = 0.12
         bar.trackThickness = 0.06
-        bar.trackColor = UIColor.dntCeruleanBlue
+        bar.trackColor = UIColor.black.withAlphaComponent(0.1)
         bar.clockwise = true
         bar.gradientRotateSpeed = 2
         bar.roundedCorners = true

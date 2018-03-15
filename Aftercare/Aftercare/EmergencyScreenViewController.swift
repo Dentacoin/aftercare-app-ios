@@ -67,6 +67,11 @@ class EmergencyScreenViewController: UIViewController, ContentConformer {
     fileprivate var teeth: [UIButton] = []
     fileprivate var teethsStateKeeper: [Int : UIButton?] = [:]
     fileprivate var calculatedConstraints = false
+    fileprivate var selectedTeethCount: Int = 0 {
+        didSet {
+            nextButton.isEnabled = selectedTeethCount > 0
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,12 +83,8 @@ class EmergencyScreenViewController: UIViewController, ContentConformer {
             tooth21, tooth22, tooth23, tooth24, tooth25, tooth26, tooth27, tooth28, tooth29, tooth30,
             tooth31, tooth32
         ]
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setup()
         
+        setup()
     }
     
     override func viewDidLayoutSubviews() {
@@ -98,15 +99,13 @@ class EmergencyScreenViewController: UIViewController, ContentConformer {
         let themeManager = ThemeManager.shared
         
         if let button = teethsStateKeeper[sender.tag], button != nil {
-            
             teethsStateKeeper.updateValue(nil, forKey: (button!.tag))
             themeManager.setDCBlueTheme(to: button!, ofType: .ButtonTooth(color: .red, selected: false))
-            
+            selectedTeethCount -= 1
         } else {
-            
             teethsStateKeeper.updateValue(sender, forKey: sender.tag)
             themeManager.setDCBlueTheme(to: sender, ofType: .ButtonTooth(color: .red, selected: true))
-            
+            selectedTeethCount += 1
         }
         
     }
@@ -130,7 +129,7 @@ extension EmergencyScreenViewController {
         themeManager.setDCBlueTheme(to: nextButton, ofType: .ButtonDefaultBlueGradient)
         nextButton.setTitle(NSLocalizedString("Next", comment: ""), for: .normal)
         nextButton.setTitle(NSLocalizedString("Next", comment: ""), for: .highlighted)
-        
+        nextButton.isEnabled = selectedTeethCount > 0
     }
     
     fileprivate func calculateLayouts() {

@@ -105,7 +105,7 @@ class RinseActionView: UIView, ActionViewProtocol {
         embedView?.actionBarsContainer.leftBar.setTitle(NSLocalizedString("RINSE LEFT", comment: ""))
         embedView?.actionBarsContainer.earnedBar.setTitle(NSLocalizedString("DCN EARNED", comment: ""))
         
-        embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("RINSE", comment: ""), withState: .blue)
+        embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("Rinse", comment: ""), withState: .blue)
         embedView?.autoDismissDoneStateAfter = 0
     }
     

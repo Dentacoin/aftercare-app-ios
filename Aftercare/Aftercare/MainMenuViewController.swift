@@ -24,6 +24,11 @@ final class MainMenuViewController: UIViewController {
         return menu
     }()
     
+    fileprivate let backgroundView: UIViewController = {
+       let vc = UIViewController()
+        return vc
+    }()
+    
     fileprivate let lastViewController: UIViewController? = nil
     
     internal let navController: UINavigationController = {
@@ -77,8 +82,21 @@ extension MainMenuViewController: ContentDelegate {
     
     func openMainMenu() {
         
+        let screenFrame = CGRect(
+            x: 0,
+            y: 0,
+            width: UIScreen.main.bounds.size.width,
+            height: UIScreen.main.bounds.size.height
+        )
+        
+        backgroundView.view.frame = screenFrame
+        backgroundView.view.backgroundColor = UIColor.black.withAlphaComponent(0)
+        self.view.addSubview(backgroundView.view)
+        self.addChildViewController(backgroundView)
+        
         sideMenuViewController.delegate = self
         self.view.addSubview(sideMenuViewController.view)
+        
         self.addChildViewController(sideMenuViewController)
         sideMenuViewController.view.layoutIfNeeded()
         sideMenuViewController.view.frame = CGRect(
@@ -95,6 +113,7 @@ extension MainMenuViewController: ContentDelegate {
                 width: UIScreen.main.bounds.size.width,
                 height: UIScreen.main.bounds.size.height
             )
+            self?.backgroundView.view.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         }, completion:nil)
         
     }
@@ -144,6 +163,25 @@ extension MainMenuViewController: SideMenuDelegate {
             navController.pushViewController(controller, animated: true)
         }
         
+    }
+    
+    func onCloseMenu() {
+        UIView.animate(withDuration: 0.3, animations: { [weak self] in
+            self?.sideMenuViewController.view.frame = CGRect(
+                x: -UIScreen.main.bounds.size.width,
+                y: 0,
+                width: UIScreen.main.bounds.size.width,
+                height: UIScreen.main.bounds.size.height
+            )
+            self?.sideMenuViewController.view.layoutIfNeeded()
+            self?.sideMenuViewController.view.backgroundColor = UIColor.clear
+            self?.backgroundView.view.backgroundColor = UIColor.black.withAlphaComponent(0)
+        }, completion: { [weak self] finished in
+                self?.sideMenuViewController.view.removeFromSuperview()
+                self?.sideMenuViewController.removeFromParentViewController()
+                self?.backgroundView.view.removeFromSuperview()
+                self?.backgroundView.removeFromParentViewController()
+        })
     }
     
 }

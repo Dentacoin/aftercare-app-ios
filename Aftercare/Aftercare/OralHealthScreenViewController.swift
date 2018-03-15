@@ -152,6 +152,7 @@ extension OralHealthScreenViewController: UITableViewDelegate {
         if let cell = cell {
             guard let data = self.oralHealthData?[indexPath.row] else { return cell }
             cell.setup(data)
+            cell.backgroundColor = .clear
         }
         
         return cell!

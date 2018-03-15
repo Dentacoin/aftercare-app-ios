@@ -120,7 +120,7 @@ class BrushActionView: UIView, ActionViewProtocol {
         embedView?.actionBarsContainer.leftBar.setTitle(NSLocalizedString("BRUSH LEFT", comment: ""))
         embedView?.actionBarsContainer.earnedBar.setTitle(NSLocalizedString("DCN EARNED", comment: ""))
         
-        embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("BRUSH", comment: ""), withState: .blue)
+        embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("Brush", comment: ""), withState: .blue)
         embedView?.autoDismissDoneStateAfter = 4
     }
     

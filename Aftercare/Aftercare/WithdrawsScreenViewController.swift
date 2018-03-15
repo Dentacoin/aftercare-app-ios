@@ -149,6 +149,7 @@ extension WithdrawsScreenViewController: UITableViewDataSource {
         if let data = withdrawsDataSource?[indexPath.row] {
             cell.config(data)
         }
+        cell.backgroundColor = .clear
         return cell
     }
     

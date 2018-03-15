@@ -41,6 +41,7 @@ protocol ActionHeaderViewDelegate: InitialPageHeaderViewDelegate {
 protocol SideMenuDelegate: class {
     func menuItemSelected(_ id: String, _ parameters: [String: Any]?)
     func logout()
+    func onCloseMenu()
 }
 
 protocol HeaderDelegate: class {

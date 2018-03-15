@@ -57,7 +57,7 @@ class TotalDCNBar: UIView {
     
     func setTotalValue(_ total: Int) {
         totalDCN = total
-        totalValueLabel.text = String(totalDCN) + " DCN"
+        totalValueLabel.text = "DCN " + String(totalDCN)
     }
     
     func showTooltips() {
@@ -84,11 +84,11 @@ class TotalDCNBar: UIView {
     
     fileprivate func customizeComponents() {
         totalLabel.textColor = .dntWarmGrey
-        totalLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntNoteFontSize)
+        totalLabel.font = UIFont.dntLatoRegularFontWith(size: UIFont.dntNoteFontSize)
         totalLabel.text = NSLocalizedString("TOTAL", comment: "")
         
         totalValueLabel.textColor = .dntCeruleanBlue
-        totalValueLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntButtonFontSize)
+        totalValueLabel.font = UIFont.dntLatoRegularFontWith(size: UIFont.dntLargeTextSize)
         self.setTotalValue(totalDCN)
         
         self.backgroundColor = .clear

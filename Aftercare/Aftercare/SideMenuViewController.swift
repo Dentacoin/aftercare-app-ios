@@ -47,7 +47,7 @@ class SideMenuViewController: UIViewController {
                 CellDataKeys.value : String(describing: ActionScreenViewController.self)
             ],[
                 CellDataKeys.type : CellTypes.content.rawValue,
-                CellDataKeys.title : NSLocalizedString("Collect", comment: ""),
+                CellDataKeys.title : NSLocalizedString("Dentacoin", comment: ""),
                 CellDataKeys.icon : "collectIcon",
                 CellDataKeys.value : String(describing: CollectScreenViewController.self)
             ],[
@@ -57,12 +57,12 @@ class SideMenuViewController: UIViewController {
                 CellDataKeys.value : String(describing: WithdrawsScreenViewController.self)
             ],[
                 CellDataKeys.type : CellTypes.content.rawValue,
-                CellDataKeys.title : NSLocalizedString("Goals", comment: ""),
+                CellDataKeys.title : NSLocalizedString("Achievements", comment: ""),
                 CellDataKeys.icon : "goalsIcon",
                 CellDataKeys.value : String(describing: GoalsScreenViewController.self)
             ],[
                 CellDataKeys.type : CellTypes.content.rawValue,
-                CellDataKeys.title : NSLocalizedString("Statistic", comment: ""),
+                CellDataKeys.title : NSLocalizedString("Statistics", comment: ""),
                 CellDataKeys.icon : "statisticIcon",
                 CellDataKeys.value : String(describing: StatisticScreenViewController.self)
             ],[
@@ -89,7 +89,7 @@ class SideMenuViewController: UIViewController {
                 CellDataKeys.value : String(describing: SettingsScreenViewController.self)
             ],[
                 CellDataKeys.type : CellTypes.action.rawValue,
-                CellDataKeys.title : NSLocalizedString("Logout", comment: ""),
+                CellDataKeys.title : NSLocalizedString("Sign out", comment: ""),
                 CellDataKeys.icon : "logoutIcon",
                 CellDataKeys.value : ActionIDs.logout.rawValue
             ]
@@ -213,19 +213,7 @@ class SideMenuViewController: UIViewController {
     }
     
     func closeMenu() {
-        UIView.animate(withDuration: 0.3, animations: { () -> Void in
-            self.view.frame = CGRect(
-                x: -UIScreen.main.bounds.size.width,
-                y: 0,
-                width: UIScreen.main.bounds.size.width,
-                height: UIScreen.main.bounds.size.height
-            )
-            self.view.layoutIfNeeded()
-            self.view.backgroundColor = UIColor.clear
-        }, completion: { (finished) -> Void in
-            self.view.removeFromSuperview()
-            self.removeFromParentViewController()
-        })
+        delegate?.onCloseMenu()
     }
     
     //Tooltips Setup
@@ -381,10 +369,12 @@ extension SideMenuViewController: UITableViewDelegate {
                         break
                 }
             }
-            
+            cell.backgroundColor = .clear
             return cell
         } else if CellTypes.separator.rawValue == data[CellDataKeys.type] {
-            return tableView.dequeueReusableCell(withIdentifier: separatorCellIdentifier) as! MainMenuSeparatorCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: separatorCellIdentifier) as! MainMenuSeparatorCell
+            cell.backgroundColor = .clear
+            return cell
         }
         return UITableViewCell()
     }

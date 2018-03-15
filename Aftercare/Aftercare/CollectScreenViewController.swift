@@ -53,14 +53,7 @@ class CollectScreenViewController: UIViewController, ContentConformer {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        header.delegate = self
-        walletAddressTextField.delegate = self
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         setup()
-        self.addListenersForKeyboard()
     }
     
     deinit {
@@ -119,6 +112,7 @@ class CollectScreenViewController: UIViewController, ContentConformer {
             message: wrongWalletError,
             buttonTitle: NSLocalizedString("Ok", comment: "")
         )
+        self.sendButton.isEnabled = false
     }
     
     fileprivate func validateWalletAddress(_ wallet: String) -> Bool {
@@ -133,7 +127,11 @@ extension CollectScreenViewController {
     
     fileprivate func setup() {
         
-        header.updateTitle(NSLocalizedString("Collect", comment: ""))
+        header.delegate = self
+        walletAddressTextField.delegate = self
+        self.addListenersForKeyboard()
+        
+        header.updateTitle(NSLocalizedString("Dentacoin", comment: ""))
         
         let themeManager = ThemeManager.shared
         
@@ -164,8 +162,10 @@ extension CollectScreenViewController {
             ])
         if let wallet: String = UserDefaultsManager.shared.getValue(forKey: "wallet") {
             self.walletAddressTextField.text = wallet
+            self.sendButton.isEnabled = true
         } else {
             self.walletAddressTextField.attributedPlaceholder = walletAddressPlaceholder
+            self.sendButton.isEnabled = false
         }
         
         themeManager.setDCBlueTheme(to: sendButton, ofType: .ButtonDefaultBlueGradient)
@@ -193,6 +193,7 @@ extension CollectScreenViewController: QRCodeReaderViewControllerDelegate {
             let walletAddress = result.value
             walletAddressTextField.text = walletAddress
             UserDefaultsManager.shared.setValue(walletAddress, forKey: "wallet")
+            self.sendButton.isEnabled = true
             return
             
         } else {
@@ -253,6 +254,7 @@ extension CollectScreenViewController: QRCodeReaderViewControllerDelegate {
                     self.walletAddressTextField.errorMessage = nil
                     walletAddressTextField.text = walletAddress
                     UserDefaultsManager.shared.setValue(walletAddress, forKey: "wallet")
+                    self.sendButton.isEnabled = true
                 }
             } else {
                 self.walletAddressTextField.errorMessage = self.wrongWalletError
@@ -283,15 +285,23 @@ extension CollectScreenViewController: UITextFieldDelegate {
         return true
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         if let wallet = self.walletAddressTextField.text {
             let valid = self.validateWalletAddress(wallet)
             if !valid {
                 self.walletAddressTextField.errorMessage = self.wrongWalletError
+                self.sendButton.isEnabled = false
+            } else {
+                self.sendButton.isEnabled = true
             }
         } else {
             self.walletAddressTextField.errorMessage = self.wrongWalletError
+            self.sendButton.isEnabled = false
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
         return true
     }
     
@@ -344,6 +354,7 @@ extension CollectScreenViewController {
         
         guard let wallet = self.walletAddressTextField.text else {
             print("No Wallet Address")
+            self.sendButton.isEnabled = false
             return
         }
         

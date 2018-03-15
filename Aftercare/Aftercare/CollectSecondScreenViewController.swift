@@ -108,7 +108,7 @@ extension CollectSecondScreenViewController {
     
     fileprivate func setup() {
         
-        header.updateTitle(NSLocalizedString("Collect", comment: ""))
+        header.updateTitle(NSLocalizedString("Dentacoin", comment: ""))
         
         collectTitleOneLabel.textColor = UIColor.dntCharcoalGrey
         collectTitleOneLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntLargeTitleFontSize)

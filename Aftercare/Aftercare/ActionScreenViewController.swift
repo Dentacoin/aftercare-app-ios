@@ -393,6 +393,7 @@ extension ActionScreenViewController: ActionViewDelegate {
         // If this is the last action in the routine, try to record the routine
         
         guard let routine = UserDataContainer.shared.routine else {
+            exitFullscreen()
             return
         }
         

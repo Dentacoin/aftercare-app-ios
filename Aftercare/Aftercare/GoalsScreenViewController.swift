@@ -68,7 +68,7 @@ extension GoalsScreenViewController {
     
     fileprivate func setup() {
         
-        header.updateTitle(NSLocalizedString("Goals", comment: ""))
+        header.updateTitle(NSLocalizedString("Achievements", comment: ""))
         
         //setup collection
         self.collectionView.register(

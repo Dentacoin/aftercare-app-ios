@@ -73,8 +73,8 @@ extension CircularBar {
     fileprivate func customizeComponents() {
         
         bar.startAngle = -90
-        bar.progressThickness = 0.21
-        bar.trackThickness = 0.2
+        bar.progressThickness = 0.11
+        bar.trackThickness = 0.1
         bar.trackColor = UIColor.black.withAlphaComponent(0.1)
         bar.clockwise = true
         bar.gradientRotateSpeed = 2
@@ -83,13 +83,13 @@ extension CircularBar {
         bar.set(colors: UIColor.dntBrightSkyBlue, UIColor.dntCeruleanBlue)
         
         centerLabel.textColor = .dntDarkSkyBlue
-        centerLabel.font = UIFont.dntLatoLightFont(size: 120)
+        centerLabel.font = UIFont.dntLatoLightFont(size: 80)
         centerLabel.adjustsFontSizeToFitWidth = true
         
         var labelFrame = centerLabel.frame
         let barFrame = bar.frame
-        labelFrame.size.width = barFrame.width / 2
-        labelFrame.size.height = barFrame.height / 2
+        labelFrame.size.width = barFrame.width / 3
+        labelFrame.size.height = barFrame.height / 3
         labelFrame.origin.x = barFrame.origin.x + (barFrame.width - labelFrame.size.width) / 2
         labelFrame.origin.y = barFrame.origin.y + (barFrame.height - labelFrame.size.height) / 2
         centerLabel.frame = labelFrame
