@@ -55,15 +55,11 @@ class DescribeCaseScreenViewController: UIViewController, ContentConformer {
     
     //MARK: - Lifecycle
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setup()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addListenersForKeyboard()
         contactTextField.delegate = self
+        setup()
     }
     
     override func viewDidLayoutSubviews() {
@@ -120,6 +116,7 @@ extension DescribeCaseScreenViewController {
         describeYourCaseTextView.font = UIFont.dntLatoRegularFontWith(size: UIFont.dntMainMenuLabelFontSize)
         describeYourCaseTextView.text = describeYourCasePlaceholder
         describeYourCaseTextView.delegate = self
+        describeYourCaseTextView.keyboardType = .default
         
         preferenceLabel.textColor = .white
         preferenceLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntButtonFontSize)
@@ -129,7 +126,7 @@ extension DescribeCaseScreenViewController {
         sendButton.titleLabel?.text = NSLocalizedString("Send", comment: "")
         
         themeManager.setDCBlueTheme(to: self.contactTextField, ofType: .TextFieldDefaut)
-        
+        contactTextField.keyboardType = .phonePad
     }
     
 }
