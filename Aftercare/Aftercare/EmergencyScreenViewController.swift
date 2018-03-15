@@ -141,11 +141,16 @@ extension EmergencyScreenViewController {
         let screenRect = self.view.bounds
         let positionRectY = (titleRect.origin.y + titleRect.height + containerPadding)
         let positionRectHeight = (nextButton.frame.origin.y - containerPadding) - positionRectY
+        let mouthWidth = screenRect.size.width * 0.75
+        
+        //Because of the shadow being part of the mouth image it looks uncentered and shifted a bit to the left
+        //We use this offset value to shift to the right and conpensate this
+        let shadowOffset: CGFloat =  6
         
         let positionRect = CGRect(
-            x: containerPadding,
+            x: ((screenRect.size.width - mouthWidth) / 2) + shadowOffset,
             y: positionRectY,
-            width: screenRect.size.width - (2 * containerPadding),
+            width: mouthWidth,
             height: positionRectHeight
         )
         
@@ -156,7 +161,7 @@ extension EmergencyScreenViewController {
         
         mouthContainer.transform = mouthContainer.transform.scaledBy(x: scaleFactor, y: scaleFactor)
         mouthContainer.frame.origin.x = positionRect.origin.x + ((positionRect.width - mouthContainer.frame.width) / 2)
-        mouthContainer.frame.origin.y = positionRect.origin.y
+        mouthContainer.frame.origin.y = positionRectY + ((positionRectHeight - mouthContainer.frame.height) / 2)//positionRect.origin.y
         
         //Apply teeths styles
         
