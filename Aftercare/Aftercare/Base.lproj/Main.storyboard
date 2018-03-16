@@ -1786,6 +1786,7 @@ Cg
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="gtS-sh-Yic" firstAttribute="top" secondItem="6PP-QD-KMS" secondAttribute="bottom" constant="32" id="Jfa-qm-kFo"/>
                             <constraint firstItem="Can-jR-w32" firstAttribute="leading" secondItem="4uJ-DQ-cqs" secondAttribute="leading" id="Lfz-sC-qea"/>
