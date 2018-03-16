@@ -1739,26 +1739,66 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dentacareBlueLogo" translatesAutoresizingMaskIntoConstraints="NO" id="6PP-QD-KMS">
                                 <rect key="frame" x="32" y="132" width="225" height="69"/>
                             </imageView>
-                            <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gtS-sh-Yic">
-                                <rect key="frame" x="32" y="217" width="311" height="442"/>
-                                <string key="text">Dentacoin is the first Blockchain solution created for the global dental industry. DCN is the custom ERC20 token, which serves all Dentacoin tools. Through using Dentacoin tools, you are contributing to our mission towards improving dental care and making it accessible for everyone worldwide.
+                            <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gtS-sh-Yic">
+                                <rect key="frame" x="32" y="233" width="327" height="426"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" link="YES"/>
+                                </accessibility>
+                                <attributedString key="attributedText">
+                                    <fragment content="Form sustainable oral health habits">
+                                        <attributes>
+                                            <font key="NSFont" size="20" name=".AppleSystemUIFont"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">
 
-www.dentacoin.com</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+Dentacoin is the first Blockchain solution created for the global dental industry. DCN is the custom ERC20 token, which serves all Dentacoin tools. Through using Dentacoin tools, you are contributing to our mission towards improving dental care and making it accessible for everyone worldwide.
+</string>
+                                        <attributes>
+                                            <font key="NSFont" metaFont="system" size="14"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                        <attributes>
+                                            <font key="NSFont" metaFont="system" size="14"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="dentacare.dentacoin.com">
+                                        <attributes>
+                                            <font key="NSFont" metaFont="system" size="14"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.0.0.10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2MU-re-QSz">
+                                <rect key="frame" x="44" y="209" width="213" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="gtS-sh-Yic" firstAttribute="top" secondItem="6PP-QD-KMS" secondAttribute="bottom" constant="16" id="Jfa-qm-kFo"/>
+                            <constraint firstItem="gtS-sh-Yic" firstAttribute="top" secondItem="6PP-QD-KMS" secondAttribute="bottom" constant="32" id="Jfa-qm-kFo"/>
                             <constraint firstItem="Can-jR-w32" firstAttribute="leading" secondItem="4uJ-DQ-cqs" secondAttribute="leading" id="Lfz-sC-qea"/>
                             <constraint firstItem="6PP-QD-KMS" firstAttribute="leading" secondItem="4uJ-DQ-cqs" secondAttribute="leading" constant="32" id="O92-nu-WJA"/>
                             <constraint firstItem="4uJ-DQ-cqs" firstAttribute="bottom" secondItem="gtS-sh-Yic" secondAttribute="bottom" constant="8" id="Uuj-LQ-wce"/>
                             <constraint firstItem="6PP-QD-KMS" firstAttribute="top" secondItem="Can-jR-w32" secondAttribute="bottom" constant="32" id="VQ4-k3-Hqc"/>
                             <constraint firstAttribute="top" secondItem="Can-jR-w32" secondAttribute="top" id="fLW-sK-gRh"/>
+                            <constraint firstItem="2MU-re-QSz" firstAttribute="trailing" secondItem="6PP-QD-KMS" secondAttribute="trailing" id="g4O-G6-JhN"/>
+                            <constraint firstItem="2MU-re-QSz" firstAttribute="top" secondItem="6PP-QD-KMS" secondAttribute="bottom" constant="8" id="gRY-Wu-nty"/>
                             <constraint firstItem="6PP-QD-KMS" firstAttribute="width" secondItem="9RI-eO-rCI" secondAttribute="width" multiplier="0.6" id="jfa-oR-XIm"/>
                             <constraint firstItem="4uJ-DQ-cqs" firstAttribute="trailing" secondItem="Can-jR-w32" secondAttribute="trailing" id="jfe-dX-kS0"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="gtS-sh-Yic" secondAttribute="trailing" constant="16" id="nmF-kQ-Vcv"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gtS-sh-Yic" secondAttribute="trailing" id="nmF-kQ-Vcv"/>
+                            <constraint firstItem="2MU-re-QSz" firstAttribute="leading" secondItem="6PP-QD-KMS" secondAttribute="leading" constant="12" id="wS1-Pf-ymg"/>
                             <constraint firstItem="gtS-sh-Yic" firstAttribute="leading" secondItem="6PP-QD-KMS" secondAttribute="leading" id="y8C-X8-sjW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4uJ-DQ-cqs"/>
@@ -1768,13 +1808,14 @@ www.dentacoin.com</string>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="aboutTextView" destination="gtS-sh-Yic" id="iWx-lC-HCr"/>
+                        <outlet property="appVersionLabel" destination="2MU-re-QSz" id="dVQ-qb-6lP"/>
                         <outlet property="headerHeightConstraint" destination="HwO-Kx-JdA" id="EOv-p5-GGT"/>
                         <outlet property="headerView" destination="Can-jR-w32" id="gAk-2w-JQa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Puy-z0-uyT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2240" y="5553"/>
+            <point key="canvasLocation" x="2239.1999999999998" y="5552.4737631184416"/>
         </scene>
         <!--Settings Screen View Controller-->
         <scene sceneID="VNe-ZE-4us">

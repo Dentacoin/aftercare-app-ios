@@ -16,6 +16,7 @@ class AboutScreenViewController: UIViewController, ContentConformer {
     @IBOutlet weak var headerView: UIView?
     @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var aboutTextView: UITextView!
+    @IBOutlet weak var appVersionLabel: UILabel!
     
     //MARK: - delegate
     
@@ -64,7 +65,9 @@ class AboutScreenViewController: UIViewController, ContentConformer {
         guard let version: String = dict["CFBundleShortVersionString"] as? String else { return }
         guard let build: String = dict["CFBundleVersion"] as? String else { return }
         
-        self.aboutTextView.text.append(NSLocalizedString(" \n\n\nApp Version: \(version) (\(build))", comment: ""))
+        appVersionLabel.font = UIFont.dntLatoRegularFontWith(size: UIFont.dntLabelFontSize)
+        appVersionLabel.textColor = UIColor.dntCeruleanBlue
+        appVersionLabel.text = "\(version).\(build)"
     }
     
 }
