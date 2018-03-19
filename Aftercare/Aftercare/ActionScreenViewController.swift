@@ -379,15 +379,15 @@ extension ActionScreenViewController: ActionViewDelegate {
     func actionComplete(_ newRecord: ActionRecordData?) {
         
         if let newRecord = newRecord {
-            guard var routineRecord = self.routineRecordData else {
+            guard var routineData = self.routineRecordData else {
                 return
             }
-            if var records = routineRecord.records {
-                records.append(newRecord)
-                routineRecord.records = records
+            if var _ = routineData.records {
+                routineData.records?.append(newRecord)
             } else {
-                routineRecord.records = [newRecord]
+                routineData.records = [newRecord]
             }
+            self.routineRecordData = routineData
         }
         
         // If this is the last action in the routine, try to record the routine
@@ -399,12 +399,12 @@ extension ActionScreenViewController: ActionViewDelegate {
         
         if routine.actions.count == 0 {//Routine Complete
             
-            guard var routineRecord = self.routineRecordData else {
+            guard var routineData = self.routineRecordData else {
                 return
             }
-            routineRecord.endTime = Date().description(with: Locale.autoupdatingCurrent)
+            routineData.endTime = Date().iso8601
             
-            APIProvider.recordRoutine(routineRecord, onComplete: { [weak self] (routineData, error) in
+            APIProvider.recordRoutine(routineData, onComplete: { [weak self] (routineData, error) in
                 
                 if let error = error {
                     print("ActionScreenViewController : actionComplete Error: \(error)")

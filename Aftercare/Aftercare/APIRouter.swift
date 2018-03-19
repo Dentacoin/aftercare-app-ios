@@ -91,7 +91,7 @@ struct APIRouter: APIRouterProtocol {
     
     struct RecordRoutine: Creatable {
         typealias EParameters = RoutineData
-        var route: String = "jouney/routines"
+        var route: String = "journey/routines"
     }
     
     struct RequestRoutines: Readable {

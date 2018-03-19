@@ -18,7 +18,7 @@ struct RoutineData: Codable {
     // MARK: - Constructors
     
     init(startTime: Date, type: RoutineType) {
-        self.startTime = startTime.description(with: Locale.autoupdatingCurrent)
+        self.startTime = startTime.iso8601
         self.type = type
     }
     
@@ -49,9 +49,12 @@ struct RoutineData: Codable {
         try! container.encode(self.startTime, forKey: .startTime)
         try! container.encode(self.type, forKey: .type)
         try! container.encode(self.endTime, forKey: .endTime)
-        try! container.encode(self.earnedDCN, forKey: .earnedDCN)
-        try! container.encode(self.records, forKey: .records)
-        
+        if let earnedDcn = self.earnedDCN {
+            try! container.encode(earnedDcn, forKey: .earnedDCN)
+        }
+        if let records = self.records {
+            try! container.encode(records, forKey: .records)
+        }
     }
     
     // MARK: - Codable keys

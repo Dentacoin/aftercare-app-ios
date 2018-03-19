@@ -223,6 +223,8 @@ struct APIProvider : APIProviderProtocol {
         }
     }
     
+    // MARK: - This records an action just for statistical purposes. It can be an action outside of a journey / routine
+    
     static func recordActions(
         _ records: [ActionRecordData],
         onComplete: @escaping (_ processedAction: ActionsResponseList?, _ error: ErrorData?) -> Void
@@ -272,6 +274,7 @@ struct APIProvider : APIProviderProtocol {
     }
     
     // MARK: - Adding routine record to a journey | POST /journey/routine
+    // This starts new journey if there is no active one at the time.
     
     static func recordRoutine(
         _ routine: RoutineData,
