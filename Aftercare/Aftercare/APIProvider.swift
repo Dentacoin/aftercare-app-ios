@@ -203,51 +203,6 @@ struct APIProvider : APIProviderProtocol {
         }
     }
     
-    static func recordAction(record: ActionRecordData, onComplete: @escaping (_ processedAction: ActionRecordData?, _ error: ErrorData?) -> Void) {
-        var errorData: ErrorData?
-        let urlRequest = APIRouter.RecordAction.post(parameters: record)
-        Alamofire.request(urlRequest).responseDecodableObject() { (response: DataResponse<ActionRecordData>) in
-            switch response.result {
-                case .success(let action):
-                    onComplete(action, nil)
-                case .failure(let error):
-                    let nserror = error as NSError
-                    errorData = ErrorData(code: nserror.code, errors: [nserror.localizedDescription])
-            }
-        }.responseDecodableObject() { (response: DataResponse<ErrorData>) in
-            if let error = response.result.value {
-                onComplete(nil, error)
-            } else if let error = errorData {
-                onComplete(nil, error)
-            }
-        }
-    }
-    
-    // MARK: - This records an action just for statistical purposes. It can be an action outside of a journey / routine
-    
-    static func recordActions(
-        _ records: [ActionRecordData],
-        onComplete: @escaping (_ processedAction: ActionsResponseList?, _ error: ErrorData?) -> Void
-        ) {
-        var errorData: ErrorData?
-        let urlRequest = APIRouter.RecordActions.post(parameters: records)
-        Alamofire.request(urlRequest).responseDecodableObject() { (response: DataResponse<ActionsResponseList>) in
-            switch response.result {
-            case .success(let action):
-                onComplete(action, nil)
-            case .failure(let error):
-                let nserror = error as NSError
-                errorData = ErrorData(code: nserror.code, errors: [nserror.localizedDescription])
-            }
-        }.responseDecodableObject() { (response: DataResponse<ErrorData>) in
-            if let error = response.result.value {
-                onComplete(nil, error)
-            } else if let error = errorData {
-                onComplete(nil, error)
-            }
-        }
-    }
-    
     // MARK: - Retrieve the current journey | GET /journey
     
     static func retreiveCurrentJourney(

@@ -123,11 +123,11 @@ class StatisticsView: UIView {
         
         //update times left bar
         timeLeftBar.setTitle(timeLeftLabel)
-        timeLeftBar.setValue(SystemMethods.Utils.secondsToHumanReadableFormat(scheduleData?.left ?? 0))
+        timeLeftBar.setValue(SystemMethods.Utils.secondsToISO8601Format(scheduleData?.left ?? 0))
         
         //update average time bar
         averageBar.setTitle(averageLabel)
-        averageBar.setValue(SystemMethods.Utils.secondsToHumanReadableFormat(scheduleData?.average ?? 0))
+        averageBar.setValue(SystemMethods.Utils.secondsToISO8601Format(scheduleData?.average ?? 0))
         
     }
     

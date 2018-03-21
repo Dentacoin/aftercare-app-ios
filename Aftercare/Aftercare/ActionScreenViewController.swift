@@ -168,7 +168,7 @@ class ActionScreenViewController: UIViewController, ContentConformer {
                     }
                 }
 
-                if journey.lastRoutine?.count == 1, journey.skipped == 0 {
+                if journey.lastRoutine != nil, journey.skipped == 0 {
                     // Journey just started. [Show Start Journey Popup]
                     self?.routineRecordData = RoutineData(startTime: Date(), type: routine.type)
                     self?.showStartJourneyPopup(journey, routine)
@@ -182,7 +182,7 @@ class ActionScreenViewController: UIViewController, ContentConformer {
                     return
                 }
 
-                if let lastRoutine = journey.lastRoutine?.first {
+                if let lastRoutine = journey.lastRoutine {
                     let lastRoutineType = lastRoutine.type
                     if routine.type == lastRoutineType {//same type routine
                         guard let lastRoutineEnd = lastRoutine.endTime?.dateFromISO8601 else {
@@ -404,10 +404,19 @@ extension ActionScreenViewController: ActionViewDelegate {
             }
             routineData.endTime = Date().iso8601
             
+            if var allLocalRecords = Routines.getAllSaved() {
+                allLocalRecords.append(routineData)
+            }
+            
             APIProvider.recordRoutine(routineData, onComplete: { [weak self] (routineData, error) in
                 
                 if let error = error {
                     print("ActionScreenViewController : actionComplete Error: \(error)")
+                    if error.code == ErrorCodes.noInternetConnection.rawValue {
+                        //save routineData locally
+                        
+                        return
+                    }
                 }
                 
                 UserDataContainer.shared.lastRoutineRecord = routineData

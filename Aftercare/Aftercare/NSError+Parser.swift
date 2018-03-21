@@ -15,7 +15,7 @@ extension NSError {
         let domain = "com.dentacoin.mobileapp.api.error"
         var description: String = NSLocalizedString("Unknown Error: \(errorKey)", comment: "")
         
-        if code == -1009 {
+        if code == ErrorCodes.noInternetConnection.rawValue {
             description = NSLocalizedString("The Internet connection appears to be offline.", comment: "")
         } else  if let key = ErrorKeys(rawValue: errorKey) {
             switch key {
@@ -87,9 +87,14 @@ extension NSError {
     }
     
     class func createCancelAuthenticationError() -> NSError {
-        return NSError(code: -1, errorKey: ErrorKeys.canceledAuthentication.rawValue)
+        return NSError(code: ErrorCodes.canceledAuthentication.rawValue, errorKey: ErrorKeys.canceledAuthentication.rawValue)
     }
     
+}
+
+enum ErrorCodes: Int, RawRepresentable {
+    case canceledAuthentication = -1
+    case noInternetConnection = -1009
 }
 
 enum ErrorKeys: String, RawRepresentable {

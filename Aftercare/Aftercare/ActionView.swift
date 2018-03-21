@@ -412,29 +412,6 @@ class ActionView: UIView {
             }
             let record = ActionRecordData(startTime: startTime.iso8601, endTime: endTime.iso8601, type: type)
             
-            var allRecords = [record]
-            
-            if let allLocalRecords = ActionRecord.getAllSaved() {
-                allRecords.append(contentsOf: allLocalRecords)
-            }
-            
-            APIProvider.recordActions(allRecords, onComplete: { _, error in
-                
-                if let error = error {
-                    print("Error on attempt to record new action: \(error)")
-                    ActionRecord.save(record)
-                    //unable to record current action...
-                    return
-                }
-                
-                //all local records are already recorded on the server so we can safely delete them
-                ActionRecord.deleteAllSaved()
-                
-                print("Successfuly record new action: \(record)")
-                UserDataContainer.shared.syncWithServer()
-                
-            })
-            
             //Notify the delegate
             self.delegate?.actionComplete(record)
             

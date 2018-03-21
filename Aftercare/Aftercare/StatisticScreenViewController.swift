@@ -227,7 +227,7 @@ extension StatisticScreenViewController: UITableViewDelegate {
                         forKind: cellData.kind!,
                         ofType: selectedOption
                     )
-                    let timeLeftLabel = SystemMethods.Utils.secondsToHumanReadableFormat(timeLeftData)
+                    let timeLeftLabel = SystemMethods.Utils.secondsToISO8601Format(timeLeftData)
                     
                     cell.timeLeftBar.setValue(timeLeftLabel, actionsValueProgress)
                     cell.timeLeftBar.setTitle(self.timeLeftTitle)
@@ -235,7 +235,7 @@ extension StatisticScreenViewController: UITableViewDelegate {
                 
                 if let averageTimeData = data?.average {
                     let averageValue = UserDataContainer.shared.getStatisticsAverageTimeProgress(Double(averageTimeData), cellKind!)
-                    let averageValueTitle = SystemMethods.Utils.secondsToHumanReadableFormat(averageTimeData)
+                    let averageValueTitle = SystemMethods.Utils.secondsToISO8601Format(averageTimeData)
                     cell.averageTimeBar.setValue(averageValueTitle, averageValue)
                     cell.averageTimeBar.setTitle(self.averageTimeTitle)
                 }

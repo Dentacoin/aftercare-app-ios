@@ -186,28 +186,22 @@ struct SystemMethods {
             return DateFormatter.iso8601.date(from: dateString)
         }
         
-        static func secondsToHumanReadableFormat(_ seconds: Int) -> String {
+        static func secondsToISO8601Format(_ seconds: Int) -> String {
+            
+            //format time to hh:mm:ss ISO8601 standard
             
             var formatedData = ""
             let hours = Int(seconds / 3600)
             let minutes = Int((seconds % 3600) / 60)
             let seconds = Int((seconds % 3600) % 60)
             
+            //add hours if more than zero
             if hours > 0 {
-                formatedData += String(minutes) + "h. "
+                formatedData += (hours > 9 ? String(hours) : "0\(hours)") + ":"
             }
             
-            if minutes > 0 {
-                formatedData += String(minutes) + "m. "
-            }
-            
-            if seconds > 0 {
-                formatedData += String(seconds) + "s."
-            }
-            
-            if formatedData == "" {
-                formatedData = "0s."
-            }
+            formatedData += "\(minutes):"//add minutes
+            formatedData += (seconds > 9 ? String(seconds) : "0\(seconds)")//add seconds
             
             return formatedData
         }

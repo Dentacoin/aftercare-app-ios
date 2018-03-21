@@ -5,8 +5,11 @@
 //
 
 import Foundation
+import Disk
 
 struct Routines {
+    
+    fileprivate static let localFileName = "routineRecords.json"
     
     static func getRoutineForNow() -> Routine? {
         let now = Date()
@@ -21,6 +24,46 @@ struct Routines {
             }
         }
         return nil
+    }
+    
+    // MARK: - Local Persist methods
+    
+    static func save(_ record: RoutineData) {
+        guard var records = getAllSaved() else {
+            internalSave([record])
+            return
+        }
+        records.append(record)
+        internalSave(records)
+    }
+    
+    static func getAllSaved() -> [RoutineData]? {
+        //try to load from local persistent storage
+        do {
+            let records = try Disk.retrieve(localFileName, from: .caches, as: [RoutineData].self)
+            return records
+        } catch {
+            print("Error: Disk faild to load \(localFileName) from local caches :: \(error)")
+        }
+        return nil
+    }
+    
+    static func deleteAllSaved() {
+        do {
+            try Disk.remove(localFileName, from: .caches)
+        } catch {
+            print("Error: Disk faild to remove \(localFileName) from local caches :: \(error)")
+        }
+    }
+    
+    //MARK: - Internal API
+    
+    fileprivate static func internalSave(_ records: [RoutineData]) {
+        do {
+            try Disk.save(records, to: .caches, as: localFileName)
+        } catch {
+            print("Error: Disk faild to save to \(localFileName) in local caches :: \(error)")
+        }
     }
     
 }

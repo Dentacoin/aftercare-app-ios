@@ -62,7 +62,7 @@ class ActionBarsView: UIView {
     
     func setLastBarValue(_ value: Int, _ type: ActionRecordType) {
         let lastTimeProgress = UserDataContainer.shared.getActionsLastTimeBarProgress(Double(value), type)
-        let lastTimeLabel = SystemMethods.Utils.secondsToHumanReadableFormat(value)
+        let lastTimeLabel = SystemMethods.Utils.secondsToISO8601Format(value)
         self.lastBar.setValue(lastTimeLabel, lastTimeProgress)
     }
     

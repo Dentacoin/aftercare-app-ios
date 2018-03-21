@@ -79,16 +79,6 @@ struct APIRouter: APIRouterProtocol {
         var route: String = "upload_avatar"
     }
     
-    struct RecordAction: Creatable {
-        typealias EParameters = ActionRecordData
-        var route: String = "records"
-    }
-    
-    struct RecordActions: Creatable {
-        typealias EParameters = [ActionRecordData]
-        var route: String = "multiple-records"
-    }
-    
     struct RecordRoutine: Creatable {
         typealias EParameters = RoutineData
         var route: String = "journey/routines"

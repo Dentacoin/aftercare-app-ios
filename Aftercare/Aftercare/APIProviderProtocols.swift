@@ -33,11 +33,6 @@ protocol APIProviderProtocol {
     
     static func logout() -> Void
     
-    static func recordActions(
-        _ records: [ActionRecordData],
-        onComplete: @escaping (_ processedAction: ActionsResponseList?, _ error: ErrorData?) -> Void
-    )
-    
     static func retreiveOralHealthData(
         _ onComplete: @escaping (_ result: [OralHealthData]?, _ error: ErrorData?) -> Void
     ) -> Void
@@ -49,11 +44,6 @@ protocol APIProviderProtocol {
     static func updateUser(
         _ userData: UpdateUserRequestData,
         onComplete: @escaping (_ userData: UserData?, _ errorData: ErrorData?) -> Void
-    )
-    
-    static func recordAction(
-        record: ActionRecordData,
-        onComplete: @escaping (_ processedAction: ActionRecordData?, _ error: ErrorData?) -> Void
     )
     
     static func retreiveCurrentJourney(

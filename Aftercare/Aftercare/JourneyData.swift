@@ -14,6 +14,6 @@ struct JourneyData: Codable {
     var completed: Bool
     var day: Int
     var skipped: Int
-    var lastRoutine: [RoutineData]?
+    var lastRoutine: RoutineData?
     
 }
