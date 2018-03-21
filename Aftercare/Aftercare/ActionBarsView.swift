@@ -5,8 +5,6 @@
 //
 
 import UIKit
-import EasyTipView
-
 @IBDesignable
 class ActionBarsView: UIView {
     
@@ -75,39 +73,7 @@ class ActionBarsView: UIView {
         self.earnedBar.setValue(String(value))
     }
     
-    func showTooltips() {
-        let tooltips: [(id: String ,text: String, forView: UIView, within: UIView, arrowAt: EasyTipView.ArrowPosition)] = [
-            (
-                id: TutorialIDs.lastActivityTime.rawValue,
-                text: NSLocalizedString("Last recorded time", comment: ""),
-                forView: (lastBar)!,
-                within: (lastBar?.superview?.superview?.superview?.superview)!,
-                arrowAt: EasyTipView.ArrowPosition.left
-            ), (
-                id: TutorialIDs.leftActivitiesCount.rawValue,
-                text: NSLocalizedString("Remaining activities for today", comment: ""),
-                forView: (leftBar)!,
-                within: (leftBar)!,
-                arrowAt: EasyTipView.ArrowPosition.right
-            ), (
-                id: TutorialIDs.dcnEarned.rawValue,
-                text: NSLocalizedString("Earned DCN from this activity", comment: ""),
-                forView: (earnedBar)!,
-                within: (earnedBar?.superview?.superview?.superview?.superview)!,
-                arrowAt: EasyTipView.ArrowPosition.bottom
-            )
-        ]
-        
-        for tooltip in tooltips {
-            showTooltip(
-                tooltip.text,
-                forView: tooltip.forView,
-                within: tooltip.within,
-                at: tooltip.arrowAt,
-                id: tooltip.id
-            )
-        }
-    }
+    // TODO: - spotlight "Last recorded time", "Remaining activities for today", "Earned DCN from this activity"
     
     //MARK: - internal logic
     
@@ -124,50 +90,6 @@ class ActionBarsView: UIView {
         #endif
         
         self.backgroundColor = .clear
-    }
-    
-    //TODO: move this into protocol
-    
-    fileprivate func showTooltip(_ text: String, forView: UIView, within superview: UIView, at position: EasyTipView.ArrowPosition, id: String) {
-        
-        //check if already seen by the user in this app session. "True" means still valid for this session
-        var active = UserDataContainer.shared.getTooltipSessionToggle(id)//session state
-        active = UserDataContainer.shared.getTooltipToggle(id)//between session state
-        
-        if  active {
-            
-            var preferences = ThemeManager.shared.tooltipPreferences
-            preferences.drawing.arrowPosition = position
-            
-            let tooltipText = NSLocalizedString(
-                text,
-                comment: ""
-            )
-            
-            EasyTipView.show(
-                forView: forView,
-                withinSuperview: forView.superview?.superview?.superview?.superview,
-                text: tooltipText,
-                preferences: preferences,
-                delegate: self,
-                id: id
-            )
-            
-            //set to false so next time user opens the same screen this will not show
-            UserDataContainer.shared.setTooltipSessionToggle(id, false)
-            
-        }
-    }
-    
-}
-
-//MARK: - EasyTipViewDelegate
-
-extension ActionBarsView: EasyTipViewDelegate {
-    
-    func easyTipViewDidDismiss(_ tipView: EasyTipView) {
-        //turn off tooltip if dismissed by the user
-        UserDataContainer.shared.setTooltipToggle(tipView.accessibilityIdentifier ?? "", false)
     }
     
 }

@@ -33,7 +33,6 @@ class ActionScreenViewController: UIViewController, ContentConformer {
     fileprivate var calculatedConstraints = false
     fileprivate var headerHeight: CGFloat = 0
     fileprivate var currentPageIndex = 0
-    fileprivate var tooltipsShown = false
     fileprivate var routineRecordData: RoutineData? {
         didSet {
             UserDataContainer.shared.lastRoutineRecord = routineRecordData
@@ -99,14 +98,8 @@ class ActionScreenViewController: UIViewController, ContentConformer {
             }
         }
         
-        //If no routine, show tooltip on current page
-        if UserDataContainer.shared.routine == nil, tooltipsShown == false {
-            tooltipsShown = true
-            if let page = pagesArray.first {
-                //Show tooltips only in first sub-screen e.g. Floss screen
-                page.showTooltips()
-            }
-        }
+        // TODO: - If no routine, show spotlight on current page
+        
         
         if !calculatedConstraints {
             //save header height value in local variable

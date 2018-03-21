@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import EasyTipView
 
 class ActionView: UIView {
     

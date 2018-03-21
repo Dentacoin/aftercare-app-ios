@@ -16,7 +16,6 @@ class UserDataContainer {
     fileprivate var avatar: UIImage?
     fileprivate var emergencyScreenshot: UIImage?
     fileprivate var userData: UserData?
-    fileprivate var tooltipsSessionStates: [String : Bool] = [:]
     
     //MARK: - Local model persistent file names
     
@@ -243,39 +242,6 @@ class UserDataContainer {
     
     open func setTutorialsToggle(_ toggle: Bool) {
         UserDefaultsManager.shared.setValue(toggle, forKey: "tutorialsToggle")
-    }
-    
-    //Toggle state for the app session
-    open func getTooltipSessionToggle(_ id: String) -> Bool {
-        if let state = self.tooltipsSessionStates[id] {
-            return state
-        }
-        return true
-    }
-    
-    //Toggle state for the app session
-    open func setTooltipSessionToggle(_ id: String, _ toggle: Bool) {
-        self.tooltipsSessionStates.updateValue(toggle, forKey: id)
-    }
-    
-    //Toggle state for the across sessions
-    open func getTooltipToggle(_ id: String) -> Bool {
-        if let state: Bool = UserDefaultsManager.shared.getValue(forKey: id) {
-            return state
-        }
-        return true
-    }
-    
-    //Toggle state for the across sessions
-    open func setTooltipToggle(_ id: String, _ toggle: Bool) {
-        UserDefaultsManager.shared.setValue(toggle, forKey: id)
-    }
-    
-    open func resetTooltipToggle(_ value: Bool) {
-        for tooltipID in TutorialIDs.all {
-            UserDefaultsManager.shared.setValue(value, forKey: tooltipID.rawValue)
-        }
-        self.tooltipsSessionStates = [:]
     }
     
     //MARK: - Progress bars helper methods

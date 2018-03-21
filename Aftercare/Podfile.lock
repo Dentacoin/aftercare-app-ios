@@ -2,6 +2,7 @@ PODS:
   - Alamofire (4.6.0)
   - AlamofireImage (3.3.0):
     - Alamofire (~> 4.5)
+  - AwesomeSpotlightView (0.1.8)
   - Bolts (1.9.0):
     - Bolts/AppLinks (= 1.9.0)
     - Bolts/Tasks (= 1.9.0)
@@ -111,6 +112,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.5)
   - AlamofireImage (~> 3.3)
+  - AwesomeSpotlightView
   - CodableAlamofire
   - Crashlytics
   - Disk (~> 0.3.1)
@@ -131,6 +133,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   AlamofireImage: 2e784dc5d00f04903a52c1d169181469c805c3df
+  AwesomeSpotlightView: c69673df8b569f739b5e6e9a012720f2c4c93d4b
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   CodableAlamofire: e2d2edcec7cf413f7862c30c8fa98eded27a83f9
   Crashlytics: a989ef242b66605577a425733797f810bd2725eb
@@ -163,6 +166,6 @@ SPEC CHECKSUMS:
   TwitterCore: 644d59e75abccb26cf0a9050d2c4dea0e5412241
   TwitterKit: a2e60ddcedbf54091eac6f27685ca7a87681e1d7
 
-PODFILE CHECKSUM: 9692f483e95b16c76fc011caa8da644221e28ecf
+PODFILE CHECKSUM: 0fcd72922a5966e36b6d97f5aaccf84955df4212
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.4.0

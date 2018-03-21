@@ -5,7 +5,6 @@
 //
 
 import UIKit
-import EasyTipView
 
 //TODO: Make IBDesignable a protocol and move all the logic for it there
 @IBDesignable
@@ -84,25 +83,7 @@ class ActionFooterView: UIView {
         
     }
     
-    func showTooltips() {
-        let tooltips: [(id: String ,text: String, forView: UIView, arrowAt: EasyTipView.ArrowPosition)] = [
-            (
-                id: TutorialIDs.dashboardStatistics.rawValue,
-                text: NSLocalizedString("Tap to open statistics", comment: ""),
-                forView: (statisticsButton)!,
-                arrowAt: EasyTipView.ArrowPosition.bottom
-            )
-        ]
-        
-        for tooltip in tooltips {
-            showTooltip(
-                tooltip.text,
-                forView: tooltip.forView,
-                at: tooltip.arrowAt,
-                id: tooltip.id
-            )
-        }
-    }
+    // TODO: - spotlight "Tap to open statistics"
     
     //MARK: - private api
     
@@ -111,38 +92,6 @@ class ActionFooterView: UIView {
         setActionButtonLabel("Action", withState: .blue)
         
         self.backgroundColor = .clear
-    }
-    
-    //TODO: move this in protocol
-    fileprivate func showTooltip(_ text: String, forView: UIView, at position: EasyTipView.ArrowPosition, id: String) {
-        
-        //check if already seen by the user in this app session. "True" means still valid for this session
-        var active = UserDataContainer.shared.getTooltipSessionToggle(id)//session state
-        active = UserDataContainer.shared.getTooltipToggle(id)//between session state
-        
-        if  active {
-            
-            var preferences = ThemeManager.shared.tooltipPreferences
-            preferences.drawing.arrowPosition = position
-            
-            let tooltipText = NSLocalizedString(
-                text,
-                comment: ""
-            )
-            
-            EasyTipView.show(
-                forView: forView,
-                withinSuperview: self,
-                text: tooltipText,
-                preferences: preferences,
-                delegate: self,
-                id: id
-            )
-            
-            //set to false so next time user opens the same screen this will not show
-            UserDataContainer.shared.setTooltipSessionToggle(id, false)
-            
-        }
     }
     
     //MARK: - IBActions
@@ -169,15 +118,4 @@ enum ActionButtonState {
 protocol ActionFooterViewDelegate {
     func onActionButtonPressed()
     func onStatisticsButtonPressed()
-}
-
-//MARK: - EasyTipViewDelegate
-
-extension ActionFooterView: EasyTipViewDelegate {
-    
-    func easyTipViewDidDismiss(_ tipView: EasyTipView) {
-        //turn off tooltip if dismissed by the user
-        UserDataContainer.shared.setTooltipToggle(tipView.accessibilityIdentifier ?? "", false)
-    }
-    
 }

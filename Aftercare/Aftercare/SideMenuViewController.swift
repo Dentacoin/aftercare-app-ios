@@ -10,7 +10,6 @@
 
 import Foundation
 import UIKit
-import EasyTipView
 
 class SideMenuViewController: UIViewController {
     
@@ -35,7 +34,6 @@ class SideMenuViewController: UIViewController {
     //MARK: - fileprivates
     
     fileprivate var calculatedConstraints = false
-    fileprivate var tableViewTooltipRefresh = false
     fileprivate var activeTooltipIDs: [String] = []
     
     fileprivate var menuData: [Dictionary<CellDataKeys , String>] = {
@@ -160,7 +158,7 @@ class SideMenuViewController: UIViewController {
         NotificationCenter.default.addObserver(
             self,
             selector: Selector.resetTooltipsSelector,
-            name: NSNotification.Name(rawValue: "resetTooltips"),
+            name: NSNotification.Name(rawValue: "resetSpotlights"),
             object: nil
         )
         
@@ -216,72 +214,10 @@ class SideMenuViewController: UIViewController {
         delegate?.onCloseMenu()
     }
     
-    //Tooltips Setup
+    // TODO: - Spotlight "Click here to edit your profile!"
     
-    fileprivate func setupTooltips() {
+    @objc func onResetSpotlights() {
         
-        let tooltips: [(id: String, text: String, forView: UIView, arrowAt: EasyTipView.ArrowPosition)] = [
-            (
-                id: TutorialIDs.editProfile.rawValue,
-                text: NSLocalizedString("Click here to edit your profile!", comment: ""),
-                forView: self.avatarImage,
-                arrowAt: EasyTipView.ArrowPosition.left
-            )
-        ]
-        
-        for tooltip in tooltips {
-            showTooltip(
-                tooltip.text,
-                forView: tooltip.forView,
-                at: tooltip.arrowAt,
-                id: tooltip.id
-            )
-        }
-        
-    }
-    
-    fileprivate func showTooltip(_ text: String, forView: UIView, at position: EasyTipView.ArrowPosition, id: String) {
-        
-        //check if already seen by the user in this app session. "True" means still valid for this session
-        var active = UserDataContainer.shared.getTooltipSessionToggle(id)//session state
-        active = UserDataContainer.shared.getTooltipToggle(id)//between session/global state
-        
-        //local state
-        if self.activeTooltipIDs.contains(id) {
-            return
-        }
-        
-        if  active {
-            
-            var preferences = ThemeManager.shared.tooltipPreferences
-            preferences.drawing.arrowPosition = position
-            
-            let tooltipText = NSLocalizedString(
-                text,
-                comment: ""
-            )
-            
-            EasyTipView.show(
-                forView: forView,
-                withinSuperview: self.view,
-                text: tooltipText,
-                preferences: preferences,
-                delegate: self,
-                id: id
-            )
-            
-            //local session
-            self.activeTooltipIDs.append(id)
-            
-            //set to false so next time user opens the same screen this will not show
-            UserDataContainer.shared.setTooltipSessionToggle(id, false)
-            
-        }
-    }
-    
-    @objc func onResetTooltips() {
-        self.tableViewTooltipRefresh = false
-        menuOptionsTable.reloadData()
     }
     
     @objc func onUserEmailConfirmationUpdated() {
@@ -290,25 +226,6 @@ class SideMenuViewController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-    }
-    
-}
-
-//MARK: - EasyTipViewDelegate
-
-extension SideMenuViewController: EasyTipViewDelegate {
-    
-    func easyTipViewDidDismiss(_ tipView: EasyTipView) {
-        //turn off tooltip if dismissed by the user
-        
-        let tooltipID = tipView.accessibilityIdentifier ?? ""
-        
-        UserDataContainer.shared.setTooltipToggle(tooltipID, false)
-        
-        //reset tooltips local state
-        if let index = activeTooltipIDs.index(of: tooltipID) {
-            activeTooltipIDs.remove(at: index)
-        }
     }
     
 }
@@ -345,30 +262,8 @@ extension SideMenuViewController: UITableViewDelegate {
                 cell.label.text = title
             }
             
-            if self.tableViewTooltipRefresh == true {
-                switch indexPath.row {//TODO: - refactor this
-                    case 1:
-                        cell.showTooltip(
-                            NSLocalizedString("Send DCN to your wallet!", comment: ""),
-                            arrowPosition: .bottom,
-                            id: TutorialIDs.collectDcn.rawValue
-                        )
-                    case 2:
-                        cell.showTooltip(
-                            NSLocalizedString("Achieve goals & earn DCN", comment: ""),
-                            arrowPosition: .top,
-                            id: TutorialIDs.goals.rawValue
-                        )
-                    case 5:
-                        cell.showTooltip(
-                            NSLocalizedString("Send us emergency request", comment: ""),
-                            arrowPosition: .top,
-                            id: TutorialIDs.emergencyMenu.rawValue
-                        )
-                    default:
-                        break
-                }
-            }
+            // TODO: - Spotlight "Send DCN to your wallet!", "Achieve goals & earn DCN", "Send us emergency request"
+            
             cell.backgroundColor = .clear
             return cell
         } else if CellTypes.separator.rawValue == data[CellDataKeys.type] {
@@ -399,17 +294,17 @@ extension SideMenuViewController: UITableViewDelegate {
         
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if let lastVisibleIndexPath = tableView.indexPathsForVisibleRows?.last {
-            if indexPath == lastVisibleIndexPath {
-                if self.tableViewTooltipRefresh == false {//I HATE THIS HACK: this is necessary to make tooltips to show after table creation
-                    self.tableViewTooltipRefresh = true
-                    self.menuOptionsTable.reloadData()
-                    self.setupTooltips()
-                }
-            }
-        }
-    }
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        if let lastVisibleIndexPath = tableView.indexPathsForVisibleRows?.last {
+//            if indexPath == lastVisibleIndexPath {
+//                if self.tableViewTooltipRefresh == false {//I HATE THIS HACK: this is necessary to make tooltips to show after table creation
+//                    self.tableViewTooltipRefresh = true
+//                    self.menuOptionsTable.reloadData()
+//                    //self.setupTooltips()
+//                }
+//            }
+//        }
+//    }
 }
 
 //MARK: - UITableViewDataSource
@@ -450,7 +345,7 @@ fileprivate enum ActionIDs: String {
 //MARK: - Selectors
 
 fileprivate extension Selector {
-    static let resetTooltipsSelector = #selector(SideMenuViewController.onResetTooltips)
+    static let resetTooltipsSelector = #selector(SideMenuViewController.onResetSpotlights)
     static let userEmailConfirmationUpdated = #selector(SideMenuViewController.onUserEmailConfirmationUpdated)
 }
 

@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import EasyTipView
 
 // Color palette
 
@@ -144,9 +143,6 @@ class ThemeManager {
     //MARK: - Singleton
     
     static let shared = ThemeManager()
-    private init() {
-        setupEasyTipViewAppearance()
-    }
     
     typealias Component = UIView
     
@@ -159,24 +155,6 @@ class ThemeManager {
             (start: CGPoint(x: 0.0, y: 0.0), end: CGPoint(x: 0.0, y: 1.0))
         )
     }()
-    
-    open var tooltipPreferences: EasyTipView.Preferences {
-        get {
-            var preferences = EasyTipView.Preferences()
-            preferences.drawing.font = UIFont.dntLatoLightFont(size: 13)!
-            preferences.drawing.foregroundColor = .white
-            preferences.drawing.backgroundColor = UIColor.dntLightRed
-            preferences.drawing.arrowPosition = .top
-            
-            return preferences
-        }
-    }
-    
-    func setupEasyTipViewAppearance() {
-        
-        //Setup EasyTipView global appearance
-        EasyTipView.globalPreferences = tooltipPreferences
-    }
     
     func setDCBlueTheme(to component: UIView, ofType type: DCBlueThemeTypes) {
         

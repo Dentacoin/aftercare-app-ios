@@ -3,6 +3,8 @@ platform :ios, '10.0'
 # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
 use_frameworks!
 
+inhibit_all_warnings!
+
 target 'Aftercare' do
   # Pods for Dentacare
   
@@ -25,12 +27,12 @@ target 'Aftercare' do
   #Persistence helper
   pod 'Disk', '~> 0.3.1'
   
+  #Spotlight Tutorials
+  pod 'AwesomeSpotlightView'
+  
   #Use google auto complete view controller for choosing valid country/city
   pod 'GooglePlaces'
   pod 'GooglePlacePicker'
-  
-  #Tutorials
-  pod 'EasyTipView'
   
   #QRCode
   pod 'QRCodeReader.swift', '~> 8.0.3'
