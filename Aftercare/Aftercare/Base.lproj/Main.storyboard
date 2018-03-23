@@ -567,7 +567,7 @@
                                 <rect key="frame" x="48" y="609" width="280" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="5yS-bd-AP3"/>
-                                    <constraint firstAttribute="width" constant="280" id="aCq-8a-0Hz"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="280" id="aCq-8a-0Hz"/>
                                 </constraints>
                                 <state key="normal" title="Delete My Profile"/>
                                 <connections>
