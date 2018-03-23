@@ -326,13 +326,13 @@ extension ActionScreenViewController {
         //scroll UIScrollView's contents to the page according to selected tab with animation
         self.currentPageIndex = index
         if animate {
-            DispatchQueue.main.async() {
+            DispatchQueue.main.async() { [weak self] in
                 UIView.animate(withDuration: 0.25, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: {
-                    self.contentScrollView.contentOffset.x = self.contentScrollView.frame.size.width * CGFloat(index)
+                    self?.contentScrollView.contentOffset.x = (self?.view.frame.width)! * CGFloat(index)
                 }, completion: nil)
             }
         } else {
-            self.contentScrollView.contentOffset.x = self.contentScrollView.frame.size.width * CGFloat(index)
+            self.contentScrollView.contentOffset.x = view.frame.width * CGFloat(index)
         }
     }
     
