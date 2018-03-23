@@ -620,7 +620,7 @@ static NSDateFormatter *TimeFormatter = nil;
 
 - (NSString*)signMessage2:(NSData *)msg {
     uint8_t pby;
-    uint32_t msg_len = msg.length;
+    uint32_t msg_len = (uint32_t) msg.length;
     SecureData *signatureData = [SecureData secureDataWithLength:64];
     ecdsa_sign(&secp256k1, [_privateKey bytes], msg.bytes, msg_len, signatureData.mutableBytes, &pby, NULL);
     
@@ -631,9 +631,6 @@ static NSDateFormatter *TimeFormatter = nil;
 }
 
 - (NSString*)signMessage:(NSData *)msg {
-    uint8_t pby;
-    uint32_t msg_len = msg.length;
-    
     NSMutableArray *raw = [NSMutableArray arrayWithCapacity:1];
     [raw addObject:msg];
     

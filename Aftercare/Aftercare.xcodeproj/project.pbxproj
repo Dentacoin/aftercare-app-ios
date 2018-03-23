@@ -200,7 +200,7 @@
 		9FCA68B81FAA1F5F008B36DA /* aescrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA686A1FAA1F5E008B36DA /* aescrypt.c */; };
 		9FCA68B91FAA1F5F008B36DA /* curves.c in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA686E1FAA1F5E008B36DA /* curves.c */; };
 		9FCA68BA1FAA1F5F008B36DA /* secp256k1.c in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA68701FAA1F5E008B36DA /* secp256k1.c */; };
-		9FCA68BB1FAA1F5F008B36DA /* aes_modes.c in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA68721FAA1F5E008B36DA /* aes_modes.c */; };
+		9FCA68BB1FAA1F5F008B36DA /* aes_modes.c in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA68721FAA1F5E008B36DA /* aes_modes.c */; settings = {COMPILER_FLAGS = "-w"; }; };
 		9FCA68BC1FAA1F5F008B36DA /* bignum.c in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA68741FAA1F5E008B36DA /* bignum.c */; };
 		9FCA68BD1FAA1F5F008B36DA /* ripemd160.c in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA68781FAA1F5E008B36DA /* ripemd160.c */; };
 		9FCA68BE1FAA1F5F008B36DA /* secp256k1.table in Resources */ = {isa = PBXBuildFile; fileRef = 9FCA687A1FAA1F5E008B36DA /* secp256k1.table */; };
@@ -223,7 +223,7 @@
 		9FCA68CF1FAA1F5F008B36DA /* RegEx.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA68A21FAA1F5E008B36DA /* RegEx.m */; };
 		9FCA68D01FAA1F5F008B36DA /* TransactionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA68A31FAA1F5E008B36DA /* TransactionInfo.m */; };
 		9FCA68D11FAA1F5F008B36DA /* Signature.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA68A41FAA1F5E008B36DA /* Signature.m */; };
-		9FCA68D21FAA1F5F008B36DA /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA68A51FAA1F5E008B36DA /* Account.m */; };
+		9FCA68D21FAA1F5F008B36DA /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA68A51FAA1F5E008B36DA /* Account.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		9FCA68D31FAA1F5F008B36DA /* scrypt_sha256.c in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA68AA1FAA1F5E008B36DA /* scrypt_sha256.c */; };
 		9FCA68D41FAA1F5F008B36DA /* crypto_scrypt-nosse.c in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA68AB1FAA1F5E008B36DA /* crypto_scrypt-nosse.c */; };
 		9FCA68D51FAA1F5F008B36DA /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA68AC1FAA1F5E008B36DA /* Address.m */; };
