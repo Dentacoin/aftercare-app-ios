@@ -332,6 +332,7 @@ extension ActionScreenViewController {
             }
         } else {
             self.contentScrollView.contentOffset.x = view.frame.width * CGFloat(index)
+            header.selectTab(atIndex: index)
         }
     }
     

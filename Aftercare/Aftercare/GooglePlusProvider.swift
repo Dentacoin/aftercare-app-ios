@@ -26,6 +26,7 @@ class GooglePlusProvider: NSObject {
         
         super.init()
         
+        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().uiDelegate = self//important! don't forget to add the uiDelegate too
         GIDSignIn.sharedInstance().delegate = self
     }
@@ -130,6 +131,17 @@ extension GooglePlusProvider: UserDataProviderProtocol {
     //MARK: - Public methods
     
     func logout() {
+        
+        // Google Sign out
+        GIDSignIn.sharedInstance().signOut()
+        
+        // Firebase sign out
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+            print ("GooglePlusProvider :: Error firebase signing out: \(signOutError)")
+        }
         loggedIn = false
     }
     
@@ -205,7 +217,7 @@ extension GooglePlusProvider: GIDSignInDelegate {
             accessToken: authentication.accessToken
         )
         
-        Auth.auth().signIn(with: credential) { [weak self] (user, error) in
+        Auth.auth().signIn(with: credential) { [weak self] user, error in
             if let error = error as NSError? {
                 if let completion = self?.completion {
                     let errorData = ErrorData(code: error.code, errors: [error.localizedDescription])
@@ -215,10 +227,11 @@ extension GooglePlusProvider: GIDSignInDelegate {
                 return
             }
             
+            
             if let user = user {
                 
                 //User successfully authenticated
-                print("GooglePlusProvider :: google user successfully authenticated")
+                print("GooglePlusProvider :: Firebase successfully authenticated google user.")
                 
                 if let avatar = user.photoURL?.absoluteString {
                     UserDefaultsManager.shared.setValue(avatar, forKey: GoogleDefaultsKeys.Avatar.rawValue)
@@ -246,7 +259,7 @@ extension GooglePlusProvider: GIDSignInDelegate {
                         return
                     }
                     sessionRequestData.googleAccessToken = token
-                    
+
                     if let completion = self?.completion {
                         completion(sessionRequestData, nil)
                     }
@@ -260,7 +273,6 @@ extension GooglePlusProvider: GIDSignInDelegate {
     }
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-        GIDSignIn.sharedInstance().signOut()
         logout()
     }
     
