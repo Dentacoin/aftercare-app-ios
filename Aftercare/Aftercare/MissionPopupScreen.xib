@@ -47,9 +47,9 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lSb-qs-SVS" customClass="FBSDKShareButton">
-                            <rect key="frame" x="70" y="423" width="180" height="40"/>
+                            <rect key="frame" x="85" y="423" width="150" height="40"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="180" id="B4Z-Mi-U2F"/>
+                                <constraint firstAttribute="width" constant="150" id="B4Z-Mi-U2F"/>
                                 <constraint firstAttribute="height" constant="40" id="HwM-PK-rjx"/>
                             </constraints>
                         </button>

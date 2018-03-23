@@ -577,7 +577,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="fas-5e-4DE" firstAttribute="bottom" secondItem="vmp-8J-u5z" secondAttribute="bottom" constant="-8" id="Apv-da-Fkd"/>
+                            <constraint firstItem="fas-5e-4DE" firstAttribute="bottom" secondItem="yPC-at-too" secondAttribute="bottom" constant="-8" id="Apv-da-Fkd"/>
                             <constraint firstItem="YWm-df-gQ0" firstAttribute="centerX" secondItem="Hfm-hA-Kco" secondAttribute="centerX" id="At3-l5-Vmz"/>
                             <constraint firstItem="1SF-uH-Bc2" firstAttribute="top" secondItem="RUO-zH-Q8D" secondAttribute="bottom" id="FgU-Ns-ruk"/>
                             <constraint firstItem="vmp-8J-u5z" firstAttribute="trailing" secondItem="RUO-zH-Q8D" secondAttribute="trailing" id="JDz-Iq-gbU"/>

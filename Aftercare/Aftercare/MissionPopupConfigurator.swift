@@ -80,9 +80,16 @@ struct MissionPopupConfigurator {
         linkContent.contentURL = URL(string: "https://itunes.apple.com/us/app/dentacare/id1274148338?ls=1&mt=8")
         popup.shareWithFacebook.shareContent = linkContent
         
-        let shareWithFBTitle = NSLocalizedString("Share With Facebook", comment: "")
-        popup.shareWithFacebook.setTitle(shareWithFBTitle, for: .normal)
-        popup.shareWithFacebook.setTitle(shareWithFBTitle, for: .highlighted)
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.alignment = .center
+        
+        let shareTitle = NSAttributedString(
+            string: NSLocalizedString("Share", comment: ""),
+            attributes: [NSAttributedStringKey.paragraphStyle: paragraph]
+        )
+        
+        popup.shareWithFacebook.setAttributedTitle(shareTitle, for: .normal)
+        popup.shareWithFacebook.setAttributedTitle(shareTitle, for: .highlighted)
         popup.cancelable = true
     }
     
