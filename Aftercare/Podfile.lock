@@ -14,7 +14,6 @@ PODS:
   - Crashlytics (3.10.0):
     - Fabric (~> 1.7.3)
   - Disk (0.3.3)
-  - EasyTipView (1.0.2)
   - Fabric (1.7.3)
   - FacebookCore (0.3.0):
     - Bolts (~> 1.8)
@@ -112,11 +111,10 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.5)
   - AlamofireImage (~> 3.3)
-  - AwesomeSpotlightView
+  - AwesomeSpotlightView (~> 0.1.8)
   - CodableAlamofire
   - Crashlytics
   - Disk (~> 0.3.1)
-  - EasyTipView
   - Fabric
   - FacebookCore
   - FacebookLogin
@@ -138,7 +136,6 @@ SPEC CHECKSUMS:
   CodableAlamofire: e2d2edcec7cf413f7862c30c8fa98eded27a83f9
   Crashlytics: a989ef242b66605577a425733797f810bd2725eb
   Disk: d1f55cd61f6ca20f368232d0c6e37e3c3dfcb63e
-  EasyTipView: b93a19be981cc2221d6d7191d49872f547e0bebf
   Fabric: bb495bb9a7a7677c6d03a1f8b83d95bc49b47e41
   FacebookCore: 3ffa190a3f1f96cec0e44d3fc221bc322c595ffa
   FacebookLogin: 0af839ea858faef99550d16596b87b4a8e8906e6
@@ -166,6 +163,6 @@ SPEC CHECKSUMS:
   TwitterCore: 644d59e75abccb26cf0a9050d2c4dea0e5412241
   TwitterKit: a2e60ddcedbf54091eac6f27685ca7a87681e1d7
 
-PODFILE CHECKSUM: 0fcd72922a5966e36b6d97f5aaccf84955df4212
+PODFILE CHECKSUM: 914986b369db6040514f100fdc572f74bc3d8691
 
 COCOAPODS: 1.4.0

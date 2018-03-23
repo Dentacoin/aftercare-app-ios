@@ -9,6 +9,8 @@ import Disk
 
 class ActionRecord {
     
+    // TODO: - Move all persistent methods in a protocol
+    
     fileprivate static let localFileName = "actionRecords.json"
     
     static func save(_ record: ActionRecordData) {

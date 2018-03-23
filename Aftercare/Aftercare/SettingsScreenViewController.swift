@@ -257,7 +257,8 @@ extension SettingsScreenViewController: SettingsClearButtonTableCellDelegate {
     func onClearButtonPressed(_ indexPath: IndexPath) {
         let section = indexPath.section
         if section == 0 {
-            UserDataContainer.shared.resetTooltipToggle(true)
+            UserDataContainer.shared.toggleSpotlightsForActionScreen = true
+            UserDataContainer.shared.toggleSpotlightsForSideMenu = true
             UserDataContainer.shared.setTutorialsToggle(true)
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resetTooltips"), object: nil)
             return

@@ -83,8 +83,6 @@ class ActionFooterView: UIView {
         
     }
     
-    // TODO: - spotlight "Tap to open statistics"
-    
     //MARK: - private api
     
     fileprivate func customizeComponents() {

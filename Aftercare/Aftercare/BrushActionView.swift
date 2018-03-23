@@ -140,10 +140,6 @@ class BrushActionView: UIView, ActionViewProtocol {
     
     //MARK: - Public API
     
-    func showTooltips() {
-        embedView?.showTooltips()
-    }
-    
     func screenWillEnterFullscreen() {
         embedView?.actionFootherContainer.isStatisticsButtonHidden = true
     }

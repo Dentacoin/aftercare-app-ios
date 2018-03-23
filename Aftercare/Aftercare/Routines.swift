@@ -28,6 +28,8 @@ struct Routines {
     
     // MARK: - Local Persist methods
     
+    // TODO: - Move all persistent methods in a protocol
+    
     static func save(_ record: RoutineData) {
         guard var records = getAllSaved() else {
             internalSave([record])

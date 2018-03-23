@@ -2,7 +2,6 @@
 platform :ios, '10.0'
 # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
 use_frameworks!
-
 inhibit_all_warnings!
 
 target 'Aftercare' do
@@ -20,15 +19,13 @@ target 'Aftercare' do
   
   #Simplify Twitter SignIn
   pod 'TwitterKit'
+  
   #Simplify Google SignIn trough Firebase
   pod 'Firebase/Auth'
   pod 'GoogleSignIn'
   
   #Persistence helper
   pod 'Disk', '~> 0.3.1'
-  
-  #Spotlight Tutorials
-  pod 'AwesomeSpotlightView'
   
   #Use google auto complete view controller for choosing valid country/city
   pod 'GooglePlaces'

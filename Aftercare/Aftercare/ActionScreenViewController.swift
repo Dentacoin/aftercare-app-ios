@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AwesomeSpotlightView
 
 class ActionScreenViewController: UIViewController, ContentConformer {
     
@@ -33,6 +34,8 @@ class ActionScreenViewController: UIViewController, ContentConformer {
     fileprivate var calculatedConstraints = false
     fileprivate var headerHeight: CGFloat = 0
     fileprivate var currentPageIndex = 0
+    fileprivate var spotlights: [AwesomeSpotlight] = []
+    
     fileprivate var routineRecordData: RoutineData? {
         didSet {
             UserDataContainer.shared.lastRoutineRecord = routineRecordData
@@ -82,10 +85,16 @@ class ActionScreenViewController: UIViewController, ContentConformer {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        prepareSubScreens()
+        
         if UserDataContainer.shared.getTutorialsToggle() == true {
             showTutorials()
         } else {
-            requestDayRoutine()
+            if UserDataContainer.shared.toggleSpotlightsForActionScreen {
+                setupSpotlightTutorials()
+            } else {
+                requestDayRoutine()
+            }
         }
     }
     
@@ -97,9 +106,6 @@ class ActionScreenViewController: UIViewController, ContentConformer {
                 headerHeightConstraint.constant += topPadding
             }
         }
-        
-        // TODO: - If no routine, show spotlight on current page
-        
         
         if !calculatedConstraints {
             //save header height value in local variable
@@ -113,12 +119,6 @@ class ActionScreenViewController: UIViewController, ContentConformer {
     //MARK: - Internal logic
     
     fileprivate func requestDayRoutine() {
-        
-//        let journey = JourneyData(startDate: "2018-02-27T18:47:24+02:00", targetDays: 90, tolerance: 20, completed: false, day: 8, skipped: 3, lastRoutine: [])
-//        UserDataContainer.shared.journey = journey
-//        showFailedJourneyPopup(journey, Routines.getRoutineForNow()!)
-//        showStartJourneyPopup(journey, Routines.getRoutineForNow()!)
-//        showRoutinesPopup(forRoutine: Routines.getRoutineForNow()!)
         
         APIProvider.retreiveCurrentJourney() { [weak self] journey, error in
 
@@ -268,7 +268,6 @@ extension ActionScreenViewController {
         
         guard let screens = createSubScreens() else { return }
         setupSubScreens(screens)
-        
     }
     
     fileprivate func createSubScreens() -> [ActionViewProtocol]? {
@@ -300,7 +299,6 @@ extension ActionScreenViewController {
             let screen = screens[i] as! UIView
             contentScrollView.addSubview(screen)
         }
-        
     }
     
     fileprivate func updateSubscreensContentSizes() {
@@ -319,13 +317,95 @@ extension ActionScreenViewController {
         }
     }
     
-    fileprivate func scrollContentScrollViewTo(page index: Int) {
+    fileprivate func prepareSubScreens() {
+        //scroll subscreen's scroll view to the middle screen (Brushing)
+        scrollContentScrollViewTo(page: 1, animating: false)
+    }
+    
+    fileprivate func scrollContentScrollViewTo(page index: Int, animating animate: Bool) {
         //scroll UIScrollView's contents to the page according to selected tab with animation
         self.currentPageIndex = index
-        DispatchQueue.main.async() {
-            UIView.animate(withDuration: 0.25, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: {
-                self.contentScrollView.contentOffset.x = self.contentScrollView.frame.size.width * CGFloat(index)
-            }, completion: nil)
+        if animate {
+            DispatchQueue.main.async() {
+                UIView.animate(withDuration: 0.25, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+                    self.contentScrollView.contentOffset.x = self.contentScrollView.frame.size.width * CGFloat(index)
+                }, completion: nil)
+            }
+        } else {
+            self.contentScrollView.contentOffset.x = self.contentScrollView.frame.size.width * CGFloat(index)
+        }
+    }
+    
+    // Spotlight Tutorials
+    
+    fileprivate func setupSpotlightTutorials() {
+        
+        UserDataContainer.shared.toggleSpotlightsForActionScreen = false
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { [weak self] in
+            let spotlightModels = SpotlightModels.actionScreen
+            for model in spotlightModels {
+                if let viewUnderSpot = self?.getSpotlightView(forID: model.id) {
+                    guard let newFrame = viewUnderSpot.superview?.convert(viewUnderSpot.frame, to: nil) else {
+                        return
+                    }
+                    let smallestSide = newFrame.width > newFrame.height ? newFrame.height : newFrame.width
+                    let scaleFactor: CGFloat = 1.7
+                    let squareSide = smallestSide * scaleFactor
+                    let widthOffset = (newFrame.width - squareSide) / 2
+                    let heightOffset = (newFrame.height - squareSide) / 2
+                    let square = CGRect(
+                        x: newFrame.origin.x + widthOffset,
+                        y: newFrame.origin.y + heightOffset,
+                        width: squareSide,
+                        height: squareSide
+                    )
+                    self?.spotlights.append(
+                        AwesomeSpotlight(
+                            withRect: square,
+                            shape: model.shape,
+                            text: model.label
+                        )
+                    )
+                }
+            }
+
+            let spotlightView = AwesomeSpotlightView(frame: (self?.view.frame)!, spotlight: (self?.spotlights)!)
+            spotlightView.cutoutRadius = 8
+            spotlightView.delegate = self
+            self?.view.addSubview(spotlightView)
+            spotlightView.start()
+        })
+        
+    }
+    
+    fileprivate func getSpotlightView(forID id: SpotlightID) -> UIView? {
+        guard let container = pagesArray[currentPageIndex].embedView else {
+            return nil
+        }
+        switch id {
+            case .totalDCN:
+                return container.totalBar
+            case .lastRecordTime:
+                return container.actionBarsContainer.lastBar
+            case .remainActivities:
+                return container.actionBarsContainer.leftBar
+            case .earnedDCN:
+                return container.actionBarsContainer.earnedBar
+            case .openStatistics:
+                return container.actionFootherContainer.statisticsButton
+            default:
+                return nil
+        }
+    }
+}
+
+// MARK: - AwesomeSpotlightViewDelegate
+
+extension ActionScreenViewController: AwesomeSpotlightViewDelegate {
+    func spotlightViewWillCleanup(_ spotlightView: AwesomeSpotlightView, atIndex index: Int) {
+        if index == spotlights.count - 1 {
+            requestDayRoutine()
         }
     }
 }
@@ -361,7 +441,7 @@ extension ActionScreenViewController: ActionViewDelegate {
                 //proceed with the next screen
                 guard let nextScreenType = routine.actions.first else { return }
                 guard let index = getPageIndex(nextScreenType) else { return }
-                scrollContentScrollViewTo(page: index)
+                scrollContentScrollViewTo(page: index, animating: true)
                 let page = pagesArray[index]
                 page.changeStateTo(.Ready)
                 
@@ -489,7 +569,7 @@ extension ActionScreenViewController: ActionHeaderViewDelegate {
     }
     
     func tabBarButtonPressed(_ index: Int) {
-        scrollContentScrollViewTo(page: index)
+        scrollContentScrollViewTo(page: index, animating: true)
     }
     
 }
@@ -546,7 +626,7 @@ extension ActionScreenViewController: MissionPopupScreenDelegate {
         guard let routine = UserDataContainer.shared.routine else { return }
         //scroll to first routine screen
         guard let index = getPageIndex(routine.actions.first!) else { return }
-        scrollContentScrollViewTo(page: index)
+        scrollContentScrollViewTo(page: index, animating: true)
         
         let page = pagesArray[index]
         page.changeStateTo(.Ready)
@@ -571,8 +651,8 @@ extension ActionScreenViewController: MissionPopupScreenDelegate {
 
 extension ActionScreenViewController: TutorialsPopupScreenDelegate {
     
-    func onTutorialsFinishedPressed() {
-        
+    func onTutorialsFinished() {
+        self.tutorialsPopup.dismiss(animated: true, completion: nil)
     }
     
     func onTutorialsClosed() {

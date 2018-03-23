@@ -7,7 +7,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,23 +23,26 @@
                         <constraint firstAttribute="height" constant="70" id="tju-RR-ItD"/>
                     </constraints>
                 </view>
-                <view opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MDM-4h-dj0">
-                    <rect key="frame" x="20" y="78" width="354" height="422"/>
+                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MDM-4h-dj0">
+                    <rect key="frame" x="20" y="78" width="354" height="424"/>
                 </view>
-                <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pkl-Ok-4la">
-                    <rect key="frame" x="8" y="500" width="378" height="107"/>
+                <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pkl-Ok-4la">
+                    <rect key="frame" x="8" y="502" width="378" height="100"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <view opaque="NO" contentMode="scaleAspectFill" ambiguous="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="151" translatesAutoresizingMaskIntoConstraints="NO" id="QqS-ku-RDu" customClass="ActionBarsView" customModule="Aftercare" customModuleProvider="target">
-                    <rect key="frame" x="72" y="500" width="250" height="107"/>
+                <view opaque="NO" contentMode="scaleAspectFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="151" translatesAutoresizingMaskIntoConstraints="NO" id="QqS-ku-RDu" customClass="ActionBarsView" customModule="Aftercare" customModuleProvider="target">
+                    <rect key="frame" x="72" y="502" width="250" height="100"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="QqS-ku-RDu" secondAttribute="height" multiplier="350:150" id="DNH-ik-1k4"/>
+                        <constraint firstAttribute="height" constant="100" id="ZLc-Tk-UYE"/>
                         <constraint firstAttribute="width" constant="250" id="ZZX-36-p8v"/>
                     </constraints>
                 </view>
-                <view opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z9q-wr-ovd" customClass="ActionFooterView" customModule="Aftercare" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="607" width="394" height="95"/>
+                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z9q-wr-ovd" customClass="ActionFooterView" customModule="Aftercare" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="602" width="394" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="KJg-LZ-pEN"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -202,14 +202,6 @@ class ActionView: UIView {
         }
     }
     
-    open func showTooltips() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: { [weak self] in
-            self?.actionBarsContainer.showTooltips()
-            self?.actionFootherContainer.showTooltips()
-            self?.totalBar.showTooltips()
-        })
-    }
-    
     open func openStatisticsScreen(_ animated: Bool = true) {
         
         let endFrame = self.statisticsOpenedFrame
@@ -529,12 +521,15 @@ enum ActionState {
 //MARK: - ActionViewProtocol
 
 protocol ActionViewProtocol {
+    
     var actionViewRecordType: ActionRecordType { get }
+    var embedView: ActionView? { get }
+    
     func updateData(_ data: ActionScreenData)
-    func showTooltips()
     func screenWillEnterFullscreen()
     func screenWillExitFullscreen()
     func changeStateTo(_ newState: ActionState)
+    
 }
 
 //MARK: - Selectors

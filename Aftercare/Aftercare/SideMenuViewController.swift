@@ -34,7 +34,9 @@ class SideMenuViewController: UIViewController {
     //MARK: - fileprivates
     
     fileprivate var calculatedConstraints = false
-    fileprivate var activeTooltipIDs: [String] = []
+    fileprivate var spotlights: [AwesomeSpotlight] = []
+    fileprivate var spotlightViews: [UIView] = []
+    fileprivate var spotlighsCreated = false
     
     fileprivate var menuData: [Dictionary<CellDataKeys , String>] = {
         let data = [
@@ -107,7 +109,12 @@ class SideMenuViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         updateUserData()
+        
+        if UserDataContainer.shared.toggleSpotlightsForSideMenu {
+            setupAndStartSpotlightTutorials()
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -210,14 +217,80 @@ class SideMenuViewController: UIViewController {
         menuOptionsTable.reloadData()
     }
     
+    fileprivate func setupAndStartSpotlightTutorials() {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { [weak self] in
+            if self?.spotlights.count == 0 {
+                //create spotlights
+                
+                let spotlightModels = SpotlightModels.sideMenu
+                for model in spotlightModels {
+                    if let viewUnderSpot = self?.getSpotlightView(forID: model.id) {
+                        guard let newFrame = viewUnderSpot.superview?.convert(viewUnderSpot.frame, to: nil) else {
+                            return
+                        }
+                        let smallestSide = newFrame.width > newFrame.height ? newFrame.height : newFrame.width
+                        let scaleFactor: CGFloat = 1.7
+                        let squareSide = smallestSide * scaleFactor
+                        let widthOffset = (newFrame.width - squareSide) / 2
+                        let heightOffset = (newFrame.height - squareSide) / 2
+                        let square = CGRect(
+                            x: newFrame.origin.x + widthOffset,
+                            y: newFrame.origin.y + heightOffset,
+                            width: squareSide,
+                            height: squareSide
+                        )
+                        self?.spotlights.append(
+                            AwesomeSpotlight(
+                                withRect: square,
+                                shape: model.shape,
+                                text: model.label
+                            )
+                        )
+                    }
+                }
+                
+            }
+            
+            let spotlightView = AwesomeSpotlightView(frame: (self?.view.frame)!, spotlight: (self?.spotlights)!)
+            spotlightView.cutoutRadius = 8
+            spotlightView.delegate = self
+            self?.view.addSubview(spotlightView)
+            spotlightView.start()
+        })
+        
+    }
+    
+    fileprivate func getSpotlightView(forID id: SpotlightID) -> UIView? {
+        switch id {
+            case .editProfile:
+                return avatarImage
+            case .sendDCN:
+                guard let cell = menuOptionsTable.cellForRow(at: IndexPath(row: 1, section: 0)) as? MainMenuCell else {
+                    return nil
+                }
+                return cell.icon
+            case .achieveGoalsAndEarn:
+                guard let cell = menuOptionsTable.cellForRow(at: IndexPath(row: 3, section: 0)) as? MainMenuCell else {
+                    return nil
+                }
+                return cell.icon
+            case .sendEmergency:
+                guard let cell = menuOptionsTable.cellForRow(at: IndexPath(row: 6, section: 0)) as? MainMenuCell else {
+                    return nil
+                }
+                return cell.icon
+            default:
+                return nil
+        }
+    }
+    
     func closeMenu() {
         delegate?.onCloseMenu()
     }
     
-    // TODO: - Spotlight "Click here to edit your profile!"
-    
     @objc func onResetSpotlights() {
-        
+        UserDataContainer.shared.toggleSpotlightsForSideMenu = true
     }
     
     @objc func onUserEmailConfirmationUpdated() {
@@ -228,6 +301,16 @@ class SideMenuViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
+}
+
+// MARK: - AwesomeSpotlightViewDelegate
+
+extension SideMenuViewController: AwesomeSpotlightViewDelegate {
+    func spotlightViewWillCleanup(_ spotlightView: AwesomeSpotlightView, atIndex index: Int) {
+        if index == spotlights.count - 1 {
+            UserDataContainer.shared.toggleSpotlightsForSideMenu = false
+        }
+    }
 }
 
 //MARK: - IBOActions
@@ -262,9 +345,8 @@ extension SideMenuViewController: UITableViewDelegate {
                 cell.label.text = title
             }
             
-            // TODO: - Spotlight "Send DCN to your wallet!", "Achieve goals & earn DCN", "Send us emergency request"
-            
             cell.backgroundColor = .clear
+            
             return cell
         } else if CellTypes.separator.rawValue == data[CellDataKeys.type] {
             let cell = tableView.dequeueReusableCell(withIdentifier: separatorCellIdentifier) as! MainMenuSeparatorCell
@@ -297,11 +379,8 @@ extension SideMenuViewController: UITableViewDelegate {
 //    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 //        if let lastVisibleIndexPath = tableView.indexPathsForVisibleRows?.last {
 //            if indexPath == lastVisibleIndexPath {
-//                if self.tableViewTooltipRefresh == false {//I HATE THIS HACK: this is necessary to make tooltips to show after table creation
-//                    self.tableViewTooltipRefresh = true
-//                    self.menuOptionsTable.reloadData()
-//                    //self.setupTooltips()
-//                }
+//                //table complete its creation, setup and start spotlights
+//
 //            }
 //        }
 //    }

@@ -5,6 +5,7 @@
 //
 
 import UIKit
+
 @IBDesignable
 class TotalDCNBar: UIView {
     
@@ -57,8 +58,6 @@ class TotalDCNBar: UIView {
         totalDCN = total
         totalValueLabel.text = "DCN " + String(totalDCN)
     }
-    
-    // TOTO: - Spotlight "This is the total amount of DCN you've earned."
     
     //MARK: - private logic
     

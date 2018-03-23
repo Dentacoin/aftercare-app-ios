@@ -101,10 +101,6 @@ extension ActionViewProxyDelegateProtocol {
         }
     }
     
-    func showTooltip() {
-        embedView?.showTooltips()
-    }
-    
     //delegate to sender methods
     
     func changeStateTo(_ newState: ActionState) {

@@ -73,8 +73,6 @@ class ActionBarsView: UIView {
         self.earnedBar.setValue(String(value))
     }
     
-    // TODO: - spotlight "Last recorded time", "Remaining activities for today", "Earned DCN from this activity"
-    
     //MARK: - internal logic
     
     fileprivate func customizeComponents() {

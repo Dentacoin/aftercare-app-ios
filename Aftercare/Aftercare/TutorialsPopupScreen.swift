@@ -171,7 +171,7 @@ extension TutorialsPopupScreen {
         if self.currentPage < pages - 1 {
             self.scrollContentScrollViewTo(page: self.currentPage + 1)
         } else {
-            closeTutorials()
+            delegate?.onTutorialsFinished()
         }
     }
     
@@ -196,6 +196,6 @@ extension TutorialsPopupScreen: UIScrollViewDelegate {
 // MARK: - Delegate protocol
 
 protocol TutorialsPopupScreenDelegate {
-    func onTutorialsFinishedPressed()
+    func onTutorialsFinished()
     func onTutorialsClosed()
 }

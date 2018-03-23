@@ -233,6 +233,8 @@ class UserDataContainer {
     
     //MARK: - Tooltip & Tutorials help methods
     
+    // TODO: - remove all setters/getters that use user defaults from here, and make UserDefaultsManager to accept default value for convenience
+    
     open func getTutorialsToggle() -> Bool {
         if let state: Bool = UserDefaultsManager.shared.getValue(forKey: "tutorialsToggle") {
             return state
@@ -242,6 +244,30 @@ class UserDataContainer {
     
     open func setTutorialsToggle(_ toggle: Bool) {
         UserDefaultsManager.shared.setValue(toggle, forKey: "tutorialsToggle")
+    }
+    
+    open var toggleSpotlightsForActionScreen: Bool {
+        get {
+            if let state: Bool = UserDefaultsManager.shared.getValue(forKey: "actionScreenSpotlightsToggle") {
+                return state
+            }
+            return true
+        }
+        set {
+            UserDefaultsManager.shared.setValue(newValue, forKey: "actionScreenSpotlightsToggle")
+        }
+    }
+    
+    open var toggleSpotlightsForSideMenu: Bool {
+        get {
+            if let state: Bool = UserDefaultsManager.shared.getValue(forKey: "sideMenuSpotlightsToggle") {
+                return state
+            }
+            return true
+        }
+        set {
+            UserDefaultsManager.shared.setValue(newValue, forKey: "sideMenuSpotlightsToggle")
+        }
     }
     
     //MARK: - Progress bars helper methods
