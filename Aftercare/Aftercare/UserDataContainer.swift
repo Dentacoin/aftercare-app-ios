@@ -284,8 +284,7 @@ class UserDataContainer {
         }
         guard let max = maxValue else { return 0.0 }
         let one = 360 / max
-        let progress = (one * value) - 360
-        return progress
+        return validateForBoundsResult(one * value) - 360
     }
     
     open func getActionsLastTimeBarProgress(_ value: Double, _ type: ActionRecordType) -> Double {
@@ -299,7 +298,7 @@ class UserDataContainer {
                 maxValue = self.RinseActionDurationInSeconds
         }
         let one = 360 / maxValue
-        return one * value
+        return validateForBoundsResult(one * value)
     }
     
     open func getStatisticsActionsTakenProgress(_ value: Double, forKind kind: ActionRecordType, ofType type: ScheduleOptionTypes) -> Double {
@@ -320,7 +319,7 @@ class UserDataContainer {
         }
         guard let max = maxValue else { return 0 }
         let one = 360 / max
-        return one * value
+        return validateForBoundsResult(one * value)
     }
     
     open func getStatisticsTimeLeftProgress(_ value: Double, forKind kind: ActionRecordType, ofType type: ScheduleOptionTypes) -> Double {
@@ -341,7 +340,7 @@ class UserDataContainer {
         }
         guard let max = maxValue else { return 0 }
         let one = 360 / max
-        return one * value
+        return validateForBoundsResult(one * value)
     }
     
     open func getStatisticsAverageTimeProgress(_ value: Double, _ type: ActionRecordType) -> Double {
@@ -355,7 +354,17 @@ class UserDataContainer {
                 maxValue = self.RinseActionDurationInSeconds
         }
         let one = 360 / maxValue
-        return one * value
+        return validateForBoundsResult(one * value)
+    }
+    
+    fileprivate func validateForBoundsResult(_ result: Double) -> Double {
+        if result < 0 {
+            return 0
+        }
+        if result > 360 {
+            return 360
+        }
+        return result
     }
     
     //MARK: - Public methods
