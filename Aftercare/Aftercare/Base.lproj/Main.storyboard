@@ -1737,7 +1737,7 @@
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dentacareBlueLogo" translatesAutoresizingMaskIntoConstraints="NO" id="6PP-QD-KMS">
-                                <rect key="frame" x="32" y="132" width="225" height="69"/>
+                                <rect key="frame" x="32" y="132" width="215" height="69"/>
                             </imageView>
                             <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gtS-sh-Yic">
                                 <rect key="frame" x="32" y="233" width="327" height="426"/>
@@ -1780,7 +1780,7 @@ Cg
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.0.0.10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2MU-re-QSz">
-                                <rect key="frame" x="44" y="209" width="213" height="21"/>
+                                <rect key="frame" x="40" y="209" width="207" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1796,10 +1796,9 @@ Cg
                             <constraint firstAttribute="top" secondItem="Can-jR-w32" secondAttribute="top" id="fLW-sK-gRh"/>
                             <constraint firstItem="2MU-re-QSz" firstAttribute="trailing" secondItem="6PP-QD-KMS" secondAttribute="trailing" id="g4O-G6-JhN"/>
                             <constraint firstItem="2MU-re-QSz" firstAttribute="top" secondItem="6PP-QD-KMS" secondAttribute="bottom" constant="8" id="gRY-Wu-nty"/>
-                            <constraint firstItem="6PP-QD-KMS" firstAttribute="width" secondItem="9RI-eO-rCI" secondAttribute="width" multiplier="0.6" id="jfa-oR-XIm"/>
                             <constraint firstItem="4uJ-DQ-cqs" firstAttribute="trailing" secondItem="Can-jR-w32" secondAttribute="trailing" id="jfe-dX-kS0"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gtS-sh-Yic" secondAttribute="trailing" id="nmF-kQ-Vcv"/>
-                            <constraint firstItem="2MU-re-QSz" firstAttribute="leading" secondItem="6PP-QD-KMS" secondAttribute="leading" constant="12" id="wS1-Pf-ymg"/>
+                            <constraint firstItem="2MU-re-QSz" firstAttribute="leading" secondItem="6PP-QD-KMS" secondAttribute="leading" constant="8" id="wS1-Pf-ymg"/>
                             <constraint firstItem="gtS-sh-Yic" firstAttribute="leading" secondItem="6PP-QD-KMS" secondAttribute="leading" id="y8C-X8-sjW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4uJ-DQ-cqs"/>
