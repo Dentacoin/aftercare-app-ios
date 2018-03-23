@@ -342,7 +342,7 @@ extension ActionScreenViewController {
         
         UserDataContainer.shared.toggleSpotlightsForActionScreen = false
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: { [weak self] in
             let spotlightModels = SpotlightModels.actionScreen
             for model in spotlightModels {
                 if let viewUnderSpot = self?.getSpotlightView(forID: model.id) {

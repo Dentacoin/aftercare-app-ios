@@ -219,7 +219,7 @@ class SideMenuViewController: UIViewController {
     
     fileprivate func setupAndStartSpotlightTutorials() {
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: { [weak self] in
             if self?.spotlights.count == 0 {
                 //create spotlights
                 
