@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AwesomeSpotlightView
 
 class ActionScreenViewController: UIViewController, ContentConformer {
     

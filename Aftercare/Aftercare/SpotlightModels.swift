@@ -5,7 +5,6 @@
 //
 
 import Foundation
-import AwesomeSpotlightView
 
 struct SpotlightModels {
     
