@@ -159,15 +159,8 @@ class ActionScreenViewController: UIViewController, ContentConformer {
                         return
                     }
                 }
-
-                if journey.lastRoutine != nil, journey.skipped == 0 {
-                    // Journey just started. [Show Start Journey Popup]
-                    self?.routineRecordData = RoutineData(startTime: Date(), type: routine.type)
-                    self?.showStartJourneyPopup(journey, routine)
-                    return
-                }
-
-                if journey.skipped >= journey.tolerance {
+                
+                if journey.skipped > journey.tolerance {
                     // Journey failed [Show Failed Journey Popup]
                     self?.routineRecordData = RoutineData(startTime: Date(), type: routine.type)
                     self?.showFailedJourneyPopup(journey, routine)
@@ -184,10 +177,8 @@ class ActionScreenViewController: UIViewController, ContentConformer {
                         if days > 0 {// routine is from previous day
                             self?.routineRecordData = RoutineData(startTime: Date(), type: routine.type)
                             self?.showStartRoutinePopup(forRoutine: routine)
-
                         } else {
                             // This routine is already done
-                            //print("This routine is already done")
                             return
                         }
                     } else {
@@ -196,6 +187,14 @@ class ActionScreenViewController: UIViewController, ContentConformer {
                         self?.showStartRoutinePopup(forRoutine: routine)
                     }
                 }
+                
+                if journey.day == 1, journey.skipped == 0 {
+                    // Journey just started. [Show Start Journey Popup]
+                    self?.routineRecordData = RoutineData(startTime: Date(), type: routine.type)
+                    self?.showStartJourneyPopup(journey, routine)
+                    return
+                }
+                
             }
         }
     }
@@ -509,6 +508,8 @@ extension ActionScreenViewController: ActionViewDelegate {
                 
                 self?.exitFullscreen()
                 self?.clearPastRoutineData()
+                UserDataContainer.shared.syncWithServer()
+                
             })
             
         }
