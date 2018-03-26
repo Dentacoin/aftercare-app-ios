@@ -10,7 +10,7 @@ class ActionBarsView: UIView {
     
     @IBOutlet weak var lastBar: SmallCircularBar!
     @IBOutlet weak var leftBar: SmallCircularBar!
-    @IBOutlet weak var earnedBar: SmallCircularBar!
+    @IBOutlet weak var dayBar: SmallCircularBar!
     //MARK: - fileprivate vars
     
     fileprivate var contentView : UIView?
@@ -69,8 +69,12 @@ class ActionBarsView: UIView {
         self.leftBar.setValue(String(value), leftProgress)
     }
     
-    func setEarnedBarValue(_ value: Int) {
-        self.earnedBar.setValue(String(value))
+    func setDayBarValue(_ value: Int, fromTotalOf total: Int) {
+        if total < 0 {
+            self.dayBar.setValue(String(0))
+        } else {
+            self.dayBar.setValue("\(value)/\(total)")
+        }
     }
     
     //MARK: - internal logic
@@ -79,11 +83,11 @@ class ActionBarsView: UIView {
         
         #if TARGET_INTERFACE_BUILDER
             
-            leftBar.setTitle(NSLocalizedString("Left Bar", comment: ""))
+            leftBar.setTitle(NSLocalizedString("Last Bar", comment: ""))
             
-            lastBar.setTitle(NSLocalizedString("Last Bar", comment: ""))
+            lastBar.setTitle(NSLocalizedString("Routines Left", comment: ""))
             
-            earnedBar.setTitle(NSLocalizedString("Earned Bar", comment: ""))
+            dayBar.setTitle(NSLocalizedString("Day", comment: ""))
             
         #endif
         

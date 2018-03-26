@@ -102,8 +102,8 @@ class RinseActionView: UIView, ActionViewProtocol {
     fileprivate func setup() {
         
         embedView?.actionBarsContainer.lastBar.setTitle(NSLocalizedString("LAST RINSE", comment: ""))
-        embedView?.actionBarsContainer.leftBar.setTitle(NSLocalizedString("RINSE LEFT", comment: ""))
-        embedView?.actionBarsContainer.earnedBar.setTitle(NSLocalizedString("DCN EARNED", comment: ""))
+        embedView?.actionBarsContainer.leftBar.setTitle(NSLocalizedString("ROUTINES LEFT", comment: ""))
+        embedView?.actionBarsContainer.dayBar.setTitle(NSLocalizedString("DAY", comment: ""))
         
         embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("Rinse", comment: ""), withState: .blue)
         embedView?.autoDismissDoneStateAfter = 0

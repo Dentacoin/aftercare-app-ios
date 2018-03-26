@@ -94,8 +94,8 @@ class FlossActionView: UIView, ActionViewProtocol {
     fileprivate func setup() {
         
         embedView?.actionBarsContainer.lastBar.setTitle(NSLocalizedString("LAST FLOSS", comment: ""))
-        embedView?.actionBarsContainer.leftBar.setTitle(NSLocalizedString("FLOSS LEFT", comment: ""))
-        embedView?.actionBarsContainer.earnedBar.setTitle(NSLocalizedString("DCN EARNED", comment: ""))
+        embedView?.actionBarsContainer.leftBar.setTitle(NSLocalizedString("ROUTINES LEFT", comment: ""))
+        embedView?.actionBarsContainer.dayBar.setTitle(NSLocalizedString("DAY", comment: ""))
         
         embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("Floss", comment: ""), withState: .blue)
         embedView?.autoDismissDoneStateAfter = 4

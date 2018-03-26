@@ -150,7 +150,14 @@ class ActionScreenViewController: UIViewController, ContentConformer {
             guard let journey = journey else {
                 return
             }
-
+            
+            UserDataContainer.shared.journey = journey
+            
+            if let actionScreenData = UserDataContainer.shared.actionScreenData {
+                // Trigger data update. This will indirectly update the Day bar that user Journey object
+                self?.actionScreenDataUpdated(actionScreenData)
+            }
+            
             if let routine = Routines.getRoutineForNow() {
 
                 if let lastPresentRoutine = UserDataContainer.shared.lastTimeRoutinePopupPresented {
@@ -216,7 +223,6 @@ class ActionScreenViewController: UIViewController, ContentConformer {
     
     fileprivate func showStartJourneyPopup(_ journey: JourneyData, _ routine: Routine) {
         UserDataContainer.shared.routine = routine
-        UserDataContainer.shared.journey = journey
         UserDataContainer.shared.lastTimeRoutinePopupPresented = Date()
         createMissionPopup()
         MissionPopupConfigurator.config(missionPopupScreen, forType: .journeyStart)
@@ -224,7 +230,6 @@ class ActionScreenViewController: UIViewController, ContentConformer {
     
     fileprivate func showFailedJourneyPopup(_ journey: JourneyData, _ routine: Routine) {
         UserDataContainer.shared.routine = routine
-        UserDataContainer.shared.journey = journey
         UserDataContainer.shared.lastTimeRoutinePopupPresented = Date()
         createMissionPopup()
         MissionPopupConfigurator.config(missionPopupScreen, forType: .journeyFailed)
@@ -390,7 +395,7 @@ extension ActionScreenViewController {
             case .remainActivities:
                 return container.actionBarsContainer.leftBar
             case .earnedDCN:
-                return container.actionBarsContainer.earnedBar
+                return container.actionBarsContainer.dayBar
             case .openStatistics:
                 return container.actionFootherContainer.statisticsButton
             default:

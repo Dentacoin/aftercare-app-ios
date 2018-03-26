@@ -243,11 +243,17 @@ class ActionView: UIView {
         
         guard let dashboard = screenDashboardData else { return }
         
+        var daysPassed = 0
+        var daysTotal = -1
+        if let journey = UserDataContainer.shared.journey {
+            daysPassed = journey.day
+            daysTotal = journey.targetDays
+        }
         //set bar values
         
         actionBarsContainer.setLastBarValue(dashboard.lastTime, type)
         actionBarsContainer.setLeftBarValue(dashboard.left, forType: type)
-        actionBarsContainer.setEarnedBarValue(dashboard.earned)
+        actionBarsContainer.setDayBarValue(daysPassed, fromTotalOf: daysTotal)
         
         if let type = self.actionViewRecordType {
             statisticsView.config(type: type)

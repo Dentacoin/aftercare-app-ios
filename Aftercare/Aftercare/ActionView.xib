@@ -24,18 +24,18 @@
                     </constraints>
                 </view>
                 <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MDM-4h-dj0">
-                    <rect key="frame" x="20" y="78" width="354" height="424"/>
+                    <rect key="frame" x="20" y="78" width="354" height="416"/>
                 </view>
                 <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pkl-Ok-4la">
-                    <rect key="frame" x="8" y="502" width="378" height="100"/>
+                    <rect key="frame" x="8" y="494" width="378" height="92"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <view opaque="NO" contentMode="scaleAspectFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="151" translatesAutoresizingMaskIntoConstraints="NO" id="QqS-ku-RDu" customClass="ActionBarsView" customModule="Aftercare" customModuleProvider="target">
-                    <rect key="frame" x="72" y="502" width="250" height="100"/>
+                    <rect key="frame" x="57" y="494" width="280" height="100"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="100" id="ZLc-Tk-UYE"/>
-                        <constraint firstAttribute="width" constant="250" id="ZZX-36-p8v"/>
+                        <constraint firstAttribute="width" constant="280" id="ZZX-36-p8v"/>
                     </constraints>
                 </view>
                 <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z9q-wr-ovd" customClass="ActionFooterView" customModule="Aftercare" customModuleProvider="target">
@@ -50,11 +50,11 @@
             <constraints>
                 <constraint firstItem="MDM-4h-dj0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="3Um-pR-o4K"/>
                 <constraint firstItem="QqS-ku-RDu" firstAttribute="centerX" secondItem="Z9q-wr-ovd" secondAttribute="centerX" id="4e2-1i-uZC"/>
-                <constraint firstItem="pkl-Ok-4la" firstAttribute="bottom" secondItem="QqS-ku-RDu" secondAttribute="bottom" id="7rP-ih-8VB"/>
+                <constraint firstItem="pkl-Ok-4la" firstAttribute="bottom" secondItem="QqS-ku-RDu" secondAttribute="bottom" constant="-8" id="7rP-ih-8VB"/>
                 <constraint firstAttribute="bottom" secondItem="Z9q-wr-ovd" secondAttribute="bottom" id="8dl-7A-Mln"/>
                 <constraint firstAttribute="trailing" secondItem="MDM-4h-dj0" secondAttribute="trailing" constant="20" id="I4L-mt-p0g"/>
                 <constraint firstItem="MDM-4h-dj0" firstAttribute="top" secondItem="m7L-kc-wFq" secondAttribute="bottom" constant="8" id="LQV-ZI-ip9"/>
-                <constraint firstItem="Z9q-wr-ovd" firstAttribute="top" secondItem="QqS-ku-RDu" secondAttribute="bottomMargin" constant="8" id="aKk-kp-Igy"/>
+                <constraint firstItem="Z9q-wr-ovd" firstAttribute="top" secondItem="QqS-ku-RDu" secondAttribute="bottomMargin" constant="16" id="aKk-kp-Igy"/>
                 <constraint firstItem="Z9q-wr-ovd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="fVl-FA-gIs"/>
                 <constraint firstAttribute="trailing" secondItem="pkl-Ok-4la" secondAttribute="trailing" constant="8" id="gsv-XG-aX0"/>
                 <constraint firstItem="pkl-Ok-4la" firstAttribute="top" secondItem="QqS-ku-RDu" secondAttribute="top" id="hNP-pb-0A9"/>
