@@ -12,18 +12,18 @@ struct Routines {
     fileprivate static let localFileName = "routineRecords.json"
     
     static func getRoutineForNow() -> Routine? {
-        let now = Date()
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.hour], from: now)
-        if let hour = components.hour {
-            
-            if hour >= 2, hour <= 11 {
+//        let now = Date()
+//        let calendar = Calendar.current
+//        let components = calendar.dateComponents([.hour], from: now)
+//        if let hour = components.hour {
+//
+//            if hour >= 2, hour <= 11 {
                 return Routine(startHour: 2, toEndHour: 11, withActions: [.brush, .rinsed], .morning)
-            } else if hour >= 17, hour <= 24 {
-                return Routine(startHour: 17, toEndHour: 24, withActions: [.flossed, .brush, .rinsed], .evening)
-            }
-        }
-        return nil
+//            } else if hour >= 17, hour <= 24 {
+//                return Routine(startHour: 17, toEndHour: 24, withActions: [.flossed, .brush, .rinsed], .evening)
+//            }
+//        }
+//        return nil
     }
     
     // MARK: - Local Persist methods

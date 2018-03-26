@@ -495,12 +495,15 @@ extension ActionScreenViewController: ActionViewDelegate {
                 UserDataContainer.shared.lastRoutineRecord = routineData
                 
                 if let journey = UserDataContainer.shared.journey {
-                    if journey.completed == false {
-                        self?.showFailedJourneyPopup(journey, routine)
-                    } else {
-                        self?.showEndRoutinePopup(forRoutine: routine)
+                    if journey.completed == true {
+                        if journey.skipped > journey.tolerance {
+                            self?.showFailedJourneyPopup(journey, routine)
+                        } else {
+                            self?.showEndRoutinePopup(forRoutine: routine)
+                        }
                     }
                 } else {
+                    // This should never happen
                     self?.showEndRoutinePopup(forRoutine: routine)
                 }
                 

@@ -97,10 +97,14 @@ struct MissionPopupConfigurator {
         
         toggleFacebookButton(false, forPopup: popup)
         
+        guard let journey = UserDataContainer.shared.journey else {
+            return
+        }
+        
         popup.titleLabel.text = NSLocalizedString("Start your journey", comment: "")
         popup.subTitleLabel.text = NSLocalizedString("towards a beautiful smile", comment: "")
         
-        popup.descriptionTextView.text = NSLocalizedString("Complete 90 days of\nconsecutive morning and\nevening routines.\n\nComplete 180 routines with 20\nroutines tolerance and collect\nyour DCN reward!", comment: "")
+        popup.descriptionTextView.text = NSLocalizedString("Complete \(journey.targetDays) days of\nconsecutive morning and\nevening routines.\n\nComplete \(journey.targetDays * 2) routines with \(journey.tolerance)\nroutines tolerance and collect\nyour DCN reward!", comment: "")
         let actionButtonLabel = NSLocalizedString("Start Jorney", comment: "")
         popup.actionButton.setTitle(actionButtonLabel, for: .normal)
         popup.actionButton.setTitle(actionButtonLabel, for: .highlighted)
@@ -114,7 +118,13 @@ struct MissionPopupConfigurator {
         popup.titleLabel.text = NSLocalizedString("Oh No...", comment: "")
         popup.subTitleLabel.text = NSLocalizedString("journey failed!", comment: "")
         
-        popup.descriptionTextView.text = NSLocalizedString("Unfortuantely you exceeded\nyour 10 days tolerance.\nTherefore you have to start your\njourney over!", comment: "")
+        var daysTolerance: Int = 10
+        if let journey = UserDataContainer.shared.journey {
+            //journey.tolerance is missed routines tolerance. Devide by two we get missed days
+            daysTolerance = journey.tolerance / 2
+        }
+        
+        popup.descriptionTextView.text = NSLocalizedString("Unfortuantely you exceeded\nyour \(daysTolerance) days tolerance.\nTherefore you have to start your\njourney over!", comment: "")
         
         let actionButtonLabel = NSLocalizedString("Start Over", comment: "")
         popup.actionButton.setTitle(actionButtonLabel, for: .normal)
@@ -126,10 +136,14 @@ struct MissionPopupConfigurator {
         
         toggleFacebookButton(false, forPopup: popup)
         
+        guard let journey = UserDataContainer.shared.journey else {
+            return
+        }
+        
         popup.titleLabel.text = NSLocalizedString("Congratulations!", comment: "")
         popup.subTitleLabel.text = NSLocalizedString("journey completed!", comment: "")
         
-        popup.descriptionTextView.text = NSLocalizedString("You have completed your 90\ndays jorney congratulations!\nYou can collect your reward\nnow!", comment: "")
+        popup.descriptionTextView.text = NSLocalizedString("You have completed your \(journey.targetDays)\ndays jorney congratulations!\nYou can collect your reward\nnow!", comment: "")
         let actionButtonLabel = NSLocalizedString("Collect Reward", comment: "")
         popup.actionButton.setTitle(actionButtonLabel, for: .normal)
         popup.actionButton.setTitle(actionButtonLabel, for: .highlighted)

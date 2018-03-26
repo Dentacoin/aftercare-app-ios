@@ -73,7 +73,7 @@ class StatisticsView: UIView {
         self.selectedOptionsButton = selected
     }
     
-    /*fileprivate*/ func updateData(_ data: ActionScreenData) {
+    func updateData(_ data: ActionScreenData) {
         
         var actionData: ActionDashboardData?
         var scheduleData: ScheduleData?
@@ -175,14 +175,6 @@ extension StatisticsView {
     }
     
 }
-
-//MARK: - DataSourceDelegate
-
-//extension StatisticsView: DataSourceDelegate {
-//    func actionScreenDataUpdated(_ data: ActionScreenData) {
-//        self.updateData(data)
-//    }
-//}
 
 //MARK: - IBActions
 
