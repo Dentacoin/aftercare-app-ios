@@ -457,6 +457,7 @@ extension ActionScreenViewController: ActionViewDelegate {
         
         if let newRecord = newRecord {
             guard var routineData = self.routineRecordData else {
+                exitFullscreen()
                 return
             }
             if var _ = routineData.records {
