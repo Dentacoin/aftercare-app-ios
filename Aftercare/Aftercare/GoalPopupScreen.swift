@@ -120,6 +120,8 @@ extension GoalPopupScreen {
         ovalImage.image = UIImage(named: "oval-" + colorStyle.rawValue)
         ribbonImage.image = UIImage(named: "ribbon-" + colorStyle.rawValue)
         
+        animateGoalLogo()
+        
         popupPanel.image = UIImage(named: ImageIDs.goalBackground)
         popupPanel.layer.cornerRadius = 10
         popupPanel.clipsToBounds = true
@@ -170,6 +172,71 @@ extension GoalPopupScreen {
         popupPanel.clipsToBounds = true
         
         shareWithFBButtonHeightConstraint.constant = 0
+        
+    }
+    
+    fileprivate func animateGoalLogo() {
+        
+        counturImage.alpha = 0
+        ovalImage.alpha = 0
+        toothImage.alpha = 0
+        starImage.alpha = 0
+        ribbonImage.alpha = 0
+        
+        //turn off autlayout for a view before modify it's frame. Otherwise animating the view will lead to strange results
+        counturImage.translatesAutoresizingMaskIntoConstraints = true
+        
+        ovalImage.translatesAutoresizingMaskIntoConstraints = true
+        let ovalEndFrame = ovalImage.frame
+        ovalImage.frame = CGRect(
+            x: ovalEndFrame.origin.x + (ovalEndFrame.width / 2),
+            y: ovalEndFrame.origin.y + (ovalEndFrame.height / 2),
+            width: 0,
+            height: 0
+        )
+        
+        toothImage.translatesAutoresizingMaskIntoConstraints = true
+        let toothEndFrame = toothImage.frame
+        toothImage.frame.origin.y += toothEndFrame.size.height
+        
+        ribbonImage.translatesAutoresizingMaskIntoConstraints = true
+        let ribbonEndFrame = ribbonImage.frame
+        var ribbonStartFrame = ribbonImage.frame
+        ribbonStartFrame.origin.y -= ribbonImage.frame.height
+        ribbonImage.frame = ribbonStartFrame
+        
+        starImage.translatesAutoresizingMaskIntoConstraints = true
+        let starEndFrame = starImage.frame
+        starImage.frame = CGRect(
+            x: starEndFrame.origin.x - (starEndFrame.width / 2),
+            y: starEndFrame.origin.y - (starEndFrame.height / 2),
+            width: starEndFrame.width * 2,
+            height: starEndFrame.height * 2
+        )
+        
+        let animatorStep1 = UIViewPropertyAnimator(duration: 0.5, curve: .easeOut) { [weak self] in
+            self?.ovalImage.alpha = 1
+            self?.ovalImage.frame = ovalEndFrame
+            self?.counturImage.alpha = 1
+            if let transform = self?.counturImage.transform.rotated(by: .pi) {
+                self?.counturImage.transform = transform
+            }
+        }
+        
+        let animatorStep2 = UIViewPropertyAnimator(duration: 0.5, curve: .easeIn) { [weak self] in
+            self?.toothImage.alpha = 1
+            self?.toothImage.frame = toothEndFrame
+            self?.ribbonImage.alpha = 1
+            self?.ribbonImage.frame = ribbonEndFrame
+            self?.starImage.alpha = 1
+            self?.starImage.frame = starEndFrame
+            if let transform = self?.starImage.transform.rotated(by: .pi * 3) {
+                self?.starImage.transform = transform
+            }
+        }
+        
+        animatorStep1.startAnimation()
+        animatorStep2.startAnimation(afterDelay: 0.25)
         
     }
     

@@ -215,6 +215,8 @@ class ActionScreenViewController: UIViewController, ContentConformer {
         }
     }
     
+    // TODO: - refactor this code and use showMissionPopup for start and end routine popups too
+    
     fileprivate func showStartRoutinePopup(forRoutine routine: Routine) {
         UserDataContainer.shared.lastTimeRoutinePopupPresented = Date()
         let popup = createMissionPopup()
@@ -229,6 +231,7 @@ class ActionScreenViewController: UIViewController, ContentConformer {
         SoundManager.shared.playSound(SoundType.sound(routine.type, .rinse, .done(.congratulations)))
     }
     
+    // create start, end or failed journey popups
     fileprivate func showMissionPopup(ofType type: MissionPopupType) {
         let popup = createMissionPopup()
         MissionPopupConfigurator.config(popup, forType: type)
