@@ -159,7 +159,9 @@ class ActionScreenViewController: UIViewController, ContentConformer {
             }
             
             if let routine = Routines.getRoutineForNow() {
-
+                
+                UserDataContainer.shared.routine = routine
+                
                 if let lastPresentRoutine = UserDataContainer.shared.lastTimeRoutinePopupPresented {
                     if Date.passedMinutes(30, fromDate: lastPresentRoutine) == false {
                         //last routine popup shown within last 30 min.
@@ -167,10 +169,16 @@ class ActionScreenViewController: UIViewController, ContentConformer {
                     }
                 }
                 
+                if journey.completed {
+                    self?.showMissionPopup(ofType: .journeyEnd)
+                    return
+                }
+                
                 if journey.skipped > journey.tolerance {
                     // Journey failed [Show Failed Journey Popup]
                     self?.routineRecordData = RoutineData(startTime: Date(), type: routine.type)
-                    self?.showFailedJourneyPopup(journey, routine)
+                    UserDataContainer.shared.lastTimeRoutinePopupPresented = Date()
+                    self?.showMissionPopup(ofType: .journeyFailed)
                     return
                 }
 
@@ -198,7 +206,8 @@ class ActionScreenViewController: UIViewController, ContentConformer {
                 if journey.day == 1, journey.skipped == 0 {
                     // Journey just started. [Show Start Journey Popup]
                     self?.routineRecordData = RoutineData(startTime: Date(), type: routine.type)
-                    self?.showStartJourneyPopup(journey, routine)
+                    UserDataContainer.shared.lastTimeRoutinePopupPresented = Date()
+                    self?.showMissionPopup(ofType: .journeyStart)
                     return
                 }
                 
@@ -207,32 +216,22 @@ class ActionScreenViewController: UIViewController, ContentConformer {
     }
     
     fileprivate func showStartRoutinePopup(forRoutine routine: Routine) {
-        UserDataContainer.shared.routine = routine
         UserDataContainer.shared.lastTimeRoutinePopupPresented = Date()
-        createMissionPopup()
-        MissionPopupConfigurator.config(missionPopupScreen, forType: .routineStart)
+        let popup = createMissionPopup()
+        MissionPopupConfigurator.config(popup, forType: .routineStart)
         SoundManager.shared.playSound(SoundType.greeting(routine.type))
     }
     
     fileprivate func showEndRoutinePopup(forRoutine routine: Routine) {
-        createMissionPopup()
-        MissionPopupConfigurator.config(missionPopupScreen, forType: .routineEnd)
+        let popup = createMissionPopup()
+        MissionPopupConfigurator.config(popup, forType: .routineEnd)
         //play end routine popup sound
         SoundManager.shared.playSound(SoundType.sound(routine.type, .rinse, .done(.congratulations)))
     }
     
-    fileprivate func showStartJourneyPopup(_ journey: JourneyData, _ routine: Routine) {
-        UserDataContainer.shared.routine = routine
-        UserDataContainer.shared.lastTimeRoutinePopupPresented = Date()
-        createMissionPopup()
-        MissionPopupConfigurator.config(missionPopupScreen, forType: .journeyStart)
-    }
-    
-    fileprivate func showFailedJourneyPopup(_ journey: JourneyData, _ routine: Routine) {
-        UserDataContainer.shared.routine = routine
-        UserDataContainer.shared.lastTimeRoutinePopupPresented = Date()
-        createMissionPopup()
-        MissionPopupConfigurator.config(missionPopupScreen, forType: .journeyFailed)
+    fileprivate func showMissionPopup(ofType type: MissionPopupType) {
+        let popup = createMissionPopup()
+        MissionPopupConfigurator.config(popup, forType: type)
     }
     
     fileprivate func showTutorials() {
@@ -502,13 +501,14 @@ extension ActionScreenViewController: ActionViewDelegate {
                 if let journey = UserDataContainer.shared.journey {
                     if journey.completed == true {
                         if journey.skipped > journey.tolerance {
-                            self?.showFailedJourneyPopup(journey, routine)
+                            self?.showMissionPopup(ofType: .journeyFailed)
                         } else {
                             self?.showEndRoutinePopup(forRoutine: routine)
                         }
+                    } else {
+                        self?.showEndRoutinePopup(forRoutine: routine)
                     }
                 } else {
-                    // This should never happen
                     self?.showEndRoutinePopup(forRoutine: routine)
                 }
                 
@@ -559,13 +559,15 @@ extension ActionScreenViewController: ActionViewDelegate {
         contentScrollView.isScrollEnabled = true
     }
     
-    fileprivate func createMissionPopup() {
+    fileprivate func createMissionPopup() -> MissionPopupScreen {
         let missionPopup = self.missionPopupScreen
         missionPopup.delegate = self
         
         let frame = UIScreen.main.bounds
         missionPopup.frame = frame
         self.view.addSubview(missionPopup)
+        
+        return missionPopup
     }
     
 }
@@ -627,8 +629,13 @@ extension ActionScreenViewController: UIScrollViewDelegate {
 
 extension ActionScreenViewController: MissionPopupScreenDelegate {
     
-    func onActionButtonPressed() {
+    func onActionButtonPressed(_ sender: MissionPopupScreen) {
         missionPopupScreen.removeFromSuperview()
+        
+        if sender.type == MissionPopupType.journeyEnd {
+            self.requestToOpenCollectScreen()
+            return
+        }
         
         //make all tabs unselected
         self.lastTab = -1

@@ -12,6 +12,8 @@ struct MissionPopupConfigurator {
     
     static func config(_ popup: MissionPopupScreen, forType type: MissionPopupType) {
         
+        popup.type = type
+        
         switch type {
             case .routineStart:
                 configRoutineStart(popup)

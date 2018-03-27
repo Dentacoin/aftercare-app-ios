@@ -24,6 +24,7 @@ class MissionPopupScreen: UIView {
     //MARK: - Delegates
     
     var delegate: MissionPopupScreenDelegate?
+    var type: MissionPopupType?
     
     //MARK: - Lifecycle
     
@@ -56,7 +57,7 @@ class MissionPopupScreen: UIView {
                 let location = touch.location(in: self)
                 let frame = containerView.frame
                 if !frame.contains(location) {
-                    self.delegate?.onActionButtonPressed()
+                    self.delegate?.onActionButtonPressed(self)
                     self.removeFromSuperview()
                 }
             }
@@ -110,7 +111,7 @@ class MissionPopupScreen: UIView {
     //MARK: - IBActions
     
     @IBAction func onActionButtonPressed(_ sender: UIButton) {
-        self.delegate?.onActionButtonPressed()
+        self.delegate?.onActionButtonPressed(self)
     }
     
     @IBAction func onCloseButtonPressed(_ sender: UIButton) {
@@ -122,6 +123,6 @@ class MissionPopupScreen: UIView {
 //MARK: - Delegate protocol
 
 protocol MissionPopupScreenDelegate {
-    func onActionButtonPressed()
+    func onActionButtonPressed(_ sender: MissionPopupScreen)
     func onPopupClosed()
 }
