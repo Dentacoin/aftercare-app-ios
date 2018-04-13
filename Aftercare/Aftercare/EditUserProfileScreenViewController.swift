@@ -394,9 +394,6 @@ extension EditUserProfileScreenViewController {
             if let error = error {
                 print("Update User Request: Error \(error)")
                 
-//                self?.newAvatar = nil
-//                self?.newAvatarUploaded = false
-                
                 UIAlertController.show(
                     controllerWithTitle: NSLocalizedString("Error", comment: ""),
                     message: error.toNSError().localizedDescription,

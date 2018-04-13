@@ -17,6 +17,6 @@ class AnalyticsManager {
     
     //MARK: - Fileprivate variables and constants
     
-    
+    // TODO: get custom analytics metrics
     
 }

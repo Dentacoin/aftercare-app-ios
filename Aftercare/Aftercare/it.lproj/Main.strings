@@ -1,0 +1,81 @@
+
+/* Class = "UIButton"; normalTitle = "Send"; ObjectID = "0L9-DD-hu8"; */
+"0L9-DD-hu8.normalTitle" = "Send";
+
+/* Class = "UIButton"; normalTitle = "Next"; ObjectID = "0p7-GV-njY"; */
+"0p7-GV-njY.normalTitle" = "Next";
+
+/* Class = "UIButton"; normalTitle = "Edit Profile"; ObjectID = "11i-NJ-Iev"; */
+"11i-NJ-Iev.normalTitle" = "Edit Profile";
+
+/* Class = "UILabel"; text = "1.0.0.10"; ObjectID = "2MU-re-QSz"; */
+"2MU-re-QSz.text" = "1.0.0.10";
+
+/* Class = "UILabel"; text = "DCN 0"; ObjectID = "3Xi-bn-jwG"; */
+"3Xi-bn-jwG.text" = "DCN 0";
+
+/* Class = "UIButton"; normalTitle = "Resent verification email"; ObjectID = "4vV-yh-L6h"; */
+"4vV-yh-L6h.normalTitle" = "Resent verification email";
+
+/* Class = "UILabel"; text = "Describe your case"; ObjectID = "6WS-iP-d0x"; */
+"6WS-iP-d0x.text" = "Describe your case";
+
+/* Class = "UILabel"; text = "Your email is not verified!"; ObjectID = "7ro-fM-VOI"; */
+"7ro-fM-VOI.text" = "Your email is not verified!";
+
+/* Class = "UILabel"; text = "0 DCN"; ObjectID = "A0b-0U-2Zi"; */
+"A0b-0U-2Zi.text" = "0 DCN";
+
+/* Class = "UIButton"; normalTitle = "Male"; ObjectID = "Dci-EN-Jnt"; */
+"Dci-EN-Jnt.normalTitle" = "Male";
+
+/* Class = "UILabel"; text = "Send us your crypto wallet address"; ObjectID = "JJP-2N-uc3"; */
+"JJP-2N-uc3.text" = "Send us your crypto wallet address";
+
+/* Class = "UILabel"; text = "we will respond shortly"; ObjectID = "NoR-Hv-iFv"; */
+"NoR-Hv-iFv.text" = "we will respond shortly";
+
+/* Class = "UIButton"; normalTitle = "What is Dentacoin?"; ObjectID = "Ogz-Ia-oP9"; */
+"Ogz-Ia-oP9.normalTitle" = "What is Dentacoin?";
+
+/* Class = "UILabel"; text = "Withdrawable amount"; ObjectID = "PBA-ES-FJA"; */
+"PBA-ES-FJA.text" = "Withdrawable amount";
+
+/* Class = "UILabel"; text = "DCN 0"; ObjectID = "PuA-SQ-31a"; */
+"PuA-SQ-31a.text" = "DCN 0";
+
+/* Class = "UILabel"; text = "Create your crypto wallet at:"; ObjectID = "VYt-5l-Pfz"; */
+"VYt-5l-Pfz.text" = "Create your crypto wallet at:";
+
+/* Class = "UIButton"; normalTitle = "Update"; ObjectID = "YWm-df-gQ0"; */
+"YWm-df-gQ0.normalTitle" = "Update";
+
+/* Class = "UILabel"; text = "Total amount"; ObjectID = "aTe-Ss-JFX"; */
+"aTe-Ss-JFX.text" = "Total amount";
+
+/* Class = "UIButton"; normalTitle = "Send"; ObjectID = "f2B-vr-Fe1"; */
+"f2B-vr-Fe1.normalTitle" = "Send";
+
+/* Class = "UIButton"; normalTitle = "Delete My Profile"; ObjectID = "fas-5e-4DE"; */
+"fas-5e-4DE.normalTitle" = "Delete My Profile";
+
+/* Class = "UILabel"; text = "You can add a Phone to the message so we can contact you faster"; ObjectID = "ktF-Jv-6fc"; */
+"ktF-Jv-6fc.text" = "You can add a Phone to the message so we can contact you faster";
+
+/* Class = "UIButton"; normalTitle = "Female"; ObjectID = "r3b-sT-CLm"; */
+"r3b-sT-CLm.normalTitle" = "Female";
+
+/* Class = "UILabel"; text = "THANK YOU"; ObjectID = "sg7-bm-5tk"; */
+"sg7-bm-5tk.text" = "THANK YOU";
+
+/* Class = "UILabel"; text = "Successfully Collected\n to the Crypto Wallet"; ObjectID = "uaa-vr-VYk"; */
+"uaa-vr-VYk.text" = "Successfully Collected\n to the Crypto Wallet";
+
+/* Class = "UILabel"; text = "www.myetherwallet.com"; ObjectID = "ycP-HO-Bih"; */
+"ycP-HO-Bih.text" = "www.myetherwallet.com";
+
+/* Class = "UILabel"; text = "Select a sick tooth"; ObjectID = "yfV-o9-Ggz"; */
+"yfV-o9-Ggz.text" = "Select a sick tooth";
+
+/* Class = "UIButton"; normalTitle = "Collect"; ObjectID = "ynw-jf-dPT"; */
+"ynw-jf-dPT.normalTitle" = "Collect";

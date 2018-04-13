@@ -22,6 +22,7 @@ class UserDataContainer {
     fileprivate let actionScreenLocalFile = "actionData.json"
     fileprivate let userDataLocalFile = "userData.json"
     fileprivate let goalsDataLocalFile = "goalsData.json"
+    fileprivate let journeyDataLocalFile = "journeyData.json"
     
     //MARK: - providers list
     
@@ -231,6 +232,14 @@ class UserDataContainer {
         return false
     }
     
+    func tryToLoadLastLocalUserInfo() {
+        do {//try to load from local persistent storage
+            self.userInfo = try Disk.retrieve(userDataLocalFile, from: .caches, as: UserData.self)
+        } catch {
+            print("Error: Disk failed to load UserData from local caches :: \(error)")
+        }
+    }
+    
     //MARK: - Tooltip & Tutorials help methods
     
     // TODO: - remove all setters/getters that use user defaults from here, and make UserDefaultsManager to accept default value for convenience
@@ -385,6 +394,7 @@ class UserDataContainer {
     open func syncWithServer() {
         self.requestActionScreenData()
         self.requestGoalsData()
+        self.requestJourneyData()
         self.loadUserAvatar() { success in
             print("User Avatar success \(success)")
         }
@@ -408,11 +418,30 @@ class UserDataContainer {
     
     // MARK: - Fileprivate methods
     
-    func tryToLoadLastLocalUserInfo() {
-        do {//try to load from local persistent storage
-            self.userInfo = try Disk.retrieve(userDataLocalFile, from: .caches, as: UserData.self)
-        } catch {
-            print("Error: Disk failed to load UserData from local caches :: \(error)")
+    fileprivate func requestJourneyData() {
+        APIProvider.retreiveCurrentJourney() { [weak self] journey, error in
+            
+            if let _ = error {
+                do {//try to load from local persistent storage
+                    let fileName = self?.journeyDataLocalFile ?? ""
+                    self?.journey = try Disk.retrieve(fileName, from: .caches, as: JourneyData.self)
+                } catch {
+                    print("Error: Disk failed to load JourneyData from local caches :: \(error)")
+                }
+                return
+            }
+            
+            if let journey = journey {
+                //try to save to local persistent storage
+                do {
+                    let fileName = self?.journeyDataLocalFile ?? ""
+                    try Disk.save(journey, to: .caches, as: fileName)
+                } catch {
+                    print("Error: Disk failed to save JourneyData to local caches :: \(error)")
+                }
+                self?.journey = journey
+            }
+            
         }
     }
     
@@ -422,9 +451,8 @@ class UserDataContainer {
                 self?.goalsData = response
                 //try to save to local persistent storage
                 do {
-                    guard let data = self?.goalsData else { return }
                     let fileName = self?.goalsDataLocalFile ?? ""
-                    try Disk.save(data, to: .caches, as: fileName)
+                    try Disk.save(response, to: .caches, as: fileName)
                 } catch {
                     print("Error: Disk failed to save UserData to local caches :: \(error)")
                 }

@@ -67,23 +67,9 @@ struct ActionDashboardData: Codable {
             print("Parsing Error: ActionDashboardData :: earned property is missing!")
         }
         
-        //do {
-            self.daily = try values.decode(ScheduleData.self, forKey: .daily)
-        //} catch {
-        //    print("Parsing Error: ActionDashboardData :: daily property is missing!")
-        //}
-        
-        //do {
-            self.weekly = try values.decode(ScheduleData.self, forKey: .weekly)
-        //} catch {
-        //    print("Parsing Error: ActionDashboardData :: weekly property is missing!")
-        //}
-        
-        //do {
-            self.monthly = try values.decode(ScheduleData.self, forKey: .monthly)
-        //} catch {
-        //    print("Parsing Error: ActionDashboardData :: monthly property is missing!")
-        //}
+        self.daily = try values.decode(ScheduleData.self, forKey: .daily)
+        self.weekly = try values.decode(ScheduleData.self, forKey: .weekly)
+        self.monthly = try values.decode(ScheduleData.self, forKey: .monthly)
         
         do {
             self.lastTime = try values.decode(Int.self, forKey: .lastTime)

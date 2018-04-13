@@ -153,11 +153,6 @@ class ActionScreenViewController: UIViewController, ContentConformer {
             
             UserDataContainer.shared.journey = journey
             
-            if let actionScreenData = UserDataContainer.shared.actionScreenData {
-                // Trigger data update. This will indirectly update the Day bar that user Journey object
-                self?.actionScreenDataUpdated(actionScreenData)
-            }
-            
             if let routine = Routines.getRoutineForNow() {
                 
                 UserDataContainer.shared.routine = routine
@@ -165,6 +160,7 @@ class ActionScreenViewController: UIViewController, ContentConformer {
                 if let lastPresentRoutine = UserDataContainer.shared.lastTimeRoutinePopupPresented {
                     if Date.passedMinutes(30, fromDate: lastPresentRoutine) == false {
                         //last routine popup shown within last 30 min.
+                        self?.clearMissionData()
                         return
                     }
                 }
@@ -179,6 +175,7 @@ class ActionScreenViewController: UIViewController, ContentConformer {
                     self?.routineRecordData = RoutineData(startTime: Date(), type: routine.type)
                     UserDataContainer.shared.lastTimeRoutinePopupPresented = Date()
                     self?.showMissionPopup(ofType: .journeyFailed)
+                    self?.clearMissionData()
                     return
                 }
 
@@ -186,18 +183,20 @@ class ActionScreenViewController: UIViewController, ContentConformer {
                     let lastRoutineType = lastRoutine.type
                     if routine.type == lastRoutineType {//same type routine
                         guard let lastRoutineEnd = lastRoutine.endTime?.dateFromISO8601 else {
+                            self?.clearMissionData()
                             return
                         }
                         let days = Date.passedDaysSince(lastRoutineEnd)
-                        if days > 0 {// routine is from previous day
+                        if days > 0 {// This routine is not complete yet
                             self?.routineRecordData = RoutineData(startTime: Date(), type: routine.type)
                             self?.showStartRoutinePopup(forRoutine: routine)
                         } else {
                             // This routine is already done
+                            self?.clearMissionData()
                             return
                         }
                     } else {
-                        //different type routine
+                        //different type routine, proceed with execution
                         self?.routineRecordData = RoutineData(startTime: Date(), type: routine.type)
                         self?.showStartRoutinePopup(forRoutine: routine)
                     }
@@ -273,6 +272,9 @@ extension ActionScreenViewController {
         
         guard let screens = createSubScreens() else { return }
         setupSubScreens(screens)
+        
+        //Sync with the server
+        UserDataContainer.shared.syncWithServer()
     }
     
     fileprivate func createSubScreens() -> [ActionViewProtocol]? {
@@ -427,14 +429,12 @@ extension ActionScreenViewController: ActionViewDelegate {
     
     func timerStarted() {
         if var routine = UserDataContainer.shared.routine {
-            //we have routine
-            
-            //remove current screen from the list
+            //remove first action from the list. It now starts to execute
             routine.actions = Array(routine.actions.dropFirst())
             UserDataContainer.shared.routine = routine
-            
         } else {
             goFullScreen()
+            SoundManager.shared.playRandomMusic()
         }
     }
     
@@ -516,7 +516,7 @@ extension ActionScreenViewController: ActionViewDelegate {
                 }
                 
                 self?.exitFullscreen()
-                self?.clearPastRoutineData()
+                self?.clearMissionData()
                 UserDataContainer.shared.syncWithServer()
                 
             })
@@ -525,8 +525,7 @@ extension ActionScreenViewController: ActionViewDelegate {
         
     }
     
-    fileprivate func clearPastRoutineData() {
-        UserDataContainer.shared.journey = nil
+    fileprivate func clearMissionData() {
         UserDataContainer.shared.routine = nil
         self.routineRecordData = nil
     }
@@ -551,9 +550,7 @@ extension ActionScreenViewController: ActionViewDelegate {
         self.headerTopConstraint.constant =  0
         UIView.animate(withDuration: 0.5, animations: {
             self.view.layoutIfNeeded()
-        }, completion: { _ in
-            //...
-        })
+        }, completion: nil)
         
         //notify pages that screen will exit fullscreen
         for page in self.pagesArray {

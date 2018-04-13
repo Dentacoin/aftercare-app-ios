@@ -78,7 +78,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 if let data = userData {
                     UserDataContainer.shared.userInfo = data
-                    UserDataContainer.shared.syncWithServer()
                 }
                 
                 if let _ = error {

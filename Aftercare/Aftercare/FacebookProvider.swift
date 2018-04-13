@@ -16,7 +16,6 @@ class FacebookProvider {
     
     //MARK: - fileprivate vars
     
-    fileprivate var userFacebookID: String?
     fileprivate var hasGrantedEmailPermisson = false
     fileprivate var hasGrantedProfilePermission = false
     fileprivate var loggedIn = false

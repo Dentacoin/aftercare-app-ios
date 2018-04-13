@@ -32,7 +32,7 @@ struct SpotlightModels {
                 ),
                 SpotlightModel(
                     id: .earnedDCN,
-                    label: NSLocalizedString("Earned DCN from this activity", comment: ""),
+                    label: NSLocalizedString("Current day of your journey", comment: ""),
                     shape: .circle
                 ),
                 SpotlightModel(

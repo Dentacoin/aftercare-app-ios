@@ -40,7 +40,7 @@ class SettingsScreenViewController: UIViewController, ContentConformer {
                 title: NSLocalizedString("Help", comment: ""),
                 items: [
                     (
-                        label: NSLocalizedString("Tooltips & Tutorials", comment: ""),
+                        label: NSLocalizedString("Spotlights & Tutorials", comment: ""),
                         cellType: String(describing: SettingsClearButtonTableCell.self),
                         id: "",
                         state: true

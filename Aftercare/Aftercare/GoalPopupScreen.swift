@@ -182,8 +182,14 @@ extension GoalPopupScreen {
         toothImage.alpha = 0
         starImage.alpha = 0
         ribbonImage.alpha = 0
+        numberLabel.alpha = 0
         
-        //turn off autlayout for a view before modify it's frame. Otherwise animating the view will lead to strange results
+        guard let id = self.data?.id else { return }
+        let colorStyle: GoalColors = self.getColorStyle(byID: id)
+        let animateLogo = colorStyle == GoalColors.purple
+        
+        // Turn off autolayout for a view before modify it's frame.
+        // Otherwise animating the view will lead to strange results
         counturImage.translatesAutoresizingMaskIntoConstraints = true
         
         ovalImage.translatesAutoresizingMaskIntoConstraints = true
@@ -195,10 +201,34 @@ extension GoalPopupScreen {
             height: 0
         )
         
-        toothImage.translatesAutoresizingMaskIntoConstraints = true
-        let toothEndFrame = toothImage.frame
-        toothImage.frame.origin.y += toothEndFrame.size.height
-        
+        var badgeEndFrame: CGRect?
+        if animateLogo {
+            
+            let ovalFrame = ovalImage.frame
+            
+            // I HATE THIS HACK: - Hardcoding the start and end frame of toothImage fixes strange problem that makes height of the toothImage equal to zero
+            
+            toothImage.translatesAutoresizingMaskIntoConstraints = true
+            badgeEndFrame = CGRect(
+                x: ovalFrame.midX - 31.5,
+                y: ovalFrame.midY - 34,
+                width: 63,
+                height: 68
+            )
+            
+            toothImage.frame = CGRect(
+                x: ovalFrame.midX - 31.5,
+                y: ovalFrame.midY + 17,
+                width: 63,
+                height: 68
+            )
+            
+        } else {
+            numberLabel.translatesAutoresizingMaskIntoConstraints = true
+            badgeEndFrame = numberLabel.frame
+            numberLabel.frame.origin.y += (badgeEndFrame?.size.height)! / 4
+        }
+    
         ribbonImage.translatesAutoresizingMaskIntoConstraints = true
         let ribbonEndFrame = ribbonImage.frame
         var ribbonStartFrame = ribbonImage.frame
@@ -224,15 +254,30 @@ extension GoalPopupScreen {
         }
         
         let animatorStep2 = UIViewPropertyAnimator(duration: 0.5, curve: .easeIn) { [weak self] in
-            self?.toothImage.alpha = 1
-            self?.toothImage.frame = toothEndFrame
+            if animateLogo {
+                self?.toothImage.alpha = 1
+                self?.toothImage.frame = badgeEndFrame!
+            } else {
+                self?.numberLabel.alpha = 1
+                self?.numberLabel.frame = badgeEndFrame!
+            }
             self?.ribbonImage.alpha = 1
             self?.ribbonImage.frame = ribbonEndFrame
             self?.starImage.alpha = 1
             self?.starImage.frame = starEndFrame
-            if let transform = self?.starImage.transform.rotated(by: .pi * 3) {
-                self?.starImage.transform = transform
-            }
+            
+            // I HATE THIS HACK: - only this way we can rotate a view .pi * 2
+            let fullRotation = CABasicAnimation(keyPath: "transform.rotation")
+            fullRotation.fromValue = NSNumber(floatLiteral: 0)
+            fullRotation.toValue = NSNumber(floatLiteral: Double(CGFloat.pi * 2))
+            fullRotation.duration = 0.5
+            fullRotation.repeatCount = 1
+            self?.starImage.layer.add(fullRotation, forKey: "360")
+            
+            // DON'T WORKS FOR .PI * 2
+//            if let transform = self?.starImage.transform.rotated(by: .pi * 2) {
+//                self?.starImage.transform = transform
+//            }
         }
         
         animatorStep1.startAnimation()
@@ -251,6 +296,15 @@ extension GoalPopupScreen {
     //MARK: - IBActions
     
     @IBAction func onCloseButtonPressed(_ sender: UIButton) {
+        
+        //Activate autolayout again
+        counturImage.translatesAutoresizingMaskIntoConstraints = false
+        ovalImage.translatesAutoresizingMaskIntoConstraints = false
+        toothImage.translatesAutoresizingMaskIntoConstraints = false
+        starImage.translatesAutoresizingMaskIntoConstraints = false
+        ribbonImage.translatesAutoresizingMaskIntoConstraints = false
+        numberLabel.translatesAutoresizingMaskIntoConstraints = false
+        
         self.removeFromSuperview()
     }
     
