@@ -75,7 +75,7 @@ struct APIRouter: APIRouterProtocol {
     }
     
     struct UploadAvatar: Creatable {
-        typealias EParameters = Dictionary<String, Any>
+        typealias EParameters = Dictionary<String, String>
         var route: String = "upload_avatar"
     }
     

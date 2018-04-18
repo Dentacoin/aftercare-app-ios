@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -149,7 +149,7 @@
                             <constraint firstItem="wP2-sU-0Z8" firstAttribute="top" secondItem="QBP-3I-jQX" secondAttribute="top" id="jz1-l9-CFx"/>
                             <constraint firstItem="ByP-Jx-NiC" firstAttribute="trailing" secondItem="Wvo-vr-LAC" secondAttribute="trailing" id="o0s-V7-d9r"/>
                             <constraint firstItem="CTc-qi-k96" firstAttribute="trailing" secondItem="NVq-De-wbj" secondAttribute="trailing" id="tWF-mV-KG1"/>
-                            <constraint firstItem="NVq-De-wbj" firstAttribute="leading" secondItem="Wvo-vr-LAC" secondAttribute="trailing" constant="-0.33333333333331439" id="u9K-JA-vpl"/>
+                            <constraint firstItem="NVq-De-wbj" firstAttribute="leading" secondItem="Wvo-vr-LAC" secondAttribute="trailing" id="u9K-JA-vpl"/>
                             <constraint firstItem="Wvo-vr-LAC" firstAttribute="top" secondItem="VlC-TM-Mpt" secondAttribute="bottom" id="uaT-IQ-jVe"/>
                             <constraint firstItem="Wvo-vr-LAC" firstAttribute="width" secondItem="QBP-3I-jQX" secondAttribute="width" multiplier="0.8" id="xcU-er-3Ym"/>
                             <constraint firstItem="Wvo-vr-LAC" firstAttribute="leading" secondItem="CTc-qi-k96" secondAttribute="leading" id="z3G-7o-Xku"/>
@@ -724,13 +724,13 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send us your crypto wallet address" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JJP-2N-uc3">
-                                <rect key="frame" x="16" y="284" width="343" height="21"/>
+                                <rect key="frame" x="16" y="284" width="343" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lb7-lQ-wsg" customClass="SkyFloatingLabelTextField" customModule="Aftercare" customModuleProvider="target">
-                                <rect key="frame" x="16" y="321" width="279" height="48"/>
+                                <rect key="frame" x="16" y="320.5" width="279" height="48"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -752,7 +752,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f8s-8P-yfB">
-                                <rect key="frame" x="311" y="321" width="48" height="48"/>
+                                <rect key="frame" x="311" y="320.5" width="48" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="f8s-8P-yfB" secondAttribute="height" multiplier="1:1" id="42T-E5-PWa"/>
                                 </constraints>
@@ -1591,13 +1591,13 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can add a Phone to the message so we can contact you faster" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ktF-Jv-6fc">
-                                        <rect key="frame" x="8" y="8" width="359" height="20.5"/>
+                                        <rect key="frame" x="8" y="8" width="359" height="41"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LHh-Pe-UM7" customClass="SkyFloatingLabelTextField" customModule="Aftercare" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="44.5" width="343" height="30"/>
+                                        <rect key="frame" x="16" y="65" width="343" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
