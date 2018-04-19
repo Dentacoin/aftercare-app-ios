@@ -394,7 +394,12 @@ class UserDataContainer {
     open func syncWithServer() {
         self.requestActionScreenData()
         self.requestGoalsData()
+        
+        // We need this journey request to sync the app properly on the first launch.
+        // Second request for journey is made within the Action Screen because
+        // and according to the proggress made by the user we decide what to show there
         self.requestJourneyData()
+        
         self.loadUserAvatar() { success in
             print("User Avatar success \(success)")
         }
@@ -420,7 +425,7 @@ class UserDataContainer {
     
     fileprivate func requestJourneyData() {
         APIProvider.retreiveCurrentJourney() { [weak self] journey, error in
-            
+
             if let _ = error {
                 do {//try to load from local persistent storage
                     let fileName = self?.journeyDataLocalFile ?? ""
@@ -430,7 +435,7 @@ class UserDataContainer {
                 }
                 return
             }
-            
+
             if let journey = journey {
                 //try to save to local persistent storage
                 do {
@@ -441,7 +446,7 @@ class UserDataContainer {
                 }
                 self?.journey = journey
             }
-            
+
         }
     }
     

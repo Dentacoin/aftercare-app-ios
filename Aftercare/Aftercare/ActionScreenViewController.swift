@@ -92,7 +92,7 @@ class ActionScreenViewController: UIViewController, ContentConformer {
             if UserDataContainer.shared.toggleSpotlightsForActionScreen {
                 setupSpotlightTutorials()
             } else {
-                requestDayRoutine()
+                requestJourney()
             }
         }
     }
@@ -117,7 +117,7 @@ class ActionScreenViewController: UIViewController, ContentConformer {
     
     //MARK: - Internal logic
     
-    fileprivate func requestDayRoutine() {
+    fileprivate func requestJourney() {
         
         APIProvider.retreiveCurrentJourney() { [weak self] journey, error in
 
@@ -166,17 +166,17 @@ class ActionScreenViewController: UIViewController, ContentConformer {
                 }
                 
                 if journey.completed {
-                    self?.showMissionPopup(ofType: .journeyEnd)
-                    return
-                }
-                
-                if journey.skipped > journey.tolerance {
-                    // Journey failed [Show Failed Journey Popup]
-                    self?.routineRecordData = RoutineData(startTime: Date(), type: routine.type)
-                    UserDataContainer.shared.lastTimeRoutinePopupPresented = Date()
-                    self?.showMissionPopup(ofType: .journeyFailed)
-                    self?.clearMissionData()
-                    return
+                    if journey.skipped > journey.tolerance {
+                        // Journey failed [Show Failed Journey Popup]
+                        self?.routineRecordData = RoutineData(startTime: Date(), type: routine.type)
+                        UserDataContainer.shared.lastTimeRoutinePopupPresented = Date()
+                        self?.showMissionPopup(ofType: .journeyFailed)
+                        self?.clearMissionData()
+                        return
+                    } else {
+                        self?.showMissionPopup(ofType: .journeyEnd)
+                        return
+                    }
                 }
 
                 if let lastRoutine = journey.lastRoutine {
@@ -413,7 +413,7 @@ extension ActionScreenViewController {
 extension ActionScreenViewController: AwesomeSpotlightViewDelegate {
     func spotlightViewWillCleanup(_ spotlightView: AwesomeSpotlightView, atIndex index: Int) {
         if index == spotlights.count - 1 {
-            requestDayRoutine()
+            requestJourney()
         }
     }
 }
