@@ -18,11 +18,11 @@ class TutorialsPopupScreen: UIViewController {
     // MARK: - Localized strings
     
     fileprivate lazy var nextString:String = {
-        return NSLocalizedString("Next", comment: "")
+        return "onboarding_txt_next".localized()
     }()
     
     fileprivate lazy var iGotItString:String = {
-        return NSLocalizedString("I Got It", comment: "")
+        return "onboarding_txt_got_it".localized()
     }()
     
     fileprivate var tutorialScreens: [TutorialView]?

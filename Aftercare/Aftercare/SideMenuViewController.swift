@@ -42,54 +42,54 @@ class SideMenuViewController: UIViewController {
         let data = [
             [
                 CellDataKeys.type : CellTypes.content.rawValue,
-                CellDataKeys.title : NSLocalizedString("Home", comment: ""),
+                CellDataKeys.title : "drawer_nav_home",
                 CellDataKeys.icon : "homeIcon",
                 CellDataKeys.value : String(describing: ActionScreenViewController.self)
             ],[
                 CellDataKeys.type : CellTypes.content.rawValue,
-                CellDataKeys.title : NSLocalizedString("Dentacoin", comment: ""),
+                CellDataKeys.title : "drawer_nav_dentacoin",
                 CellDataKeys.icon : "collectIcon",
                 CellDataKeys.value : String(describing: CollectScreenViewController.self)
             ],[
                 CellDataKeys.type : CellTypes.content.rawValue,
-                CellDataKeys.title : NSLocalizedString("Withdraws", comment: ""),
+                CellDataKeys.title : "drawer_nav_withdraws",
                 CellDataKeys.icon : "withdrawsIcon",
                 CellDataKeys.value : String(describing: WithdrawsScreenViewController.self)
             ],[
                 CellDataKeys.type : CellTypes.content.rawValue,
-                CellDataKeys.title : NSLocalizedString("Achievements", comment: ""),
+                CellDataKeys.title : "drawer_nav_goals",
                 CellDataKeys.icon : "goalsIcon",
                 CellDataKeys.value : String(describing: GoalsScreenViewController.self)
             ],[
                 CellDataKeys.type : CellTypes.content.rawValue,
-                CellDataKeys.title : NSLocalizedString("Statistics", comment: ""),
+                CellDataKeys.title : "drawer_nav_statistics",
                 CellDataKeys.icon : "statisticIcon",
                 CellDataKeys.value : String(describing: StatisticScreenViewController.self)
             ],[
                 CellDataKeys.type : CellTypes.content.rawValue,
-                CellDataKeys.title : NSLocalizedString("Oral Health", comment: ""),
+                CellDataKeys.title : "drawer_nav_oral_health",
                 CellDataKeys.icon : "oralHealthIcon",
                 CellDataKeys.value : String(describing: OralHealthScreenViewController.self)
             ],[
                 CellDataKeys.type : CellTypes.content.rawValue,
-                CellDataKeys.title : NSLocalizedString("Emergency", comment: ""),
+                CellDataKeys.title : "drawer_nav_emergency",
                 CellDataKeys.icon : "emergencyIcon",
                 CellDataKeys.value : String(describing: EmergencyScreenViewController.self)
             ],[
                 CellDataKeys.type : CellTypes.content.rawValue,
-                CellDataKeys.title : NSLocalizedString("About", comment: ""),
+                CellDataKeys.title : "drawer_nav_about",
                 CellDataKeys.icon : "aboutIcon",
                 CellDataKeys.value : String(describing: AboutScreenViewController.self)
             ],[
                 CellDataKeys.type : CellTypes.separator.rawValue
             ],[
                 CellDataKeys.type : CellTypes.content.rawValue,
-                CellDataKeys.title: NSLocalizedString("Settings", comment: ""),
+                CellDataKeys.title: "drawer_nav_settings",
                 CellDataKeys.icon : "navsettings",
                 CellDataKeys.value : String(describing: SettingsScreenViewController.self)
             ],[
                 CellDataKeys.type : CellTypes.action.rawValue,
-                CellDataKeys.title : NSLocalizedString("Sign out", comment: ""),
+                CellDataKeys.title : "drawer_nav_signout",
                 CellDataKeys.icon : "logoutIcon",
                 CellDataKeys.value : ActionIDs.logout.rawValue
             ]
@@ -342,7 +342,7 @@ extension SideMenuViewController: UITableViewDelegate {
                 cell.icon.image = UIImage(named: imageID)
             }
             if let title = data[CellDataKeys.title] {
-                cell.label.text = title
+                cell.label.text = title.localized()
             }
             
             cell.backgroundColor = .clear

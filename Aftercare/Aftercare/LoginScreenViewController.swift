@@ -24,11 +24,11 @@ class LoginScreenViewController : UIViewController {
     //MARK: - Private vars
     
     fileprivate lazy var emailErrorString:String = {
-        return NSLocalizedString("Wrong email.", comment: "Wrong email")
+        return "error_txt_email_not_valid".localized()
     }()
     
     fileprivate lazy var passwordErrorString: String = {
-        return NSLocalizedString("Password is too short.", comment: "Password is too short")
+        return "error_txt_password_short".localized()
     }()
     
     fileprivate var uiIsBlocked = false
@@ -110,7 +110,7 @@ extension LoginScreenViewController {
         
         themeManager.setDCBlueTheme(to: self.emailTextField, ofType: .TextFieldDefaut)
         let emailPlaceholder = NSAttributedString.init(
-            string: NSLocalizedString("email", comment: ""),
+            string: "signup_hnt_email".localized(),
             attributes: [
                 NSAttributedStringKey.foregroundColor: UIColor.white,
                 NSAttributedStringKey.font: UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)!,
@@ -123,7 +123,7 @@ extension LoginScreenViewController {
         themeManager.setDCBlueTheme(to: self.passwordTextField, ofType: .TextFieldDefaut)
         self.passwordTextField.isSecureTextEntry = true
         let passwordPlaceholder = NSAttributedString.init(
-            string: NSLocalizedString("password", comment: ""),
+            string: "signup_hnt_password".localized(),
             attributes: [
                 NSAttributedStringKey.foregroundColor: UIColor.white,
                 NSAttributedStringKey.font: UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)!,
@@ -140,7 +140,7 @@ extension LoginScreenViewController {
         //setup logonButton theme
         
         themeManager.setDCBlueTheme(to: self.loginButton, ofType: .ButtonDefault)
-        loginButton.titleLabel?.text = NSLocalizedString("Login", comment: "Login button")
+        loginButton.titleLabel?.text = "btn_auth_login".localized()
         
         //setting social networks buttons themes
         
@@ -290,7 +290,7 @@ extension LoginScreenViewController {
 extension LoginScreenViewController: LoginScreenControllerInputProtocol {
     
     fileprivate func showLoadingScreenState() {
-        let loadingState = State(.loadingState, NSLocalizedString("Loading...", comment: ""))
+        let loadingState = State(.loadingState, "txt_loading".localized())
         self.showState(loadingState)
     }
     
@@ -313,9 +313,9 @@ extension LoginScreenViewController: LoginScreenControllerInputProtocol {
     func showErrorMessage(_ message: String) {
         clearState()
         UIAlertController.show(
-            controllerWithTitle: NSLocalizedString("Error", comment: ""),
+            controllerWithTitle: "error_popup_title".localized(),
             message: message,
-            buttonTitle: NSLocalizedString("Ok", comment: "")
+            buttonTitle: "txt_ok".localized()
         )
     }
     

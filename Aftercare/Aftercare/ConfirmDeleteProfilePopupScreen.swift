@@ -27,7 +27,7 @@ class ConfirmDeleteProfilePopupScreen: UIView {
     // MARK: - Fileprivate
     
     fileprivate lazy var errorWrongCaptchaCodeString: String = {
-        return NSLocalizedString("Wrong Code", comment: "")
+        return "profile_wrong_code_error".localized()
     }()
     
     // MARK: - Lifecycle
@@ -57,13 +57,13 @@ class ConfirmDeleteProfilePopupScreen: UIView {
         
         self.backgroundColor = UIColor.dntCeruleanBlue.withAlphaComponent(0.6)
         
-        titleLabel.text = NSLocalizedString("Delete your profile?", comment: "")
-        descriptionLabel.text = NSLocalizedString("Are you sure you want to delete your profile? Enter the code to delete your profile. This will erase all your data.", comment: "")
+        titleLabel.text = "profile_hdl_delete_profile".localized()
+        descriptionLabel.text = "profile_txt_delete_profile".localized()
         
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .left
         let captchaPlaceholder = NSAttributedString.init(
-            string: NSLocalizedString("Enter Code", comment: ""),
+            string: "signup_hnt_captcha".localized(),
             attributes: [
                 NSAttributedStringKey.foregroundColor: UIColor.dntCeruleanBlue,
                 NSAttributedStringKey.font: UIFont.dntLatoLightFont(
@@ -143,9 +143,9 @@ class ConfirmDeleteProfilePopupScreen: UIView {
         guard let captchaCode = captchaTextField.text, captchaCode != "" else {
             captchaTextField.errorMessage = errorWrongCaptchaCodeString
             UIAlertController.show(
-                controllerWithTitle: NSLocalizedString("Error", comment: ""),
+                controllerWithTitle: "error_popup_title".localized(),
                 message: errorWrongCaptchaCodeString,
-                buttonTitle: NSLocalizedString("Ok", comment: "")
+                buttonTitle: "txt_ok".localized()
             )
             return
         }
@@ -161,9 +161,9 @@ class ConfirmDeleteProfilePopupScreen: UIView {
         APIProvider.requestDeleteUser(params) { [weak self] deleted, error in
             if let error = error {
                 UIAlertController.show(
-                    controllerWithTitle: NSLocalizedString("Error", comment: ""),
+                    controllerWithTitle: "error_popup_title".localized(),
                     message: error.toNSError().localizedDescription,
-                    buttonTitle: NSLocalizedString("Ok", comment: "")
+                    buttonTitle: "txt_ok".localized()
                 )
                 //invalidate current captcha and request new one
                 self?.captchaTextField.text = ""

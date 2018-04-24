@@ -45,23 +45,23 @@ class EditUserProfileScreenViewController: UIViewController, ContentConformer {
     //MARK: - error message lazy init strings
     
     fileprivate lazy var errorFirstNameString: String = {
-        return NSLocalizedString("Wrong first name, should be 2 symbols min.", comment: "Wrong first name message")
+        return "error_txt_first_name_too_short".localized()
     }()
     
     fileprivate lazy var errorLastNameString: String = {
-        return NSLocalizedString("Wrong last name, should be 2 symbols min.", comment: "Wrong last name message")
+        return "error_txt_last_name_too_short".localized()
     }()
     
     fileprivate lazy var errorPasswordString: String = {
-        return NSLocalizedString("Password is too short.", comment: "Password is too short")
+        return "error_txt_password_short".localized()
     }()
     
     fileprivate lazy var errorCityCountryString: String = {
-        return NSLocalizedString("Wrong City, Country.", comment: "")
+        return "error_txt_wrong_city_country".localized()
     }()
     
     fileprivate lazy var errorZipString: String = {
-        return NSLocalizedString("Wrong Zip Code.", comment: "")
+        return "error_txt_wrong_zip_code".localized()
     }()
     
     fileprivate var genderOptionSelected = true
@@ -175,16 +175,16 @@ extension EditUserProfileScreenViewController {
     
     fileprivate func setup() {
         
-        header.updateTitle(NSLocalizedString("My Profile", comment: ""))
+        header.updateTitle("profile_hdl_my_profile".localized())
         
         let themeManager = ThemeManager.shared
         
-        let updateButtonTitle = NSLocalizedString("Update", comment: "")
+        let updateButtonTitle = "txt_update".localized()
         updateButton.setTitle(updateButtonTitle, for: .highlighted)
         updateButton.setTitle(updateButtonTitle, for: .selected)
         themeManager.setDCBlueTheme(to: updateButton, ofType: .ButtonDefault)
         
-        let deleteProfileButtonTitle = NSLocalizedString("Delete My Profile", comment: "")
+        let deleteProfileButtonTitle = "profile_btn_delete".localized()
         deleteProfileButton.setTitle(deleteProfileButtonTitle, for: .highlighted)
         deleteProfileButton.setTitle(deleteProfileButtonTitle, for: .selected)
         themeManager.setDCBlueTheme(to: deleteProfileButton, ofType: .ButtonDefaultRedGradient)
@@ -194,7 +194,7 @@ extension EditUserProfileScreenViewController {
         
         themeManager.setDCBlueTheme(to: self.firstNameTextField, ofType: .TextFieldDefaut)
         let firstNamePlaceholder = NSAttributedString.init(
-            string: NSLocalizedString("First Name", comment: ""),
+            string: "signup_hnt_first_name".localized(),
             attributes: [
                 NSAttributedStringKey.foregroundColor: UIColor.white,
                 NSAttributedStringKey.font: UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)!,
@@ -207,7 +207,7 @@ extension EditUserProfileScreenViewController {
         
         themeManager.setDCBlueTheme(to: self.lastNameTextField, ofType: .TextFieldDefaut)
         let lastNamePlaceholder = NSAttributedString.init(
-            string: NSLocalizedString("Last Name", comment: ""),
+            string: "signup_hnt_last_name".localized(),
             attributes: [
                 NSAttributedStringKey.foregroundColor: UIColor.white,
                 NSAttributedStringKey.font: UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)!,
@@ -220,7 +220,7 @@ extension EditUserProfileScreenViewController {
         
         themeManager.setDCBlueTheme(to: self.passwordTextField, ofType: .TextFieldDefaut)
         let passwordPlaceholder = NSAttributedString.init(
-            string: NSLocalizedString("Password", comment: ""),
+            string: "signup_hnt_password".localized(),
             attributes: [
                 NSAttributedStringKey.foregroundColor: UIColor.white,
                 NSAttributedStringKey.font: UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)!,
@@ -231,7 +231,7 @@ extension EditUserProfileScreenViewController {
         
         themeManager.setDCBlueTheme(to: self.zipCodeTextField, ofType: .TextFieldDefaut)
         let zipPlaceholder = NSAttributedString.init(
-            string: NSLocalizedString("Zip Code", comment: ""),
+            string: "profile_hnt_zip".localized(),
             attributes: [
                 NSAttributedStringKey.foregroundColor: UIColor.white,
                 NSAttributedStringKey.font: UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)!,
@@ -244,7 +244,7 @@ extension EditUserProfileScreenViewController {
         
         themeManager.setDCBlueTheme(to: self.cityCountryTextField, ofType: .TextFieldDefaut)
         let cityCountryPlaceholder = NSAttributedString.init(
-            string: NSLocalizedString("City / Country", comment: ""),
+            string: "profile_hnt_city_country".localized(),
             attributes: [
                 NSAttributedStringKey.foregroundColor: UIColor.white,
                 NSAttributedStringKey.font: UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)!,
@@ -257,7 +257,7 @@ extension EditUserProfileScreenViewController {
         
         themeManager.setDCBlueTheme(to: self.birthDateTextField, ofType: .TextFieldDefaut)
         let birthDatePlaceholder = NSAttributedString.init(
-            string: NSLocalizedString("Birth Date", comment: ""),
+            string: "profile_hnt_birthday".localized(),
             attributes: [
                 NSAttributedStringKey.foregroundColor: UIColor.white,
                 NSAttributedStringKey.font: UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)!,
@@ -274,12 +274,12 @@ extension EditUserProfileScreenViewController {
             self.genderType = gender
         }
         
-        let maleButtonLabel = NSLocalizedString("Male", comment: "")
+        let maleButtonLabel = "gender_male".localized()
         themeManager.setDCBlueTheme(
             to: maleButton,
             ofType: .ButtonOptionStyle(label: maleButtonLabel, selected: self.genderType == .male ? true : false)
         )
-        let femaleButtonLabel = NSLocalizedString("Female", comment: "")
+        let femaleButtonLabel = "gender_female".localized()
         themeManager.setDCBlueTheme(
             to: femaleButton,
             ofType: .ButtonOptionStyle(label: femaleButtonLabel, selected: self.genderType == .female ? true : false)
@@ -295,7 +295,7 @@ extension EditUserProfileScreenViewController {
     
     fileprivate func showLoadingScreenState() {
         uiIsBlocked = true
-        let loadingState = State(.loadingState, NSLocalizedString("Loading...", comment: ""))
+        let loadingState = State(.loadingState, "txt_loading".localized())
         self.showState(loadingState)
     }
     
@@ -395,9 +395,9 @@ extension EditUserProfileScreenViewController {
                 print("Update User Request: Error \(error)")
                 
                 UIAlertController.show(
-                    controllerWithTitle: NSLocalizedString("Error", comment: ""),
+                    controllerWithTitle: "error_popup_title".localized(),
                     message: error.toNSError().localizedDescription,
-                    buttonTitle: NSLocalizedString("Ok", comment: "")
+                    buttonTitle: "txt_ok".localized()
                 )
                 
                 self?.clearState()

@@ -56,7 +56,7 @@ class TotalDCNBar: UIView {
     
     func setTotalValue(_ total: Int) {
         totalDCN = total
-        totalValueLabel.text = "DCN " + String(totalDCN)
+        totalValueLabel.text = "txt_dcn".localized(String(totalDCN))
     }
     
     //MARK: - private logic
@@ -64,7 +64,7 @@ class TotalDCNBar: UIView {
     fileprivate func customizeComponents() {
         totalLabel.textColor = .dntWarmGrey
         totalLabel.font = UIFont.dntLatoRegularFontWith(size: UIFont.dntNoteFontSize)
-        totalLabel.text = NSLocalizedString("TOTAL", comment: "")
+        totalLabel.text = "dashboard_hdl_total".localized()
         
         totalValueLabel.textColor = .dntCeruleanBlue
         totalValueLabel.font = UIFont.dntLatoRegularFontWith(size: UIFont.dntLargeTextSize)

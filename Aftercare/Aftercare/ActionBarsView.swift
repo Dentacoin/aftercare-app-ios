@@ -83,11 +83,11 @@ class ActionBarsView: UIView {
         
         #if TARGET_INTERFACE_BUILDER
             
-            leftBar.setTitle(NSLocalizedString("Last Bar", comment: ""))
+            leftBar.setTitle("Last Bar")
             
-            lastBar.setTitle(NSLocalizedString("Routines Left", comment: ""))
+            lastBar.setTitle("Routines Left")
             
-            dayBar.setTitle(NSLocalizedString("Day", comment: ""))
+            dayBar.setTitle("Day")
             
         #endif
         

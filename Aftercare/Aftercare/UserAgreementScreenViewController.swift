@@ -20,15 +20,15 @@ class UserAgreementScreenViewController: UIViewController {
     //MARK: - lazy init strings
     
     fileprivate lazy var userAgreementTitleString: String = {
-        return NSLocalizedString("User Agreements", comment: "")
+        return "user_agreement_title".localized()
     }()
     
     fileprivate lazy var agreeButtonTitleString: String = {
-        return NSLocalizedString("Agree", comment: "")
+        return "btn_agree".localized()
     }()
     
     fileprivate lazy var cancelButtonTitleString: String = {
-        return NSLocalizedString("Cancel", comment: "")
+        return "txt_cancel".localized()
     }()
     
     //MARK: - fileprivate vars
@@ -59,11 +59,16 @@ extension UserAgreementScreenViewController {
         self.header.updateTitle(userAgreementTitleString)
         self.header.delegate = self
         
-        guard let fileURL = Bundle.main.url(forResource: "user-agreement", withExtension: "html") else { return }
-        let stringData = try? String.init(contentsOf: fileURL, encoding: .utf8)
-        self.textField.font = UIFont.dntLatoLightFont(size: UIFont.dntNormalTextSize)
-
-        let htmlData = NSString(string: stringData ?? "").data(using: String.Encoding.unicode.rawValue)
+//        guard let fileURL = Bundle.main.url(forResource: "user-agreement", withExtension: "html") else { return }
+//        let stringData = try? String.init(contentsOf: fileURL, encoding: .utf8)
+//        self.textField.font = UIFont.dntLatoLightFont(size: UIFont.dntNormalTextSize)
+//
+//        let htmlData = NSString(string: stringData ?? "").data(using: String.Encoding.unicode.rawValue)
+//        let options = [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html]
+//        let attributedString = try! NSAttributedString(data: htmlData!, options: options, documentAttributes: nil)
+//        self.textField.attributedText = attributedString
+        
+        let htmlData = NSString(string: "user_agreement".localized()).data(using: String.Encoding.unicode.rawValue)
         let options = [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html]
         let attributedString = try! NSAttributedString(data: htmlData!, options: options, documentAttributes: nil)
         self.textField.attributedText = attributedString
@@ -118,7 +123,7 @@ extension UserAgreementScreenViewController {
     
     fileprivate func changeToLoadingState() {
         var loadingState = State(.loadingState)
-        loadingState.title = NSLocalizedString("Loading...", comment: "")
+        loadingState.title = "txt_loading".localized()
         self.showState(loadingState)
     }
     
@@ -156,9 +161,9 @@ extension UserAgreementScreenViewController {
     
     fileprivate func showErrorMessage(_ error: NSError) {
         UIAlertController.show(
-            controllerWithTitle: NSLocalizedString("Error", comment: ""),
+            controllerWithTitle: "error_popup_title".localized(),
             message: error.localizedDescription,
-            buttonTitle: NSLocalizedString("Ok", comment: "")
+            buttonTitle: "txt_ok".localized()
         )
     }
     

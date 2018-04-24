@@ -139,9 +139,9 @@ class ActionScreenViewController: UIViewController, ContentConformer {
                 } else {
                     // Someting whent wrong
                     UIAlertController.show(
-                        controllerWithTitle: NSLocalizedString("Error", comment: ""),
+                        controllerWithTitle: "error_popup_title".localized(),
                         message: error.toNSError().localizedDescription,
-                        buttonTitle: NSLocalizedString("Ok", comment: "")
+                        buttonTitle: "txt_ok".localized()
                     )
                     return
                 }
@@ -268,7 +268,7 @@ extension ActionScreenViewController {
         //Status Bar settings
         self.modalPresentationCapturesStatusBarAppearance = true
         
-        header.updateTitle(NSLocalizedString("Dentacare", comment: ""))
+        header.updateTitle("dashboard_hdl_dentacare".localized())
         
         guard let screens = createSubScreens() else { return }
         setupSubScreens(screens)

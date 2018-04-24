@@ -15,36 +15,36 @@ class BrushActionView: UIView, ActionViewProtocol {
     //MARK: - fileprivates
     
     fileprivate lazy var readyDescriptionString:String = {
-        return NSLocalizedString("Next step is brushing. Make sure your toothbrush is not dry, apply toothpaste as the size of pea grain. Press the start button when you are ready to brush.", comment: "")
+        return "message_evening_brush_start".localized()
     }()
     
     fileprivate var actionDescription01Flag = false
     fileprivate lazy var actionStep01String:String = {
-        return NSLocalizedString("Starting with the upper left quadrant, brush continuously for the following 30 seconds.", comment: "")
+        return "message_brush_1".localized()
     }()
     
     fileprivate var actionDescription02Flag = false
     fileprivate lazy var actionStep02String:String = {
-        return NSLocalizedString("Now let’s brush the lower left quadrant for the following 30 seconds.", comment: "")
+        return "message_brush_2".localized()
     }()
     
     fileprivate var actionDescription03Flag = false
     fileprivate lazy var actionStep03String:String = {
-        return NSLocalizedString("It is time you move to the lower right quadrant. Brush this area for the following 30 seconds.", comment: "")
+        return "message_brush_3".localized()
     }()
     
     fileprivate var actionDescription04Flag = false
     fileprivate lazy var actionStep04String:String = {
-        return NSLocalizedString("Now let’s brush the upper right quadrant. This is the last sector, only 30 more seconds.", comment: "")
+        return "message_brush_4".localized()
     }()
     
     fileprivate var actionDescription05Flag = false
     fileprivate lazy var actionStep05String:String = {
-        return NSLocalizedString("When you are done press the STOP button.", comment: "")
+        return "message_brush_press_stop_when_ready".localized()
     }()
     
     fileprivate lazy var doneDescriptionString:String = {
-        return NSLocalizedString("Now you are done. Congratulations!", comment: "")
+        return "message_brush_congratulations".localized()
     }()
     
     //MARK: - Delegate
@@ -116,11 +116,11 @@ class BrushActionView: UIView, ActionViewProtocol {
     
     fileprivate func setup() {
         
-        embedView?.actionBarsContainer.lastBar.setTitle(NSLocalizedString("LAST BRUSH", comment: ""))
-        embedView?.actionBarsContainer.leftBar.setTitle(NSLocalizedString("ROUTINES LEFT", comment: ""))
-        embedView?.actionBarsContainer.dayBar.setTitle(NSLocalizedString("DAY", comment: ""))
+        embedView?.actionBarsContainer.lastBar.setTitle("dashboard_lbl_last_brush".localized())
+        embedView?.actionBarsContainer.leftBar.setTitle("dashboard_lbl_routines_left".localized())
+        embedView?.actionBarsContainer.dayBar.setTitle("dashboard_lbl_day".localized())
         
-        embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("Brush", comment: ""), withState: .blue)
+        embedView?.actionFootherContainer.setActionButtonLabel("dashboard_btn_start_brush".localized(), withState: .blue)
         embedView?.autoDismissDoneStateAfter = 4
     }
     
@@ -220,11 +220,11 @@ extension BrushActionView: ActionViewProxyDelegateProtocol {
         if let routine = UserDataContainer.shared.routine {
             
             if newState == .Ready {
-                embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("START", comment: ""), withState: .blue)
+                embedView?.actionFootherContainer.setActionButtonLabel("dashboard_btn_start".localized(), withState: .blue)
                 SoundManager.shared.playSound(SoundType.sound(routine.type, .brush, .ready))
                 embedView?.descriptionTextView.text = readyDescriptionString
             } else if newState == .Action {
-                embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("STOP", comment: ""), withState: .red)
+                embedView?.actionFootherContainer.setActionButtonLabel("dashboard_btn_stop".localized(), withState: .red)
             } else if newState == .Done {
                 
                 resetTimer()
@@ -244,7 +244,7 @@ extension BrushActionView: ActionViewProxyDelegateProtocol {
             if newState == .Initial {
                 resetTimer()
             } else {
-                embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("STOP", comment: ""), withState: .red)
+                embedView?.actionFootherContainer.setActionButtonLabel("dashboard_btn_stop".localized(), withState: .red)
             }
         }
         
@@ -259,7 +259,7 @@ extension BrushActionView: ActionViewProxyDelegateProtocol {
         actionDescription04Flag = false
         actionDescription05Flag = false
         
-        embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("BRUSH", comment: ""), withState: .blue)
+        embedView?.actionFootherContainer.setActionButtonLabel("dashboard_btn_start_brush".localized(), withState: .blue)
         
         guard let timer = self.timer else { return }
         timer.timerLabel.text = "0:00"

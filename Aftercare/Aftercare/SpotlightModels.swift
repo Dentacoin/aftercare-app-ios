@@ -17,27 +17,27 @@ struct SpotlightModels {
             let spotlights = [
                 SpotlightModel(
                     id: .totalDCN,
-                    label: NSLocalizedString("This is the total amount of DCN you've earned.", comment: ""),
+                    label: "tutorial_txt_total_dcn".localized(),
                     shape: .circle
                 ),
                 SpotlightModel(
                     id: .lastRecordTime,
-                    label: NSLocalizedString("Last recorded time", comment: ""),
+                    label: "tutorial_txt_last_activity_time".localized(),
                     shape: .circle
                 ),
                 SpotlightModel(
                     id: .remainActivities,
-                    label: NSLocalizedString("Remaining activities for today", comment: ""),
+                    label: "tutorial_txt_left_activities_count".localized(),
                     shape: .circle
                 ),
                 SpotlightModel(
                     id: .earnedDCN,
-                    label: NSLocalizedString("Current day of your journey", comment: ""),
+                    label: "tutorial_txt_earned_dcn".localized(),
                     shape: .circle
                 ),
                 SpotlightModel(
                     id: .openStatistics,
-                    label: NSLocalizedString("Tap to open statistics", comment: ""),
+                    label: "tutorial_txt_dashboard_arrow_2".localized(),
                     shape: .circle
                 )
             ]
@@ -50,22 +50,22 @@ struct SpotlightModels {
             let spotlights = [
                 SpotlightModel(
                     id: .editProfile,
-                    label: NSLocalizedString("Click here to edit your profile!", comment: ""),
+                    label: "tutorial_txt_click_edit_profile".localized(),
                     shape: .circle
                 ),
                 SpotlightModel(
                     id: .sendDCN,
-                    label: NSLocalizedString("Send DCN to your wallet!", comment: ""),
+                    label: "tutorial_txt_collect_dcn".localized(),
                     shape: .circle
                 ),
                 SpotlightModel(
                     id: .achieveGoalsAndEarn,
-                    label: NSLocalizedString("Achieve goals & earn DCN", comment: ""),
+                    label: "tutorial_txt_goals_menu".localized(),
                     shape: .circle
                 ),
                 SpotlightModel(
                     id: .sendEmergency,
-                    label: NSLocalizedString("Send us emergency request", comment: ""),
+                    label: "tutorial_txt_emergency_menu".localized(),
                     shape: .circle
                 )
             ]

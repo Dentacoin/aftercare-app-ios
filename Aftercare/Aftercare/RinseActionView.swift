@@ -37,21 +37,21 @@ class RinseActionView: UIView, ActionViewProtocol {
     //MARK: - Fileprivates
     
     fileprivate lazy var readyMorningDescriptionString:String = {
-        return NSLocalizedString("Now let’s proceed with the second step of your morning dental routine. Rinsing. Measure 20 milliliters of your rinse liquid and press the start button when you are ready to swish.", comment: "")
+        return "message_morning_routine_3".localized()
     }()
     
     fileprivate lazy var readyEveningDescriptionString:String = {
-        return NSLocalizedString("Now let’s proceed with the third step of your evening dental routine. Rinsing.", comment: "")
+        return "message_evening_rinse_start".localized()
     }()
     
     fileprivate var actionDescription01Flag = false
     fileprivate lazy var actionDescription01String:String = {
-        return NSLocalizedString("Try to swish until the end of the timer.", comment: "")
+        return "message_rinse_1".localized()
     }()
     
     fileprivate var actionDescription02Flag = false
     fileprivate lazy var actionDescription02String:String = {
-        return NSLocalizedString("Don't worry if you can't get to the 30 seconds the first time, it gets easier each time you try.", comment: "")
+        return "message_rinse_2".localized()
     }()
     
     fileprivate var actionDoneFlag = false
@@ -101,11 +101,11 @@ class RinseActionView: UIView, ActionViewProtocol {
     
     fileprivate func setup() {
         
-        embedView?.actionBarsContainer.lastBar.setTitle(NSLocalizedString("LAST RINSE", comment: ""))
-        embedView?.actionBarsContainer.leftBar.setTitle(NSLocalizedString("ROUTINES LEFT", comment: ""))
-        embedView?.actionBarsContainer.dayBar.setTitle(NSLocalizedString("DAY", comment: ""))
+        embedView?.actionBarsContainer.lastBar.setTitle("dashboard_lbl_last_rinse".localized())
+        embedView?.actionBarsContainer.leftBar.setTitle("dashboard_lbl_rinse_left".localized())
+        embedView?.actionBarsContainer.dayBar.setTitle("dashboard_lbl_day".localized())
         
-        embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("Rinse", comment: ""), withState: .blue)
+        embedView?.actionFootherContainer.setActionButtonLabel("dashboard_btn_start_rinse".localized(), withState: .blue)
         embedView?.autoDismissDoneStateAfter = 0
     }
     
@@ -185,7 +185,7 @@ extension RinseActionView: ActionViewProxyDelegateProtocol {
         
             if newState == .Ready {
                 
-                embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("START", comment: ""), withState: .blue)
+                embedView?.actionFootherContainer.setActionButtonLabel("dashboard_btn_start".localized(), withState: .blue)
                 if routine.type == .morning {
                     embedView?.descriptionTextView.text = readyMorningDescriptionString
                 } else {
@@ -195,7 +195,7 @@ extension RinseActionView: ActionViewProxyDelegateProtocol {
                 
             } else if newState == .Action {
                 
-                embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("STOP", comment: ""), withState: .red)
+                embedView?.actionFootherContainer.setActionButtonLabel("dashboard_btn_stop".localized(), withState: .red)
                 
             } else if newState == .Done {
                 
@@ -213,7 +213,7 @@ extension RinseActionView: ActionViewProxyDelegateProtocol {
             if newState == .Initial {
                 resetTimer()
             } else {
-                embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("STOP", comment: ""), withState: .red)
+                embedView?.actionFootherContainer.setActionButtonLabel("dashboard_btn_stop".localized(), withState: .red)
             }
             
         }
@@ -226,7 +226,7 @@ extension RinseActionView: ActionViewProxyDelegateProtocol {
         actionDescription02Flag = false
         actionDoneFlag = false
         
-        embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("RINSE", comment: ""), withState: .blue)
+        embedView?.actionFootherContainer.setActionButtonLabel("dashboard_btn_start_rinse".localized(), withState: .blue)
         
         guard let timer = self.timer else { return }
         timer.centerLabel.text = "0:00"

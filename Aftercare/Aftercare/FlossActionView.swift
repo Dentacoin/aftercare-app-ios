@@ -37,15 +37,15 @@ class FlossActionView: UIView, ActionViewProtocol {
     //MARK: - Fileprivates
     
     fileprivate lazy var readyDescriptionString:String = {
-        return NSLocalizedString("Let’s start by flossing your teeth. Pull around 25 cm of dental floss from your floss dispenser. Wrap the ends of the floss around your index and middle fingers. Press the start button when you are ready to floss.", comment: "")
+        return "message_floss_1".localized()
     }()
     
     fileprivate lazy var actionDescriptionString:String = {
-        return NSLocalizedString("Hold the floss tightly around each tooth in a C-shape. Move the floss back and forth in a push-pull motion and up and down against the side of each tooth", comment: "")
+        return "message_floss_4".localized()
     }()
     
     fileprivate lazy var doneDescriptionString:String = {
-        return NSLocalizedString("Great job, flossing!", comment: "")
+        return "message_floss_6".localized()
     }()
     
     fileprivate func setupContent() {
@@ -93,11 +93,11 @@ class FlossActionView: UIView, ActionViewProtocol {
     
     fileprivate func setup() {
         
-        embedView?.actionBarsContainer.lastBar.setTitle(NSLocalizedString("LAST FLOSS", comment: ""))
-        embedView?.actionBarsContainer.leftBar.setTitle(NSLocalizedString("ROUTINES LEFT", comment: ""))
-        embedView?.actionBarsContainer.dayBar.setTitle(NSLocalizedString("DAY", comment: ""))
+        embedView?.actionBarsContainer.lastBar.setTitle("dashboard_lbl_last_floss".localized())
+        embedView?.actionBarsContainer.leftBar.setTitle("dashboard_lbl_floss_left".localized())
+        embedView?.actionBarsContainer.dayBar.setTitle("dashboard_lbl_day".localized())
         
-        embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("Floss", comment: ""), withState: .blue)
+        embedView?.actionFootherContainer.setActionButtonLabel("dashboard_btn_start_floss".localized(), withState: .blue)
         embedView?.autoDismissDoneStateAfter = 4
         
     }
@@ -152,11 +152,11 @@ extension FlossActionView: ActionViewProxyDelegateProtocol {
         if let routine = UserDataContainer.shared.routine {
             
             if newState == .Ready {
-                embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("START", comment: ""), withState: .blue)
+                embedView?.actionFootherContainer.setActionButtonLabel("dashboard_btn_start".localized(), withState: .blue)
                 SoundManager.shared.playSound(SoundType.sound(routine.type, .floss, .ready))
                 embedView?.descriptionTextView.text = readyDescriptionString
             } else if newState == .Action {
-                embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("STOP", comment: ""), withState: .red)
+                embedView?.actionFootherContainer.setActionButtonLabel("dashboard_btn_stop".localized(), withState: .red)
                 SoundManager.shared.playSound(SoundType.sound(routine.type, .floss, .progress(0)))
                 embedView?.descriptionTextView.text = actionDescriptionString
             } else if newState == .Done {
@@ -177,7 +177,7 @@ extension FlossActionView: ActionViewProxyDelegateProtocol {
             if newState == .Initial {
                 resetTimer()
             } else {
-                embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("STOP", comment: ""), withState: .red)
+                embedView?.actionFootherContainer.setActionButtonLabel("dashboard_btn_stop".localized(), withState: .red)
             }
             
         }
@@ -185,7 +185,7 @@ extension FlossActionView: ActionViewProxyDelegateProtocol {
     
     fileprivate func resetTimer() {
         
-        embedView?.actionFootherContainer.setActionButtonLabel(NSLocalizedString("FLOSS", comment: ""), withState: .blue)
+        embedView?.actionFootherContainer.setActionButtonLabel("dashboard_btn_start_floss".localized(), withState: .blue)
         
         guard let timer = self.timer else { return }
         timer.centerLabel.text = "0:00"

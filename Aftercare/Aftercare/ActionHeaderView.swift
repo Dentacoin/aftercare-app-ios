@@ -129,13 +129,13 @@ extension ActionHeaderView {
         titleLabel.textColor = .white
         titleLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntHeaderTitleFontSize)
         
-        themeManager.setDCBlueTheme(to: flossButton, ofType: .ButtonTabStyle(label: NSLocalizedString("FLOSS", comment: "")))
+        themeManager.setDCBlueTheme(to: flossButton, ofType: .ButtonTabStyle(label: "dashboard_btn_start_floss".localized()))
         flossButton.addTarget(self, action: Selector.tabBarButtonPressed, for: .touchUpInside)
         
-        themeManager.setDCBlueTheme(to: brushButton, ofType: .ButtonTabStyle(label: NSLocalizedString("BRUSH", comment: "")))
+        themeManager.setDCBlueTheme(to: brushButton, ofType: .ButtonTabStyle(label: "dashboard_btn_start_brush".localized()))
         brushButton.addTarget(self, action: Selector.tabBarButtonPressed, for: .touchUpInside)
         
-        themeManager.setDCBlueTheme(to: rinseButton, ofType: .ButtonTabStyle(label: NSLocalizedString("RINSE", comment: "")))
+        themeManager.setDCBlueTheme(to: rinseButton, ofType: .ButtonTabStyle(label: "dashboard_btn_start_rinse".localized()))
         rinseButton.addTarget(self, action: Selector.tabBarButtonPressed, for: .touchUpInside)
         
         //default selected floss tab button

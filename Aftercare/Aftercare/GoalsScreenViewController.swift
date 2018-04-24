@@ -68,7 +68,7 @@ extension GoalsScreenViewController {
     
     fileprivate func setup() {
         
-        header.updateTitle(NSLocalizedString("Achievements", comment: ""))
+        header.updateTitle("goals_hdl_goals".localized())
         
         //setup collection
         self.collectionView.register(
@@ -86,12 +86,12 @@ extension GoalsScreenViewController {
         self.dataSource = UserDataContainer.shared.goalsData
         
         if let count = self.dataSource?.count, count == 0 {
-            let emptyState = State(.emptyState, NSLocalizedString("No Goals Found!", comment: ""))
+            let emptyState = State(.emptyState, "goals_txt_no_goals_found".localized())
             showState(emptyState)
         }
         
         if self.dataSource == nil {
-            let errorState = State(.errorState, NSLocalizedString("Error...", comment: ""))
+            let errorState = State(.errorState, "error_popup_title".localized())
             showState(errorState)
         }
     }

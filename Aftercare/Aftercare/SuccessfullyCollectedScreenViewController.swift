@@ -51,7 +51,7 @@ extension SuccessfullyCollectedScreenViewController {
         
         infoLabel.textColor = .white
         infoLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntButtonFontSize)
-        infoLabel.text = NSLocalizedString("Successfully Collected to the Crypto Wallet", comment: "")
+        infoLabel.text = "collect_wallet_sent_collect_request".localized()
         
         if self.data != nil {
             updateCollectedDCNValue()
@@ -72,10 +72,10 @@ extension SuccessfullyCollectedScreenViewController {
     fileprivate func updateCollectedDCNValue() {
         if let data = self.data {
             if let collectValue = data["collectDCN"] as? Int {
-                collectedLabel.text = String(collectValue) + " DCN"
+                collectedLabel.text = "txt_dcn".localized(String(collectValue))
             }
         } else {
-            collectedLabel.text = "0 DCN"
+            collectedLabel.text = "txt_dcn".localized("0")
         }
     }
     

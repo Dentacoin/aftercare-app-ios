@@ -37,10 +37,10 @@ class SettingsScreenViewController: UIViewController, ContentConformer {
     fileprivate var menuData: [SettingsSection] = {
         let data = [
             (
-                title: NSLocalizedString("Help", comment: ""),
+                title: "settings_hdl_help",
                 items: [
                     (
-                        label: NSLocalizedString("Spotlights & Tutorials", comment: ""),
+                        label: "settings_category_help_1",
                         cellType: String(describing: SettingsClearButtonTableCell.self),
                         id: "",
                         state: true
@@ -48,62 +48,62 @@ class SettingsScreenViewController: UIViewController, ContentConformer {
                 ]
             ),
             (
-                title: NSLocalizedString("Music And Sounds", comment: ""),
+                title: "settings_hdl_music_and_sounds",
                 items: [
                     (
-                        label: NSLocalizedString("Sounds", comment: ""),
+                        label: "settings_lbl_sounds",
                         cellType: String(describing: SettingsSwitchTableCell.self),
                         id: "",
                         state: true
                     ),
                     (
-                        label: NSLocalizedString("Music", comment: ""),
+                        label: "settings_lbl_music",
                         cellType: String(describing: SettingsSwitchTableCell.self),
                         id: "",
                         state: true
                     ),
                     (
-                        label: NSLocalizedString("Voice: male", comment: ""),
+                        label: "settings_lbl_voice_male",
                         cellType: String(describing: SettingsSwitchTableCell.self),
                         id: "",
                         state: true
                     )
                 ]
             ),(
-                title: NSLocalizedString("Notifications Settings", comment: ""),
+                title: "settings_hdl_notifications",
                 items: [
                     (
-                        label : NSLocalizedString("Daily brushing", comment: ""),
+                        label : "settings_lbl_daily_brushing",
                         cellType: String(describing: SettingsSwitchTableCell.self),
                         id  : NotificationIdentifiers.dailyBrushing.rawValue,
                         state : NotificationsManager.shared.localNotificationIsEnabled(withID: NotificationIdentifiers.dailyBrushing)
                     ),
                     (
-                        label : NSLocalizedString("Change brush", comment: ""),
+                        label : "settings_lbl_change_brush",
                         cellType: String(describing: SettingsSwitchTableCell.self),
                         id  : NotificationIdentifiers.changeBrush.rawValue,
                         state : NotificationsManager.shared.localNotificationIsEnabled(withID: NotificationIdentifiers.changeBrush)
                     ),
                     (
-                        label : NSLocalizedString("Visit dentist", comment: ""),
+                        label : "settings_lbl_visit_dentist",
                         cellType: String(describing: SettingsSwitchTableCell.self),
                         id  : NotificationIdentifiers.visitDentist.rawValue,
                         state : NotificationsManager.shared.localNotificationIsEnabled(withID: NotificationIdentifiers.visitDentist)
                     ),
                     (
-                        label : NSLocalizedString("Collect dentacoins", comment: ""),
+                        label : "settings_lbl_collect_dentacoins",
                         cellType: String(describing: SettingsSwitchTableCell.self),
                         id  : NotificationIdentifiers.collectDentacoin.rawValue,
                         state : NotificationsManager.shared.localNotificationIsEnabled(withID: NotificationIdentifiers.collectDentacoin)
                     ),
                     (
-                        label : NSLocalizedString("Reminder to visit", comment: ""),
+                        label : "settings_lbl_reminder_visit",
                         cellType: String(describing: SettingsSwitchTableCell.self),
                         id  : NotificationIdentifiers.remindToVisitTheApp.rawValue,
                         state : NotificationsManager.shared.localNotificationIsEnabled(withID: NotificationIdentifiers.remindToVisitTheApp)
                     ),
                     (
-                        label : NSLocalizedString("Healty habits", comment: ""),
+                        label : "settings_lbl_healthy_habits",
                         cellType: String(describing: SettingsSwitchTableCell.self),
                         id  : NotificationIdentifiers.healthyHabits.rawValue,
                         state : NotificationsManager.shared.localNotificationIsEnabled(withID: NotificationIdentifiers.healthyHabits)
@@ -128,7 +128,7 @@ class SettingsScreenViewController: UIViewController, ContentConformer {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        header.updateTitle(NSLocalizedString("Settings", comment: ""))
+        header.updateTitle("settings_hdl_settings".localized())
     }
     
     override func viewDidLayoutSubviews() {
@@ -190,7 +190,7 @@ extension SettingsScreenViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: contentHeaderCellIdentifier) {
             header.textLabel?.font = UIFont.dntLatoLightFont(size: UIFont.dntButtonFontSize)
-            header.textLabel?.text = menuData[section].title
+            header.textLabel?.text = menuData[section].title.localized()
             header.textLabel?.textColor = .white
             header.backgroundView = UIView(frame: header.bounds)
             header.backgroundView?.backgroundColor = UIColor.dntCeruleanBlue
@@ -203,7 +203,7 @@ extension SettingsScreenViewController: UITableViewDelegate {
         
         let data = menuData[indexPath.section].items[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: data.cellType)
-        let label = data.label
+        let label = data.label.localized()
         
         if let cell = cell as? SettingsSwitchTableCell {
             

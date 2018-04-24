@@ -86,25 +86,25 @@ struct Routine {
     
     var endTitle: String {
         get {
-            return NSLocalizedString("Routine Completed", comment: "")
+            return "message_hdl_routine_completed".localized()
         }
     }
     
     var startDescription: String {
         switch self.type {
             case .evening:
-                return NSLocalizedString("Good evening, darling. Did you have a good day? Are you on the way to becoming a legend?", comment: "")
+                return "message_evening_routine_start".localized()
             case .morning:
-                return NSLocalizedString("Good morning sunshine. It is a beautiful day. Let’s get you started properly.", comment: "")
+                return "message_morning_routine_start".localized()
         }
     }
     
     var endDescription: String {
         switch self.type {
             case .evening:
-                return NSLocalizedString("You have completed your last brush for the day. Amazing job! Have a nice rest and come back in the morning. Sweet dreams.", comment: "")
+                return "message_evening_routine_end".localized()
             case .morning:
-                return NSLocalizedString("Congratulations!\nNow you are ready to Amaze the world with your beautiful smile.\n\nMake big things today and come back in the evening before going to bed.\n\nHave a nice day ahead.", comment: "")
+                return "message_morning_routine_end".localized()
         }
     }
     
@@ -112,9 +112,9 @@ struct Routine {
         get {
             switch self.type {
                 case .evening:
-                    return NSLocalizedString("Start Evening Routine", comment: "")
+                    return "btn_evening".localized()
                 case .morning:
-                    return NSLocalizedString("Start Morning Routine", comment: "")
+                    return "btn_morning".localized()
             }
         }
     }

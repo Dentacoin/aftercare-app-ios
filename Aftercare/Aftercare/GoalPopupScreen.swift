@@ -128,7 +128,11 @@ extension GoalPopupScreen {
         
         //create Facebook Share Button
         let linkContent = FBSDKShareLinkContent()
-        linkContent.quote = "\((self.titleLabel.text ?? "")) achieved! Come join me in a 90 days dental jorney by downloading the Dentacare app from App Store. You can earn great amount of DCN and a healthy smile just by following all morning and evening routines."
+        if let reward = self.data?.reward, let goalTitle = self.titleLabel.text {
+            linkContent.quote = "fb_share_goal_message".localized(String(reward), goalTitle)
+        } else {
+            linkContent.quote = "fb_share_goal_message".localized("0", self.titleLabel.text!)
+        }
         linkContent.contentURL = URL(string: "https://itunes.apple.com/us/app/dentacare/id1274148338?ls=1&mt=8")
         
         shareWithFBButton.shareContent = linkContent
@@ -141,7 +145,7 @@ extension GoalPopupScreen {
         paragraph.alignment = .center
         
         let shareTitle = NSAttributedString(
-            string: NSLocalizedString("Share", comment: ""),
+            string: "btn_goal_popup_share".localized(),
             attributes: [NSAttributedStringKey.paragraphStyle: paragraph]
         )
         shareWithFBButton.setAttributedTitle(shareTitle, for: .normal)
@@ -206,7 +210,8 @@ extension GoalPopupScreen {
             
             let ovalFrame = ovalImage.frame
             
-            // I HATE THIS HACK: - Hardcoding the start and end frame of toothImage fixes strange problem that makes height of the toothImage equal to zero
+            // I HATE THIS HACK: - Hardcoding the start and end frame of toothImage
+            // fixes strange problem that makes height of the toothImage equal to zero
             
             toothImage.translatesAutoresizingMaskIntoConstraints = true
             badgeEndFrame = CGRect(
@@ -274,7 +279,7 @@ extension GoalPopupScreen {
             fullRotation.repeatCount = 1
             self?.starImage.layer.add(fullRotation, forKey: "360")
             
-            // DON'T WORKS FOR .PI * 2
+            // DON'T WORK FOR .PI * 2
 //            if let transform = self?.starImage.transform.rotated(by: .pi * 2) {
 //                self?.starImage.transform = transform
 //            }

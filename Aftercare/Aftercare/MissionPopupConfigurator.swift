@@ -42,12 +42,12 @@ struct MissionPopupConfigurator {
         
         if let journey = UserDataContainer.shared.journey {
             
-            popup.titleLabel.text = NSLocalizedString("Day", comment: "") + " \(journey.day) of \(journey.targetDays)"
+            popup.titleLabel.text = "journey_hdl_daily".localized(String(journey.day), String(journey.targetDays))
             
-            popup.subTitleLabel.text = "Skipped routines \(journey.skipped) of \(journey.tolerance)"
+            popup.subTitleLabel.text = "journey_sub_hdl_daily".localized(String(journey.skipped), String(journey.tolerance))
             popup.subTitleLabel.alpha = 1
         } else {
-            popup.titleLabel.text = NSLocalizedString("Welcome", comment: "")
+            popup.titleLabel.text = "welcome_txt_welcome".localized()
             popup.subTitleLabel.alpha = 0
         }
         
@@ -77,8 +77,15 @@ struct MissionPopupConfigurator {
         popup.subTitleLabel.alpha = 0
         popup.descriptionTextView.text = routine.endDescription
         
+        var quote: String?
+        if routine.type == .morning {
+            quote = "fb_share_morning_routine_completed".localized()
+        } else {
+            quote = "fb_share_evening_routine_completed".localized()
+        }
+        
         let linkContent = FBSDKShareLinkContent()
-        linkContent.quote = NSLocalizedString("Improve your dental healt habits and earn some DCNs in the same time. Try Dentacare app available in the App Store.", comment: "")
+        linkContent.quote = quote ?? ""
         linkContent.contentURL = URL(string: "https://itunes.apple.com/us/app/dentacare/id1274148338?ls=1&mt=8")
         popup.shareWithFacebook.shareContent = linkContent
         
@@ -86,7 +93,7 @@ struct MissionPopupConfigurator {
         paragraph.alignment = .center
         
         let shareTitle = NSAttributedString(
-            string: NSLocalizedString("Share", comment: ""),
+            string: "btn_mission_popup_share".localized(),
             attributes: [NSAttributedStringKey.paragraphStyle: paragraph]
         )
         
@@ -103,11 +110,15 @@ struct MissionPopupConfigurator {
             return
         }
         
-        popup.titleLabel.text = NSLocalizedString("Start your journey", comment: "")
-        popup.subTitleLabel.text = NSLocalizedString("towards a beautiful smile", comment: "")
+        popup.titleLabel.text = "journey_hdl_start".localized()
+        popup.subTitleLabel.text = "journey_sub_hdl_start"
         
-        popup.descriptionTextView.text = NSLocalizedString("Complete \(journey.targetDays) days of\nconsecutive morning and\nevening routines.\n\nComplete \(journey.targetDays * 2) routines with \(journey.tolerance)\nroutines tolerance and collect\nyour DCN reward!", comment: "")
-        let actionButtonLabel = NSLocalizedString("Start Jorney", comment: "")
+        popup.descriptionTextView.text = "journey_txt_start".localized(
+            String(journey.targetDays),
+            String(journey.targetDays * 2),
+            String(journey.tolerance)
+        )
+        let actionButtonLabel = "journey_btn_start".localized()
         popup.actionButton.setTitle(actionButtonLabel, for: .normal)
         popup.actionButton.setTitle(actionButtonLabel, for: .highlighted)
         popup.cancelable = false
@@ -117,18 +128,18 @@ struct MissionPopupConfigurator {
         
         toggleFacebookButton(false, forPopup: popup)
         
-        popup.titleLabel.text = NSLocalizedString("Oh No...", comment: "")
-        popup.subTitleLabel.text = NSLocalizedString("journey failed!", comment: "")
+        popup.titleLabel.text = "journey_hdl_failed".localized()
+        popup.subTitleLabel.text = "journey_sub_hdl_failed".localized()
         
-        var daysTolerance: Int = 10
-        if let journey = UserDataContainer.shared.journey {
-            //journey.tolerance is missed routines tolerance. Devide by two we get missed days
-            daysTolerance = journey.tolerance / 2
-        }
+//        var daysTolerance: Int = 10
+//        if let journey = UserDataContainer.shared.journey {
+//            //journey.tolerance is missed routines tolerance. Devide by two we get missed days
+//            daysTolerance = journey.tolerance / 2
+//        }
         
-        popup.descriptionTextView.text = NSLocalizedString("Unfortuantely you exceeded\nyour \(daysTolerance) days tolerance.\nTherefore you have to start your\njourney over!", comment: "")
+        popup.descriptionTextView.text = "journey_txt_failed".localized()
         
-        let actionButtonLabel = NSLocalizedString("Start Over", comment: "")
+        let actionButtonLabel = "journey_btn_failed".localized()
         popup.actionButton.setTitle(actionButtonLabel, for: .normal)
         popup.actionButton.setTitle(actionButtonLabel, for: .highlighted)
         popup.cancelable = false
@@ -138,15 +149,15 @@ struct MissionPopupConfigurator {
         
         toggleFacebookButton(false, forPopup: popup)
         
-        guard let journey = UserDataContainer.shared.journey else {
-            return
-        }
+//        guard let journey = UserDataContainer.shared.journey else {
+//            return
+//        }
         
-        popup.titleLabel.text = NSLocalizedString("Congratulations!", comment: "")
-        popup.subTitleLabel.text = NSLocalizedString("journey completed!", comment: "")
+        popup.titleLabel.text = "journey_hdl_completed".localized()
+        popup.subTitleLabel.text = "journey_sub_hdl_completed".localized()
         
-        popup.descriptionTextView.text = NSLocalizedString("You have completed your \(journey.targetDays)\ndays jorney congratulations!\nYou can collect your reward\nnow!", comment: "")
-        let actionButtonLabel = NSLocalizedString("Collect Reward", comment: "")
+        popup.descriptionTextView.text = "journey_txt_completed".localized()
+        let actionButtonLabel = "journey_btn_completed".localized()
         popup.actionButton.setTitle(actionButtonLabel, for: .normal)
         popup.actionButton.setTitle(actionButtonLabel, for: .highlighted)
         popup.cancelable = false

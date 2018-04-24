@@ -37,23 +37,23 @@ class SignUpScreenViewController : UIViewController {
     //MARK: - error message lazy init strings
     
     fileprivate lazy var errorFirstNameString: String = {
-        return NSLocalizedString("Wrong first name, should be 2 symbols min", comment: "Wrong first name message")
+        return "error_txt_first_name_too_short".localized()
     }()
     
     fileprivate lazy var errorLastNameString: String = {
-        return NSLocalizedString("Wrong last name, should be 2 symbols min", comment: "Wrong last name message")
+        return "error_txt_last_name_too_short".localized()
     }()
     
     fileprivate lazy var errorEmailString: String = {
-        return  NSLocalizedString("Wrong email", comment: "Wrong email")
+        return  "error_txt_email_not_valid".localized()
     }()
     
     fileprivate lazy var errorPasswordString: String = {
-        return NSLocalizedString("Password is too short", comment: "Password is too short")
+        return "error_txt_password_short".localized()
     }()
     
     fileprivate lazy var errorWrongCaptchaCodeString: String = {
-        return NSLocalizedString("Wrong Code", comment: "")
+        return "profile_wrong_code_error".localized()
     }()
     
     //MARK: - Clean Swift
@@ -150,7 +150,7 @@ extension SignUpScreenViewController {
         )
         
         let firstNamePlaceholder = NSAttributedString.init(
-            string: NSLocalizedString("First name", comment: "First Name text field placeholder"),
+            string: "signup_hnt_first_name".localized(),
             attributes: [
                 NSAttributedStringKey.foregroundColor: UIColor.white,
                 NSAttributedStringKey.font: UIFont.dntLatoLightFont(
@@ -169,7 +169,7 @@ extension SignUpScreenViewController {
         )
         
         let lastNamePlaceholder = NSAttributedString.init(
-            string: NSLocalizedString("Last name", comment: "Last Name text field placeholder"),
+            string: "signup_hnt_last_name".localized(),
             attributes: [
                 NSAttributedStringKey.foregroundColor: UIColor.white,
                 NSAttributedStringKey.font: UIFont.dntLatoLightFont(
@@ -188,7 +188,7 @@ extension SignUpScreenViewController {
         )
         
         let emailPlaceholder = NSAttributedString.init(
-                string: NSLocalizedString("Email", comment: "email text field placeholder"),
+                string: "signup_hnt_email".localized(),
                 attributes: [
                 NSAttributedStringKey.foregroundColor: UIColor.white,
                 NSAttributedStringKey.font: UIFont.dntLatoLightFont(
@@ -210,7 +210,7 @@ extension SignUpScreenViewController {
         passwordTextField.isSecureTextEntry = true
         
         let passwordPlaceholder = NSAttributedString.init(
-            string: NSLocalizedString("Password", comment: "password text field placeholder"),
+            string: "signup_hnt_password".localized(),
             attributes: [
                 NSAttributedStringKey.foregroundColor: UIColor.white,
                 NSAttributedStringKey.font: UIFont.dntLatoLightFont(
@@ -224,7 +224,7 @@ extension SignUpScreenViewController {
         passwordTextField.autocorrectionType = .no
         
         let captchaPlaceholder = NSAttributedString.init(
-            string: NSLocalizedString("Enter Code", comment: ""),
+            string: "signup_hnt_captcha".localized(),
             attributes: [
                 NSAttributedStringKey.foregroundColor: UIColor.white,
                 NSAttributedStringKey.font: UIFont.dntLatoLightFont(
@@ -246,10 +246,7 @@ extension SignUpScreenViewController {
             to: self.createButton,
             ofType: .ButtonDefault
         )
-        createButton.titleLabel?.text = NSLocalizedString(
-            "Create",
-            comment: "Create new user account button label"
-        )
+        createButton.titleLabel?.text = "signup_btn_create".localized()
         
         //setting social media buttons and a label
         
@@ -491,7 +488,7 @@ extension SignUpScreenViewController: SignUpScreenControllerInputProtocol {
     
     fileprivate func showLoadingScreenState() {
         uiIsBlocked = true
-        let loadingState = State(.loadingState, NSLocalizedString("Loading...", comment: ""))
+        let loadingState = State(.loadingState, "txt_loading".localized())
         self.showState(loadingState)
     }
     
@@ -508,8 +505,8 @@ extension SignUpScreenViewController: SignUpScreenControllerInputProtocol {
             var data = UpdateUserRequestData()
             data.avatarBase64 = avatar.toBase64()
             APIProvider.updateUser(data) { [weak self] response, error in
-                if let error = error {
-                    print("Upload User Avatar Error: \(error)")
+                if let _ = error {
+                    //print("Upload User Avatar Error: \(error)")
                     UserDataContainer.shared.userAvatar = nil
                 }
                 self?.clearState()
@@ -530,9 +527,9 @@ extension SignUpScreenViewController: SignUpScreenControllerInputProtocol {
     func showErrorMessage(_ message: String) {
         clearState()
         UIAlertController.show(
-            controllerWithTitle: NSLocalizedString("Error", comment: ""),
+            controllerWithTitle: "error_popup_title".localized(),
             message: message,
-            buttonTitle: NSLocalizedString("Ok", comment: "")
+            buttonTitle: "txt_ok".localized()
         )
     }
     

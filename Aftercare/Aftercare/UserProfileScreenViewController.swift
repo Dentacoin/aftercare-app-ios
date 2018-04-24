@@ -78,17 +78,17 @@ extension UserProfileScreenViewController {
     
     fileprivate func setup() {
         
-        header.updateTitle(NSLocalizedString("My Profile", comment: ""))
+        header.updateTitle("profile_hdl_my_profile".localized())
         
         emailNotVerifiedLabel.textColor = .red
         emailNotVerifiedLabel.font = UIFont.dntLatoRegularFontWith(size: UIFont.dntLabelFontSize)
-        emailNotVerifiedLabel.text = NSLocalizedString("Your email is not verified!", comment: "")
+        emailNotVerifiedLabel.text = "profile_txt_email_not_verified".localized()
         
         let themeManager = ThemeManager.shared
         themeManager.setDCBlueTheme(
             to: resendEmailVerificationButton,
             ofType: .ButtonOptionStyle(
-                label: NSLocalizedString("Resend verification email", comment: ""),
+                label: "profile_txt_resend_verification_email".localized(),
                 selected: false
             )
         )
@@ -221,7 +221,7 @@ extension UserProfileScreenViewController {
         themeManager.setDCBlueTheme(
             to: resendEmailVerificationButton,
             ofType: .ButtonOptionStyle(
-                label: NSLocalizedString("Resend verification email", comment: ""),
+                label: "profile_txt_resend_verification_email".localized(),
                 selected: false
             )
         )
@@ -239,18 +239,18 @@ extension UserProfileScreenViewController {
                 }
                 
                 UIAlertController.show(
-                    controllerWithTitle: NSLocalizedString("Error", comment: ""),
+                    controllerWithTitle: "error_popup_title".localized(),
                     message: error.toNSError().localizedDescription,
-                    buttonTitle: NSLocalizedString("Ok", comment: "")
+                    buttonTitle: "txt_ok".localized()
                 )
                 
                 return
             }
             
             UIAlertController.show(
-                controllerWithTitle: NSLocalizedString("Verification sent", comment: ""),
-                message: NSLocalizedString("Please check your email, and click on the verification link.", comment: ""),
-                buttonTitle: NSLocalizedString("Ok", comment: "")
+                controllerWithTitle: "info_popup_title".localized(),
+                message: "profile_txt_verification_email_sent".localized(),
+                buttonTitle: "txt_ok".localized()
             )
             
         }

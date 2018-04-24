@@ -34,7 +34,7 @@ class AwesomeSpotlightView: UIView {
   private static let kTextLabelFont = UIFont.systemFont(ofSize: 20.0)
   private static let kContinueLabelFont = UIFont.systemFont(ofSize: 13.0)
   private static let kSkipButtonFont = UIFont.boldSystemFont(ofSize: 13.0)
-  private static let kSkipButtonLastStepTitle = NSLocalizedString("Done", comment: "")
+  private static let kSkipButtonLastStepTitle = "btn_spotlight_done".localized()
   
   private var spotlightMask = CAShapeLayer()
   private var continueLabel = UILabel()
@@ -54,8 +54,8 @@ class AwesomeSpotlightView: UIView {
   var labelSpacing : CGFloat = kMaxLabelSpacing
   var enableArrowDown = kEnableArrowDown
   var showAllSpotlightsAtOnce = kShowAllSpotlightsAtOnce
-  var continueButtonModel = AwesomeTabButton(title: NSLocalizedString("Continue", comment: "") , font: kContinueLabelFont, isEnable: kEnableContinueLabel)
-  var skipButtonModel = AwesomeTabButton(title: NSLocalizedString("Skip", comment: ""), font: kSkipButtonFont, isEnable: kEnableSkipButton)
+  var continueButtonModel = AwesomeTabButton(title: "btn_spotlight_continue".localized() , font: kContinueLabelFont, isEnable: kEnableContinueLabel)
+  var skipButtonModel = AwesomeTabButton(title: "onboarding_txt_skip".localized(), font: kSkipButtonFont, isEnable: kEnableSkipButton)
   var skipButtonLastStepTitle = kSkipButtonLastStepTitle
   
   var spotlightMaskColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.6) {

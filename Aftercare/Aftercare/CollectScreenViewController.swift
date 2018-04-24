@@ -38,7 +38,7 @@ class CollectScreenViewController: UIViewController, ContentConformer {
     }()
     
     fileprivate lazy var wrongWalletError: String = {
-        return NSLocalizedString("Your Wallet address is not in correct format.", comment: "")
+        return "error_txt_wrong_format_wallet".localized()
     }()
     
     fileprivate var calculatedConstraints = false
@@ -100,17 +100,17 @@ class CollectScreenViewController: UIViewController, ContentConformer {
     
     fileprivate func cantCollectDCNNowError() {
         UIAlertController.show(
-            controllerWithTitle: NSLocalizedString("Info", comment: ""),
-            message: NSLocalizedString("You can collect your dentacoins only after you use the app for at least 90 days and have no less than 1000DCNs", comment: ""),
-            buttonTitle: NSLocalizedString("Ok", comment: "")
+            controllerWithTitle: "info_popup_title".localized(),
+            message: "collect_error_not_enough_use".localized(),
+            buttonTitle: "txt_ok".localized()
         )
     }
     
     fileprivate func wrongWalletAddressError() {
         UIAlertController.show(
-            controllerWithTitle: NSLocalizedString("Error", comment: ""),
+            controllerWithTitle: "error_popup_title".localized(),
             message: wrongWalletError,
-            buttonTitle: NSLocalizedString("Ok", comment: "")
+            buttonTitle: "txt_ok".localized()
         )
         self.sendButton.isEnabled = false
     }
@@ -131,22 +131,22 @@ extension CollectScreenViewController {
         walletAddressTextField.delegate = self
         self.addListenersForKeyboard()
         
-        header.updateTitle(NSLocalizedString("Dentacoin", comment: ""))
+        header.updateTitle("settings_lbl_collect_dentacoins".localized())
         
         let themeManager = ThemeManager.shared
         
         self.step1Label.textColor = UIColor.dntCharcoalGrey
         self.step1Label.font = UIFont.dntLatoLightFont(size: UIFont.dntLargeTitleFontSize)
-        self.step1Label.text = NSLocalizedString("Create your crypto wallet at:", comment: "")
+        self.step1Label.text = "collect_wallet_hdl_create".localized()
         self.step1Label.numberOfLines = 2
         
         self.step1AddressLabel.textColor = UIColor.dntCeruleanBlue
         self.step1AddressLabel.font = UIFont.dntLatoRegularFontWith(size: UIFont.dntLargeTextSize)
-        self.step1AddressLabel.text = NSLocalizedString("www.myetherwallet.com", comment: "")
+        self.step1AddressLabel.text = "collect_wallet_url_ether".localized()
         
         self.step2Label.textColor = UIColor.dntCharcoalGrey
         self.step2Label.font = UIFont.dntLatoLightFont(size: UIFont.dntLargeTitleFontSize)
-        self.step2Label.text = NSLocalizedString("Send us your crypto wallet address", comment: "")
+        self.step2Label.text = "collect_wallet_hdl_send_us".localized()
         self.step2Label.numberOfLines = 2
         
         let paragraph = NSMutableParagraphStyle()
@@ -154,7 +154,7 @@ extension CollectScreenViewController {
         
         themeManager.setDCBlueTheme(to: self.walletAddressTextField, ofType: .TextFieldDarkBlue)
         let walletAddressPlaceholder = NSAttributedString.init(
-            string: NSLocalizedString("Crypto wallet address", comment: ""),
+            string: "collect_wallet_hnt_address".localized(),
             attributes: [
                 NSAttributedStringKey.foregroundColor: UIColor.dntCeruleanBlue,
                 NSAttributedStringKey.font: UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)!,
@@ -315,9 +315,9 @@ extension CollectScreenViewController {
         
         if !UIImagePickerController.isSourceTypeAvailable(.camera) {
             UIAlertController.show(
-                controllerWithTitle: NSLocalizedString("Error", comment: ""),
-                message: NSLocalizedString("This device doesn't have builtin Camera", comment: ""),
-                buttonTitle: NSLocalizedString("Ok", comment: "")
+                controllerWithTitle: "error_popup_title".localized(),
+                message: "profile_upload_avatar_error".localized("profile_upload_avatar_option_1".localized()),
+                buttonTitle: "txt_ok".localized()
             )
             return
         }
@@ -328,9 +328,9 @@ extension CollectScreenViewController {
             //User has denied access to Camera
             
             UIAlertController.show(
-                controllerWithTitle: NSLocalizedString("Unable to access the Camera", comment: ""),
-                message: NSLocalizedString("To enable access, go to Settings > Privacy > Camera and turn on Camera access for this app.", comment: ""),
-                buttonTitle: NSLocalizedString("Ok", comment: "")
+                controllerWithTitle: "error_popup_title".localized(),
+                message: "signup_txt_permission_avatar".localized(),
+                buttonTitle: "txt_ok".localized()
             )
             
         } else if authStatus == AVAuthorizationStatus.notDetermined {

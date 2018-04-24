@@ -108,11 +108,11 @@ extension CollectSecondScreenViewController {
     
     fileprivate func setup() {
         
-        header.updateTitle(NSLocalizedString("Dentacoin", comment: ""))
+        header.updateTitle("settings_lbl_collect_dentacoins".localized())
         
         collectTitleOneLabel.textColor = UIColor.dntCharcoalGrey
         collectTitleOneLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntLargeTitleFontSize)
-        collectTitleOneLabel.text = NSLocalizedString("Total amount", comment: "")
+        collectTitleOneLabel.text = "collect_hdl_total_dcn".localized()
         
         collectValueOneLabel.textColor = UIColor.dntCeruleanBlue
         collectValueOneLabel.font = UIFont.dntLatoRegularFontWith(size: UIFont.dntLargeTitleFontSize)
@@ -123,18 +123,18 @@ extension CollectSecondScreenViewController {
         guard let pending = UserDataContainer.shared.actionScreenData?.pendingDCN else {
             return
         }
-        collectValueOneLabel.text = "DCN \(earned + pending)"
+        collectValueOneLabel.text = "txt_dcn".localized(String(earned + pending))
         
         separatorLineViewOne.backgroundColor = UIColor.dntCeruleanBlue
         separatorLineViewTwo.backgroundColor = UIColor.dntCeruleanBlue
         
         collectTitleTwoLabel.textColor = UIColor.dntCharcoalGrey
         collectTitleTwoLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntLargeTitleFontSize)
-        collectTitleTwoLabel.text = NSLocalizedString("Withdrawable amount", comment: "")
+        collectTitleTwoLabel.text = "collect_hdl_current_balance".localized()
         
         collectValueTwoLabel.textColor = UIColor.dntCeruleanBlue
         collectValueTwoLabel.font = UIFont.dntLatoRegularFontWith(size: UIFont.dntLargeTitleFontSize)
-        collectValueTwoLabel.text = "DCN \(earned)"
+        collectValueTwoLabel.text = "txt_dcn".localized(String(earned))
         
         let themeManager = ThemeManager.shared
         
@@ -187,7 +187,7 @@ extension CollectSecondScreenViewController {
         parameters.amount = earnedAmount
         parameters.wallet = wallet
         
-        let loadingState = State(.loadingState, NSLocalizedString("Loading...", comment: ""))
+        let loadingState = State(.loadingState, "txt_loading".localized())
         self.showState(loadingState)
         
         APIProvider.requestCollectionOfDCN(parameters) { [weak self] result, error in
@@ -196,9 +196,9 @@ extension CollectSecondScreenViewController {
             
             if let error = error {
                 UIAlertController.show(
-                    controllerWithTitle: NSLocalizedString("Error", comment: ""),
+                    controllerWithTitle: "error_popup_title".localized(),
                     message: error.toNSError().localizedDescription,
-                    buttonTitle: NSLocalizedString("Ok", comment: "")
+                    buttonTitle: "txt_ok".localized()
                 )
                 return
             }

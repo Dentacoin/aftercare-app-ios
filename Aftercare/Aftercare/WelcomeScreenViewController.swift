@@ -36,7 +36,7 @@ extension WelcomeScreenViewController {
         
         self.welcomeLabel.font = UIFont.dntLatoRegularFontWith(size: UIFont.dntTitleFontSize)
         self.welcomeLabel.textColor = .white
-        self.welcomeLabel.text = NSLocalizedString("WELCOME", comment: "")
+        self.welcomeLabel.text = "welcome_txt_welcome".localized()
         
         self.userFirstAndLastNames.font = UIFont.dntLatoLightFont(size: UIFont.dntTitleFontSize)
         self.userFirstAndLastNames.textColor = .white

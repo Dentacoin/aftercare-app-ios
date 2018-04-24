@@ -64,7 +64,7 @@ extension WithdrawsScreenViewController {
     
     fileprivate func setup() {
 
-        header.updateTitle(NSLocalizedString("Withdraws", comment: ""))
+        header.updateTitle("withdraws_hdl_title".localized())
         
         withdrawsTableView.register(
             UINib(
@@ -88,9 +88,9 @@ extension WithdrawsScreenViewController {
             
             if let error = error {
                 UIAlertController.show(
-                    controllerWithTitle: NSLocalizedString("Error", comment: ""),
+                    controllerWithTitle: "error_popup_title".localized(),
                     message: error.toNSError().localizedDescription,
-                    buttonTitle: NSLocalizedString("Ok", comment: "")
+                    buttonTitle: "txt_ok".localized()
                 )
                 self?.showErrorState()
                 return
@@ -115,17 +115,17 @@ extension WithdrawsScreenViewController {
     }
     
     fileprivate func showEmptyState() {
-        let state = State(StateType.emptyState, NSLocalizedString("No withdraws found!", comment: ""))
+        let state = State(StateType.emptyState, "withdraws_no_transactions_found".localized())
         self.showState(state)
     }
     
     fileprivate func showLoadingScreenState() {
-        let loadingState = State(.loadingState, NSLocalizedString("Loading...", comment: ""))
+        let loadingState = State(.loadingState, "txt_loading".localized())
         self.showState(loadingState)
     }
     
     fileprivate func showErrorState() {
-        let state = State(StateType.errorState, NSLocalizedString("Error...", comment: ""))
+        let state = State(StateType.errorState, "error_popup_title".localized())
         self.showState(state)
     }
     

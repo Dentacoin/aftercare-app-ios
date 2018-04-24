@@ -13,12 +13,12 @@ typealias AlertDismissHandler = () -> ()
 extension UIAlertController {
     
     static func show(message: String) {
-        let controller = alertController(title: nil, message: message, buttonTitle: NSLocalizedString("Ok", comment: ""), handler: nil)
+        let controller = alertController(title: nil, message: message, buttonTitle: "txt_ok".localized(), handler: nil)
         controller.show()
     }
     
     static func show(controllerWithTitle title: String, message: String) {
-        let controller = alertController(title: title, message: message, buttonTitle: NSLocalizedString("Ok", comment: ""), handler: nil)
+        let controller = alertController(title: title, message: message, buttonTitle: "txt_ok".localized(), handler: nil)
         controller.show()
     }
     
@@ -28,7 +28,7 @@ extension UIAlertController {
     }
     
     static func show(controllerWithTitle title: String, message: String, cancelTitle: String) {
-        let controller = alertController(title: title, message: message, cancelTitle: cancelTitle, buttonTitle: NSLocalizedString("Ok", comment: ""), nil, nil)
+        let controller = alertController(title: title, message: message, cancelTitle: cancelTitle, buttonTitle: "txt_ok".localized(), nil, nil)
         controller.show()
     }
     

@@ -54,7 +54,7 @@ class OralHealthScreenViewController: UIViewController, ContentConformer {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        header.updateTitle(NSLocalizedString("Oral Health", comment: ""))
+        header.updateTitle("oral_health_hdl_oral_health".localized())
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         setup()
     }
@@ -83,12 +83,12 @@ class OralHealthScreenViewController: UIViewController, ContentConformer {
             
             if let error = error?.toNSError() {
                 UIAlertController.show(
-                    controllerWithTitle: NSLocalizedString("Error", comment: ""),
+                    controllerWithTitle: "error_popup_title".localized(),
                     message: error.localizedDescription,
-                    buttonTitle: NSLocalizedString("Ok", comment: "")
+                    buttonTitle: "txt_ok".localized()
                 )
                 
-                let errorState = State(.errorState, NSLocalizedString("Error...", comment: ""))
+                let errorState = State(.errorState, "error_popup_title".localized())
                 self?.showState(errorState)
                 
                 return
@@ -97,7 +97,7 @@ class OralHealthScreenViewController: UIViewController, ContentConformer {
             self?.oralHealthData = result
             
             if let count = self?.oralHealthData?.count, count == 0 {
-                let emptyState = State(.emptyState, NSLocalizedString("No Content Found!", comment: ""))
+                let emptyState = State(.emptyState, "oral_health_txt_no_posts_found".localized())
                 self?.showState(emptyState)
             }
             
@@ -117,7 +117,7 @@ extension OralHealthScreenViewController {
     
     fileprivate func setup() {
         
-        header.updateTitle(NSLocalizedString("Oral Health", comment: ""))
+        header.updateTitle("oral_health_hdl_oral_health".localized())
         
         tableView.register(
             UINib(

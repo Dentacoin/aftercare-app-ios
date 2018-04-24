@@ -35,10 +35,10 @@ extension SplashScreenViewController {
         let themeManager = ThemeManager.shared
         
         themeManager.setDCBlueTheme(to: self.signUpButton, ofType: .ButtonDefault)
-        self.signUpButton.titleLabel?.text = NSLocalizedString("Sign Up", comment: "Sign Up button")
+        self.signUpButton.titleLabel?.text = "btn_auth_signup".localized()
         
         themeManager.setDCBlueTheme(to: self.loginButton, ofType: .ButtonDefault)
-        self.loginButton.titleLabel?.text = NSLocalizedString("Login", comment: "Login button")
+        self.loginButton.titleLabel?.text = "btn_auth_login".localized()
         
     }
     

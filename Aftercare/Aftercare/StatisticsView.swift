@@ -79,23 +79,23 @@ class StatisticsView: UIView {
         var scheduleData: ScheduleData?
         var statisticsLabel: String?
         var actionBarLabel: String?
-        let timeLeftLabel = NSLocalizedString("AVERAGE TIME", comment: "")//The same no matter the type of the container
-        let averageLabel = NSLocalizedString("TIME LEFT", comment: "")//The same no matter the type of the container
+        let timeLeftLabel = "dashboard_lbl_average_time".localized()//The same no matter the type of the container
+        let averageLabel = "dashboard_lbl_time_left".localized()//The same no matter the type of the container
         
         guard let type = self.type else { return }
         
         switch type {
             case ActionRecordType.brush:
-                statisticsLabel = NSLocalizedString("Brush Statistics", comment: "")
-                actionBarLabel = NSLocalizedString("TIMES BRUSHED", comment: "")
+                statisticsLabel = "dashboard_lbl_brush_statistics".localized()
+                actionBarLabel = "dashboard_lbl_times_brushed".localized()
                 actionData = data.brush
             case ActionRecordType.flossed:
-                statisticsLabel = NSLocalizedString("Flossed Statistics", comment: "")
-                actionBarLabel = NSLocalizedString("TIMES FLOSSED", comment: "")
+                statisticsLabel = "dashboard_lbl_floss_statistics".localized()
+                actionBarLabel = "dashboard_lbl_times_flossed".localized()
                 actionData = data.flossed
             case ActionRecordType.rinsed:
-                statisticsLabel = NSLocalizedString("Rinsed Statistics", comment: "")
-                actionBarLabel = NSLocalizedString("TIMES RINSED", comment: "")
+                statisticsLabel = "dashboard_lbl_rinse_statistics".localized()
+                actionBarLabel = "dashboard_lbl_times_rinsed".localized()
                 actionData = data.rinsed
         }
         
@@ -141,7 +141,7 @@ extension StatisticsView {
         
         let themeManager = ThemeManager.shared
         
-        dailyOptionButton.titleLabel?.text = NSLocalizedString("Daily", comment: "")
+        dailyOptionButton.titleLabel?.text = "dashboard_btn_daily".localized()
         toggleOptionsButton(dailyOptionButton)
         
         //default selected button
@@ -150,14 +150,14 @@ extension StatisticsView {
         themeManager.setDCBlueTheme(
             to: weeklyOptionButton,
             ofType: .ButtonOptionStyle(
-                label: NSLocalizedString("Weekly", comment: ""),
+                label: "dashboard_btn_weekly".localized(),
                 selected: false
             )
         )
         themeManager.setDCBlueTheme(
             to: monthlyOptionButton,
             ofType: .ButtonOptionStyle(
-                label: NSLocalizedString("Monthly", comment: ""),
+                label: "dashboard_btn_monthly".localized(),
                 selected: false
             )
         )

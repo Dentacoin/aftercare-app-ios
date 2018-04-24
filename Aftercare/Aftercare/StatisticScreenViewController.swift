@@ -34,8 +34,8 @@ class StatisticScreenViewController: UIViewController, ContentConformer {
         kind: ActionRecordType?
     )
     
-    fileprivate var timeLeftTitle = NSLocalizedString("TIME LEFT", comment: "")
-    fileprivate var averageTimeTitle = NSLocalizedString("AVERAGE TIME", comment: "")
+    fileprivate var timeLeftTitle = "dashboard_lbl_time_left".localized()
+    fileprivate var averageTimeTitle = "dashboard_lbl_average_time".localized()
     
     fileprivate var data: [StatisticsCell] = [
         (
@@ -46,37 +46,37 @@ class StatisticScreenViewController: UIViewController, ContentConformer {
         ),
         (
             cellType: String(describing: StatisticsLabelCell.self),
-            label: NSLocalizedString("Floss Statistic", comment: ""),
+            label: "dashboard_lbl_floss_statistics".localized(),
             data: nil,
             kind: ActionRecordType.flossed
         ),
         (
             cellType: String(describing: StatisticsCircularBarsCell.self),
-            label: NSLocalizedString("TIMES FLOSSED", comment: ""),
+            label: "dashboard_lbl_times_flossed".localized(),
             data: UserDataContainer.shared.actionScreenData?.flossed,
             kind: .flossed
         ),
         (
             cellType: String(describing: StatisticsLabelCell.self),
-            label: NSLocalizedString("Brush Statistic", comment: ""),
+            label: "dashboard_lbl_brush_statistics".localized(),
             data: nil,
             kind: ActionRecordType.brush
         ),
         (
             cellType: String(describing: StatisticsCircularBarsCell.self),
-            label: NSLocalizedString("TIMES BRUSHED", comment: ""),
+            label: "dashboard_lbl_times_brushed".localized(),
             data: UserDataContainer.shared.actionScreenData?.brush,
             kind: .brush
         ),
         (
             cellType: String(describing: StatisticsLabelCell.self),
-            label: NSLocalizedString("Rinse Statistic", comment: ""),
+            label: "dashboard_lbl_rinse_statistics".localized(),
             data: nil,
             kind: ActionRecordType.rinsed
         ),
         (
             cellType: String(describing: StatisticsCircularBarsCell.self),
-            label: NSLocalizedString("TIMES RINSED", comment: ""),
+            label: "dashboard_lbl_times_rinsed".localized(),
             data: UserDataContainer.shared.actionScreenData?.rinsed,
             kind: .rinsed
         )
@@ -118,7 +118,7 @@ extension StatisticScreenViewController {
     
     fileprivate func setup() {
         
-        header.updateTitle(NSLocalizedString("Statistics", comment: ""))
+        header.updateTitle("statistics_hdl_statistics".localized())
         
         tableView.register(
                 UINib(

@@ -76,11 +76,11 @@ class MissionPopupScreen: UIView {
         
         titleLabel.textColor = .white
         titleLabel.font = UIFont.dntLatoBlackFont(size: UIFont.dntLargeTitleFontSize)
-        titleLabel.text = NSLocalizedString("Day", comment: "") + " 0"
+        titleLabel.text = "journey_hdl_daily".localized("0")
         
         subTitleLabel.textColor = UIColor.lightGray
         subTitleLabel.font = UIFont.dntLatoRegularFontWith(size: UIFont.dntButtonFontSize)
-        subTitleLabel.text = NSLocalizedString("of", comment: "") + " "  + String(90)
+        subTitleLabel.text = "total_days_mission_popup".localized(String(90))
         
         descriptionTextView.textColor = .white
         descriptionTextView.font = UIFont.dntLatoRegularFontWith(size: UIFont.dntNormalTextSize)

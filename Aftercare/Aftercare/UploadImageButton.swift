@@ -59,10 +59,10 @@ extension UploadImageButton : UIImagePickerControllerDelegate {
     
     fileprivate func showUploadImageOptions() {
         
-        let optionsMenuMessage = NSLocalizedString("Choose Option", comment: "Choose option for image upload")
-        let optionCameraTitle = NSLocalizedString("Camera", comment: "Camera option for image upload")
-        let optionLibraryTitle = NSLocalizedString("Library", comment: "Library option for image upload")
-        let optionCancelTitle = NSLocalizedString("Cancel", comment: "Cancel image upload menu")
+        let optionsMenuMessage = "profile_upload_avatar_option_title".localized()
+        let optionCameraTitle = "profile_upload_avatar_option_1".localized()
+        let optionLibraryTitle = "profile_upload_avatar_option_2".localized()
+        let optionCancelTitle = "profile_upload_avatar_option_3".localized()
         
         let optionMenu = UIAlertController(title: nil, message: optionsMenuMessage, preferredStyle: .actionSheet)
         let deleteAction = UIAlertAction(title: optionCameraTitle, style: .default, handler: {
@@ -97,16 +97,16 @@ extension UploadImageButton : UIImagePickerControllerDelegate {
             
             switch sourceType {
             case .camera:
-                sourceTypeName = NSLocalizedString("Camera", comment: "")
+                sourceTypeName = "Camera"
             case .photoLibrary:
-                sourceTypeName = NSLocalizedString("Photo Library", comment: "")
+                sourceTypeName = "Photo Library"
             case .savedPhotosAlbum:
-                sourceTypeName = NSLocalizedString("Photo Album", comment: "")
+                sourceTypeName = "Photo Album"
             }
             
-            let errorMessage = NSLocalizedString("Device has no \(sourceTypeName)!", comment: "")
-            let errorTitle = NSLocalizedString("Error", comment: "")
-            let okActionTitle = NSLocalizedString("Ok", comment: "")
+            let errorMessage = "profile_upload_avatar_error".localized(sourceTypeName)
+            let errorTitle = "error_popup_title".localized()
+            let okActionTitle = "txt_ok".localized()
             
             UIAlertController.show(
                 controllerWithTitle: errorTitle,

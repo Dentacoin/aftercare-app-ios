@@ -118,17 +118,17 @@ extension EmergencyScreenViewController {
     
     fileprivate func setup() {
         
-        header.updateTitle(NSLocalizedString("Emergency", comment: ""))
+        header.updateTitle("emergency_hdl_emergency".localized())
         
         titleLabel.textColor = UIColor.dntCeruleanBlue
         titleLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntTitleFontSize)
-        titleLabel.text = NSLocalizedString("Select a sick tooth", comment: "")
+        titleLabel.text = "emergency_hdl_select_tooth".localized()
         
         let themeManager = ThemeManager.shared
         
         themeManager.setDCBlueTheme(to: nextButton, ofType: .ButtonDefaultBlueGradient)
-        nextButton.setTitle(NSLocalizedString("Next", comment: ""), for: .normal)
-        nextButton.setTitle(NSLocalizedString("Next", comment: ""), for: .highlighted)
+        nextButton.setTitle("emergency_btn_next".localized(), for: .normal)
+        nextButton.setTitle("emergency_btn_next".localized(), for: .highlighted)
         nextButton.isEnabled = selectedTeethCount > 0
     }
     

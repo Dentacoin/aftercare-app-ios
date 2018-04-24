@@ -30,7 +30,7 @@ class SettingsClearButtonTableCell: UITableViewCell {
         cellLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntButtonFontSize)
         
         let themeManager = ThemeManager.shared
-        themeManager.setDCBlueTheme(to: cellButton, ofType: .ButtonActionStyle(label: NSLocalizedString("Reset", comment: ""), selected: true))
+        themeManager.setDCBlueTheme(to: cellButton, ofType: .ButtonActionStyle(label: "btn_settings_reset".localized(), selected: true))
         
         //cellButton.setTitle(, for: .normal)
         cellButton.addTarget(self, action: Selector.buttonSelector, for: .touchUpInside)
@@ -41,7 +41,7 @@ class SettingsClearButtonTableCell: UITableViewCell {
             delegate?.onClearButtonPressed(indexPath)
             
             let themeManager = ThemeManager.shared
-            themeManager.setDCBlueTheme(to: cellButton, ofType: .ButtonActionStyle(label: NSLocalizedString("Reset", comment: ""), selected: false))
+            themeManager.setDCBlueTheme(to: cellButton, ofType: .ButtonActionStyle(label: "btn_settings_reset".localized(), selected: false))
             
         }
     }

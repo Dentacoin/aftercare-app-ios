@@ -40,15 +40,15 @@ class DescribeCaseScreenViewController: UIViewController, ContentConformer {
     //MARK: - fileprivates
     
     fileprivate lazy var phonePlaceholder: String = {
-        return NSLocalizedString("Phone", comment: "")
+        return "emergency_hnt_phone".localized()
     }()
     
     fileprivate lazy var describeYourCasePlaceholder: String = {
-        return NSLocalizedString("Write Message", comment: "")
+        return "emergency_hnt_write_message".localized()
     }()
     
     fileprivate lazy var errorPhoneContactString: String = {
-        return NSLocalizedString("Phone not valid", comment: "")
+        return "error_txt_wrong_phone_number".localized()
     }()
     
     fileprivate var calculatedConstraints = false
@@ -85,7 +85,7 @@ class DescribeCaseScreenViewController: UIViewController, ContentConformer {
         
         if let data = describeYourCaseTextView.text {
             if data.isEmpty || data == describeYourCasePlaceholder {
-                return NSLocalizedString("Please write a detailed information of your case", comment: "")
+                return "emergency_hdl_describe".localized()
             }
         }
         
@@ -107,7 +107,7 @@ extension DescribeCaseScreenViewController {
     fileprivate func setup() {
         
         header.delegate = self
-        header.updateTitle(NSLocalizedString("Emergency", comment: ""))
+        header.updateTitle("emergency_hdl_emergency".localized())
         
         titleLabel.textColor = UIColor.dntCeruleanBlue
         titleLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntTitleFontSize)
@@ -123,7 +123,7 @@ extension DescribeCaseScreenViewController {
         
         let themeManager = ThemeManager.shared
         themeManager.setDCBlueTheme(to: self.sendButton, ofType: .ButtonDefault)
-        sendButton.titleLabel?.text = NSLocalizedString("Send", comment: "")
+        sendButton.titleLabel?.text = "txt_send".localized()
         
         themeManager.setDCBlueTheme(to: self.contactTextField, ofType: .TextFieldDefaut)
         contactTextField.keyboardType = .phonePad
@@ -204,9 +204,9 @@ extension DescribeCaseScreenViewController {
         if let error = self.validateCaseData() {
             
             UIAlertController.show(
-                controllerWithTitle: NSLocalizedString("Error", comment: ""),
+                controllerWithTitle: "error_popup_title".localized(),
                 message: error,
-                buttonTitle: NSLocalizedString("Ok", comment: "")
+                buttonTitle: "txt_ok".localized()
             )
             
         } else {
@@ -230,9 +230,9 @@ extension DescribeCaseScreenViewController: MFMailComposeViewControllerDelegate 
         if !MFMailComposeViewController.canSendMail() {
             
             UIAlertController.show(
-                controllerWithTitle: NSLocalizedString("Error", comment: ""),
-                message: NSLocalizedString("Sorry but your device can't or isn't configured to send emails.", comment: ""),
-                buttonTitle: NSLocalizedString("Ok", comment: "")
+                controllerWithTitle: "error_popup_title".localized(),
+                message: "error_txt_cant_send_emails".localized(),
+                buttonTitle: "txt_ok".localized()
             )
             
             return nil
@@ -241,13 +241,13 @@ extension DescribeCaseScreenViewController: MFMailComposeViewControllerDelegate 
             var messageBody = describeYourCaseTextView.text!
             if !(contactTextField.text?.isEmpty)! {
                 messageBody += "\n"
-                messageBody += "Contact Preference by Phone: " + contactTextField.text!
+                messageBody += "emergency_lbl_phone".localized() + contactTextField.text!
             }
             
             let mailComposerViewController = MFMailComposeViewController()
             mailComposerViewController.mailComposeDelegate = self
             mailComposerViewController.setToRecipients(["emergency@dentacoin.com"])
-            mailComposerViewController.setSubject(NSLocalizedString("Dental Case Inquiry", comment: ""))
+            mailComposerViewController.setSubject("emergency_email_subject".localized())
             mailComposerViewController.setMessageBody(messageBody, isHTML: false)
             mailComposerViewController.addAttachmentData(
                 UIImageJPEGRepresentation(UserDataContainer.shared.emergencyScreenImage!,

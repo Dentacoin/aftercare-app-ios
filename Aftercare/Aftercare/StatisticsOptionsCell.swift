@@ -87,14 +87,14 @@ extension StatisticsOptionsCell: StatisticsTableViewCellProtocol {
     func setupAppearance() {
         
         let themeManager = ThemeManager.shared
-        dailyOptionButton.titleLabel?.text = NSLocalizedString("Daily", comment: "")
+        dailyOptionButton.titleLabel?.text = "dashboard_btn_daily".localized()
         toggleOptionsButton(dailyOptionButton)
         dailyOptionButton.addTarget(self, action: Selector.optionsButtonPressed, for: .touchUpInside)
         
         themeManager.setDCBlueTheme(
             to: weeklyOptionButton,
             ofType: .ButtonOptionStyle(
-                label: NSLocalizedString("Weekly", comment: ""),
+                label: "dashboard_btn_weekly".localized(),
                 selected: false
             )
         )
@@ -103,7 +103,7 @@ extension StatisticsOptionsCell: StatisticsTableViewCellProtocol {
         themeManager.setDCBlueTheme(
             to: monthlyOptionButton,
             ofType: .ButtonOptionStyle(
-                label: NSLocalizedString("Monthly", comment: ""),
+                label: "dashboard_btn_monthly".localized(),
                 selected: false
             )
         )

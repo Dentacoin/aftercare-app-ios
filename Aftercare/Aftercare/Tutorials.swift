@@ -12,33 +12,33 @@ struct Tutorials {
     
     fileprivate static var tutorials: [Tutorial] = [
         (
-            title: "Start your journey",
-            description: "Start your journey toward\na beautiful smile!",
+            title: "onboarding_txt_title_1".localized(),
+            description: "onboarding_txt_message_1".localized(),
             image: "onboarding_1"
         ),
         (
-            title: "Journeys",
-            description: "Complete 90 days of consecutive\nuse, or 180 routines altogether\nand collect your DCN reward!",
+            title: "onboarding_txt_title_2".localized(),
+            description: "onboarding_txt_message_2".localized(),
             image: "onboarding_2"
         ),
         (
-            title: "Routines",
-            description: "Complete your morning and\nevening routines and earn\nDCN daily!",
+            title: "onboarding_txt_title_3".localized(),
+            description: "onboarding_txt_message_3".localized(),
             image: "onboarding_3"
         ),
         (
-            title: "Watch your earnings",
-            description: "Here you'll see your current DCN Balance.\nWatch it grow each time you\ncomplete a routine!",
+            title: "onboarding_txt_title_4".localized(),
+            description: "onboarding_txt_message_4".localized(),
             image: "onboarding_4"
         ),
         (
-            title: "Complete achievements!",
-            description: "Try completing different\nachievements and earn even\nmore DCN!",
+            title: "onboarding_txt_title_5".localized(),
+            description: "onboarding_txt_message_5".localized(),
             image: "onboarding_5"
         ),
         (
-            title: "Withdraw",
-            description: "Collect your earnings!\nOnce you've completed your\n90 days cycle!",
+            title: "onboarding_txt_title_6".localized(),
+            description: "onboarding_txt_message_6".localized(),
             image: "onboarding_6"
         )
     ]
@@ -47,7 +47,7 @@ struct Tutorials {
         return tutorials
     }
     
-    static let nextButtonLabel = NSLocalizedString("Next", comment: "")
-    static let lastButtonLabel = NSLocalizedString("I Got it!", comment: "")
+    static let nextButtonLabel = "onboarding_txt_next".localized()
+    static let lastButtonLabel = "onboarding_txt_got_it".localized()
     
 }

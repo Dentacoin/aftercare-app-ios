@@ -42,7 +42,7 @@ class AboutScreenViewController: UIViewController, ContentConformer {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        header.updateTitle(NSLocalizedString("About", comment: ""))
+        header.updateTitle("about_hdl_about".localized())
     }
     
     override func viewDidLayoutSubviews() {

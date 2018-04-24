@@ -1,0 +1,850 @@
+/* 
+  Localizable.strings
+  Aftercare
+
+  Created by Dimitar Grudev on 20.04.18.
+  Copyright © 2018 Dimitar Grudev. All rights reserved.
+*/
+
+/*
+ * Loco ios export: iOS Localizable.strings
+ * Project: Dentacare
+ * Release: Working copy
+ * Locale: en, English
+ * Exported by: atanaschervarov
+ * Exported at: Thu, 19 Apr 2018 10:28:53 +0300
+ */
+
+/* loco:597dbcd2820ee9ba778b4567 */
+"app_name" = "Dentacare";
+
+/* loco:597dbd0b820ee9ce778b4567 */
+"btn_auth_signup" = "Sign up";
+
+/* loco:597dbd22820ee9a0778b4567 */
+"btn_auth_login" = "Login";
+
+/* loco:597e3599820ee99b168b4567 */
+"txt_login_forgot_password" = "Forgot password?";
+
+/* loco:597e362c820ee987168b4567 */
+"txt_login_or_connect_with" = "Or connect with";
+
+/* loco:597f1efd820ee94c478b4567 */
+"signup_txt_signup" = "Sign Up";
+
+/* loco:597f1f33820ee978478b4568 */
+"signup_hnt_name" = "Name";
+
+/* loco:597f1f5c820ee978478b4569 */
+"signup_hnt_email" = "email";
+
+/* loco:597f1f82820ee960478b4568 */
+"signup_hnt_password" = "password";
+
+/* loco:597f1fc9820ee976478b4568 */
+"signup_btn_create" = "Create";
+
+/* loco:5ad5b30c820ee92c658b4567 */
+"about_hdl_about" = "About Dentacare";
+
+/* loco:5ad5b365820ee931658b4567 */
+"about_hdl_heading" = "Form sustainable oral\nhealth habits";
+
+/* loco:5ad5b3dc820ee976658b4567 */
+"about_txt_about" = "Dentacoin is the first Blockchain solution created for the global dental industry. DCN is the custom ERC20 token, which serves all Dentacoin tools. Through using Dentacoin tools, you are contributing to our mission towards improving dental care and making it accessible for everyone worldwide.";
+
+/* loco:5ad5b417820ee977658b4567 */
+"about_url_dentacare" = "dentacare.com";
+
+/* loco:5ad5b752820ee920668b4567 */
+"signup_hnt_first_name" = "First name";
+
+/* loco:5ad5b766820ee922668b4568 */
+"signup_hnt_last_name" = "Last name";
+
+/* loco:5ad5b789820ee92f668b4567 */
+"signup_hnt_captcha" = "enter code";
+
+/* loco:5ad5bade820ee90e678b4567 */
+"error_txt_first_name_required" = "First name is required!";
+
+/* loco:5ad5baf5820ee9de668b4568 */
+"error_txt_first_name_too_short" = "First name is too short!";
+
+/* loco:5ad5bb0d820ee90e678b456b */
+"error_txt_first_name_too_long" = "First name is too long!";
+
+/* loco:5ad5bb21820ee917678b456a */
+"error_txt_last_name_too_long" = "Last name is too long!";
+
+/* loco:5ad5bb4f820ee918678b4567 */
+"error_txt_name_not_valid" = "Not a valid name!";
+
+/* loco:5ad5bb62820ee90e678b456e */
+"error_txt_email_required" = "Email is required!";
+
+/* loco:5ad5bb79820ee90d678b4567 */
+"error_txt_email_not_valid" = "Please provide a valid email!";
+
+/* loco:5ad5bb9a820ee9f8668b4567 */
+"error_txt_password_short" = "Please provide a password with at least 8 characters";
+
+/* loco:5ad5bbb6820ee90c678b4568 */
+"error_txt_failed_upload_avatar" = "Failed to upload avatar!";
+
+/* loco:5ad5bbc7820ee917678b456d */
+"error_txt_something_went_wrong" = "Something went wrong..";
+
+/* loco:5ad5bbdd820ee939678b4568 */
+"error_txt_offline" = "You're offline. Please connect to the internet and try again.";
+
+/* loco:5ad5bbef820ee939678b456c */
+"error_txt_json" = "Error parsing json response!";
+
+/* loco:5ad5bc4a820ee969678b4567 */
+"signup_txt_permission_avatar" = "You need to grant us \"Camera\" permissions in order to setup an avatar";
+
+/* loco:5ad5bc9e820ee965678b4567 */
+"txt_settings" = "Settings";
+
+/* loco:5ad5bcdf820ee945678b456c */
+"error_txt_error_picking_image" = "An error occurred while trying to retrieve the picture!";
+
+/* loco:5ad5c19c820ee9be688b456d */
+"reset_password_hdl_forgot" = "Forgot your password?";
+
+/* loco:5ad5c1b2820ee9dd688b4567 */
+"reset_password_txt_send" = "We will send you an email with instructions on how to reset your password";
+
+/* loco:5ad5c1c3820ee9fe688b4567 */
+"reset_password_txt_success" = "Successfully sent reset request, you will receive an email shortly";
+
+/* loco:5ad5c215820ee9bf688b4569 */
+"txt_send" = "Send";
+
+/* loco:5ad5c231820ee9bf688b456b */
+"txt_ok" = "Ok";
+
+/* loco:5ad5c3cc820ee957698b4569 */
+"txt_loading" = "Loading...";
+
+/* loco:5ad5c430820ee971698b4567 */
+"btn_agree" = "Agree";
+
+/* loco:5ad5c441820ee97f698b4567 */
+"txt_cancel" = "Cancel";
+
+/* loco:5ad5c45e820ee94a698b4569 */
+"txt_yes" = "Yes";
+
+/* loco:5ad5c46f820ee981698b4569 */
+"txt_no" = "No";
+
+/* loco:5ad5c4a3820ee970698b4568 */
+"user_agreement" = "<!DOCTYPE html>\n<html>\n   <head>\n      <meta charset=\"utf-8\">\n      <meta name=\"viewport\" content=\"width=device-width\">\n      <title>Privacy Policy</title>\n      <style>body{font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; padding:1em;}</style>\n   </head>\n   <body>\n      <h2>Terms &amp; Conditions</h2>\n      <p>By downloading or using the app, these terms will automatically apply to you – you should make sure therefore that you read them carefully before using the app. You’re not allowed to copy, or modify the app, any part of the app, or our trademarks in any way. You’re not allowed to attempt to extract the source code of the app, and you also shouldn’t try to translate the app into other languages, or make derivative versions. The app itself, and all the trade marks, copyright, database rights and other intellectual property rights related to it, still belong to Dentacoin Foundation.</p>\n      <p>Dentacoin Foundation is committed to ensuring that the app is as useful and efficient as possible. For that reason, we reserve the right to make changes to the app or to charge for its services, at any time and for any reason. We will never charge you for the app or its services without making it very clear to you exactly what you’re paying for.</p>\n      <p>The Dentacare app stores and processes personal data that you have provided to us, in order to provide our Service. It’s your responsibility to keep your phone and access to the app secure. We therefore recommend that you do not jailbreak or root your phone, which is the process of removing software restrictions and limitations imposed by the official operating system of your device. It could make your phone vulnerable to malware/viruses/malicious programs, compromise your phone’s security features and it could mean that the Dentacare app won’t work properly or at all. </p>\n      <p>You should be aware that there are certain things that Dentacoin Foundation will not take responsibility for. Certain functions of the app will require the app to have an active internet connection. The connection can be Wi-Fi, or provided by your mobile network provider, but Dentacoin Foundation cannot take responsibility for the app not working at full functionality if you don’t have access to Wi-Fi, and you don’t have any of your data allowance left.</p>\n      <p></p>\n      <p>If you’re using the app outside of an area with Wi-Fi, you should remember that your terms of the agreement with your mobile network provider will still apply. As a result, you may be charged by your mobile provider for the cost of data for the duration of the connection while accessing the app, or other third party charges. In using the app, you’re accepting responsibility for any such charges, including roaming data charges if you use the app outside of your home territory (i.e. region or country) without turning off data roaming. If you are not the bill payer for the device on which you’re using the app, please be aware that we assume that you have received permission from the bill payer for using the app.</p>\n      <p>Along the same lines, Dentacoin Foundation cannot always take responsibility for the way you use the app i.e. You need to make sure that your device stays charged – if it runs out of battery and you can’t turn it on to avail the Service, Dentacoin Foundation cannot accept responsibility</p>\n      <p>With respect to Dentacoin Foundation’s responsibility for your use of the app, when you’re using the app, it’s important to bear in mind that although we endeavour to ensure that it is updated and correct at all times, we do rely on third parties to provide information to us so that we can make it available to you. Dentacoin Foundation accepts no liability for any loss, direct or indirect, you experience as a result of relying wholly on this functionality of the app.</p>\n      <p>At some point, we may wish to update the app. The app is currently available on Android and iOS – the requirements for both systems (and for any additional systems we decide to extend the availability of the app to) may change, and you’ll need to download the updates if you want to keep using the app. Dentacoin Foundation does not promise that it will always update the app so that it is relevant to you and/or works with the iOS/Android version that you have installed on your device. However, you promise to always accept updates to the application when offered to you, We may also wish to stop providing the app, and may terminate use of it at any time without giving notice of termination to you. Unless we tell you otherwise, upon any termination, (a) the rights and licenses granted to you in these terms will end; (b) you must stop using the app, and (if needed) delete it from your device.</p>\n      <p><strong>Changes to This Terms and Conditions</strong></p>\n      <p> We may update our Terms and Conditions from time to time. Thus, you are advised to review\n         this page periodically for any changes. We will notify you of any changes by posting\n         the new Terms and Conditions on this page. These changes are effective immediately after they are posted on\n         this page.\n      </p>\n      <p><strong>Contact Us</strong></p>\n      <p>If you have any questions or suggestions about our Terms and Conditions, do not hesitate to contact\n         us.\n      </p>\n\n      <h2>Privacy Policy</h2>\n      <p> Dentacoin Foundation built the Dentacare app as an Open Source app. This SERVICE is provided by Dentacoin Foundation at no cost and is intended for use as is.\n      </p>\n      <p>This page is used to inform website visitors regarding our policies with the collection, use, and\n         disclosure of Personal Information if anyone decided to use our Service.\n      </p>\n      <p>If you choose to use our Service, then you agree to the collection and use of information in relation\n         to this policy. The Personal Information that we collect is used for providing and improving the\n         Service. We will not use or share your information with anyone except as described\n         in this Privacy Policy.\n      </p>\n      <p>The terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, which is accessible\n         at Dentacare unless otherwise defined in this Privacy Policy.\n      </p>\n      <p><strong>Information Collection and Use</strong></p>\n      <p>For a better experience, while using our Service, we may require you to provide us with certain\n         personally identifiable information, including but not limited to First name, Last name, email, Birthday, City, Country, Zip Code, Gender. The information that we request is will be retained by us and used as described in this privacy policy.\n      </p>\n      <p>The app does use third party services that may collect information used to identify you.</p>\n      <div>\n         <p>Link to privacy policy of third party service providers used by the app </p>\n         <ul>\n            <li><a href=\"https://www.google.com/policies/privacy/\" target=\"_blank\">Google Play Services</a></li>\n            <!----> \n            <li><a href=\"https://firebase.google.com/policies/analytics\" target=\"_blank\">Firebase Analytics</a></li>\n            <!---->\n         </ul>\n      </div>\n      <p><strong>Log Data</strong></p>\n      <p> We want to inform you that whenever you use our Service, in a case of an\n         error in the app we collect data and information (through third party products) on your phone\n         called Log Data. This Log Data may include information such as your device Internet Protocol (“IP”) address,\n         device name, operating system version, the configuration of the app when utilizing our Service,\n         the time and date of your use of the Service, and other statistics.\n      </p>\n      <p><strong>Cookies</strong></p>\n      <p>Cookies are files with small amount of data that is commonly used an anonymous unique identifier. These\n         are sent to your browser from the website that you visit and are stored on your device internal memory.\n      </p>\n      <p>This Service does not use these “cookies” explicitly. However, the app may use third party code and libraries\n         that use “cookies” to collection information and to improve their services. You have the option to either\n         accept or refuse these cookies and know when a cookie is being sent to your device. If you choose to\n         refuse our cookies, you may not be able to use some portions of this Service.\n      </p>\n      <p><strong>Service Providers</strong></p>\n      <p> We may employ third-party companies and individuals due to the following reasons:</p>\n      <ul>\n         <li>To facilitate our Service;</li>\n         <li>To provide the Service on our behalf;</li>\n         <li>To perform Service-related services; or</li>\n         <li>To assist us in analyzing how our Service is used.</li>\n      </ul>\n      <p> We want to inform users of this Service that these third parties have access to your\n         Personal Information. The reason is to perform the tasks assigned to them on our behalf. However, they\n         are obligated not to disclose or use the information for any other purpose.\n      </p>\n      <p><strong>Security</strong></p>\n      <p> We value your trust in providing us your Personal Information, thus we are striving\n         to use commercially acceptable means of protecting it. But remember that no method of transmission over\n         the internet, or method of electronic storage is 100% secure and reliable, and we cannot guarantee\n         its absolute security.\n      </p>\n      <p><strong>Links to Other Sites</strong></p>\n      <p>This Service may contain links to other sites. If you click on a third-party link, you will be directed\n         to that site. Note that these external sites are not operated by us. Therefore, we strongly\n         advise you to review the Privacy Policy of these websites. We have no control over\n         and assume no responsibility for the content, privacy policies, or practices of any third-party sites\n         or services.\n      </p>\n      <p><strong>Children’s Privacy</strong></p>\n      <p>These Services do not address anyone under the age of 13. We do not knowingly collect\n         personally identifiable information from children under 13. In the case we discover that a child\n         under 13 has provided us with personal information, we immediately delete this from\n         our servers. If you are a parent or guardian and you are aware that your child has provided us with personal\n         information, please contact us so that we will be able to do necessary actions.\n      </p>\n      <p><strong>Changes to This Privacy Policy</strong></p>\n      <p> We may update our Privacy Policy from time to time. Thus, you are advised to review\n         this page periodically for any changes. We will notify you of any changes by posting\n         the new Privacy Policy on this page. These changes are effective immediately after they are posted on\n         this page.\n      </p>\n      <p><strong>Contact Us</strong></p>\n      <p>If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact\n         us.\n      </p>\n   </body>\n</html>";
+
+/* loco:5ad5c8da820ee9a26a8b4569 */
+"store_listing_short" = "Get Rewarded for Maintaining Proper Dental Care!";
+
+/* loco:5ad5c8fa820ee9a76a8b4567 */
+"store_listing_long" = "Dentacare, the app that rewards users for establishing healthy dental care habits, is here! Yes, you read it right. By maintaining proper dental care and adhering to all recommendations within the app, users receive incentives in the form of Dentacoin tokens (the first cryptocurrency for the global dental industry). Note: At the moment the app accumulates relative values of Dentacoin tokens. This option will be fully functional upon the next updates.  \n\n“Motivation is what gets you started. Habit is what keeps you going.”\n– Jim Ryun\n\nNowadays, it is proven that more than 90% of all dental problems can be prevented with regular check-ups, proper oral care and nutrition (according to the Australian Dental Association). This well-known but often neglected real-world problem is about to be counterattacked by the new mobile app of Dentacoin. \n\nThe Dentacare Mobile app aims to form long-lasting dental care habits through an intensive 3-month program in an engaging gamified environment. Through reminders, notifications, voice navigation and tutorials, users will be taught how to improve their dental hygiene and thus, form healthy habits. The app educates users how to brush, floss, rinse properly and advises them further on how to take proper care of their teeth with regular check-ups, better nutrition, etc. An emergency function implemented allows users to get advice from the dental specialists within the Dentacoin network in case of problems. The app is tremendously beneficial for children as well, as forming dental hygiene habits at a young age prevents the formation of deeper dental problems in future.\n\nThe basic initial program lasts for 3 months, as it is considered that this is the time slot needed for a certain activity to be permanently integrated into the daily routine of an individual.\n\n“Call it what you will, incentives are what get people to work harder.”\n– Nikita Khrushchev\n\nOnly after maintaining a proper routine for a 3-month period, users will be rewarded with Dentacoin tokens, which they can later use for paying for dental services, dental care products, Dentacoin Assurance, or they can store them or trade on exchange platforms against other currencies.";
+
+/* loco:5ad5d782820ee9236e8b456a */
+"onboarding_txt_skip" = "Skip";
+
+/* loco:5ad5d792820ee92b6e8b4569 */
+"onboarding_txt_next" = "Next";
+
+/* loco:5ad5d7e8820ee9766e8b4568 */
+"onboarding_txt_got_it" = "I got it!";
+
+/* loco:5ad5d7f9820ee9796e8b4568 */
+"onboarding_txt_title_1" = "Start your journey";
+
+/* loco:5ad5d815820ee97c6e8b4569 */
+"onboarding_txt_message_1" = "Start your journey towards a beautiful smile!";
+
+/* loco:5ad5d828820ee9806e8b4569 */
+"onboarding_txt_title_2" = "Journeys";
+
+/* loco:5ad5d83f820ee97d6e8b4569 */
+"onboarding_txt_message_2" = "Complete 90 days of consecutive use, or 180 routines altogether and collect your DCN reward!";
+
+/* loco:5ad5d852820ee9806e8b456b */
+"onboarding_txt_title_3" = "Routines";
+
+/* loco:5ad5d868820ee97f6e8b4568 */
+"onboarding_txt_message_3" = "Complete your morning and evening routines and earn DCN daily!";
+
+/* loco:5ad5d87a820ee97e6e8b4568 */
+"onboarding_txt_title_4" = "Watch your earnings";
+
+/* loco:5ad5d890820ee9836e8b4569 */
+"onboarding_txt_message_4" = "Check your current DCN Balance. Watch it grow each time you complete a routine!";
+
+/* loco:5ad5d8a7820ee9866e8b456b */
+"onboarding_txt_title_5" = "Complete achievements";
+
+/* loco:5ad5d8b8820ee9856e8b4568 */
+"onboarding_txt_message_5" = "Try complete different achievements and earn even more DCN!";
+
+/* loco:5ad5d8ca820ee97d6e8b456c */
+"onboarding_txt_title_6" = "Withdraw";
+
+/* loco:5ad5d8e6820ee9766e8b4570 */
+"onboarding_txt_message_6" = "Collect your earnings!\nOnce you've completed your 90 days cycle!";
+
+/* loco:5ad5d8f8820ee97a6e8b456b */
+"onboarding_txt_skip_question" = "Skip?";
+
+/* loco:5ad5d90c820ee9f86e8b4567 */
+"onboarding_txt_skip_message" = "Are you sure you want to skip the tutorial?";
+
+/* loco:5ad5da36820ee9ed6e8b4569 */
+"collect_hdl_collect" = "Collect";
+
+/* loco:5ad5da4d820ee9416f8b4568 */
+"collect_hdl_collected_dcn" = "Collected DCN in Wallet";
+
+/* loco:5ad5da5c820ee9446f8b4567 */
+"collect_hdl_current_balance" = "Withdrawable amount";
+
+/* loco:5ad5da73820ee9466f8b456a */
+"collect_hnt_amount" = "Amount";
+
+/* loco:5ad5da87820ee93d6f8b4569 */
+"collect_wallet_btn_collect" = "Collect";
+
+/* loco:5ad5da9a820ee9466f8b456c */
+"collect_txt_what_is_dentacoin" = "What is Dentacoin?";
+
+/* loco:5ad5dab4820ee9456f8b4567 */
+"collect_wallet_sent_collect_request" = "Successfully sent collect request! You can follow your request status it the \"Withdraws\" section.";
+
+/* loco:5ad5db08820ee9496f8b4569 */
+"collect_txt_permission_camera" = "In order to scan the QR code we need a permission to use your camera.";
+
+/* loco:5ad5db20820ee9496f8b456b */
+"collect_txt_found_wallet" = "Scan success!";
+
+/* loco:5ad5db30820ee93e6f8b4568 */
+"collect_txt_wallet_copied" = "Wallet copied!";
+
+/* loco:5ad5df81820ee948708b4567 */
+"collect_hdl_total_dcn" = "Total amount";
+
+/* loco:5ad5dfb2820ee934708b4568 */
+"collect_error_retrieving_data" = "There was an error trying to retrieve your data. Please try again later.";
+
+/* loco:5ad5dfe8820ee942708b4567 */
+"collect_error_not_enough" = "Sorry but you don't have such amount of DCN yet!";
+
+/* loco:5ad5e015820ee93f708b4567 */
+"collect_error_not_enough_use" = "Sorry but you have to use Dentacare app for at least 3 months to be able to withdraw earned DCN!";
+
+/* loco:5ad5e02b820ee961708b4567 */
+"collect_error_not_confirmed" = "Sorry, in order to make withdraw requests you need to verify your email address first!";
+
+/* loco:5ad5e03b820ee93d708b4567 */
+"collect_error_btn_verify" = "Verify";
+
+/* loco:5ad5ebff820ee92c738b4567 */
+"txt_dcn" = "DCN %1$d";
+
+/* loco:5ad5ec59820ee909738b4567 */
+"txt_try_again" = "Try again";
+
+/* loco:5ad5eec7820ee9f3738b4568 */
+"welcome_txt_welcome" = "Welcome";
+
+/* loco:5ad5ef45820ee9dd738b4569 */
+"dashboard_warning_sync_needed" = "Your data was not synchronized. Do you want to do this now?";
+
+/* loco:5ad5ef60820ee9db738b4567 */
+"dashboard_success_sync" = "Sync successful!";
+
+/* loco:5ad5ef94820ee9fc738b4567 */
+"dashboard_too_short_record" = "You can do better that this! Sessions shorter that 30 seconds are not recorded within the routine!";
+
+/* loco:5ad5f037820ee958748b4567 */
+"fb_share_goal_message" = "I just got %1$@ DCN for achieving %2$@";
+
+/* loco:5ad5f04f820ee939748b4567 */
+"fb_share_morning_routine_completed" = "I just finished my morning routine!";
+
+/* loco:5ad5f069820ee959748b4567 */
+"fb_share_evening_routine_completed" = "I just finished my evening routine!";
+
+/* loco:5ad5fbdd820ee907778b4568 */
+"journey_hdl_start" = "Start your journey";
+
+/* loco:5ad5fbf2820ee918778b4567 */
+"journey_sub_hdl_start" = "towards a beautiful smile";
+
+/* loco:5ad5fc15820ee916778b4567 */
+"journey_txt_start" = "Complete 90 days of consecutive morning and evening routines.\n\nComplete 180 routines with 20 routines tolerance and collect your\nDCN reward!";
+
+/* loco:5ad5fc30820ee925778b456e */
+"journey_btn_start" = "Start journey!";
+
+/* loco:5ad5fc40820ee917778b4567 */
+"journey_hdl_completed" = "Congratulations!";
+
+/* loco:5ad5fc53820ee925778b4570 */
+"journey_sub_hdl_completed" = "Journey completed!";
+
+/* loco:5ad5fc65820ee916778b4569 */
+"journey_txt_completed" = "You have completed your 90 days journey, congratulations! You can collect your reward now!";
+
+/* loco:5ad5fc77820ee904778b4567 */
+"journey_btn_completed" = "Collect reward!";
+
+/* loco:5ad5fc89820ee927778b4567 */
+"journey_hdl_failed" = "Oh no..";
+
+/* loco:5ad5fc9a820ee907778b456a */
+"journey_sub_hdl_failed" = "Journey failed!";
+
+/* loco:5ad5fcb0820ee924778b4567 */
+"journey_txt_failed" = "Unfortunately you exceeded your 10 days tolerance, therefore you have to start your journey over!";
+
+/* loco:5ad5fcc2820ee925778b4572 */
+"journey_btn_failed" = "Start over!";
+
+/* loco:5ad5fce1820ee927778b4569 */
+"journey_hdl_daily" = "Day %1$@ of %2$@";
+
+/* loco:5ad5fd20820ee907778b456c */
+"journey_sub_hdl_daily" = "Skipped routines\n%1$@ of %2$@";
+
+/* loco:5ad5fd31820ee904778b4569 */
+"journey_btn_daily" = "Start routine";
+
+/* loco:5ad5fd84820ee960778b4567 */
+"btn_morning" = "Start morning routine";
+
+/* loco:5ad5fd96820ee925778b4574 */
+"btn_evening" = "Start evening routine";
+
+/* loco:5ad5fda5820ee923778b4567 */
+"btn_routine" = "Start routine";
+
+/* loco:5ad5fe7e820ee98c778b4567 */
+"dashboard_hdl_total" = "total";
+
+/* loco:5ad60026820ee9be778b456a */
+"drawer_nav_home" = "Home";
+
+/* loco:5ad60037820ee9cc778b4567 */
+"drawer_nav_goals" = "Achievements";
+
+/* loco:5ad60046820ee9c2778b4573 */
+"drawer_nav_statistics" = "Statistics";
+
+/* loco:5ad6005e820ee918788b4567 */
+"drawer_nav_dentacoin" = "Dentacoin";
+
+/* loco:5ad6006f820ee9d9778b4569 */
+"drawer_nav_withdraws" = "Withdraws";
+
+/* loco:5ad6007f820ee9cf778b456a */
+"drawer_nav_emergency" = "Emergency";
+
+/* loco:5ad6008e820ee9da778b4567 */
+"drawer_nav_oral_health" = "Oral Health";
+
+/* loco:5ad600a2820ee9cd778b4568 */
+"drawer_nav_settings" = "Settings";
+
+/* loco:5ad600b1820ee919788b4567 */
+"drawer_nav_about" = "About";
+
+/* loco:5ad600bf820ee9db778b4569 */
+"drawer_nav_signout" = "Sign out";
+
+/* loco:5ad600cc820ee927788b4567 */
+"drawer_open" = "Open";
+
+/* loco:5ad600dd820ee9db778b456b */
+"drawer_close" = "Close";
+
+/* loco:5ad60117820ee932788b4567 */
+"drawer_hdl_signout" = "Sign out?";
+
+/* loco:5ad60125820ee927788b4569 */
+"drawer_txt_signout" = "Are you sure you want to logout?";
+
+/* loco:5ad60221820ee93d788b456a */
+"emergency_hdl_emergency" = "Emergency";
+
+/* loco:5ad60234820ee969788b456a */
+"emergency_hdl_select_tooth" = "Select a sick tooth";
+
+/* loco:5ad60243820ee93d788b456c */
+"emergency_btn_next" = "Next";
+
+/* loco:5ad6025e820ee984788b4567 */
+"emergency_txt_permission_teeth" = "You need to grant us \"Storage\" permission in order to send us teeth picture.";
+
+/* loco:5ad6026e820ee992788b4567 */
+"emergency_txt_settings" = "Settings";
+
+/* loco:5ad6027e820ee983788b4567 */
+"emergency_hdl_describe" = "Describe your case";
+
+/* loco:5ad60297820ee973788b4567 */
+"emergency_hnt_write_message" = "Write message";
+
+/* loco:5ad602a7820ee983788b4569 */
+"emergency_hnt_phone" = "Phone number";
+
+/* loco:5ad602b7820ee983788b456b */
+"error_txt_message_too_short" = "The message is too short, please provide more detailed description.";
+
+/* loco:5ad602c8820ee973788b4569 */
+"feedback_hdl_thank_you" = "Thank you";
+
+/* loco:5ad602d6820ee984788b456a */
+"feedback_txt_message_sent" = "Your message is important to us.";
+
+/* loco:5ad60307820ee976788b456a */
+"email_subject" = "Emergency request from %1$@";
+
+/* loco:5ad60319820ee981788b4568 */
+"email_send_via" = "Send emergency email via...";
+
+/* loco:5ad603e2820ee9dc7a8b456c */
+"goals_hdl_goals" = "Achievements";
+
+/* loco:5ad603f4820ee9fd7a8b456a */
+"goals_txt_no_goals_found" = "No achievements found!";
+
+/* loco:5ad60462820ee9007b8b456a */
+"oral_health_hdl_oral_health" = "Oral health";
+
+/* loco:5ad60473820ee9737b8b4567 */
+"oral_health_txt_no_posts_found" = "No posts found!";
+
+/* loco:5ad73450820ee9604c8b4568 */
+"profile_hdl_my_profile" = "My profile";
+
+/* loco:5ad73461820ee96a4c8b4568 */
+"profile_btn_edit" = "Edit profile";
+
+/* loco:5ad734ae820ee9624c8b4568 */
+"profile_txt_years_old" = "%1$@ years old";
+
+/* loco:5ad734bb820ee95f4c8b4569 */
+"profile_hnt_zip" = "Zip Code";
+
+/* loco:5ad734d0820ee9674c8b4567 */
+"profile_hnt_city_country" = "City, Country";
+
+/* loco:5ad734f1820ee9c14c8b4567 */
+"profile_txt_email_not_verified" = "Your email is not verified!";
+
+/* loco:5ad73500820ee9bc4c8b4567 */
+"profile_txt_resend_verification_email" = "Resend verification email";
+
+/* loco:5ad7350f820ee9b04c8b4567 */
+"profile_txt_verification_email_sent" = "Verification email sent successfully!";
+
+/* loco:5ad73524820ee9bf4c8b4567 */
+"profile_btn_delete" = "Delete my profile";
+
+/* loco:5ad73535820ee9c24c8b4567 */
+"profile_hdl_delete_profile" = "Delete your profile?";
+
+/* loco:5ad7354d820ee9c84c8b4567 */
+"profile_txt_delete_profile" = "Are you sure you want to delete your profile? Enter the code to delete your profile. This will erase all your data.";
+
+/* loco:5ad73590820ee9c34c8b456b */
+"gender_female" = "female";
+
+/* loco:5ad7359f820ee9c24c8b456b */
+"gender_male" = "male";
+
+/* loco:5ad736b3820ee9374d8b4568 */
+"signup_txt_verification_sent" = "Verification email sent to %1$@";
+
+/* loco:5ad7385d820ee9a54d8b4567 */
+"txt_update" = "Update";
+
+/* loco:5ad73bbf820ee9344e8b4568 */
+"profile_hnt_birthday" = "Birthday";
+
+/* loco:5ad73c21820ee92f4e8b456a */
+"profile_hdl_remove_avatar" = "Remove avatar?";
+
+/* loco:5ad73d48820ee98d4e8b4567 */
+"settings_hdl_settings" = "Settings";
+
+/* loco:5ad73ff2820ee9f24e8b4567 */
+"settings_lbl_daily_brushing" = "Daily brushing";
+
+/* loco:5ad740af820ee91b4f8b4567 */
+"settings_lbl_change_brush" = "Change brush";
+
+/* loco:5ad740c2820ee9494f8b4568 */
+"settings_lbl_visit_dentist" = "Visit dentist";
+
+/* loco:5ad740d7820ee93f4f8b4567 */
+"settings_lbl_collect_dentacoins" = "Collect dentacoins";
+
+/* loco:5ad740ea820ee91b4f8b456a */
+"settings_lbl_reminder_visit" = "Reminder to visit";
+
+/* loco:5ad740fb820ee9564f8b4568 */
+"settings_lbl_healthy_habits" = "Healthy habits";
+
+/* loco:5ad74109820ee9564f8b456a */
+"settings_lbl_upon_no_activity" = "Upon no activity";
+
+/* loco:5ad74117820ee9494f8b456b */
+"settings_lbl_daily_inspiration" = "Daily inspiration";
+
+/* loco:5ad74127820ee9454f8b4567 */
+"settings_lbl_sounds" = "Sounds";
+
+/* loco:5ad74139820ee9564f8b456c */
+"settings_lbl_music" = "Music";
+
+/* loco:5ad7415a820ee99e4f8b4567 */
+"settings_hdl_music_and_sounds" = "Music & Sounds";
+
+/* loco:5ad7416c820ee9a04f8b4567 */
+"settings_lbl_voice_male" = "Voice: male";
+
+/* loco:5ad7417c820ee99f4f8b4567 */
+"settings_lbl_voice_female" = "Voice: female";
+
+/* loco:5ad7418a820ee9a44f8b4567 */
+"settings_lbl_enable_notifications" = "Enable notifications";
+
+/* loco:5ad74287820ee9a24f8b4567 */
+"settings_lbl_notifications" = "Notifications";
+
+/* loco:5ad742f0820ee910508b4567 */
+"statistics_hdl_statistics" = "Statistics";
+
+/* loco:5ad74321820ee914508b4568 */
+"dashboard_btn_daily" = "daily";
+
+/* loco:5ad7432f820ee91d508b4569 */
+"dashboard_btn_weekly" = "weekly";
+
+/* loco:5ad7433c820ee917508b4568 */
+"dashboard_btn_monthly" = "monthly";
+
+/* loco:5ad7436a820ee911508b4567 */
+"dashboard_lbl_rinse_statistics" = "Rinse Statistics";
+
+/* loco:5ad74377820ee91c508b4568 */
+"dashboard_lbl_floss_statistics" = "Floss Statistics";
+
+/* loco:5ad74389820ee919508b456a */
+"dashboard_lbl_brush_statistics" = "Brush Statistics";
+
+/* loco:5ad743bc820ee91a508b4567 */
+"dashboard_lbl_average_time" = "average time";
+
+/* loco:5ad743ca820ee90f508b456c */
+"dashboard_lbl_time_left" = "time left";
+
+/* loco:5ad743d8820ee91b508b4569 */
+"dashboard_lbl_times_rinsed" = "times rinsed";
+
+/* loco:5ad743e5820ee91a508b4569 */
+"dashboard_lbl_times_flossed" = "times flossed";
+
+/* loco:5ad743f3820ee91c508b456a */
+"dashboard_lbl_times_brushed" = "times brushed";
+
+/* loco:5ad74a91820ee96e518b4569 */
+"withdraws_hdl_title" = "Withdraws";
+
+/* loco:5ad74a9f820ee96b518b4569 */
+"withdraws_no_transactions_found" = "No withdraws found!";
+
+/* loco:5ad74ab0820ee978518b4567 */
+"withdraws_status_pending" = "Pending";
+
+/* loco:5ad74abd820ee978518b4569 */
+"withdraws_status_approved" = "Approved";
+
+/* loco:5ad74aca820ee976518b4567 */
+"withdraws_status_declined" = "Declined";
+
+/* loco:5ad74b9c820ee9d2518b4569 */
+"dashboard_tab_floss" = "FLOSS";
+
+/* loco:5ad74bab820ee9ce518b4569 */
+"dashboard_tab_brush" = "BRUSH";
+
+/* loco:5ad74bba820ee9d2518b456b */
+"dashboard_tab_rinse" = "RINSE";
+
+/* loco:5ad74c5b820ee9df518b4567 */
+"withdraws_lbl_to" = "to:";
+
+/* loco:5ad752cf820ee9ae538b456b */
+"message_brush_1" = "Starting with the upper left quadrant, brush continuously for the following 30 seconds.";
+
+/* loco:5ad752de820ee9b9538b4569 */
+"message_brush_2" = "Now let’s brush the lower left quadrant for the following 30 seconds.";
+
+/* loco:5ad752f4820ee941548b4567 */
+"message_brush_3" = "It is time you move to the lower right quadrant. Brush this area for the following 30 seconds.";
+
+/* loco:5ad75304820ee93f548b4567 */
+"message_brush_4" = "Now let’s brush the upper right quadrant. This is the last sector, only 30 more seconds.";
+
+/* loco:5ad75313820ee939548b4567 */
+"message_brush_done" = "You are done. Congratulations!";
+
+/* loco:5ad75322820ee939548b4569 */
+"message_brush_press_stop_when_ready" = "When you are done press the Stop button.";
+
+/* loco:5ad75368820ee93c548b4567 */
+"message_morning_routine_2" = "Let’s start with brushing your teeth. Make sure your toothbrush is not dry, and apply toothpaste as the size of pea grain. Press the start button when you are ready to brush";
+
+/* loco:5ad75389820ee942548b4567 */
+"message_evening_brush_start" = "Next step is brushing. Make sure your toothbrush is not dry, and apply toothpaste as the size of pea grain. Press the start button when you are ready to brush";
+
+/* loco:5ad7543c820ee939548b456c */
+"collect_wallet_hdl_create" = "Create your crypto wallet at:";
+
+/* loco:5ad7544b820ee941548b4569 */
+"collect_wallet_url_ether" = "www.myetherwallet.com";
+
+/* loco:5ad75460820ee996548b4567 */
+"collect_wallet_hdl_send_us" = "Send us your crypto\nwallet address";
+
+/* loco:5ad75472820ee938548b456a */
+"collect_wallet_hnt_address" = "Crypto wallet address";
+
+/* loco:5ad754ee820ee9b6548b4567 */
+"tutorial_txt_total_dcn" = "This is the total amount of DCN you've earned.";
+
+/* loco:5ad754fe820ee9aa548b4567 */
+"tutorial_txt_last_activity_time" = "Last recorded time";
+
+/* loco:5ad75511820ee9aa548b4569 */
+"tutorial_txt_left_activities_count" = "Remaining routines for today";
+
+/* loco:5ad75520820ee9b1548b4567 */
+"tutorial_txt_earned_dcn" = "Current day of your journey";
+
+/* loco:5ad75531820ee996548b4569 */
+"tutorial_txt_click_edit_profile" = "Click here to edit your profile!";
+
+/* loco:5ad75541820ee9b2548b4567 */
+"tutorial_txt_collect_dcn" = "Send DCN to your wallet!";
+
+/* loco:5ad75552820ee9b0548b4567 */
+"tutorial_txt_goals_menu" = "Achieve goals & earn DCN";
+
+/* loco:5ad75561820ee9af548b4567 */
+"tutorial_txt_dashboard_arrow" = "Slide up to open statistics";
+
+/* loco:5ad7556f820ee9b0548b4569 */
+"tutorial_txt_emergency_menu" = "Send us emergency request";
+
+/* loco:5ad75580820ee9b0548b456b */
+"tutorial_txt_qr_code" = "Scan your wallet's QR code";
+
+/* loco:5ad7558d820ee9ad548b4567 */
+"tutorial_txt_sick_tooth" = "Show us where it hurts";
+
+/* loco:5ad7559a820ee9ac548b4567 */
+"utorial_txt_withdraws" = "Watch your withdraw requests";
+
+/* loco:5ad755dd820ee9b6548b4569 */
+"collect_wallet_hdl_add" = "Add your wallet";
+
+/* loco:5ad75675820ee9b4548b4567 */
+"dashboard_lbl_routines_left" = "Routines left";
+
+/* loco:5ad75761820ee91f558b4568 */
+"dashboard_btn_start_floss" = "Floss";
+
+/* loco:5ad7576f820ee928558b4567 */
+"dashboard_btn_start_rinse" = "Rinse";
+
+/* loco:5ad7577e820ee927558b4569 */
+"dashboard_btn_start_brush" = "Brush";
+
+/* loco:5ad7579a820ee925558b4568 */
+"dashboard_btn_start" = "Start";
+
+/* loco:5ad757ab820ee929558b4568 */
+"dashboard_btn_stop" = "Stop";
+
+/* loco:5ad757bb820ee929558b456a */
+"dashboard_lbl_dcn_earned" = "DCN Earned";
+
+/* loco:5ad757cf820ee925558b456a */
+"dashboard_lbl_day" = "Day";
+
+/* loco:5ad757f7820ee925558b456d */
+"dashboard_lbl_brush_left" = "Brush left";
+
+/* loco:5ad75806820ee92c558b4568 */
+"dashboard_lbl_floss_left" = "Floss left";
+
+/* loco:5ad75816820ee928558b4569 */
+"dashboard_lbl_rinse_left" = "Rinse left";
+
+/* loco:5ad75824820ee923558b4568 */
+"dashboard_lbl_last_brush" = "Last brush";
+
+/* loco:5ad75834820ee92a558b456a */
+"dashboard_lbl_last_floss" = "Last floss";
+
+/* loco:5ad75842820ee981558b4567 */
+"dashboard_lbl_last_rinse" = "Last rinse";
+
+/* loco:5ad83437820ee9df078b4569 */
+"message_morning_routine_3" = "Now let’s proceed with the second step of your morning dental routine. Rinsing. Measure 20 milliliters of your rinse liquid and press the start button when you are ready to swish.";
+
+/* loco:5ad8344c820ee937088b456a */
+"message_evening_rinse_start" = "Now let’s proceed with the third step of your evening dental routine. Rinsing. Measure 20 milliliters of your rinse liquid and press the start button when you are ready to swish.";
+
+/* loco:5ad83461820ee938088b4568 */
+"message_rinse_1" = "Try to swish until the end of the timer.";
+
+/* loco:5ad83478820ee936088b4567 */
+"message_rinse_2" = "Don't worry if you can't get to the end of the timer, it gets easier each time you try.";
+
+/* loco:5ad83489820ee96a088b4568 */
+"message_rinse_3" = "You're done, spit the solution out in the sink.";
+
+/* loco:5ad83499820ee967088b4567 */
+"message_rinse_4" = "You have completed your first morning brush. Amazing job!";
+
+/* loco:5ad834bd820ee936088b4569 */
+"message_morning_routine_end" = "Congratulations!\nNow you are ready to Amaze the world with your beautiful smile.\n\nMake big things today and come back in the evening before going to bed.\n\nHave a nice day ahead.";
+
+/* loco:5ad834d3820ee923088b4569 */
+"message_evening_routine_start" = "Good evening, darling. Did you have a good day? Are you on the way to becoming a legend?";
+
+/* loco:5ad834e3820ee90d088b4567 */
+"message_evening_routine_2" = "Now let’s get you ready for bed. Rest is important. Hygiene too!";
+
+/* loco:5ad834f8820ee937088b4570 */
+"message_floss_1" = "Let's start by flossing your teeth. Pull around 25 cm of dental floss from your floss dispenser. Wrap the ends of the floss around your index and middle fingers. Press the start button when you are ready to floss.";
+
+/* loco:5ad8351f820ee965088b4567 */
+"message_floss_4" = "Hold the floss tightly around each tooth in a C-shape. Move the floss back and forth in a push-pull motion and up and down against the side of each tooth.";
+
+/* loco:5ad8352e820ee927088b4567 */
+"message_floss_5" = "Press the stop button when you are done with every tooth.";
+
+/* loco:5ad8353d820ee937088b4573 */
+"message_floss_6" = "Great job, flossing!";
+
+/* loco:5ad83682820ee9ac088b4568 */
+"message_hdl_earned_dcn" = "%1$@DCN earned!";
+
+/* loco:5ad83695820ee967088b456c */
+"message_hdl_routine_completed" = "Routine completed!";
+
+/* loco:5ad83761820ee9b8088b4568 */
+"emergency_lbl_phone" = "You can add a phone to the message so we can contact you faster";
+
+/* loco:5ad838ee820ee946098b4567 */
+"message_day_routine_start" = "Hello sunshine. It is a beautiful day. Let’s get you started properly.";
+
+/* loco:5ad838fc820ee92d098b4567 */
+"message_morning_routine_start" = "Good morning sunshine. It is a beautiful day. Let’s get you started properly";
+
+/* loco:5ad8391a820ee938098b4567 */
+"message_evening_routine_end" = "You have completed your last brush for the day. Amazing job! Have a nice rest and come back in the morning.\nSweet dreams.";
+
+/* loco:5ad83952820ee939098b4567 */
+"notifications_txt_daily_brushing_1" = "Hey there! Did you brush your teeth yet?";
+
+/* loco:5ad83960820ee936098b4567 */
+"notifications_txt_change_brush_1" = "When is the last time you changed your toothbrush?";
+
+/* loco:5ad8396f820ee94a098b4567 */
+"notifications_txt_visit_dentist" = "When is the last time you visited your dentist? Maybe is time to make an appointment?";
+
+/* loco:5ad839ab820ee938098b4569 */
+"notifications_txt_collect_dentacoin" = "You have %1$d DCN in your account. You can collect them easily form the \"Dentacoin\" screen.";
+
+/* loco:5ad839c0820ee9f5088b4578 */
+"notifications_txt_reminder_to_visit" = "Hey there! You haven't checked in for a while.";
+
+/* loco:5ad839e9820ee92b098b4567 */
+"notifications_hdl_healthy_habits_1" = "Don't go to bed without brushing your teeth";
+
+/* loco:5ad839f8820ee94a098b4569 */
+"notifications_txt_healthy_habits_1" = "Brushing before bed gets rid of the germs and plaque that accumulate throughout the day.";
+
+/* loco:5ad83a0a820ee94a098b456b */
+"notifications_hdl_healthy_habits_2" = "Brush properly";
+
+/* loco:5ad83a21820ee92d098b456a */
+"notifications_txt_healthy_habits_2" = "The way you brush is equally important — in fact, doing a poor job of brushing your teeth is almost as bad as not brushing at all.";
+
+/* loco:5ad83a3c820ee946098b4569 */
+"notifications_hdl_healthy_habits_3" = "Don't neglect your tongue.";
+
+/* loco:5ad83a4e820ee983098b4567 */
+"notifications_txt_healthy_habits_3" = "Plaque can also build up on your tongue. Not only can this lead to bad mouth odor, but it can lead to other oral health problems.";
+
+/* loco:5ad83a5d820ee953098b4568 */
+"notifications_hdl_healthy_habits_4" = "Use a fluoride toothpaste.";
+
+/* loco:5ad83a73820ee983098b4569 */
+"notifications_txt_healthy_habits_4" = "When it comes to toothpaste, there are more important elements to look for than whitening power and flavors.";
+
+/* loco:5ad83a89820ee974098b4567 */
+"notifications_hdl_healthy_habits_5" = "Flossing is as important as brushing.";
+
+/* loco:5ad83a97820ee938098b456b */
+"notifications_txt_healthy_habits_5" = "Flossing once a day is usually enough to reap these benefits.";
+
+/* loco:5ad83aa8820ee92d098b456c */
+"notifications_hdl_healthy_habits_6" = "Consider mouthwash";
+
+/* loco:5ad83ab7820ee94a098b456d */
+"notifications_txt_healthy_habits_6" = "Mouthwashes are useful as an adjunct tool to help bring things into balance";
+
+/* loco:5ad83ac4820ee936098b457f */
+"notifications_hdl_healthy_habits_7" = "Drink more water";
+
+/* loco:5ad83ad6820ee936098b4581 */
+"notifications_txt_healthy_habits_7" = "Drink water after every meal. This can help wash out some of the negative effects of sticky and acidic foods and beverages in between brushes.";
+
+/* loco:5ad83ae8820ee92b098b456a */
+"notifications_hdl_healthy_habits_8" = "Eat crunchy fruits and vegetable";
+
+/* loco:5ad83af7820ee987098b4567 */
+"notifications_txt_healthy_habits_8" = "Eating fresh, crunchy produce not only contains more healthy fiber, but it is also the best choice as far as your teeth are concerned";
+
+/* loco:5ad83b07820ee953098b456a */
+"notifications_hdl_healthy_habits_9" = "Limit sugary and acidic foods";
+
+/* loco:5ad83b16820ee9b5098b4568 */
+"notifications_txt_healthy_habits_9" = "Sugar converts into acid in the mouth, which can then erode the enamel of your teeth";
+
+/* loco:5ad83b28820ee974098b4569 */
+"notifications_hdl_healthy_habits_10" = "See your dentist at least twice a year";
+
+/* loco:5ad83b3c820ee983098b456d */
+"notifications_txt_healthy_habits_10" = "At minimum, you should see your dentist for cleanings and checkups twice a year";
+
+/* loco:5ad83c10820ee988098b4568 */
+"txt_collect" = "Collect";
+
+/* loco:5ad83c39820ee9b5098b456a */
+"dashboard_hdl_dentacare" = "Dentacare";
+
+/* loco:5ad83c52820ee9d1098b4567 */
+"error_not_implemented" = "Feature not yet implemented!";
+
+/* loco:5ad83e10a39ff3d1638b4567 */
+"tutorial_txt_withdraws" = "Watch your withdraw requests";

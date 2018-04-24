@@ -26,11 +26,11 @@ class ForgotYourPasswordScreenViewController: UIViewController {
     fileprivate var requestSent = false
     
     fileprivate lazy var emailErrorString:String = {
-        return NSLocalizedString("Wrong email.", comment: "Wrong email")
+        return "error_txt_email_not_valid".localized()
     }()
     
     fileprivate lazy var sendButtonOKState:String = {
-        return NSLocalizedString("OK", comment: "")
+        return "txt_ok".localized()
     }()
     
     //MARK: - lifecycle
@@ -95,15 +95,15 @@ extension ForgotYourPasswordScreenViewController {
         
         self.titleLabel.font = UIFont.dntLatoRegularFontWith(size: UIFont.dntHeaderTitleFontSize)
         self.titleLabel.textColor = .white
-        self.titleLabel.text = NSLocalizedString("Forget your password?", comment: "")
+        self.titleLabel.text = "txt_login_forgot_password".localized()
         
         self.descriptionLabel.font = UIFont.dntLatoRegularFontWith(size: UIFont.dntLabelFontSize)
         self.descriptionLabel.textColor = .white
-        self.descriptionLabel.text = NSLocalizedString("We will send you an email with instructions on how to reset your password.", comment: "")
+        self.descriptionLabel.text = "reset_password_txt_send".localized()
         
         self.postRequestMessageLabel.font = UIFont.dntLatoRegularFontWith(size: UIFont.dntLabelFontSize)
         self.postRequestMessageLabel.textColor = .white
-        self.postRequestMessageLabel.text = NSLocalizedString("Successfully sent reset request, you will receive an email shortly.", comment: "")
+        self.postRequestMessageLabel.text = "reset_password_txt_success".localized()
         self.postRequestMessageLabel.alpha = 0
         
         let themeManager = ThemeManager.shared
@@ -113,7 +113,7 @@ extension ForgotYourPasswordScreenViewController {
         
         themeManager.setDCBlueTheme(to: self.emailTextField, ofType: .TextFieldDefaut)
         let emailPlaceholder = NSAttributedString.init(
-            string: NSLocalizedString("email", comment: ""),
+            string: "signup_hnt_email".localized(),
             attributes: [
                 NSAttributedStringKey.foregroundColor: UIColor.white,
                 NSAttributedStringKey.font: UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)!,
@@ -121,7 +121,7 @@ extension ForgotYourPasswordScreenViewController {
             ])
         self.emailTextField.attributedPlaceholder = emailPlaceholder
         
-        let sendButtonTitle = NSLocalizedString("Send", comment: "")
+        let sendButtonTitle = "txt_send".localized()
         sendButton.setTitle(sendButtonTitle, for: .normal)
         sendButton.setTitle(sendButtonTitle, for: .highlighted)
         themeManager.setDCBlueTheme(to: sendButton, ofType: .ButtonDefault)

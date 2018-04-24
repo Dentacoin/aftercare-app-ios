@@ -24,7 +24,7 @@ class WithdrawsCell: UITableViewCell {
         valueLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntLargeTextSize)
         valueLabel.textColor = UIColor.dntCeruleanBlue
         if let amount = data.amount {
-            valueLabel.text = "DCN \(amount)"
+            valueLabel.text = "txt_dcn".localized(String(amount))
         }
         
         statusLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntLargeTextSize)
@@ -34,13 +34,13 @@ class WithdrawsCell: UITableViewCell {
             switch status {
                 case .approved:
                     statusLabel.textColor = .dntDarkGreen
-                    statusLabel.text = NSLocalizedString("Approved", comment: "")
+                    statusLabel.text = "withdraws_status_approved".localized()
                 case .declined:
                     statusLabel.textColor = .red
-                    statusLabel.text = NSLocalizedString("Declined", comment: "")
+                    statusLabel.text = "withdraws_status_declined".localized()
                 case .pending:
                     statusLabel.textColor = .red
-                    statusLabel.text = NSLocalizedString("Pending", comment: "")
+                    statusLabel.text = "withdraws_status_pending".localized()
             }
         }
         // config description
@@ -64,7 +64,7 @@ class WithdrawsCell: UITableViewCell {
         let minute = calendar.component(.minute, from: date)
         let seconds = calendar.component(.second, from: date)
         
-        descriptionLabel.text = "to: \n\(wallet) \n\(year)/\(month)/\(day) \(hour):\(minute):\(seconds)"
+        descriptionLabel.text = "\( "withdraws_lbl_to".localized() ) \n\(wallet) \n\(year)/\(month)/\(day) \(hour):\(minute):\(seconds)"
         
     }
     
