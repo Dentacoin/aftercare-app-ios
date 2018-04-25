@@ -20,8 +20,14 @@ extension String {
             var paramNumber = 0
             for item in params {
                 paramNumber += 1
-                let paramPlaceholder = "%\(paramNumber)$@"
-                localizedString = localizedString.replacingOccurrences(of: paramPlaceholder, with: item)
+                let paramStringPlaceholder = "%\(paramNumber)$@"//string type parameter
+                if localizedString.contains(paramStringPlaceholder) {
+                    localizedString = localizedString.replacingOccurrences(of: paramStringPlaceholder, with: item)
+                }
+                let paramIntPlaceholder = "%\(paramNumber)$d"// Int type  parameter
+                if localizedString.contains(paramIntPlaceholder) {
+                    localizedString = localizedString.replacingOccurrences(of: paramIntPlaceholder, with: item)
+                }
             }
         }
         
