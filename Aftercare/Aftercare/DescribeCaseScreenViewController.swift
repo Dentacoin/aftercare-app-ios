@@ -110,7 +110,8 @@ extension DescribeCaseScreenViewController {
         header.updateTitle("emergency_hdl_emergency".localized())
         
         titleLabel.textColor = UIColor.dntCeruleanBlue
-        titleLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntTitleFontSize)
+        titleLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntHeaderTitleFontSize)
+        titleLabel.text = "emergency_hdl_describe".localized()
         
         describeYourCaseTextView.textColor = UIColor.darkGray
         describeYourCaseTextView.font = UIFont.dntLatoRegularFontWith(size: UIFont.dntMainMenuLabelFontSize)
@@ -120,13 +121,15 @@ extension DescribeCaseScreenViewController {
         
         preferenceLabel.textColor = .white
         preferenceLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntButtonFontSize)
+        preferenceLabel.text = "emergency_lbl_phone".localized()
         
         let themeManager = ThemeManager.shared
         themeManager.setDCBlueTheme(to: self.sendButton, ofType: .ButtonDefault)
-        sendButton.titleLabel?.text = "txt_send".localized()
+        sendButton.setTitle("txt_send".localized(), for: .normal)
         
         themeManager.setDCBlueTheme(to: self.contactTextField, ofType: .TextFieldDefaut)
         contactTextField.keyboardType = .phonePad
+        contactTextField.placeholder = "emergency_hnt_phone".localized()
     }
     
 }
@@ -202,15 +205,15 @@ extension DescribeCaseScreenViewController {
     @IBAction func sendButtonPressed(_ sender: UIButton) {
         
         if let error = self.validateCaseData() {
-            
+
             UIAlertController.show(
                 controllerWithTitle: "error_popup_title".localized(),
                 message: error,
                 buttonTitle: "txt_ok".localized()
             )
-            
+
         } else {
-            
+        
             if let mailVC = configueMailComposerViewController() {
                 self.present(mailVC, animated: true, completion: nil)
             }

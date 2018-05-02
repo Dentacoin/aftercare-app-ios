@@ -80,8 +80,6 @@ class ActionHeaderView: UIView {
     
     func selectTab(atIndex index: Int) {
         
-        //if index == self.lastTabBarIndex { return }
-        
         let themeManager = ThemeManager.shared
         
         if let lastPressed = self.lastTabBarButtonPressed {
@@ -129,17 +127,15 @@ extension ActionHeaderView {
         titleLabel.textColor = .white
         titleLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntHeaderTitleFontSize)
         
-        themeManager.setDCBlueTheme(to: flossButton, ofType: .ButtonTabStyle(label: "dashboard_btn_start_floss".localized()))
+        themeManager.setDCBlueTheme(to: flossButton, ofType: .ButtonTabStyle(label: "dashboard_tab_floss".localized()))
         flossButton.addTarget(self, action: Selector.tabBarButtonPressed, for: .touchUpInside)
         
-        themeManager.setDCBlueTheme(to: brushButton, ofType: .ButtonTabStyle(label: "dashboard_btn_start_brush".localized()))
+        themeManager.setDCBlueTheme(to: brushButton, ofType: .ButtonTabStyle(label: "dashboard_tab_brush".localized()))
         brushButton.addTarget(self, action: Selector.tabBarButtonPressed, for: .touchUpInside)
         
-        themeManager.setDCBlueTheme(to: rinseButton, ofType: .ButtonTabStyle(label: "dashboard_btn_start_rinse".localized()))
+        themeManager.setDCBlueTheme(to: rinseButton, ofType: .ButtonTabStyle(label: "dashboard_tab_rinse".localized()))
         rinseButton.addTarget(self, action: Selector.tabBarButtonPressed, for: .touchUpInside)
         
-        //default selected floss tab button
-        self.selectTab(atIndex: 0)
     }
     
 }

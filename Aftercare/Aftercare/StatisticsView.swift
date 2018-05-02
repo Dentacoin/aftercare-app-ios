@@ -141,7 +141,7 @@ extension StatisticsView {
         
         let themeManager = ThemeManager.shared
         
-        dailyOptionButton.titleLabel?.text = "dashboard_btn_daily".localized()
+        dailyOptionButton.setTitle("dashboard_btn_daily".localized().uppercased(), for: .normal)
         toggleOptionsButton(dailyOptionButton)
         
         //default selected button
@@ -150,14 +150,14 @@ extension StatisticsView {
         themeManager.setDCBlueTheme(
             to: weeklyOptionButton,
             ofType: .ButtonOptionStyle(
-                label: "dashboard_btn_weekly".localized(),
+                label: "dashboard_btn_weekly".localized().uppercased(),
                 selected: false
             )
         )
         themeManager.setDCBlueTheme(
             to: monthlyOptionButton,
             ofType: .ButtonOptionStyle(
-                label: "dashboard_btn_monthly".localized(),
+                label: "dashboard_btn_monthly".localized().uppercased(),
                 selected: false
             )
         )

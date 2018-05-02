@@ -16,7 +16,6 @@ struct Routines {
         let calendar = Calendar.current
         let components = calendar.dateComponents([.hour], from: now)
         if let hour = components.hour {
-
             if hour >= 2, hour <= 11 {
                 return Routine(startHour: 2, toEndHour: 11, withActions: [.brush, .rinsed], .morning)
             } else if hour >= 17, hour <= 24 {

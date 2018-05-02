@@ -121,7 +121,7 @@ extension EmergencyScreenViewController {
         header.updateTitle("emergency_hdl_emergency".localized())
         
         titleLabel.textColor = UIColor.dntCeruleanBlue
-        titleLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntTitleFontSize)
+        titleLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntLargeTextSize)
         titleLabel.text = "emergency_hdl_select_tooth".localized()
         
         let themeManager = ThemeManager.shared

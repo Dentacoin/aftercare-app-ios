@@ -93,9 +93,9 @@ class FlossActionView: UIView, ActionViewProtocol {
     
     fileprivate func setup() {
         
-        embedView?.actionBarsContainer.lastBar.setTitle("dashboard_lbl_last_floss".localized())
-        embedView?.actionBarsContainer.leftBar.setTitle("dashboard_lbl_floss_left".localized())
-        embedView?.actionBarsContainer.dayBar.setTitle("dashboard_lbl_day".localized())
+        embedView?.actionBarsContainer.lastBar.setTitle("dashboard_lbl_last_floss".localized().uppercased())
+        embedView?.actionBarsContainer.leftBar.setTitle("dashboard_lbl_floss_left".localized().uppercased())
+        embedView?.actionBarsContainer.dayBar.setTitle("dashboard_lbl_day".localized().uppercased())
         
         embedView?.actionFootherContainer.setActionButtonLabel("dashboard_btn_start_floss".localized(), withState: .blue)
         embedView?.autoDismissDoneStateAfter = 4

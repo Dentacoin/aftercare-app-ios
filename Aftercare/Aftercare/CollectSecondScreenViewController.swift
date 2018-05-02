@@ -138,10 +138,12 @@ extension CollectSecondScreenViewController {
         
         let themeManager = ThemeManager.shared
         
+        collectButton.setTitle("collect_wallet_btn_collect".localized(), for: .normal)
         themeManager.setDCBlueTheme(to: collectButton, ofType: .ButtonDefaultBlueGradient)
         
         collectButton.isEnabled = !(earned <= 0)
         
+        whatIsDentacoinButton.setTitle("collect_txt_what_is_dentacoin".localized(), for: .normal)
         themeManager.setDCBlueTheme(to: whatIsDentacoinButton, ofType: .ButtonLinkWithColor(fontSize: UIFont.dntNoteFontSize, color: .dntCeruleanBlue))
     }
     

@@ -62,7 +62,7 @@ extension UploadImageButton : UIImagePickerControllerDelegate {
         let optionsMenuMessage = "profile_upload_avatar_option_title".localized()
         let optionCameraTitle = "profile_upload_avatar_option_1".localized()
         let optionLibraryTitle = "profile_upload_avatar_option_2".localized()
-        let optionCancelTitle = "profile_upload_avatar_option_3".localized()
+        let optionCancelTitle = "txt_cancel".localized()
         
         let optionMenu = UIAlertController(title: nil, message: optionsMenuMessage, preferredStyle: .actionSheet)
         let deleteAction = UIAlertAction(title: optionCameraTitle, style: .default, handler: {

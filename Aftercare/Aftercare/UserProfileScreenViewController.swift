@@ -113,6 +113,7 @@ extension UserProfileScreenViewController {
         userAvatarImage.layer.cornerRadius = userAvatarImage.frame.size.width / 2
         userAvatarImage.layer.masksToBounds = true
         
+        editProfileButton.setTitle("profile_btn_edit".localized(), for: .normal)
         themeManager.setDCBlueTheme(to: editProfileButton, ofType: .ButtonDefault)
     }
     
@@ -152,12 +153,12 @@ extension UserProfileScreenViewController {
                 let calendar = Calendar.current
                 let components = calendar.dateComponents([.year], from: age, to: Date())
                 if let years = components.year {
-                    ageLabel.text = "\(String(describing: years)) years old"
+                    ageLabel.text = "profile_txt_years_old".localized(String(years))
                 }
             }
         }
         if data.gender != .unspecified {
-            genderLabel.text = data.gender.rawValue
+            genderLabel.text = data.gender.rawValue.localized()
         }
         
         APIProvider.retreiveUserInfo() { [weak self] userData, error in

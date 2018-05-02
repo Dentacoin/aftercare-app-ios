@@ -37,7 +37,7 @@ class SettingsScreenViewController: UIViewController, ContentConformer {
     fileprivate var menuData: [SettingsSection] = {
         let data = [
             (
-                title: "settings_hdl_help",
+                title: "settings_category_title_help",
                 items: [
                     (
                         label: "settings_category_help_1",
@@ -70,7 +70,7 @@ class SettingsScreenViewController: UIViewController, ContentConformer {
                     )
                 ]
             ),(
-                title: "settings_hdl_notifications",
+                title: "settings_lbl_notifications",
                 items: [
                     (
                         label : "settings_lbl_daily_brushing",

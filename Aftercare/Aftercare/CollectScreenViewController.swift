@@ -168,6 +168,7 @@ extension CollectScreenViewController {
             self.sendButton.isEnabled = false
         }
         
+        sendButton.setTitle("txt_send".localized(), for: .normal)
         themeManager.setDCBlueTheme(to: sendButton, ofType: .ButtonDefaultBlueGradient)
         
     }

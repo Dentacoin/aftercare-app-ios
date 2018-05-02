@@ -68,6 +68,13 @@ class AboutScreenViewController: UIViewController, ContentConformer {
         appVersionLabel.font = UIFont.dntLatoRegularFontWith(size: UIFont.dntLabelFontSize)
         appVersionLabel.textColor = UIColor.dntCeruleanBlue
         appVersionLabel.text = "\(version).\(build)"
+        
+        let localizedHeading = "about_hdl_heading".localized()
+        let localizedAbout = "about_txt_about".localized()
+        let aboutText = NSMutableAttributedString()
+        aboutText.bold(localizedHeading).normal("\n\n").normal(localizedAbout).normal("\n\ndentacare.dentacoin.com")
+        
+        aboutTextView.attributedText = aboutText
     }
     
 }
@@ -78,4 +85,22 @@ extension AboutScreenViewController: InitialPageHeaderViewDelegate {
         contentDelegate?.openMainMenu()
     }
     
+}
+
+// Attributed String Helpers
+
+fileprivate extension NSMutableAttributedString {
+    @discardableResult func bold(_ text: String) -> NSMutableAttributedString {
+        let attrs: [NSAttributedStringKey: Any] = [.font: UIFont.dntLatoBlackFont(size: UIFont.dntLargeTextSize)!]
+        let boldString = NSMutableAttributedString(string: text, attributes: attrs)
+        append(boldString)
+        return self
+    }
+    
+    @discardableResult func normal(_ text: String) -> NSMutableAttributedString {
+        let attrs: [NSAttributedStringKey: Any] = [.font: UIFont.dntLatoRegularFontWith(size: UIFont.dntNormalTextSize)!]
+        let normal = NSAttributedString(string: text, attributes: attrs)
+        append(normal)
+        return self
+    }
 }

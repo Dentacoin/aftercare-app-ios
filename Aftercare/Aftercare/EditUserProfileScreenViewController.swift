@@ -121,17 +121,6 @@ class EditUserProfileScreenViewController: UIViewController, ContentConformer {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        header.delegate = self
-        uploadAvatarButton.delegate = self
-        
-        self.addListenersForKeyboard()
-        
-        firstNameTextField.delegate = self
-        lastNameTextField.delegate = self
-        passwordTextField.delegate = self
-        cityCountryTextField.delegate = self
-        zipCodeTextField.delegate = self
-        birthDateTextField.delegate = self
         
         setup()
     }
@@ -175,18 +164,28 @@ extension EditUserProfileScreenViewController {
     
     fileprivate func setup() {
         
+        header.delegate = self
+        uploadAvatarButton.delegate = self
+        
+        self.addListenersForKeyboard()
+        
+        firstNameTextField.delegate = self
+        lastNameTextField.delegate = self
+        passwordTextField.delegate = self
+        cityCountryTextField.delegate = self
+        zipCodeTextField.delegate = self
+        birthDateTextField.delegate = self
+        
         header.updateTitle("profile_hdl_my_profile".localized())
         
         let themeManager = ThemeManager.shared
         
         let updateButtonTitle = "txt_update".localized()
-        updateButton.setTitle(updateButtonTitle, for: .highlighted)
-        updateButton.setTitle(updateButtonTitle, for: .selected)
+        updateButton.setTitle(updateButtonTitle, for: .normal)
         themeManager.setDCBlueTheme(to: updateButton, ofType: .ButtonDefault)
         
         let deleteProfileButtonTitle = "profile_btn_delete".localized()
-        deleteProfileButton.setTitle(deleteProfileButtonTitle, for: .highlighted)
-        deleteProfileButton.setTitle(deleteProfileButtonTitle, for: .selected)
+        deleteProfileButton.setTitle(deleteProfileButtonTitle, for: .normal)
         themeManager.setDCBlueTheme(to: deleteProfileButton, ofType: .ButtonDefaultRedGradient)
         
         let paragraph = NSMutableParagraphStyle()

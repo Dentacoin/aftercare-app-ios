@@ -59,6 +59,8 @@ class ConfirmDeleteProfilePopupScreen: UIView {
         
         titleLabel.text = "profile_hdl_delete_profile".localized()
         descriptionLabel.text = "profile_txt_delete_profile".localized()
+        cancelButton.setTitle("txt_cancel".localized(), for: .normal)
+        confirmButton.setTitle("txt_yes".localized(), for: .normal)
         
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .left

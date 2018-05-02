@@ -20,6 +20,7 @@ class ThankYouScreenViewController: UIViewController, ContentConformer {
     
     //MARK: - Fileprivates
     
+    // After how many seconds this screen should close itself
     fileprivate let shouldStayForSeconds: Int = 4
     
     //MARK: - Delegate
@@ -56,9 +57,11 @@ extension ThankYouScreenViewController {
         
         titleLabel.textColor = .white
         titleLabel.font = UIFont.dntLatoRegularFontWith(size: UIFont.dntLargeTextSize)
+        titleLabel.text = "feedback_hdl_thank_you".localized()
         
         messageLabel.textColor = .white
-        titleLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntButtonFontSize)
+        messageLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntButtonFontSize)
+        messageLabel.text = "feedback_txt_message_sent".localized()
         
     }
     

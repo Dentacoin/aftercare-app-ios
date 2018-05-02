@@ -178,7 +178,7 @@ struct UserData: Codable {
 }
 
 public enum GenderType: String, Codable {
-    case male = "male"
-    case female = "female"
+    case male = "gender_male"
+    case female = "gender_female"
     case unspecified = "unspecified"
 }

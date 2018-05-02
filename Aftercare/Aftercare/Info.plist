@@ -42,7 +42,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>23</string>
+	<string>26</string>
 	<key>EnvironmentVariables</key>
 	<dict>
 		<key>EnvironmentAPIProtocol</key>
@@ -104,6 +104,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Please allow Dentacare app access your camera in order to choose your avatar image and/or scan QR Codes.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Your location is required to better calculate timing of your daily routines</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Please allow Dentacare app access your photos library in order to choose your avatar image.</string>
 	<key>UIAppFonts</key>
