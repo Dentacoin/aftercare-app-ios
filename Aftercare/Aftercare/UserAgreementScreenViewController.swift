@@ -24,11 +24,11 @@ class UserAgreementScreenViewController: UIViewController {
     }()
     
     fileprivate lazy var agreeButtonTitleString: String = {
-        return "btn_agree".localized()
+        return "btn_accept".localized()
     }()
     
     fileprivate lazy var cancelButtonTitleString: String = {
-        return "txt_cancel".localized()
+        return "btn_decline".localized()
     }()
     
     //MARK: - fileprivate vars
