@@ -31,7 +31,7 @@ struct NotificationsVisitTheApp: NotificationDataProtocol {
         
         let data = NotificationData(
             title: "",
-            message: NSString.localizedUserNotificationString(forKey: "Hey there! You haven't checked in for a while.", arguments: nil)
+            message: NSString.localizedUserNotificationString(forKey: "notifications_txt_reminder_to_visit".localized(), arguments: nil)
         )
         
         let content = UNMutableNotificationContent()

@@ -52,7 +52,7 @@ struct NotificationsCollectDCN: NotificationDataProtocol {
         let data = NotificationData(
             title: "",
             message: NSString.localizedUserNotificationString(
-                forKey: "You have \(totalDCN) DCN in your account. You can collect them easily from the ''Dentacoin'' screen.",
+                forKey: "notifications_txt_collect_dentacoin_dp".localized(String(totalDCN)),
                 arguments: nil
             )
         )

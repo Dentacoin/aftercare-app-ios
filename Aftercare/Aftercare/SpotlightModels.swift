@@ -17,7 +17,7 @@ struct SpotlightModels {
             let spotlights = [
                 SpotlightModel(
                     id: .totalDCN,
-                    label: "tutorial_txt_total_dcn".localized(),
+                    label: "tutorial_txt_total_dp".localized(),
                     shape: .circle
                 ),
                 SpotlightModel(
@@ -55,12 +55,12 @@ struct SpotlightModels {
                 ),
                 SpotlightModel(
                     id: .sendDCN,
-                    label: "tutorial_txt_collect_dcn".localized(),
+                    label: "tutorial_txt_collect_dp".localized(),
                     shape: .circle
                 ),
                 SpotlightModel(
                     id: .achieveGoalsAndEarn,
-                    label: "tutorial_txt_goals_menu".localized(),
+                    label: "tutorial_txt_goals_menu_dp".localized(),
                     shape: .circle
                 ),
                 SpotlightModel(

@@ -31,7 +31,7 @@ struct NotificationsDailyBrushingData: NotificationDataProtocol {
         
         let data = NotificationData(
             title: "",
-            message: NSString.localizedUserNotificationString(forKey: "Hey there! Did you brush your teeth yet?", arguments: nil)
+            message: NSString.localizedUserNotificationString(forKey: "notifications_txt_daily_brushing_1".localized(), arguments: nil)
         )
         
         let content = UNMutableNotificationContent()

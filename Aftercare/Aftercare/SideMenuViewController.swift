@@ -45,12 +45,20 @@ class SideMenuViewController: UIViewController {
                 CellDataKeys.title : "drawer_nav_home",
                 CellDataKeys.icon : "homeIcon",
                 CellDataKeys.value : String(describing: ActionScreenViewController.self)
-            ],[
+            ],
+//            [
+//                CellDataKeys.type : CellTypes.content.rawValue,
+//                CellDataKeys.title : "drawer_nav_dentacoin",
+//                CellDataKeys.icon : "collectIcon",
+//                CellDataKeys.value : String(describing: CollectScreenViewController.self)
+//            ],
+            [
                 CellDataKeys.type : CellTypes.content.rawValue,
-                CellDataKeys.title : "drawer_nav_dentacoin",
+                CellDataKeys.title : "drawer_nav_dentapoints",
                 CellDataKeys.icon : "collectIcon",
-                CellDataKeys.value : String(describing: CollectScreenViewController.self)
-            ],[
+                CellDataKeys.value : String(describing: CollectRewardPointsController.self)
+            ],
+              [
                 CellDataKeys.type : CellTypes.content.rawValue,
                 CellDataKeys.title : "drawer_nav_withdraws",
                 CellDataKeys.icon : "withdrawsIcon",
@@ -376,14 +384,6 @@ extension SideMenuViewController: UITableViewDelegate {
         
     }
     
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        if let lastVisibleIndexPath = tableView.indexPathsForVisibleRows?.last {
-//            if indexPath == lastVisibleIndexPath {
-//                //table complete its creation, setup and start spotlights
-//
-//            }
-//        }
-//    }
 }
 
 //MARK: - UITableViewDataSource

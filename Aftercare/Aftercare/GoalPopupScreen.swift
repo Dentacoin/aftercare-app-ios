@@ -129,9 +129,9 @@ extension GoalPopupScreen {
         //create Facebook Share Button
         let linkContent = FBSDKShareLinkContent()
         if let reward = self.data?.reward, let goalTitle = self.titleLabel.text {
-            linkContent.quote = "fb_share_goal_message".localized(String(reward), goalTitle)
+            linkContent.quote = "fb_share_goal_message_dp".localized(String(reward), goalTitle)
         } else {
-            linkContent.quote = "fb_share_goal_message".localized("0", self.titleLabel.text!)
+            linkContent.quote = "fb_share_goal_message_dp".localized("0", self.titleLabel.text!)
         }
         linkContent.contentURL = URL(string: "https://itunes.apple.com/us/app/dentacare/id1274148338?ls=1&mt=8")
         

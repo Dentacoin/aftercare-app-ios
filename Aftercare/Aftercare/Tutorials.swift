@@ -18,22 +18,22 @@ struct Tutorials {
         ),
         (
             title: "onboarding_txt_title_2".localized(),
-            description: "onboarding_txt_message_2".localized(),
+            description: "onboarding_txt_message_2_dp".localized(),
             image: "onboarding_2"
         ),
         (
             title: "onboarding_txt_title_3".localized(),
-            description: "onboarding_txt_message_3".localized(),
+            description: "onboarding_txt_message_3_dp".localized(),
             image: "onboarding_3"
         ),
         (
             title: "onboarding_txt_title_4".localized(),
-            description: "onboarding_txt_message_4".localized(),
+            description: "onboarding_txt_message_4_dp".localized(),
             image: "onboarding_4"
         ),
         (
             title: "onboarding_txt_title_5".localized(),
-            description: "onboarding_txt_message_5".localized(),
+            description: "onboarding_txt_message_5_dp".localized(),
             image: "onboarding_5"
         ),
         (

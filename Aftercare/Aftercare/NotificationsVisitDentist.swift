@@ -41,7 +41,7 @@ struct NotificationsVisitDentist: NotificationDataProtocol {
         
         let data = NotificationData(
             title: "",
-            message: NSString.localizedUserNotificationString(forKey: "When is the last time you visited your dentist? Maybe is time to make an appointment?", arguments: nil)
+            message: NSString.localizedUserNotificationString(forKey: "notifications_txt_visit_dentist".localized(), arguments: nil)
         )
         
         let content = UNMutableNotificationContent()

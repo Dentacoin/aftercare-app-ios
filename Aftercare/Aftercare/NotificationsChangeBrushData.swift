@@ -42,7 +42,7 @@ struct NotificationsChangeBrushData: NotificationDataProtocol {
         
         let data = NotificationData(
             title: "",
-            message: NSString.localizedUserNotificationString(forKey: "When is the last time you changed your toothbrush?", arguments: nil)
+            message: NSString.localizedUserNotificationString(forKey: "notifications_txt_change_brush_1".localized(), arguments: nil)
         )
         
         let content = UNMutableNotificationContent()

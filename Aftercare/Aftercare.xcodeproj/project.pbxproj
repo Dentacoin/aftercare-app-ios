@@ -229,6 +229,7 @@
 		9FCA68D51FAA1F5F008B36DA /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA68AC1FAA1F5E008B36DA /* Address.m */; };
 		9FCA68D61FAA1F5F008B36DA /* Payment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA68AD1FAA1F5E008B36DA /* Payment.m */; };
 		9FCA68D71FAA1F5F008B36DA /* TransactionReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA68B01FAA1F5E008B36DA /* TransactionReceipt.m */; };
+		9FD6165E20BD59FD00B53B14 /* CollectRewardPointsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD6165D20BD59FD00B53B14 /* CollectRewardPointsController.swift */; };
 		9FDE781B1F9B3B190013719F /* NotificationsDailyBrushingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDE781A1F9B3B190013719F /* NotificationsDailyBrushingData.swift */; };
 		9FDE781D1F9B40060013719F /* NotificationsChangeBrushData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDE781C1F9B40060013719F /* NotificationsChangeBrushData.swift */; };
 		9FDE781F1F9B406E0013719F /* NotificationsVisitDentist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDE781E1F9B406E0013719F /* NotificationsVisitDentist.swift */; };
@@ -576,6 +577,7 @@
 		9FCA68B01FAA1F5E008B36DA /* TransactionReceipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionReceipt.m; sourceTree = "<group>"; };
 		9FCA68B11FAA1F5E008B36DA /* Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hash.h; sourceTree = "<group>"; };
 		9FCA68B21FAA1F5E008B36DA /* ApiProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiProvider.h; sourceTree = "<group>"; };
+		9FD6165D20BD59FD00B53B14 /* CollectRewardPointsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectRewardPointsController.swift; sourceTree = "<group>"; };
 		9FDE781A1F9B3B190013719F /* NotificationsDailyBrushingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsDailyBrushingData.swift; sourceTree = "<group>"; };
 		9FDE781C1F9B40060013719F /* NotificationsChangeBrushData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsChangeBrushData.swift; sourceTree = "<group>"; };
 		9FDE781E1F9B406E0013719F /* NotificationsVisitDentist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsVisitDentist.swift; sourceTree = "<group>"; };
@@ -829,6 +831,7 @@
 				9F13901C1F63EC7E006528F2 /* UserProfileScreenViewController.swift */,
 				9F1390221F6400ED006528F2 /* EditUserProfileScreenViewController.swift */,
 				9F0A6C7F1F6028D8003AF65C /* ActionScreenViewController.swift */,
+				9FD6165D20BD59FD00B53B14 /* CollectRewardPointsController.swift */,
 				9F13900E1F63D96D006528F2 /* CollectScreenViewController.swift */,
 				9FA061711F7E919500298115 /* CollectSecondScreenViewController.swift */,
 				9FA0616F1F7E8EE400298115 /* SuccessfullyCollectedScreenViewController.swift */,
@@ -1854,6 +1857,7 @@
 				9FF837571F6AD8E900E72CBC /* CircularBar.swift in Sources */,
 				9FF8377A1F6F004700E72CBC /* GoalsScreenCell.swift in Sources */,
 				9FDE78211F9B40B20013719F /* NotificationsCollectDCN.swift in Sources */,
+				9FD6165E20BD59FD00B53B14 /* CollectRewardPointsController.swift in Sources */,
 				9F13901B1F63DF1B006528F2 /* SettingsScreenViewController.swift in Sources */,
 				9F28A3AB1F580CE90002FF53 /* UIAlertController+Helpers.swift in Sources */,
 				9FCA68CD1FAA1F5F008B36DA /* RLPSerialization.m in Sources */,

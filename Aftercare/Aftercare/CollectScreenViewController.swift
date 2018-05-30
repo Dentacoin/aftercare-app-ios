@@ -14,6 +14,7 @@ import QRCodeReader
 class CollectScreenViewController: UIViewController, ContentConformer {
     
     //MARK: - IBOutlets
+    
     @IBOutlet weak var headerView: UIView?
     @IBOutlet weak var step1Label: UILabel!
     @IBOutlet weak var step1AddressLabel: UILabel!
@@ -60,6 +61,7 @@ class CollectScreenViewController: UIViewController, ContentConformer {
         self.removeListenersForKeyboard()
     }
     
+    // TODO: - refactor this iPhoneX notch handling with a protocol or using different constraints
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if #available(iOS 11.0, *) {

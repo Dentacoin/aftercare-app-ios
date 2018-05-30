@@ -17,84 +17,86 @@ struct NotificationsHealthyHabitsData: NotificationDataProtocol {
     
     //MARK: - fileprivates
     
+    // TODO: - refactor this model data
+    
     fileprivate lazy var notificationTitle01: String = {
-        return NSString.localizedUserNotificationString(forKey: "Don’t go to bed without brushing your teeth", arguments: nil)
+        return NSString.localizedUserNotificationString(forKey: "notifications_hdl_healthy_habits_1".localized(), arguments: nil)
     }()
     
     fileprivate lazy var notificationMessage01: String = {
-        return NSString.localizedUserNotificationString(forKey: "Brushing before bed gets rid of the germs and plaque that accumulate throughout the day.", arguments: nil)
+        return NSString.localizedUserNotificationString(forKey: "notifications_txt_healthy_habits_1".localized(), arguments: nil)
     }()
     
     fileprivate lazy var notificationTitle02: String = {
-        return NSString.localizedUserNotificationString(forKey: "Brush properly.", arguments: nil)
+        return NSString.localizedUserNotificationString(forKey: "notifications_hdl_healthy_habits_2".localized(), arguments: nil)
     }()
     
     fileprivate lazy var notificationMessage02: String = {
-        return NSString.localizedUserNotificationString(forKey: "The way you brush is equally important — in fact, doing a poor job of brushing your teeth is almost as bad as not brushing at all.", arguments: nil)
+        return NSString.localizedUserNotificationString(forKey: "notifications_txt_healthy_habits_2".localized(), arguments: nil)
     }()
     
     fileprivate lazy var notificationTitle03: String = {
-        return NSString.localizedUserNotificationString(forKey: "Don’t neglect your tongue.", arguments: nil)
+        return NSString.localizedUserNotificationString(forKey: "notifications_hdl_healthy_habits_3".localized(), arguments: nil)
     }()
     
     fileprivate lazy var notificationMessage03: String = {
-        return NSString.localizedUserNotificationString(forKey:"Plaque can also build up on your tongue. Not only can this lead to bad mouth odor, but it can lead to other oral health problems.", arguments: nil)
+        return NSString.localizedUserNotificationString(forKey: "notifications_txt_healthy_habits_3".localized(), arguments: nil)
     }()
     
     fileprivate lazy var notificationTitle04: String = {
-        return NSString.localizedUserNotificationString(forKey: "Use a fluoride toothpaste.", arguments: nil)
+        return NSString.localizedUserNotificationString(forKey: "notifications_hdl_healthy_habits_4".localized(), arguments: nil)
     }()
     
     fileprivate lazy var notificationMessage04: String = {
-        return NSString.localizedUserNotificationString(forKey: "When it comes to toothpaste, there are more important elements to look for than whitening power and flavors.", arguments: nil)
+        return NSString.localizedUserNotificationString(forKey: "notifications_txt_healthy_habits_4".localized(), arguments: nil)
     }()
     
     fileprivate lazy var notificationTitle05: String = {
-        return NSString.localizedUserNotificationString(forKey: "Flossing is as important as brushing.", arguments: nil)
+        return NSString.localizedUserNotificationString(forKey: "notifications_hdl_healthy_habits_5".localized(), arguments: nil)
     }()
     
     fileprivate lazy var notificationMessage05: String = {
-        return NSString.localizedUserNotificationString(forKey: "Flossing once a day is usually enough to reap these benefits.", arguments: nil)
+        return NSString.localizedUserNotificationString(forKey: "notifications_txt_healthy_habits_5".localized(), arguments: nil)
     }()
     
     fileprivate lazy var notificationTitle06: String = {
-        return NSString.localizedUserNotificationString(forKey: "Consider mouthwash", arguments: nil)
+        return NSString.localizedUserNotificationString(forKey: "notifications_hdl_healthy_habits_6".localized(), arguments: nil)
     }()
     
     fileprivate lazy var notificationMessage06: String = {
-        return NSString.localizedUserNotificationString(forKey: "Mouthwashes are useful as an adjunct tool to help bring things into balance", arguments: nil)
+        return NSString.localizedUserNotificationString(forKey: "notifications_txt_healthy_habits_6".localized(), arguments: nil)
     }()
     
     fileprivate lazy var notificationTitle07: String = {
-        return NSString.localizedUserNotificationString(forKey: "Drink more water", arguments: nil)
+        return NSString.localizedUserNotificationString(forKey: "notifications_hdl_healthy_habits_7".localized(), arguments: nil)
     }()
     
     fileprivate lazy var notificationMessage07: String = {
-        return NSString.localizedUserNotificationString(forKey: "Drink water after every meal. This can help wash out some of the negative effects of sticky and acidic foods and beverages in between brushes.", arguments: nil)
+        return NSString.localizedUserNotificationString(forKey: "notifications_txt_healthy_habits_7".localized(), arguments: nil)
     }()
     
     fileprivate lazy var notificationTitle08: String = {
-        return NSString.localizedUserNotificationString(forKey: "Eat crunchy fruits and vegetables", arguments: nil)
+        return NSString.localizedUserNotificationString(forKey: "notifications_hdl_healthy_habits_8".localized(), arguments: nil)
     }()
     
     fileprivate lazy var notificationMessage08: String = {
-        return NSString.localizedUserNotificationString(forKey: "Eating fresh, crunchy produce not only contains more healthy fiber, but it is also the best choice as far as your teeth are concerned", arguments: nil)
+        return NSString.localizedUserNotificationString(forKey: "notifications_txt_healthy_habits_8".localized(), arguments: nil)
     }()
     
     fileprivate lazy var notificationTitle09: String = {
-        return NSString.localizedUserNotificationString(forKey: "Limit sugary and acidic foods", arguments: nil)
+        return NSString.localizedUserNotificationString(forKey: "notifications_hdl_healthy_habits_9".localized(), arguments: nil)
     }()
     
     fileprivate lazy var notificationMessage09: String = {
-        return NSString.localizedUserNotificationString(forKey: "Sugar converts into acid in the mouth, which can then erode the enamel of your teeth", arguments: nil)
+        return NSString.localizedUserNotificationString(forKey: "notifications_txt_healthy_habits_9".localized(), arguments: nil)
     }()
     
     fileprivate lazy var notificationTitle10: String = {
-        return NSString.localizedUserNotificationString(forKey: "See your dentist at least twice a year", arguments: nil)
+        return NSString.localizedUserNotificationString(forKey: "notifications_hdl_healthy_habits_10".localized(), arguments: nil)
     }()
     
     fileprivate lazy var notificationMessage10: String = {
-        return NSString.localizedUserNotificationString(forKey: "At minimum, you should see your dentist for cleanings and checkups twice a year", arguments: nil)
+        return NSString.localizedUserNotificationString(forKey: "notifications_txt_healthy_habits_11".localized(), arguments: nil)
     }()
     
     fileprivate var allNotifications: [NotificationData] = []
@@ -102,6 +104,8 @@ struct NotificationsHealthyHabitsData: NotificationDataProtocol {
     //MARK: - Public
     
     init() {
+        
+        // TODO: - refactor this allNotifications array creation
         
         //all healthy habits messages
         allNotifications.insert((title: notificationTitle01, message: notificationMessage01), at: 0)

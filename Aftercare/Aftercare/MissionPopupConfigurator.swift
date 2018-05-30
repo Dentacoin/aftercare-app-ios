@@ -113,7 +113,7 @@ struct MissionPopupConfigurator {
         popup.titleLabel.text = "journey_hdl_start".localized()
         popup.subTitleLabel.text = "journey_sub_hdl_start"
         
-        popup.descriptionTextView.text = "journey_txt_start".localized(
+        popup.descriptionTextView.text = "journey_txt_start_dp".localized(
             String(journey.targetDays),
             String(journey.targetDays * 2),
             String(journey.tolerance)
