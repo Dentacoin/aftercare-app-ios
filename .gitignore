@@ -30,6 +30,7 @@ Aftercare/config/fileheaders/macros/
 *.moved-aside
 *.xcuserstate
 *.xcscmblueprint
+*.rtf
 
 # OSX, Windows
 .DS_Store
