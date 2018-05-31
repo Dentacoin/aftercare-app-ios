@@ -89,7 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
             }
         } else {
-            show(child: .splash)
+            show(child: .begin)
         }
         
         return true

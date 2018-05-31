@@ -33,7 +33,7 @@ extension SignUpScreenRouter: SignUpScreenRouterProtocol {
         if let navController = viewController?.navigationController {
             
             let controller: WelcomeScreenViewController! =
-                UIStoryboard.login.instantiateViewController()
+                UIStoryboard.main.instantiateViewController()
             
             navController.pushViewController(controller, animated: true)
         }
@@ -43,7 +43,7 @@ extension SignUpScreenRouter: SignUpScreenRouterProtocol {
         if let navController = viewController?.navigationController {
             
             let controller: UserAgreementScreenViewController! =
-                UIStoryboard.login.instantiateViewController()
+                UIStoryboard.main.instantiateViewController()
             controller.config(data)
             navController.pushViewController(controller, animated: true)
         }

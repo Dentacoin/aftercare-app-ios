@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="sig-Eu-Z8C" customClass="SplashView" customModule="Aftercare" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradientBlueBG" translatesAutoresizingMaskIntoConstraints="NO" id="2OT-g2-dYf">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dentacoinLogo" translatesAutoresizingMaskIntoConstraints="NO" id="4OB-9V-HU5">
+                    <rect key="frame" x="113.5" y="31" width="148" height="19"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dentacareLogo" translatesAutoresizingMaskIntoConstraints="NO" id="OdZ-GK-q5k">
+                    <rect key="frame" x="68" y="73" width="239" height="77"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="2OT-g2-dYf" firstAttribute="leading" secondItem="lLi-Cz-Hei" secondAttribute="leading" id="3Be-lf-RSl"/>
+                <constraint firstItem="4OB-9V-HU5" firstAttribute="centerX" secondItem="2OT-g2-dYf" secondAttribute="centerX" id="3EM-5R-33Z"/>
+                <constraint firstItem="OdZ-GK-q5k" firstAttribute="centerX" secondItem="2OT-g2-dYf" secondAttribute="centerX" id="9iG-sa-9l4"/>
+                <constraint firstItem="2OT-g2-dYf" firstAttribute="top" secondItem="sig-Eu-Z8C" secondAttribute="top" id="Iic-MC-6gM"/>
+                <constraint firstAttribute="bottom" secondItem="2OT-g2-dYf" secondAttribute="bottom" id="Nbc-9S-kcQ"/>
+                <constraint firstItem="lLi-Cz-Hei" firstAttribute="trailing" secondItem="2OT-g2-dYf" secondAttribute="trailing" id="Pxe-9U-AEw"/>
+                <constraint firstItem="2OT-g2-dYf" firstAttribute="top" secondItem="4OB-9V-HU5" secondAttribute="bottom" constant="-50" id="QGo-Pi-vRS"/>
+                <constraint firstItem="2OT-g2-dYf" firstAttribute="top" secondItem="OdZ-GK-q5k" secondAttribute="bottom" constant="-150" id="x8Q-r5-Hd1"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="lLi-Cz-Hei"/>
+            <point key="canvasLocation" x="357" y="58"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="dentacareLogo" width="239" height="77"/>
+        <image name="dentacoinLogo" width="148" height="19"/>
+        <image name="gradientBlueBG" width="375" height="667"/>
+    </resources>
+</document>

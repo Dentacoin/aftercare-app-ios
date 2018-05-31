@@ -24,7 +24,7 @@ class WithdrawsCell: UITableViewCell {
         valueLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntLargeTextSize)
         valueLabel.textColor = UIColor.dntCeruleanBlue
         if let amount = data.amount {
-            valueLabel.text = "txt_dcn".localized(String(amount))
+            valueLabel.text = "txt_dp".localized(String(amount))
         }
         
         statusLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntLargeTextSize)

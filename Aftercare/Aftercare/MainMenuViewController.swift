@@ -157,8 +157,8 @@ extension MainMenuViewController: SideMenuDelegate {
             
             UserDataContainer.shared.logout()
             
-            let controller: SplashScreenViewController! =
-                UIStoryboard.login.instantiateViewController()
+            let controller: BeginScreenViewController! =
+                UIStoryboard.main.instantiateViewController()
             
             navController.pushViewController(controller, animated: true)
         }

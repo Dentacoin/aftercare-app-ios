@@ -61,7 +61,7 @@ protocol ActionViewDelegate: class {
 protocol ActionViewProxyDelegateProtocol: ActionViewDelegate {
     var delegate: ActionViewDelegate? { get set }
     var embedView: ActionView? { get }
-    func changeStateTo(_ newState: ActionState)
+    func stateDidChangeTo(_ newState: ActionState)
     func actionComplete(_ newRecord: ActionRecordData?)
 }
 
@@ -103,8 +103,8 @@ extension ActionViewProxyDelegateProtocol {
     
     //delegate to sender methods
     
-    func changeStateTo(_ newState: ActionState) {
-        embedView?.changeStateTo(newState)
+    func stateDidChangeTo(_ newState: ActionState) {
+        embedView?.stateDidChangeTo(newState)
     }
     
     func updateData(_ data: ActionScreenData) {

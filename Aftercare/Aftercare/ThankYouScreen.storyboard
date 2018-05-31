@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Thank You Screen View Controller-->
+        <scene sceneID="587-R3-AmF">
+            <objects>
+                <viewController storyboardIdentifier="ThankYouScreenViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7Yz-qW-aOa" customClass="ThankYouScreenViewController" customModule="Aftercare" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hdz-bm-3Ye">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradientBlueBG" translatesAutoresizingMaskIntoConstraints="NO" id="pR5-dX-BJz">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="toothIcon" translatesAutoresizingMaskIntoConstraints="NO" id="E0p-Ds-A5f">
+                                <rect key="frame" x="150" y="242.5" width="75" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="9Ue-wM-2Tg"/>
+                                    <constraint firstAttribute="width" secondItem="E0p-Ds-A5f" secondAttribute="height" multiplier="1:1" id="b4x-qn-c7R"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="THANK YOU" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sg7-bm-5tk">
+                                <rect key="frame" x="16" y="349" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="we will respond shortly" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NoR-Hv-iFv">
+                                <rect key="frame" x="16" y="397" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="NoR-Hv-iFv" firstAttribute="top" secondItem="sg7-bm-5tk" secondAttribute="bottom" constant="27" id="1Rw-9M-6Kn"/>
+                            <constraint firstItem="pR5-dX-BJz" firstAttribute="top" secondItem="hdz-bm-3Ye" secondAttribute="top" id="318-vw-RBZ"/>
+                            <constraint firstItem="NoR-Hv-iFv" firstAttribute="leading" secondItem="vG5-Nm-zUY" secondAttribute="leading" constant="16" id="7KK-cS-ghS"/>
+                            <constraint firstItem="vG5-Nm-zUY" firstAttribute="trailing" secondItem="pR5-dX-BJz" secondAttribute="trailing" id="9UO-9E-hGE"/>
+                            <constraint firstItem="pR5-dX-BJz" firstAttribute="bottom" secondItem="hdz-bm-3Ye" secondAttribute="bottom" id="ESj-dV-EsT"/>
+                            <constraint firstItem="E0p-Ds-A5f" firstAttribute="bottom" secondItem="hdz-bm-3Ye" secondAttribute="centerY" constant="-16" id="a9f-Ev-UHO"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="sg7-bm-5tk" secondAttribute="leading" id="d41-s6-f6L"/>
+                            <constraint firstItem="vG5-Nm-zUY" firstAttribute="trailing" secondItem="NoR-Hv-iFv" secondAttribute="trailing" constant="16" id="kEE-Ap-5Sj"/>
+                            <constraint firstItem="E0p-Ds-A5f" firstAttribute="centerX" secondItem="pR5-dX-BJz" secondAttribute="centerX" id="kor-a1-455"/>
+                            <constraint firstItem="pR5-dX-BJz" firstAttribute="leading" secondItem="vG5-Nm-zUY" secondAttribute="leading" id="oMf-ZZ-DzE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="sg7-bm-5tk" secondAttribute="trailing" id="qC1-ZF-O9R"/>
+                            <constraint firstItem="sg7-bm-5tk" firstAttribute="top" secondItem="E0p-Ds-A5f" secondAttribute="bottom" constant="31.5" id="y0C-PL-nOl"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="vG5-Nm-zUY"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="messageLabel" destination="NoR-Hv-iFv" id="BUA-VE-3CI"/>
+                        <outlet property="titleLabel" destination="sg7-bm-5tk" id="E6R-Cd-q6h"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sgB-4m-Crz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2298" y="3545"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="gradientBlueBG" width="375" height="667"/>
+        <image name="toothIcon" width="75" height="76"/>
+    </resources>
+</document>

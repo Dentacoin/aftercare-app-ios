@@ -15,13 +15,15 @@ struct ActionScreenData: Codable {
     public var flossed: ActionDashboardData
     public var brush: ActionDashboardData
     public var rinsed: ActionDashboardData
+    public var tongue: ActionDashboardData
     
-    init(earnedDCN: Int, pendingDCN: Int, flossed: ActionDashboardData, brush: ActionDashboardData, rinsed: ActionDashboardData) {
+    init(earnedDCN: Int, pendingDCN: Int, flossed: ActionDashboardData, brush: ActionDashboardData, rinsed: ActionDashboardData, tongue: ActionDashboardData) {
         self.earnedDCN = earnedDCN
         self.pendingDCN = pendingDCN
         self.flossed = flossed
         self.brush = brush
         self.rinsed = rinsed
+        self.tongue = tongue
     }
     
 }

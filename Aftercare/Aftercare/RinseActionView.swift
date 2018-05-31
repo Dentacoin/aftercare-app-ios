@@ -183,7 +183,7 @@ extension RinseActionView: ActionViewProxyDelegateProtocol {
         
         if let routine = UserDataContainer.shared.routine {
         
-            if newState == .Ready {
+            if newState == .ready {
                 
                 embedView?.actionFootherContainer.setActionButtonLabel("dashboard_btn_start".localized(), withState: .blue)
                 if routine.type == .morning {
@@ -193,15 +193,15 @@ extension RinseActionView: ActionViewProxyDelegateProtocol {
                 }
                 SoundManager.shared.playSound(SoundType.sound(routine.type, .rinse, .ready))
                 
-            } else if newState == .Action {
+            } else if newState == .action {
                 
                 embedView?.actionFootherContainer.setActionButtonLabel("dashboard_btn_stop".localized(), withState: .red)
                 
-            } else if newState == .Done {
+            } else if newState == .done {
                 
                 resetTimer()
                 
-            } else if newState == .Initial {
+            } else if newState == .initial {
                 embedView?.toggleDescriptionText(false)
                 return
             }
@@ -210,7 +210,7 @@ extension RinseActionView: ActionViewProxyDelegateProtocol {
         
         } else {
             
-            if newState == .Initial {
+            if newState == .initial {
                 resetTimer()
             } else {
                 embedView?.actionFootherContainer.setActionButtonLabel("dashboard_btn_stop".localized(), withState: .red)

@@ -7,9 +7,9 @@ inhibit_all_warnings!
 target 'Aftercare' do
   # Pods for Dentacare
   
-  pod 'Alamofire', '~> 4.5'
+  pod 'Alamofire'
   pod 'CodableAlamofire'
-  pod 'AlamofireImage', '~> 3.3'
+  pod 'AlamofireImage'
   
   #Simplify Facebook SignIn
   pod 'FacebookCore'
@@ -21,18 +21,19 @@ target 'Aftercare' do
   pod 'TwitterKit'
   
   #Simplify Google SignIn trough Firebase
+  pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'GoogleSignIn'
   
   #Persistence helper
-  pod 'Disk', '~> 0.3.1'
+  pod 'Disk'
   
   #Use google auto complete view controller for choosing valid country/city
   pod 'GooglePlaces'
   pod 'GooglePlacePicker'
   
   #QRCode
-  pod 'QRCodeReader.swift', '~> 8.0.3'
+  pod 'QRCodeReader.swift'
   
   #Fabric/Crashlytics
   pod 'Fabric'

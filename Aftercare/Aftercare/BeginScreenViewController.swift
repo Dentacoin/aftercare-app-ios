@@ -1,5 +1,5 @@
 //
-//  SplashScreenViewController.swift
+//  BeginScreenViewController.swift
 //  Aftercare
 //
 //  Created by Dimitar Grudev on 8/7/17.
@@ -8,14 +8,14 @@
 
 import UIKit
 
-class SplashScreenViewController : UIViewController {
+class BeginScreenViewController : UIViewController {
     
     //MARK - IBOutlets
     
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     
-    //MARK - Lifecycle 
+    //MARK - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +26,8 @@ class SplashScreenViewController : UIViewController {
 
 //MARK: - Theme and components setup
 
-extension SplashScreenViewController {
-
+extension BeginScreenViewController {
+    
     fileprivate func setup() {
         
         //MARK - setup the theme
@@ -46,13 +46,13 @@ extension SplashScreenViewController {
 
 //MARK: - IBActions
 
-extension SplashScreenViewController {
+extension BeginScreenViewController {
     
     @IBAction func signupButtonPressed(_ sender: UIButton) {
         if let navController = self.navigationController {
             
             let controller: SignUpScreenViewController! =
-                UIStoryboard.login.instantiateViewController()
+                UIStoryboard.main.instantiateViewController()
             
             navController.pushViewController(controller, animated: true)
         }
@@ -62,7 +62,7 @@ extension SplashScreenViewController {
         if let navController = self.navigationController {
             
             let controller: LoginScreenViewController! =
-                UIStoryboard.login.instantiateViewController()
+                UIStoryboard.main.instantiateViewController()
             
             navController.pushViewController(controller, animated: true)
         }

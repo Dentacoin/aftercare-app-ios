@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Collect Second Screen View Controller-->
+        <scene sceneID="Aeo-vQ-ViE">
+            <objects>
+                <viewController storyboardIdentifier="CollectSecondScreenViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="L15-yY-7zd" customClass="CollectSecondScreenViewController" customModule="Aftercare" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Cth-jN-llO">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9tV-4C-LSA" customClass="InsidePageHeaderView" customModule="Aftercare" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="MHD-Gn-w7j"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradientGreyBG" translatesAutoresizingMaskIntoConstraints="NO" id="7t5-bb-zDk">
+                                <rect key="frame" x="0.0" y="100" width="375" height="567"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total amount" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTe-Ss-JFX">
+                                <rect key="frame" x="8" y="140" width="359" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DCN 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Xi-bn-jwG">
+                                <rect key="frame" x="8" y="169" width="359" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dentacoinBlueLogo" translatesAutoresizingMaskIntoConstraints="NO" id="wFo-q5-jDL">
+                                <rect key="frame" x="167.5" y="219.5" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="Jb3-8o-ebh"/>
+                                    <constraint firstAttribute="width" secondItem="wFo-q5-jDL" secondAttribute="height" multiplier="1:1" id="pP5-R7-ycP"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="83m-KG-2NS">
+                                <rect key="frame" x="0.0" y="239" width="159.5" height="1"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="E9V-mm-kJU"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bzD-th-RKp">
+                                <rect key="frame" x="215.5" y="239" width="159.5" height="1"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="pFS-qQ-dG4"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Withdrawable amount" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PBA-ES-FJA">
+                                <rect key="frame" x="8" y="275.5" width="359" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DCN 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PuA-SQ-31a">
+                                <rect key="frame" x="8" y="304.5" width="359" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ogz-Ia-oP9">
+                                <rect key="frame" x="109" y="625" width="157" height="34"/>
+                                <state key="normal" title="What is Dentacoin?">
+                                    <color key="titleColor" red="0.2628255833" green="0.52978425330000001" blue="0.89507772019999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="whatIsDCNButtonPressed:" destination="L15-yY-7zd" eventType="touchUpInside" id="Il8-2C-d6f"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ynw-jf-dPT">
+                                <rect key="frame" x="47.5" y="567" width="280" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="280" id="H2i-zP-nKM"/>
+                                    <constraint firstAttribute="height" constant="50" id="oew-ga-72U"/>
+                                </constraints>
+                                <state key="normal" title="Collect">
+                                    <color key="titleColor" red="0.2628255833" green="0.52978425330000001" blue="0.89507772019999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="collectButtonPressed:" destination="L15-yY-7zd" eventType="touchUpInside" id="yEx-81-klj"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7t5-bb-zDk" firstAttribute="leading" secondItem="Cth-jN-llO" secondAttribute="leading" id="237-WE-sFg"/>
+                            <constraint firstItem="Ogz-Ia-oP9" firstAttribute="bottom" secondItem="u6a-Ag-Bbo" secondAttribute="bottom" constant="-8" id="4gs-EI-JXS"/>
+                            <constraint firstItem="u6a-Ag-Bbo" firstAttribute="trailing" secondItem="9tV-4C-LSA" secondAttribute="trailing" id="5Qe-gw-Dj4"/>
+                            <constraint firstItem="wFo-q5-jDL" firstAttribute="top" secondItem="3Xi-bn-jwG" secondAttribute="bottom" constant="30" id="6Or-Rv-KVs"/>
+                            <constraint firstItem="9tV-4C-LSA" firstAttribute="leading" secondItem="u6a-Ag-Bbo" secondAttribute="leading" id="AK9-dv-NiT"/>
+                            <constraint firstItem="3Xi-bn-jwG" firstAttribute="leading" secondItem="u6a-Ag-Bbo" secondAttribute="leading" constant="8" id="B3p-ve-dtO"/>
+                            <constraint firstItem="PuA-SQ-31a" firstAttribute="leading" secondItem="u6a-Ag-Bbo" secondAttribute="leading" constant="8" id="CPv-Y2-2o5"/>
+                            <constraint firstAttribute="bottom" secondItem="7t5-bb-zDk" secondAttribute="bottom" id="G32-vS-HMW"/>
+                            <constraint firstItem="wFo-q5-jDL" firstAttribute="centerX" secondItem="u6a-Ag-Bbo" secondAttribute="centerX" id="HTc-7v-Meh"/>
+                            <constraint firstItem="u6a-Ag-Bbo" firstAttribute="trailing" secondItem="PuA-SQ-31a" secondAttribute="trailing" constant="8" id="J2m-BA-zyY"/>
+                            <constraint firstItem="7t5-bb-zDk" firstAttribute="top" secondItem="9tV-4C-LSA" secondAttribute="bottom" id="JKy-oD-71u"/>
+                            <constraint firstItem="bzD-th-RKp" firstAttribute="leading" secondItem="wFo-q5-jDL" secondAttribute="trailing" constant="8" id="NS9-Xa-mlW"/>
+                            <constraint firstItem="Ogz-Ia-oP9" firstAttribute="top" secondItem="ynw-jf-dPT" secondAttribute="bottom" constant="8" id="Nat-fO-tv9"/>
+                            <constraint firstItem="9tV-4C-LSA" firstAttribute="top" secondItem="Cth-jN-llO" secondAttribute="top" id="SZP-Ut-Iaz"/>
+                            <constraint firstItem="bzD-th-RKp" firstAttribute="centerY" secondItem="wFo-q5-jDL" secondAttribute="centerY" id="UGM-rx-eni"/>
+                            <constraint firstItem="u6a-Ag-Bbo" firstAttribute="trailing" secondItem="3Xi-bn-jwG" secondAttribute="trailing" constant="8" id="Vv0-eb-f8X"/>
+                            <constraint firstItem="aTe-Ss-JFX" firstAttribute="leading" secondItem="u6a-Ag-Bbo" secondAttribute="leading" constant="8" id="W04-eC-khR"/>
+                            <constraint firstItem="u6a-Ag-Bbo" firstAttribute="trailing" secondItem="aTe-Ss-JFX" secondAttribute="trailing" constant="8" id="aWf-fl-c0l"/>
+                            <constraint firstItem="PBA-ES-FJA" firstAttribute="top" secondItem="wFo-q5-jDL" secondAttribute="bottom" constant="16" id="chQ-5e-iLB"/>
+                            <constraint firstItem="ynw-jf-dPT" firstAttribute="centerX" secondItem="u6a-Ag-Bbo" secondAttribute="centerX" id="e4Z-6b-Zwd"/>
+                            <constraint firstItem="Ogz-Ia-oP9" firstAttribute="centerX" secondItem="u6a-Ag-Bbo" secondAttribute="centerX" id="g2u-IW-v4w"/>
+                            <constraint firstItem="83m-KG-2NS" firstAttribute="trailing" secondItem="wFo-q5-jDL" secondAttribute="leading" constant="-8" id="h1R-rw-tBy"/>
+                            <constraint firstItem="3Xi-bn-jwG" firstAttribute="top" secondItem="aTe-Ss-JFX" secondAttribute="bottom" constant="8" id="h8R-7d-ZiS"/>
+                            <constraint firstItem="u6a-Ag-Bbo" firstAttribute="trailing" secondItem="PBA-ES-FJA" secondAttribute="trailing" constant="8" id="iUM-Ac-mfa"/>
+                            <constraint firstAttribute="trailing" secondItem="7t5-bb-zDk" secondAttribute="trailing" id="lkN-U1-dGe"/>
+                            <constraint firstItem="u6a-Ag-Bbo" firstAttribute="trailing" secondItem="bzD-th-RKp" secondAttribute="trailing" id="mrf-u0-EKf"/>
+                            <constraint firstItem="PBA-ES-FJA" firstAttribute="leading" secondItem="u6a-Ag-Bbo" secondAttribute="leading" constant="8" id="q4X-Jh-hVi"/>
+                            <constraint firstItem="PuA-SQ-31a" firstAttribute="top" secondItem="PBA-ES-FJA" secondAttribute="bottom" constant="8" id="qkt-ww-sFv"/>
+                            <constraint firstItem="aTe-Ss-JFX" firstAttribute="top" secondItem="9tV-4C-LSA" secondAttribute="bottom" constant="40" id="y5k-H4-40A"/>
+                            <constraint firstItem="83m-KG-2NS" firstAttribute="leading" secondItem="u6a-Ag-Bbo" secondAttribute="leading" id="yYY-It-mul"/>
+                            <constraint firstItem="83m-KG-2NS" firstAttribute="centerY" secondItem="wFo-q5-jDL" secondAttribute="centerY" id="zvO-y3-ZpD"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="u6a-Ag-Bbo"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="bottomContentPadding" destination="4gs-EI-JXS" id="Xbv-yZ-St4"/>
+                        <outlet property="collectButton" destination="ynw-jf-dPT" id="apl-Vn-0br"/>
+                        <outlet property="collectTitleOneLabel" destination="aTe-Ss-JFX" id="HVo-a3-tQJ"/>
+                        <outlet property="collectTitleTwoLabel" destination="PBA-ES-FJA" id="QF0-7s-yQZ"/>
+                        <outlet property="collectValueOneLabel" destination="3Xi-bn-jwG" id="aFi-nz-EOL"/>
+                        <outlet property="collectValueTwoLabel" destination="PuA-SQ-31a" id="wZ8-NP-g1s"/>
+                        <outlet property="headerHeightConstraint" destination="MHD-Gn-w7j" id="zGV-gh-Bfe"/>
+                        <outlet property="headerView" destination="9tV-4C-LSA" id="3ec-zk-ijq"/>
+                        <outlet property="separatorLineViewOne" destination="83m-KG-2NS" id="Ida-18-Keb"/>
+                        <outlet property="separatorLineViewTwo" destination="bzD-th-RKp" id="bUd-rc-BGx"/>
+                        <outlet property="whatIsDentacoinButton" destination="Ogz-Ia-oP9" id="Ti7-2e-JqD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="msO-h3-Et7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2244" y="390"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="dentacoinBlueLogo" width="40" height="40"/>
+        <image name="gradientGreyBG" width="375" height="667"/>
+    </resources>
+</document>

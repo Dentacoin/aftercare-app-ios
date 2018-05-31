@@ -74,6 +74,15 @@ class ActionScreenViewController: UIViewController, ContentConformer {
         return popup
     }()
     
+    fileprivate lazy var splashView: SplashView = {
+        let popup = Bundle.main.loadNibNamed(
+            String(describing: SplashView.self),
+            owner: self,
+            options: nil
+            )?.first as! SplashView
+        return popup
+    }()
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -84,8 +93,6 @@ class ActionScreenViewController: UIViewController, ContentConformer {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        prepareSubScreens()
-        
         if UserDataContainer.shared.getTutorialsToggle() == true {
             showTutorials()
         } else {
@@ -95,6 +102,10 @@ class ActionScreenViewController: UIViewController, ContentConformer {
                 requestJourney()
             }
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        prepareSubScreens()
     }
     
     override func viewDidLayoutSubviews() {
@@ -267,6 +278,8 @@ extension ActionScreenViewController {
     
     fileprivate func setup() {
         
+        showSplashView()
+        
         header.delegate = self
         contentScrollView.delegate = self
         contentScrollView.clipsToBounds = false
@@ -276,9 +289,6 @@ extension ActionScreenViewController {
         self.modalPresentationCapturesStatusBarAppearance = true
         
         header.updateTitle("dashboard_hdl_dentacare".localized())
-        
-        guard let screens = createSubScreens() else { return }
-        setupSubScreens(screens)
         
         //Sync with the server
         UserDataContainer.shared.syncWithServer()
@@ -332,8 +342,14 @@ extension ActionScreenViewController {
     }
     
     fileprivate func prepareSubScreens() {
+        
+        guard let screens = createSubScreens() else { return }
+        setupSubScreens(screens)
+        
         //scroll subscreen's scroll view to the middle screen (Brushing)
         scrollContentScrollViewTo(page: 1, animating: false)
+        
+        removeSplashView()
     }
     
     fileprivate func scrollContentScrollViewTo(page index: Int, animating animate: Bool) {
@@ -455,7 +471,7 @@ extension ActionScreenViewController: ActionViewDelegate {
                 guard let index = getPageIndex(nextScreenType) else { return }
                 scrollContentScrollViewTo(page: index, animating: true)
                 let page = pagesArray[index]
-                page.changeStateTo(.Ready)
+                page.stateDidChangeTo(.ready)
                 
             }
         }
@@ -498,7 +514,7 @@ extension ActionScreenViewController: ActionViewDelegate {
                 
                 if let error = error {
                     print("ActionScreenViewController : actionComplete Error: \(error)")
-                    if error.code == ErrorCodes.noInternetConnection.rawValue {
+                    if error.code == ErrorCode.noInternetConnection.rawValue {
                         //save routineData locally
                         
                         return
@@ -576,6 +592,26 @@ extension ActionScreenViewController: ActionViewDelegate {
         return missionPopup
     }
     
+    fileprivate func showSplashView() {
+        let splash = splashView
+        splash.frame = UIScreen.main.bounds
+        view.addSubview(splash)
+    }
+    
+    fileprivate func removeSplashView() {
+        
+        let splashAnimator = UIViewPropertyAnimator(duration: 0.5, curve: .easeOut) { [weak self] in
+            self?.splashView.alpha = 1
+        }
+        splashAnimator.addCompletion { [weak self] position in
+            if position == .end {
+                self?.splashView.removeFromSuperview()
+            }
+        }
+        splashAnimator.startAnimation()
+
+    }
+    
 }
 
 //MARK: - ActionHeaderViewDelegate
@@ -649,7 +685,7 @@ extension ActionScreenViewController: MissionPopupScreenDelegate {
         scrollContentScrollViewTo(page: index, animating: true)
         
         let page = pagesArray[index]
-        page.changeStateTo(.Ready)
+        page.stateDidChangeTo(.ready)
         
         //Lock the scroll view and header while executing routine
         self.goFullScreen()

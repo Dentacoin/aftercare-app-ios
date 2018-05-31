@@ -123,7 +123,7 @@ extension CollectSecondScreenViewController {
         guard let pending = UserDataContainer.shared.actionScreenData?.pendingDCN else {
             return
         }
-        collectValueOneLabel.text = "txt_dcn".localized(String(earned + pending))
+        collectValueOneLabel.text = "txt_dp".localized(String(earned + pending))
         
         separatorLineViewOne.backgroundColor = UIColor.dntCeruleanBlue
         separatorLineViewTwo.backgroundColor = UIColor.dntCeruleanBlue
@@ -134,7 +134,7 @@ extension CollectSecondScreenViewController {
         
         collectValueTwoLabel.textColor = UIColor.dntCeruleanBlue
         collectValueTwoLabel.font = UIFont.dntLatoRegularFontWith(size: UIFont.dntLargeTitleFontSize)
-        collectValueTwoLabel.text = "txt_dcn".localized(String(earned))
+        collectValueTwoLabel.text = "txt_dp".localized(String(earned))
         
         let themeManager = ThemeManager.shared
         

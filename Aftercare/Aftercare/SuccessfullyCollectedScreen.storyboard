@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Successfully Collected Screen View Controller-->
+        <scene sceneID="688-ai-Kes">
+            <objects>
+                <viewController storyboardIdentifier="SuccessfullyCollectedScreenViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="f6V-7J-UMx" customClass="SuccessfullyCollectedScreenViewController" customModule="Aftercare" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2vs-0x-7gc">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradientBlueBG" translatesAutoresizingMaskIntoConstraints="NO" id="gH3-jS-I0T">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dentacoinSymbol" translatesAutoresizingMaskIntoConstraints="NO" id="Am6-9X-W9s" customClass="dentacoinIcon">
+                                <rect key="frame" x="138" y="193.5" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="1D5-Ap-dSA"/>
+                                    <constraint firstAttribute="width" secondItem="Am6-9X-W9s" secondAttribute="height" multiplier="1:1" id="Ybw-gS-HYS"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 DCN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A0b-0U-2Zi">
+                                <rect key="frame" x="141.5" y="309.5" width="94" height="38.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uaa-vr-VYk">
+                                <rect key="frame" x="101" y="356" width="174" height="41"/>
+                                <string key="text">Successfully Collected
+ to the Crypto Wallet</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="uaa-vr-VYk" firstAttribute="centerX" secondItem="gH3-jS-I0T" secondAttribute="centerX" id="CwB-4c-IG5"/>
+                            <constraint firstItem="A0b-0U-2Zi" firstAttribute="top" secondItem="Am6-9X-W9s" secondAttribute="bottom" constant="16" id="Ifc-fu-2Ha"/>
+                            <constraint firstItem="gH3-jS-I0T" firstAttribute="top" secondItem="2vs-0x-7gc" secondAttribute="top" id="J1C-bu-F6T"/>
+                            <constraint firstItem="Am6-9X-W9s" firstAttribute="centerX" secondItem="gH3-jS-I0T" secondAttribute="centerX" id="PBc-4C-ZTr"/>
+                            <constraint firstItem="uaa-vr-VYk" firstAttribute="top" secondItem="A0b-0U-2Zi" secondAttribute="bottom" constant="8" id="Xfz-gp-DK3"/>
+                            <constraint firstItem="A0b-0U-2Zi" firstAttribute="centerX" secondItem="Am6-9X-W9s" secondAttribute="centerX" id="cIb-xR-JF5"/>
+                            <constraint firstItem="0SN-ju-QbW" firstAttribute="trailing" secondItem="gH3-jS-I0T" secondAttribute="trailing" id="hAW-4R-CFn"/>
+                            <constraint firstItem="gH3-jS-I0T" firstAttribute="bottom" secondItem="2vs-0x-7gc" secondAttribute="bottom" id="kfI-Fg-JKX"/>
+                            <constraint firstItem="gH3-jS-I0T" firstAttribute="leading" secondItem="0SN-ju-QbW" secondAttribute="leading" id="xWS-fT-U7u"/>
+                            <constraint firstItem="Am6-9X-W9s" firstAttribute="bottom" secondItem="gH3-jS-I0T" secondAttribute="centerY" constant="-40" id="yJO-SI-Olg"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="0SN-ju-QbW"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="collectedLabel" destination="A0b-0U-2Zi" id="jQ3-ZV-zJ2"/>
+                        <outlet property="infoLabel" destination="uaa-vr-VYk" id="8LF-8O-Oxt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zs7-8p-Nc1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3023" y="390"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="dentacoinSymbol" width="77" height="77"/>
+        <image name="gradientBlueBG" width="375" height="667"/>
+    </resources>
+</document>

@@ -54,7 +54,7 @@ class SideMenuViewController: UIViewController {
 //            ],
             [
                 CellDataKeys.type : CellTypes.content.rawValue,
-                CellDataKeys.title : "drawer_nav_dentapoints",
+                CellDataKeys.title : "drawer_nav_dp",
                 CellDataKeys.icon : "collectIcon",
                 CellDataKeys.value : String(describing: CollectRewardPointsController.self)
             ],

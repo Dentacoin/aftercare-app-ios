@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Statistic Screen View Controller-->
+        <scene sceneID="LmH-a1-7C2">
+            <objects>
+                <viewController storyboardIdentifier="StatisticScreenViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Wse-n1-2mI" customClass="StatisticScreenViewController" customModule="Aftercare" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="48p-Eu-dQ2">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xE1-rd-Ibg" customClass="InitialPageHeaderView" customModule="Aftercare" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="PEI-c7-tln"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradientBlueBG" translatesAutoresizingMaskIntoConstraints="NO" id="odF-t0-Izn">
+                                <rect key="frame" x="0.0" y="100" width="375" height="567"/>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aUy-n3-gH2">
+                                <rect key="frame" x="0.0" y="100" width="375" height="567"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="NXg-Vi-gfW" firstAttribute="trailing" secondItem="aUy-n3-gH2" secondAttribute="trailing" id="7H9-Zy-xmm"/>
+                            <constraint firstItem="xE1-rd-Ibg" firstAttribute="leading" secondItem="NXg-Vi-gfW" secondAttribute="leading" id="FvA-GK-TNv"/>
+                            <constraint firstItem="NXg-Vi-gfW" firstAttribute="trailing" secondItem="xE1-rd-Ibg" secondAttribute="trailing" id="HYI-k2-53j"/>
+                            <constraint firstItem="odF-t0-Izn" firstAttribute="leading" secondItem="NXg-Vi-gfW" secondAttribute="leading" id="Ixz-ra-r4I"/>
+                            <constraint firstItem="aUy-n3-gH2" firstAttribute="leading" secondItem="NXg-Vi-gfW" secondAttribute="leading" id="JIV-rs-s7t"/>
+                            <constraint firstItem="xE1-rd-Ibg" firstAttribute="top" secondItem="48p-Eu-dQ2" secondAttribute="top" id="NmK-1q-mIo"/>
+                            <constraint firstItem="aUy-n3-gH2" firstAttribute="top" secondItem="xE1-rd-Ibg" secondAttribute="bottom" id="YLC-V2-UzR"/>
+                            <constraint firstItem="odF-t0-Izn" firstAttribute="bottom" secondItem="48p-Eu-dQ2" secondAttribute="bottom" id="ZiP-FH-bLw"/>
+                            <constraint firstItem="odF-t0-Izn" firstAttribute="top" secondItem="xE1-rd-Ibg" secondAttribute="bottom" id="jl4-24-hYa"/>
+                            <constraint firstItem="NXg-Vi-gfW" firstAttribute="trailing" secondItem="odF-t0-Izn" secondAttribute="trailing" id="ocr-Ar-Ne3"/>
+                            <constraint firstItem="aUy-n3-gH2" firstAttribute="bottom" secondItem="48p-Eu-dQ2" secondAttribute="bottom" id="plb-nW-ZPt"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="NXg-Vi-gfW"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="headerHeightConstraint" destination="PEI-c7-tln" id="Tzc-lL-wqj"/>
+                        <outlet property="headerView" destination="xE1-rd-Ibg" id="dUD-5I-eJN"/>
+                        <outlet property="tableView" destination="aUy-n3-gH2" id="82I-l4-Nck"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bwo-My-l8F" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="860" y="2014"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="gradientBlueBG" width="375" height="667"/>
+    </resources>
+</document>

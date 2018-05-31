@@ -26,7 +26,7 @@ class ActionView: UIView {
     
     //MARK: - Public
     
-    var actionState: ActionState = .Initial
+    var actionState: ActionState = .initial
     var autoDismissDoneStateAfter: Double = 4//time in seconds
     
     //MARK: - Fileprivates
@@ -278,7 +278,7 @@ class ActionView: UIView {
         
     }
     
-    func changeStateTo(_ newState: ActionState) {
+    func stateDidChangeTo(_ newState: ActionState) {
         self.actionState = newState
         self.delegate?.stateChanged(newState)
     }
@@ -460,22 +460,22 @@ extension ActionView: ActionFooterViewDelegate {
     internal func onActionButtonPressed() {
         
         if UserDataContainer.shared.routine != nil {
-            if actionState == .Initial {
-                actionState = .Ready
-            } else if actionState == .Ready {
-                    actionState = .Action
+            if actionState == .initial {
+                actionState = .ready
+            } else if actionState == .ready {
+                    actionState = .action
                     self.perform(Selector.executeActionSelector, with: nil, afterDelay: 0.0)
-            } else if actionState == .Done {
-                actionState = .Initial
+            } else if actionState == .done {
+                actionState = .initial
             } else {
                 
-                actionState = .Done
+                actionState = .done
                 self.perform(Selector.executeActionSelector, with: nil, afterDelay: 0.0)
                 self.actionFootherContainer.actionButton.isEnabled = false
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + self.autoDismissDoneStateAfter, execute: { [weak self] in
-                    if self?.actionState == .Done {//if it's still Done change it automatically to Initial
-                        self?.actionState = .Initial
+                    if self?.actionState == .done {//if it's still done change it automatically to initial
+                        self?.actionState = .initial
                         self?.delegate?.stateChanged((self?.actionState)!)
                         self?.actionFootherContainer.actionButton.isEnabled = true
                         self?.delegate?.timerStopped()
@@ -483,11 +483,11 @@ extension ActionView: ActionFooterViewDelegate {
                 })
             }
         } else {
-            if actionState == .Initial {
-                actionState = .Action
+            if actionState == .initial {
+                actionState = .action
                 SoundManager.shared.playRandomMusic()
             } else {
-                actionState = .Initial
+                actionState = .initial
                 SoundManager.shared.stopMusic()
             }
             self.perform(Selector.executeActionSelector, with: nil, afterDelay: 0.0)
@@ -518,10 +518,10 @@ extension ActionView: StatisticsDelegate {
 //MARK: - ActionState
 
 enum ActionState {
-    case Initial
-    case Ready
-    case Action
-    case Done
+    case initial
+    case ready
+    case action
+    case done
 }
 
 //MARK: - ActionViewProtocol
@@ -534,7 +534,7 @@ protocol ActionViewProtocol {
     func updateData(_ data: ActionScreenData)
     func screenWillEnterFullscreen()
     func screenWillExitFullscreen()
-    func changeStateTo(_ newState: ActionState)
+    func stateDidChangeTo(_ newState: ActionState)
     
 }
 

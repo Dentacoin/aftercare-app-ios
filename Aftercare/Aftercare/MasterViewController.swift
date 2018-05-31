@@ -10,7 +10,7 @@ import UIKit
 
 enum ChildViewController {
     case main
-    case splash
+    case begin
 }
 
 final class MasterViewController: UIViewController {
@@ -30,27 +30,15 @@ final class MasterViewController: UIViewController {
         self.setupView()
     }
     
-    //
-    
-    var preloadMainController: Bool = false {
-        didSet {
-            if preloadMainController {
-                _ = viewController.view
-            }
-        }
-    }
-    
     //MARK: - fileprivates
     
     fileprivate let viewController: MainMenuViewController! = UIStoryboard.main.instantiateViewController()
     
     //MARK: - Child Controllers Helpers
     
-    private lazy var splashViewController: UINavigationController = {
+    private lazy var beginViewController: UINavigationController = {
         // Instantiate View Controller
-        let viewController: SplashScreenViewController! =
-            UIStoryboard.login.instantiateViewController()
-        
+        let viewController: BeginScreenViewController! = UIStoryboard.main.instantiateViewController()
         let navController = UINavigationController(rootViewController: viewController)
         navController.setNavigationBarHidden(true, animated: false)
         
@@ -62,16 +50,8 @@ final class MasterViewController: UIViewController {
 
     private lazy var mainViewController: UINavigationController = {
         // Instantiate View Controller
-        
-        let viewController: MainMenuViewController?
-        
-        if self.preloadMainController {
-            viewController = self.viewController
-        } else {
-            viewController = UIStoryboard.main.instantiateViewController()
-        }
-        
-        let navController = UINavigationController(rootViewController: viewController!)
+        let viewController: MainMenuViewController! = UIStoryboard.main.instantiateViewController()
+        let navController = UINavigationController(rootViewController: viewController)
         navController.setNavigationBarHidden(true, animated: false)
         
         // Add View Controller as Child View Controller
@@ -115,11 +95,11 @@ final class MasterViewController: UIViewController {
     private func updateView() {
         switch currentChildViewController {
         case .main:
-            remove(asChildViewController: splashViewController)
+            remove(asChildViewController: beginViewController)
             add(asChildViewController: mainViewController)
-        case .splash:
+        case .begin:
             remove(asChildViewController: mainViewController)
-            add(asChildViewController: splashViewController)
+            add(asChildViewController: beginViewController)
         }
     }
     

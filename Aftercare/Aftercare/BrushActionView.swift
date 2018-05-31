@@ -219,20 +219,20 @@ extension BrushActionView: ActionViewProxyDelegateProtocol {
         
         if let routine = UserDataContainer.shared.routine {
             
-            if newState == .Ready {
+            if newState == .ready {
                 embedView?.actionFootherContainer.setActionButtonLabel("dashboard_btn_start".localized(), withState: .blue)
                 SoundManager.shared.playSound(SoundType.sound(routine.type, .brush, .ready))
                 embedView?.descriptionTextView.text = readyDescriptionString
-            } else if newState == .Action {
+            } else if newState == .action {
                 embedView?.actionFootherContainer.setActionButtonLabel("dashboard_btn_stop".localized(), withState: .red)
-            } else if newState == .Done {
+            } else if newState == .done {
                 
                 resetTimer()
                 //this is the same sound for morning and evening routine
                 SoundManager.shared.playSound(SoundType.sound(.morning, .brush, .done(.congratulations)))
                 embedView?.descriptionTextView.text = doneDescriptionString
                 
-            } else if newState == .Initial {
+            } else if newState == .initial {
                 embedView?.toggleDescriptionText(false)
                 return
             }
@@ -241,7 +241,7 @@ extension BrushActionView: ActionViewProxyDelegateProtocol {
             
         } else {
             
-            if newState == .Initial {
+            if newState == .initial {
                 resetTimer()
             } else {
                 embedView?.actionFootherContainer.setActionButtonLabel("dashboard_btn_stop".localized(), withState: .red)

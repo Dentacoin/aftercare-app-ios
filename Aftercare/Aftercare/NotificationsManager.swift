@@ -211,7 +211,7 @@ extension NotificationsManager: UNUserNotificationCenterDelegate {
 
 extension NotificationsManager: MessagingDelegate {
     
-    func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         print("Firebase registration token: \(fcmToken)")
     }
     

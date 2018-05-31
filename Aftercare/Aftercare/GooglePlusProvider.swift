@@ -217,7 +217,8 @@ extension GooglePlusProvider: GIDSignInDelegate {
             accessToken: authentication.accessToken
         )
         
-        Auth.auth().signIn(with: credential) { [weak self] user, error in
+        Auth.auth().signInAndRetrieveData(with: credential) { [weak self] result, error in
+            
             if let error = error as NSError? {
                 if let completion = self?.completion {
                     let errorData = ErrorData(code: error.code, errors: [error.localizedDescription])
@@ -227,8 +228,7 @@ extension GooglePlusProvider: GIDSignInDelegate {
                 return
             }
             
-            
-            if let user = user {
+            if let user = result?.user {
                 
                 //User successfully authenticated
                 print("GooglePlusProvider :: Firebase successfully authenticated google user.")
@@ -259,7 +259,7 @@ extension GooglePlusProvider: GIDSignInDelegate {
                         return
                     }
                     sessionRequestData.googleAccessToken = token
-
+                    
                     if let completion = self?.completion {
                         completion(sessionRequestData, nil)
                     }

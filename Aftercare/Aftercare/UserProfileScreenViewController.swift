@@ -232,7 +232,7 @@ extension UserProfileScreenViewController {
             
             if let error = error {
                 
-                if error.errors.first == ErrorKeys.userEmailConfirmed.rawValue {
+                if error.errors.first == ErrorKey.userEmailConfirmed.rawValue {
                     //User already confirmed error
                     UserDataContainer.shared.setUserEmailConfirmed(true)
                     self?.userEmailConfirationUpdated()

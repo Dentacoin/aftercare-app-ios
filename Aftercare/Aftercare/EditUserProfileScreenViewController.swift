@@ -603,8 +603,8 @@ extension EditUserProfileScreenViewController: ConfirmDeleteProfileDelegate {
             
             UserDataContainer.shared.logout()
             
-            let controller: SplashScreenViewController! =
-                UIStoryboard.login.instantiateViewController()
+            let controller: BeginScreenViewController! =
+                UIStoryboard.main.instantiateViewController()
             
             navController.pushViewController(controller, animated: true)
         }
@@ -613,7 +613,6 @@ extension EditUserProfileScreenViewController: ConfirmDeleteProfileDelegate {
     func deleteProfileCancaled() {
         uiIsBlocked = false
     }
-    
     
 }
 

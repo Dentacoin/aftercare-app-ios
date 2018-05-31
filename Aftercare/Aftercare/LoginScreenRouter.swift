@@ -34,7 +34,7 @@ extension LoginScreenRouter: LoginScreenRouterProtocol {
         if let navController = viewController?.navigationController {
             
             let controller: WelcomeScreenViewController! =
-                UIStoryboard.login.instantiateViewController()
+                UIStoryboard.main.instantiateViewController()
             
             navController.pushViewController(controller, animated: true)
         }
@@ -44,7 +44,7 @@ extension LoginScreenRouter: LoginScreenRouterProtocol {
         if let navController = viewController?.navigationController {
             
             let controller: UserAgreementScreenViewController! =
-                UIStoryboard.login.instantiateViewController()
+                UIStoryboard.main.instantiateViewController()
             
             navController.pushViewController(controller, animated: true)
         }
@@ -54,7 +54,7 @@ extension LoginScreenRouter: LoginScreenRouterProtocol {
         if let navController = viewController?.navigationController {
             
             let controller: ForgotYourPasswordScreenViewController! =
-                UIStoryboard.login.instantiateViewController()
+                UIStoryboard.main.instantiateViewController()
             
             navController.pushViewController(controller, animated: true)
         }

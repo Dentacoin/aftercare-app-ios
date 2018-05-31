@@ -70,9 +70,9 @@ class AboutScreenViewController: UIViewController, ContentConformer {
         appVersionLabel.text = "\(version).\(build)"
         
         let localizedHeading = "about_hdl_heading".localized()
-        let localizedAbout = "about_txt_about".localized()
+        let localizedAbout = "about_txt_about_ios".localized()
         let aboutText = NSMutableAttributedString()
-        aboutText.bold(localizedHeading).normal("\n\n").normal(localizedAbout).normal("\n\ndentacare.dentacoin.com")
+        aboutText.bold(localizedHeading).normal("\n\n").normal(localizedAbout).normal("\n\n" + "about_url_dentacare".localized())
         
         aboutTextView.attributedText = aboutText
     }

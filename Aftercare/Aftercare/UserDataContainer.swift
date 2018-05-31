@@ -65,7 +65,7 @@ class UserDataContainer {
     open let ActionMinimumRecordTimeInSeconds: Double = 15
     
     //how many times can be taken per day, week, month for every kind of action
-    open let maximumFlossesPerDay: Double = 2//2 times per day
+    open let maximumFlossesPerDay: Double = 1//1 time per day
     open let maximumBrushesPerDay: Double = 2
     open let maximumRinsesPerDay: Double = 2
     open let maximumFlossesPerWeek: Double = 14//14 times per week
@@ -489,44 +489,23 @@ class UserDataContainer {
                 print("Error: Disk failed to load ActionScreenData from local caches :: \(error)")
             }
             
-            let flossedDaily = ScheduleData(times: 0, left: 0, average: 0)
-            let flossedWeekly = ScheduleData(times: 0, left: 0, average: 0)
-            let flossedMonthly = ScheduleData(times: 0, left: 0, average: 0)
+            let daily = ScheduleData(times: 0, left: 0, average: 0)
+            let weekly = ScheduleData(times: 0, left: 0, average: 0)
+            let monthly = ScheduleData(times: 0, left: 0, average: 0)
             
-            let flossed = ActionDashboardData(
-                left: 0,
-                earned: 0,
-                daily: flossedDaily,
-                weekly: flossedWeekly,
-                monthly: flossedMonthly
+            let flossed = ActionDashboardData(left: 0, earned: 0, daily: daily, weekly: weekly, monthly: monthly)
+            let brush = ActionDashboardData(left: 0, earned: 0, daily: daily, weekly: weekly, monthly: monthly)
+            let rinsed = ActionDashboardData(left: 0, earned: 0, daily: daily, weekly: weekly, monthly: monthly)
+            let tongue = ActionDashboardData(left: 0, earned: 0, daily: daily, weekly: weekly, monthly: monthly)
+            
+            self.actionScreenData = ActionScreenData(
+                earnedDCN: 0,
+                pendingDCN: 0,
+                flossed: flossed,
+                brush: brush,
+                rinsed: rinsed,
+                tongue: tongue
             )
-            
-            let brushDaily = ScheduleData(times: 0, left: 0, average: 0)
-            let brushWeekly = ScheduleData(times: 0, left: 0, average: 0)
-            let brushMonthly = ScheduleData(times: 0, left: 0, average: 0)
-            
-            let brush = ActionDashboardData(
-                left: 0,
-                earned: 0,
-                daily: brushDaily,
-                weekly: brushWeekly,
-                monthly: brushMonthly
-            )
-            
-            let rinsedDaily = ScheduleData(times: 0, left: 0, average: 0)
-            let rinsedWeekly = ScheduleData(times: 0, left: 0, average: 0)
-            let rinsedMonthly = ScheduleData(times: 0, left: 0, average: 0)
-            
-            let rinsed = ActionDashboardData(
-                left: 0,
-                earned: 0,
-                daily: rinsedDaily,
-                weekly: rinsedWeekly,
-                monthly: rinsedMonthly
-            )
-            
-            self.actionScreenData = ActionScreenData(earnedDCN: 0, pendingDCN: 0, flossed: flossed, brush: brush, rinsed: rinsed)
-            
         }
         
         //TODO: - rename this method to requestActionScreenData

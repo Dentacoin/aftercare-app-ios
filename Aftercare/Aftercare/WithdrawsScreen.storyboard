@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Withdraws Screen View Controller-->
+        <scene sceneID="kdV-gB-95x">
+            <objects>
+                <viewController storyboardIdentifier="WithdrawsScreenViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="X9P-Qk-aBB" customClass="WithdrawsScreenViewController" customModule="Aftercare" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8Ud-Gt-x6R">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nvo-gM-ZiI" customClass="InitialPageHeaderView" customModule="Aftercare" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="XNB-9G-hcB"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradientGreyBG" translatesAutoresizingMaskIntoConstraints="NO" id="pdB-8Z-KfK">
+                                <rect key="frame" x="0.0" y="100" width="375" height="567"/>
+                            </imageView>
+                            <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oNR-cB-w1Q">
+                                <rect key="frame" x="0.0" y="100" width="375" height="567"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="pdB-8Z-KfK" firstAttribute="top" secondItem="nvo-gM-ZiI" secondAttribute="bottom" id="0Fw-Ra-knz"/>
+                            <constraint firstItem="Obn-SR-aem" firstAttribute="trailing" secondItem="nvo-gM-ZiI" secondAttribute="trailing" id="4l1-8s-cLi"/>
+                            <constraint firstItem="nvo-gM-ZiI" firstAttribute="leading" secondItem="Obn-SR-aem" secondAttribute="leading" id="6gf-gF-9Na"/>
+                            <constraint firstAttribute="bottom" secondItem="pdB-8Z-KfK" secondAttribute="bottom" id="BIw-C5-Eaz"/>
+                            <constraint firstItem="oNR-cB-w1Q" firstAttribute="top" secondItem="nvo-gM-ZiI" secondAttribute="bottom" id="Gg1-kD-oiS"/>
+                            <constraint firstItem="pdB-8Z-KfK" firstAttribute="leading" secondItem="8Ud-Gt-x6R" secondAttribute="leading" id="R5Y-Sx-nCn"/>
+                            <constraint firstItem="oNR-cB-w1Q" firstAttribute="bottom" secondItem="8Ud-Gt-x6R" secondAttribute="bottom" id="S7N-fA-8kh"/>
+                            <constraint firstAttribute="top" secondItem="nvo-gM-ZiI" secondAttribute="top" id="X1q-9S-WXl"/>
+                            <constraint firstItem="oNR-cB-w1Q" firstAttribute="leading" secondItem="8Ud-Gt-x6R" secondAttribute="leading" id="XFz-MW-ygq"/>
+                            <constraint firstItem="oNR-cB-w1Q" firstAttribute="trailing" secondItem="8Ud-Gt-x6R" secondAttribute="trailing" id="Ysb-k3-ZEj"/>
+                            <constraint firstAttribute="trailing" secondItem="pdB-8Z-KfK" secondAttribute="trailing" id="x53-gs-Pjj"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Obn-SR-aem"/>
+                    </view>
+                    <connections>
+                        <outlet property="bottomContentPadding" destination="S7N-fA-8kh" id="gNl-dp-87V"/>
+                        <outlet property="headerHeightConstraint" destination="Gg1-kD-oiS" id="XQj-C9-Rgb"/>
+                        <outlet property="headerView" destination="nvo-gM-ZiI" id="UxX-yH-Mrr"/>
+                        <outlet property="withdrawsTableView" destination="oNR-cB-w1Q" id="j2S-ps-dtK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h9p-6K-1PZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="850" y="476"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="gradientGreyBG" width="375" height="667"/>
+    </resources>
+</document>

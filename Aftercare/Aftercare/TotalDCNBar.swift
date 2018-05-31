@@ -56,7 +56,7 @@ class TotalDCNBar: UIView {
     
     func setTotalValue(_ total: Int) {
         totalDCN = total
-        totalValueLabel.text = "txt_dcn".localized(String(totalDCN))
+        totalValueLabel.text = "txt_dp".localized(String(totalDCN))
     }
     
     //MARK: - private logic

@@ -169,7 +169,7 @@ extension UserAgreementScreenViewController {
     
     fileprivate func userDidSignUp() {
         if let navController = self.navigationController {
-            let controller: WelcomeScreenViewController! = UIStoryboard.login.instantiateViewController()
+            let controller: WelcomeScreenViewController! = UIStoryboard.main.instantiateViewController()
             navController.pushViewController(controller, animated: true)
         }
     }

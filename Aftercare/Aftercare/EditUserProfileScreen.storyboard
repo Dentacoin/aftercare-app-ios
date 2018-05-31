@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Edit User Profile Screen View Controller-->
+        <scene sceneID="8Za-oc-nxB">
+            <objects>
+                <viewController storyboardIdentifier="EditUserProfileScreenViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QrP-uq-2Pc" customClass="EditUserProfileScreenViewController" customModule="Aftercare" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yPC-at-too">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RUO-zH-Q8D" customClass="InsidePageHeaderView" customModule="Aftercare" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="URi-Bu-P8j"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradientBlueBG" translatesAutoresizingMaskIntoConstraints="NO" id="Hfm-hA-Kco">
+                                <rect key="frame" x="0.0" y="100" width="375" height="567"/>
+                                <gestureRecognizers/>
+                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="1SF-uH-Bc2">
+                                <rect key="frame" x="0.0" y="100" width="375" height="443"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar-container" translatesAutoresizingMaskIntoConstraints="NO" id="YUe-lw-1pZ">
+                                        <rect key="frame" x="138" y="20" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="Gdx-lr-atS"/>
+                                            <constraint firstAttribute="width" constant="100" id="wHl-jM-zuJ"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6UT-Ib-iop" customClass="UploadImageButton" customModule="Aftercare" customModuleProvider="target">
+                                        <rect key="frame" x="142" y="24" width="92" height="92"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="6UT-Ib-iop" secondAttribute="height" multiplier="1:1" id="Nqx-g4-yFL"/>
+                                        </constraints>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="J8h-Oa-MvK">
+                                        <rect key="frame" x="0.0" y="136" width="375" height="330.5"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="asz-9N-OHV">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="274.5"/>
+                                                <subviews>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AcS-pI-C5W" customClass="SkyFloatingLabelTextField" customModule="Aftercare" customModuleProvider="target">
+                                                        <rect key="frame" x="37.5" y="0.0" width="300" height="39"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="39" id="Bov-9n-K2T"/>
+                                                        </constraints>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="First Name"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WGX-pl-DGK" customClass="SkyFloatingLabelTextField" customModule="Aftercare" customModuleProvider="target">
+                                                        <rect key="frame" x="37.5" y="47" width="300" height="39"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="39" id="oKU-D8-JAF"/>
+                                                        </constraints>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Last Name"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PCE-Qf-27M" customClass="SkyFloatingLabelTextField" customModule="Aftercare" customModuleProvider="target">
+                                                        <rect key="frame" x="37.5" y="94" width="300" height="39"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="39" id="pVx-gc-Nh7"/>
+                                                        </constraints>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Password"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6dg-4V-Nbu" customClass="SkyFloatingLabelTextField" customModule="Aftercare" customModuleProvider="target">
+                                                        <rect key="frame" x="37.5" y="141" width="300" height="39.5"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="39" id="lmq-4Z-REM"/>
+                                                        </constraints>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Zip Code"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PBk-nA-UQi" customClass="SkyFloatingLabelTextField" customModule="Aftercare" customModuleProvider="target">
+                                                        <rect key="frame" x="37.5" y="188.5" width="300" height="39"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="39" id="kci-DP-sxS"/>
+                                                        </constraints>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="City / Country"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b1R-TS-0NV" customClass="SkyFloatingLabelTextField" customModule="Aftercare" customModuleProvider="target">
+                                                        <rect key="frame" x="37.5" y="235.5" width="300" height="39"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="39" id="DZO-oX-pbd"/>
+                                                        </constraints>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Birth Date"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="b1R-TS-0NV" firstAttribute="width" secondItem="PBk-nA-UQi" secondAttribute="width" id="5uE-qU-dVc"/>
+                                                    <constraint firstItem="PBk-nA-UQi" firstAttribute="width" secondItem="6dg-4V-Nbu" secondAttribute="width" id="OlQ-gB-pWH"/>
+                                                    <constraint firstItem="WGX-pl-DGK" firstAttribute="width" secondItem="AcS-pI-C5W" secondAttribute="width" id="QKf-Tp-A3W"/>
+                                                    <constraint firstItem="PCE-Qf-27M" firstAttribute="width" secondItem="WGX-pl-DGK" secondAttribute="width" id="W3f-Xx-3BL"/>
+                                                    <constraint firstItem="6dg-4V-Nbu" firstAttribute="width" secondItem="PCE-Qf-27M" secondAttribute="width" id="kM0-Jo-MFX"/>
+                                                </constraints>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="JKC-kU-VKG">
+                                                <rect key="frame" x="79.5" y="290.5" width="216" height="40"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dci-EN-Jnt">
+                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="40"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="HHp-AR-3c9"/>
+                                                            <constraint firstAttribute="height" constant="40" id="LaV-Ee-3Nm"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Male"/>
+                                                        <connections>
+                                                            <action selector="maleButtonPressed:" destination="QrP-uq-2Pc" eventType="touchUpInside" id="1iG-HR-tPF"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r3b-sT-CLm">
+                                                        <rect key="frame" x="116" y="0.0" width="100" height="40"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="7SD-FG-Z8o"/>
+                                                            <constraint firstAttribute="height" constant="40" id="Ry4-ub-B07"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Female"/>
+                                                        <connections>
+                                                            <action selector="femaleButtonPressed:" destination="QrP-uq-2Pc" eventType="touchUpInside" id="k5W-rI-cEc"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="asz-9N-OHV" firstAttribute="width" secondItem="J8h-Oa-MvK" secondAttribute="width" id="Zvl-pj-wep"/>
+                                        </constraints>
+                                    </stackView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cancelIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Ad9-2H-8zx">
+                                        <rect key="frame" x="226" y="24" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Ad9-2H-8zx" secondAttribute="height" multiplier="1:1" id="5wX-do-g8D"/>
+                                            <constraint firstAttribute="width" constant="20" id="hIm-V0-1Nz"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="6UT-Ib-iop" firstAttribute="width" secondItem="YUe-lw-1pZ" secondAttribute="width" multiplier="0.92" id="62a-bt-TgH"/>
+                                    <constraint firstItem="YUe-lw-1pZ" firstAttribute="top" secondItem="1SF-uH-Bc2" secondAttribute="top" constant="20" id="AnJ-Aj-hKD"/>
+                                    <constraint firstItem="6UT-Ib-iop" firstAttribute="centerX" secondItem="YUe-lw-1pZ" secondAttribute="centerX" id="GJJ-WV-7Jz"/>
+                                    <constraint firstAttribute="bottom" secondItem="J8h-Oa-MvK" secondAttribute="bottom" constant="20" id="ItF-HM-YdL"/>
+                                    <constraint firstAttribute="trailing" secondItem="J8h-Oa-MvK" secondAttribute="trailing" id="LbA-gG-AXB"/>
+                                    <constraint firstItem="YUe-lw-1pZ" firstAttribute="centerX" secondItem="1SF-uH-Bc2" secondAttribute="centerX" id="XZD-VH-TZb"/>
+                                    <constraint firstItem="Ad9-2H-8zx" firstAttribute="trailing" secondItem="6UT-Ib-iop" secondAttribute="trailing" constant="12" id="aO0-rK-owG"/>
+                                    <constraint firstItem="J8h-Oa-MvK" firstAttribute="leading" secondItem="1SF-uH-Bc2" secondAttribute="leading" id="bqs-6U-Uf2"/>
+                                    <constraint firstItem="J8h-Oa-MvK" firstAttribute="width" secondItem="1SF-uH-Bc2" secondAttribute="width" id="cGZ-o4-ULm"/>
+                                    <constraint firstItem="AcS-pI-C5W" firstAttribute="width" secondItem="1SF-uH-Bc2" secondAttribute="width" multiplier="0.8" id="hIe-44-mUm"/>
+                                    <constraint firstItem="6UT-Ib-iop" firstAttribute="centerY" secondItem="YUe-lw-1pZ" secondAttribute="centerY" id="kjf-hr-jCh"/>
+                                    <constraint firstItem="Ad9-2H-8zx" firstAttribute="top" secondItem="6UT-Ib-iop" secondAttribute="top" id="nmb-go-wTF"/>
+                                    <constraint firstItem="J8h-Oa-MvK" firstAttribute="top" secondItem="6UT-Ib-iop" secondAttribute="bottom" constant="20" id="ptf-Ro-dBJ"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="pY4-jx-nSj" appends="YES" id="ZNw-tB-sLO"/>
+                                </connections>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YWm-df-gQ0">
+                                <rect key="frame" x="48" y="551" width="280" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="CdA-Y7-Vuo"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="280" id="XZX-U2-9mP"/>
+                                </constraints>
+                                <state key="normal" title="Update"/>
+                                <connections>
+                                    <action selector="updateButtonPressed:" destination="QrP-uq-2Pc" eventType="touchUpInside" id="xuf-of-lmL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fas-5e-4DE">
+                                <rect key="frame" x="48" y="609" width="280" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="5yS-bd-AP3"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="280" id="aCq-8a-0Hz"/>
+                                </constraints>
+                                <state key="normal" title="Delete My Profile"/>
+                                <connections>
+                                    <action selector="deleteUserProfileButtonPressed:" destination="QrP-uq-2Pc" eventType="touchUpInside" id="78s-cZ-GlI"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fas-5e-4DE" firstAttribute="bottom" secondItem="yPC-at-too" secondAttribute="bottom" constant="-8" id="Apv-da-Fkd"/>
+                            <constraint firstItem="YWm-df-gQ0" firstAttribute="centerX" secondItem="Hfm-hA-Kco" secondAttribute="centerX" id="At3-l5-Vmz"/>
+                            <constraint firstItem="1SF-uH-Bc2" firstAttribute="top" secondItem="RUO-zH-Q8D" secondAttribute="bottom" id="FgU-Ns-ruk"/>
+                            <constraint firstItem="vmp-8J-u5z" firstAttribute="trailing" secondItem="RUO-zH-Q8D" secondAttribute="trailing" id="JDz-Iq-gbU"/>
+                            <constraint firstItem="YWm-df-gQ0" firstAttribute="bottom" secondItem="fas-5e-4DE" secondAttribute="top" constant="-8" id="Slj-rq-tRR"/>
+                            <constraint firstItem="1SF-uH-Bc2" firstAttribute="bottom" secondItem="YWm-df-gQ0" secondAttribute="top" constant="-8" id="UrG-Fd-2qR"/>
+                            <constraint firstItem="vmp-8J-u5z" firstAttribute="trailing" secondItem="Hfm-hA-Kco" secondAttribute="trailing" id="VpR-Lp-Llb"/>
+                            <constraint firstItem="fas-5e-4DE" firstAttribute="centerX" secondItem="YWm-df-gQ0" secondAttribute="centerX" id="Wdk-9v-D0U"/>
+                            <constraint firstItem="RUO-zH-Q8D" firstAttribute="leading" secondItem="vmp-8J-u5z" secondAttribute="leading" id="fWK-Pc-Uq4"/>
+                            <constraint firstItem="Hfm-hA-Kco" firstAttribute="bottom" secondItem="yPC-at-too" secondAttribute="bottom" id="iQM-Cb-j4c"/>
+                            <constraint firstItem="RUO-zH-Q8D" firstAttribute="top" secondItem="yPC-at-too" secondAttribute="top" id="mv2-ig-mfL"/>
+                            <constraint firstItem="vmp-8J-u5z" firstAttribute="trailing" secondItem="1SF-uH-Bc2" secondAttribute="trailing" id="rmb-cB-pHf"/>
+                            <constraint firstItem="Hfm-hA-Kco" firstAttribute="top" secondItem="RUO-zH-Q8D" secondAttribute="bottom" id="sAI-CY-dCi"/>
+                            <constraint firstItem="Hfm-hA-Kco" firstAttribute="leading" secondItem="vmp-8J-u5z" secondAttribute="leading" id="toJ-Jo-ieA"/>
+                            <constraint firstItem="1SF-uH-Bc2" firstAttribute="leading" secondItem="vmp-8J-u5z" secondAttribute="leading" id="ybw-O8-YXN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="vmp-8J-u5z"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="birthDateTextField" destination="b1R-TS-0NV" id="bLA-g0-5aN"/>
+                        <outlet property="bottomContentPadding" destination="Apv-da-Fkd" id="Yc2-jo-nPL"/>
+                        <outlet property="cancelIconImage" destination="Ad9-2H-8zx" id="VGb-xC-ply"/>
+                        <outlet property="cityCountryTextField" destination="PBk-nA-UQi" id="CYX-xP-NtV"/>
+                        <outlet property="deleteProfileButton" destination="fas-5e-4DE" id="Bh2-Ep-IsR"/>
+                        <outlet property="femaleButton" destination="r3b-sT-CLm" id="LC2-Zn-Bd4"/>
+                        <outlet property="firstNameTextField" destination="AcS-pI-C5W" id="WNf-Gl-Zfj"/>
+                        <outlet property="headerHeightConstraint" destination="URi-Bu-P8j" id="utv-NF-hp0"/>
+                        <outlet property="headerView" destination="RUO-zH-Q8D" id="jVh-u6-CYV"/>
+                        <outlet property="lastNameTextField" destination="WGX-pl-DGK" id="LOd-pX-JDh"/>
+                        <outlet property="maleButton" destination="Dci-EN-Jnt" id="7FH-zg-A64"/>
+                        <outlet property="passwordTextField" destination="PCE-Qf-27M" id="gYA-kH-HWW"/>
+                        <outlet property="scrollView" destination="1SF-uH-Bc2" id="Lug-TB-yAg"/>
+                        <outlet property="updateButton" destination="YWm-df-gQ0" id="poP-jc-pKZ"/>
+                        <outlet property="uploadAvatarButton" destination="6UT-Ib-iop" id="SrZ-8Z-PyP"/>
+                        <outlet property="zipCodeTextField" destination="6dg-4V-Nbu" id="dA2-BU-0aG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gzc-FC-0T8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="pY4-jx-nSj">
+                    <connections>
+                        <action selector="onScrollViewTapGuesture:" destination="QrP-uq-2Pc" id="2zB-Na-ZA0"/>
+                        <outlet property="delegate" destination="1SF-uH-Bc2" id="WWc-Jw-6Cm"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="852" y="312"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="avatar-container" width="187" height="187"/>
+        <image name="cancelIcon" width="48" height="48"/>
+        <image name="gradientBlueBG" width="375" height="667"/>
+    </resources>
+</document>

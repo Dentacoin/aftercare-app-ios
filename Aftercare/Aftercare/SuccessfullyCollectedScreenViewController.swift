@@ -72,10 +72,10 @@ extension SuccessfullyCollectedScreenViewController {
     fileprivate func updateCollectedDCNValue() {
         if let data = self.data {
             if let collectValue = data["collectDCN"] as? Int {
-                collectedLabel.text = "txt_dcn".localized(String(collectValue))
+                collectedLabel.text = "txt_dp".localized(String(collectValue))
             }
         } else {
-            collectedLabel.text = "txt_dcn".localized("0")
+            collectedLabel.text = "txt_dp".localized("0")
         }
     }
     

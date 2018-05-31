@@ -190,7 +190,7 @@ extension FacebookProvider: FacebookProviderProtocol {
             
             if let error = data[FacebookDefaultsKeys.Error.rawValue] as? NSError {
                 if error.code == 1 {//another possible place where we can receive cancel by the user authentication error
-                    let errorData = ErrorData(code: -1, errors: [ErrorKeys.canceledAuthentication.rawValue])
+                    let errorData = ErrorData(code: -1, errors: [ErrorKey.canceledAuthentication.rawValue])
                     completionHandler(nil, errorData)
                     return
                 }
@@ -200,7 +200,7 @@ extension FacebookProvider: FacebookProviderProtocol {
             }
             
             if let _ = data[FacebookDefaultsKeys.Canceled.rawValue] {
-                let errorData = ErrorData(code: -1, errors: [ErrorKeys.canceledAuthentication.rawValue])
+                let errorData = ErrorData(code: -1, errors: [ErrorKey.canceledAuthentication.rawValue])
                 completionHandler(nil, errorData)
                 return
             }

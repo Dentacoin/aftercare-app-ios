@@ -14,13 +14,11 @@
 		24657E8D1F13EA390057B846 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24657E8B1F13EA390057B846 /* Main.storyboard */; };
 		24657E921F13EA390057B846 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24657E901F13EA390057B846 /* LaunchScreen.storyboard */; };
 		249A97061F389432003ABB8D /* WelcomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249A97051F389432003ABB8D /* WelcomeScreenViewController.swift */; };
-		249A97081F38949B003ABB8D /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249A97071F38949B003ABB8D /* SplashScreenViewController.swift */; };
 		249A970A1F38951D003ABB8D /* LoginScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249A97091F38951D003ABB8D /* LoginScreenViewController.swift */; };
 		249A970E1F38967E003ABB8D /* SignUpScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249A970D1F38967E003ABB8D /* SignUpScreenViewController.swift */; };
 		249A972B1F38B622003ABB8D /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 249A97191F38B622003ABB8D /* Lato-Light.ttf */; };
 		249A972F1F38B622003ABB8D /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 249A971D1F38B622003ABB8D /* Lato-Regular.ttf */; };
 		24B7D0941F3205A200797685 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B7D0931F3205A200797685 /* Theme.swift */; };
-		24B7D0991F32259400797685 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24B7D0981F32259400797685 /* Login.storyboard */; };
 		24B7D0A51F34D8F700797685 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B7D0A41F34D8F700797685 /* MasterViewController.swift */; };
 		24B7D0A81F34DA2500797685 /* UIStiryboard+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B7D0A71F34DA2500797685 /* UIStiryboard+Helpers.swift */; };
 		24B7D0AA1F34DA7B00797685 /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B7D0A91F34DA7B00797685 /* UIViewController+Helpers.swift */; };
@@ -156,6 +154,30 @@
 		9F4190B41FCD4EBC00ADE2AC /* Notification.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9F4190B31FCD4EBC00ADE2AC /* Notification.wav */; };
 		9F4190B61FCE0D5D00ADE2AC /* ActionRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4190B51FCE0D5D00ADE2AC /* ActionRecord.swift */; };
 		9F42EBB81F8EB55A0061FEA3 /* UserSessionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F42EBB71F8EB55A0061FEA3 /* UserSessionData.swift */; };
+		9F43DF1120BEC4710017813F /* BeginScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F43DF1020BEC4710017813F /* BeginScreen.storyboard */; };
+		9F43DF1320BEC4B30017813F /* SignUpScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F43DF1220BEC4B30017813F /* SignUpScreen.storyboard */; };
+		9F43DF1520BEC4E10017813F /* LoginScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F43DF1420BEC4E10017813F /* LoginScreen.storyboard */; };
+		9F43DF1720BEC50D0017813F /* UserAgreementScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F43DF1620BEC50D0017813F /* UserAgreementScreen.storyboard */; };
+		9F43DF1920BEC5470017813F /* WelcomeScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F43DF1820BEC5470017813F /* WelcomeScreen.storyboard */; };
+		9F43DF1B20BEC5780017813F /* ForgotYourPasswordScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F43DF1A20BEC5780017813F /* ForgotYourPasswordScreen.storyboard */; };
+		9F43DF1D20BEC5D60017813F /* SideMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F43DF1C20BEC5D60017813F /* SideMenu.storyboard */; };
+		9F43DF1F20BEC6040017813F /* MainMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F43DF1E20BEC6040017813F /* MainMenu.storyboard */; };
+		9F43DF2120BEC6340017813F /* ActionScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F43DF2020BEC6340017813F /* ActionScreen.storyboard */; };
+		9F43DF2320BEC66B0017813F /* UserProfileScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F43DF2220BEC66B0017813F /* UserProfileScreen.storyboard */; };
+		9F43DF2520BEC6910017813F /* EditUserProfileScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F43DF2420BEC6910017813F /* EditUserProfileScreen.storyboard */; };
+		9F43DF2720BEC6D00017813F /* CollectRewardPointsScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F43DF2620BEC6D00017813F /* CollectRewardPointsScreen.storyboard */; };
+		9F43DF2920BEC7110017813F /* CollectScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F43DF2820BEC7110017813F /* CollectScreen.storyboard */; };
+		9F43DF2B20BEC7BD0017813F /* CollectSecondScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F43DF2A20BEC7BD0017813F /* CollectSecondScreen.storyboard */; };
+		9F43DF2D20BEC7D70017813F /* SuccessfullyCollectedScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F43DF2C20BEC7D70017813F /* SuccessfullyCollectedScreen.storyboard */; };
+		9F43DF2F20BEC8430017813F /* WithdrawsScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F43DF2E20BEC8430017813F /* WithdrawsScreen.storyboard */; };
+		9F43DF3120BEC8620017813F /* GoalsScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F43DF3020BEC8610017813F /* GoalsScreen.storyboard */; };
+		9F43DF3320BEC87F0017813F /* StatisticScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F43DF3220BEC87F0017813F /* StatisticScreen.storyboard */; };
+		9F43DF3520BEC8950017813F /* OralHealthScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F43DF3420BEC8950017813F /* OralHealthScreen.storyboard */; };
+		9F43DF3720BEC8B20017813F /* EmergencyScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F43DF3620BEC8B20017813F /* EmergencyScreen.storyboard */; };
+		9F43DF3920BEC8CA0017813F /* DescribeCaseScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F43DF3820BEC8CA0017813F /* DescribeCaseScreen.storyboard */; };
+		9F43DF3B20BEC8E10017813F /* ThankYouScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F43DF3A20BEC8E10017813F /* ThankYouScreen.storyboard */; };
+		9F43DF3D20BEC9000017813F /* AboutScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F43DF3C20BEC9000017813F /* AboutScreen.storyboard */; };
+		9F43DF3F20BEC9270017813F /* SettingsScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F43DF3E20BEC9270017813F /* SettingsScreen.storyboard */; };
 		9F4482D71F8B7CD700349A10 /* GoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4482D61F8B7CD700349A10 /* GoalData.swift */; };
 		9F4482DD1F8B8CB700349A10 /* TransactionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4482DC1F8B8CB700349A10 /* TransactionData.swift */; };
 		9F4482DF1F8BA21C00349A10 /* ActionScreenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4482DE1F8BA21C00349A10 /* ActionScreenData.swift */; };
@@ -251,6 +273,9 @@
 		9FE84EFD2036EB9300C35AB6 /* CaptchaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84EFC2036EB9300C35AB6 /* CaptchaData.swift */; };
 		9FE84EFF2037031800C35AB6 /* CaptchaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84EFE2037031800C35AB6 /* CaptchaView.swift */; };
 		9FE84F012037032900C35AB6 /* CaptchaView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FE84F002037032900C35AB6 /* CaptchaView.xib */; };
+		9FE8DC6D20BEF11E000282B3 /* BeginScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8DC6C20BEF11E000282B3 /* BeginScreenViewController.swift */; };
+		9FE8DC7120BEF42E000282B3 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8DC7020BEF42E000282B3 /* SplashView.swift */; };
+		9FE8DC7320BEFB41000282B3 /* SplashView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FE8DC7220BEFB41000282B3 /* SplashView.xib */; };
 		9FE993691F8697690007D759 /* OralHealthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE993681F8697690007D759 /* OralHealthData.swift */; };
 		9FE9936B1F86CBCC0007D759 /* OralHealthTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FE9936A1F86CBCC0007D759 /* OralHealthTableCell.xib */; };
 		9FE9936D1F86CD350007D759 /* OralHealthTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE9936C1F86CD350007D759 /* OralHealthTableCell.swift */; };
@@ -300,7 +325,6 @@
 		24657E911F13EA390057B846 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		24657E931F13EA390057B846 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		249A97051F389432003ABB8D /* WelcomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeScreenViewController.swift; sourceTree = "<group>"; };
-		249A97071F38949B003ABB8D /* SplashScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
 		249A97091F38951D003ABB8D /* LoginScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginScreenViewController.swift; sourceTree = "<group>"; };
 		249A970D1F38967E003ABB8D /* SignUpScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpScreenViewController.swift; sourceTree = "<group>"; };
 		249A97101F38B622003ABB8D /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Black.ttf"; sourceTree = "<group>"; };
@@ -322,7 +346,6 @@
 		249A97201F38B622003ABB8D /* Lato-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Thin.ttf"; sourceTree = "<group>"; };
 		249A97211F38B622003ABB8D /* Lato-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-ThinItalic.ttf"; sourceTree = "<group>"; };
 		24B7D0931F3205A200797685 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
-		24B7D0981F32259400797685 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		24B7D0A41F34D8F700797685 /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		24B7D0A71F34DA2500797685 /* UIStiryboard+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStiryboard+Helpers.swift"; sourceTree = "<group>"; };
 		24B7D0A91F34DA7B00797685 /* UIViewController+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helpers.swift"; sourceTree = "<group>"; };
@@ -459,6 +482,30 @@
 		9F4190B31FCD4EBC00ADE2AC /* Notification.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Notification.wav; sourceTree = "<group>"; };
 		9F4190B51FCE0D5D00ADE2AC /* ActionRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionRecord.swift; sourceTree = "<group>"; };
 		9F42EBB71F8EB55A0061FEA3 /* UserSessionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionData.swift; sourceTree = "<group>"; };
+		9F43DF1020BEC4710017813F /* BeginScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BeginScreen.storyboard; sourceTree = "<group>"; };
+		9F43DF1220BEC4B30017813F /* SignUpScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignUpScreen.storyboard; sourceTree = "<group>"; };
+		9F43DF1420BEC4E10017813F /* LoginScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginScreen.storyboard; sourceTree = "<group>"; };
+		9F43DF1620BEC50D0017813F /* UserAgreementScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserAgreementScreen.storyboard; sourceTree = "<group>"; };
+		9F43DF1820BEC5470017813F /* WelcomeScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WelcomeScreen.storyboard; sourceTree = "<group>"; };
+		9F43DF1A20BEC5780017813F /* ForgotYourPasswordScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ForgotYourPasswordScreen.storyboard; sourceTree = "<group>"; };
+		9F43DF1C20BEC5D60017813F /* SideMenu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SideMenu.storyboard; sourceTree = "<group>"; };
+		9F43DF1E20BEC6040017813F /* MainMenu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainMenu.storyboard; sourceTree = "<group>"; };
+		9F43DF2020BEC6340017813F /* ActionScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ActionScreen.storyboard; sourceTree = "<group>"; };
+		9F43DF2220BEC66B0017813F /* UserProfileScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserProfileScreen.storyboard; sourceTree = "<group>"; };
+		9F43DF2420BEC6910017813F /* EditUserProfileScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EditUserProfileScreen.storyboard; sourceTree = "<group>"; };
+		9F43DF2620BEC6D00017813F /* CollectRewardPointsScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CollectRewardPointsScreen.storyboard; sourceTree = "<group>"; };
+		9F43DF2820BEC7110017813F /* CollectScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CollectScreen.storyboard; sourceTree = "<group>"; };
+		9F43DF2A20BEC7BD0017813F /* CollectSecondScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CollectSecondScreen.storyboard; sourceTree = "<group>"; };
+		9F43DF2C20BEC7D70017813F /* SuccessfullyCollectedScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SuccessfullyCollectedScreen.storyboard; sourceTree = "<group>"; };
+		9F43DF2E20BEC8430017813F /* WithdrawsScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WithdrawsScreen.storyboard; sourceTree = "<group>"; };
+		9F43DF3020BEC8610017813F /* GoalsScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GoalsScreen.storyboard; sourceTree = "<group>"; };
+		9F43DF3220BEC87F0017813F /* StatisticScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StatisticScreen.storyboard; sourceTree = "<group>"; };
+		9F43DF3420BEC8950017813F /* OralHealthScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OralHealthScreen.storyboard; sourceTree = "<group>"; };
+		9F43DF3620BEC8B20017813F /* EmergencyScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EmergencyScreen.storyboard; sourceTree = "<group>"; };
+		9F43DF3820BEC8CA0017813F /* DescribeCaseScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DescribeCaseScreen.storyboard; sourceTree = "<group>"; };
+		9F43DF3A20BEC8E10017813F /* ThankYouScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ThankYouScreen.storyboard; sourceTree = "<group>"; };
+		9F43DF3C20BEC9000017813F /* AboutScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AboutScreen.storyboard; sourceTree = "<group>"; };
+		9F43DF3E20BEC9270017813F /* SettingsScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SettingsScreen.storyboard; sourceTree = "<group>"; };
 		9F4482D61F8B7CD700349A10 /* GoalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalData.swift; sourceTree = "<group>"; };
 		9F4482DC1F8B8CB700349A10 /* TransactionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionData.swift; sourceTree = "<group>"; };
 		9F4482DE1F8BA21C00349A10 /* ActionScreenData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionScreenData.swift; sourceTree = "<group>"; };
@@ -601,6 +648,9 @@
 		9FE84EFC2036EB9300C35AB6 /* CaptchaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptchaData.swift; sourceTree = "<group>"; };
 		9FE84EFE2037031800C35AB6 /* CaptchaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptchaView.swift; sourceTree = "<group>"; };
 		9FE84F002037032900C35AB6 /* CaptchaView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CaptchaView.xib; sourceTree = "<group>"; };
+		9FE8DC6C20BEF11E000282B3 /* BeginScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeginScreenViewController.swift; sourceTree = "<group>"; };
+		9FE8DC7020BEF42E000282B3 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		9FE8DC7220BEFB41000282B3 /* SplashView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashView.xib; sourceTree = "<group>"; };
 		9FE993681F8697690007D759 /* OralHealthData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OralHealthData.swift; sourceTree = "<group>"; };
 		9FE9936A1F86CBCC0007D759 /* OralHealthTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OralHealthTableCell.xib; sourceTree = "<group>"; };
 		9FE9936C1F86CD350007D759 /* OralHealthTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OralHealthTableCell.swift; sourceTree = "<group>"; };
@@ -763,8 +813,8 @@
 				9F0D45CF1F69340300E2A423 /* Views */,
 				9F1390001F62E07C006528F2 /* Headers */,
 				9F138FFF1F62D6C4006528F2 /* Cells */,
+				9F43DF0F20BEC4060017813F /* Screens */,
 				24657E901F13EA390057B846 /* LaunchScreen.storyboard */,
-				24B7D0981F32259400797685 /* Login.storyboard */,
 				24657E8B1F13EA390057B846 /* Main.storyboard */,
 				9FDF9B05208A2FB1002A6E9F /* Localizable.strings */,
 			);
@@ -819,8 +869,8 @@
 				9F1712951F4C47CB00FB263B /* Coordinators */,
 				9F1712961F4C47E700FB263B /* Routers */,
 				9F1712971F4C47FA00FB263B /* Presenters */,
+				9FE8DC6C20BEF11E000282B3 /* BeginScreenViewController.swift */,
 				24B7D0A41F34D8F700797685 /* MasterViewController.swift */,
-				249A97071F38949B003ABB8D /* SplashScreenViewController.swift */,
 				249A97091F38951D003ABB8D /* LoginScreenViewController.swift */,
 				249A970D1F38967E003ABB8D /* SignUpScreenViewController.swift */,
 				9F3FA4271F921E05005510FE /* ForgotYourPasswordScreenViewController.swift */,
@@ -872,6 +922,7 @@
 				9FFC8BB71FA20BBA0043F7BC /* ReusableXibView.swift */,
 				9FE84EFA2035C16E00C35AB6 /* TutorialView.swift */,
 				9FE84EFE2037031800C35AB6 /* CaptchaView.swift */,
+				9FE8DC7020BEF42E000282B3 /* SplashView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -952,6 +1003,7 @@
 				9FE84EF8203454D600C35AB6 /* TutorialView.xib */,
 				9FE84F002037032900C35AB6 /* CaptchaView.xib */,
 				9FBAEE8F204357A1009FD69A /* ConfirmDeleteProfilePopupScreen.xib */,
+				9FE8DC7220BEFB41000282B3 /* SplashView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1307,6 +1359,37 @@
 			name = Responses;
 			sourceTree = "<group>";
 		};
+		9F43DF0F20BEC4060017813F /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				9F43DF3E20BEC9270017813F /* SettingsScreen.storyboard */,
+				9F43DF3C20BEC9000017813F /* AboutScreen.storyboard */,
+				9F43DF3A20BEC8E10017813F /* ThankYouScreen.storyboard */,
+				9F43DF3820BEC8CA0017813F /* DescribeCaseScreen.storyboard */,
+				9F43DF3620BEC8B20017813F /* EmergencyScreen.storyboard */,
+				9F43DF3420BEC8950017813F /* OralHealthScreen.storyboard */,
+				9F43DF3220BEC87F0017813F /* StatisticScreen.storyboard */,
+				9F43DF3020BEC8610017813F /* GoalsScreen.storyboard */,
+				9F43DF2E20BEC8430017813F /* WithdrawsScreen.storyboard */,
+				9F43DF2C20BEC7D70017813F /* SuccessfullyCollectedScreen.storyboard */,
+				9F43DF2A20BEC7BD0017813F /* CollectSecondScreen.storyboard */,
+				9F43DF2820BEC7110017813F /* CollectScreen.storyboard */,
+				9F43DF2620BEC6D00017813F /* CollectRewardPointsScreen.storyboard */,
+				9F43DF2420BEC6910017813F /* EditUserProfileScreen.storyboard */,
+				9F43DF2220BEC66B0017813F /* UserProfileScreen.storyboard */,
+				9F43DF2020BEC6340017813F /* ActionScreen.storyboard */,
+				9F43DF1E20BEC6040017813F /* MainMenu.storyboard */,
+				9F43DF1C20BEC5D60017813F /* SideMenu.storyboard */,
+				9F43DF1A20BEC5780017813F /* ForgotYourPasswordScreen.storyboard */,
+				9F43DF1820BEC5470017813F /* WelcomeScreen.storyboard */,
+				9F43DF1620BEC50D0017813F /* UserAgreementScreen.storyboard */,
+				9F43DF1420BEC4E10017813F /* LoginScreen.storyboard */,
+				9F43DF1220BEC4B30017813F /* SignUpScreen.storyboard */,
+				9F43DF1020BEC4710017813F /* BeginScreen.storyboard */,
+			);
+			name = Screens;
+			sourceTree = "<group>";
+		};
 		9F75EBF52064135C004AF32C /* AwesomeSpotlight */ = {
 			isa = PBXGroup;
 			children = (
@@ -1573,19 +1656,25 @@
 				9F17D3F01FB56C7200FC96B5 /* female-evening-rinse-5.mp3 in Resources */,
 				9FEA44161FB08BF9000F7710 /* TotalDCNBar.xib in Resources */,
 				9F13900B1F63D248006528F2 /* InitialPageHeaderView.xib in Resources */,
+				9F43DF2F20BEC8430017813F /* WithdrawsScreen.storyboard in Resources */,
+				9F43DF3920BEC8CA0017813F /* DescribeCaseScreen.storyboard in Resources */,
 				9F17D3F11FB56C7200FC96B5 /* female-evening-rinse-4.mp3 in Resources */,
 				9F17D3E01FB56C7200FC96B5 /* female-morning-brush-2.mp3 in Resources */,
+				9F43DF1520BEC4E10017813F /* LoginScreen.storyboard in Resources */,
 				9F17D3DB1FB56C7200FC96B5 /* female-morning-brush-7.mp3 in Resources */,
 				9F17D3E61FB56C7200FC96B5 /* female-evening-floss-1.mp3 in Resources */,
+				9F43DF3F20BEC9270017813F /* SettingsScreen.storyboard in Resources */,
+				9F43DF3520BEC8950017813F /* OralHealthScreen.storyboard in Resources */,
 				9F17D3F31FB56C7200FC96B5 /* female-evening-rinse-3.mp3 in Resources */,
 				9F17D3F41FB56C7200FC96B5 /* female-evening-rinse-2.mp3 in Resources */,
 				9F17D3E81FB56C7200FC96B5 /* female-evening-floss-2.mp3 in Resources */,
 				9FF837681F6C139E00E72CBC /* SmallCircularBar.xib in Resources */,
+				9F43DF2B20BEC7BD0017813F /* CollectSecondScreen.storyboard in Resources */,
 				9FFC8BBC1FA20DBF0043F7BC /* LoadingState.xib in Resources */,
 				9FE84EF72032FFBE00C35AB6 /* TutorialsPopupScreen.xib in Resources */,
-				24B7D0991F32259400797685 /* Login.storyboard in Resources */,
 				9F9EF2F31F9DD43B005BE398 /* user-agreement.html in Resources */,
 				9F1390041F62F1C5006528F2 /* ActionHeaderView.xib in Resources */,
+				9F43DF1F20BEC6040017813F /* MainMenu.storyboard in Resources */,
 				9F13901F1F63FDDC006528F2 /* InsidePageHeaderView.xib in Resources */,
 				9FF837511F6A86BE00E72CBC /* StatisticsView.xib in Resources */,
 				9F17D3CC1FB56C7200FC96B5 /* male-evening-floss-2.mp3 in Resources */,
@@ -1594,10 +1683,13 @@
 				9FF8376E1F6D37D100E72CBC /* StatisticsLabelCell.xib in Resources */,
 				9F17D3E91FB56C7200FC96B5 /* female-evening-brush-1.mp3 in Resources */,
 				9FE84EF9203454D600C35AB6 /* TutorialView.xib in Resources */,
+				9F43DF1120BEC4710017813F /* BeginScreen.storyboard in Resources */,
 				9F17D3DF1FB56C7200FC96B5 /* female-morning-brush-3.mp3 in Resources */,
 				24657E8D1F13EA390057B846 /* Main.storyboard in Resources */,
 				9F17D3EE1FB56C7200FC96B5 /* female-evening-brush-4.mp3 in Resources */,
 				9F17D3EC1FB56C7200FC96B5 /* female-evening-brush-6.mp3 in Resources */,
+				9F43DF1320BEC4B30017813F /* SignUpScreen.storyboard in Resources */,
+				9F43DF3B20BEC8E10017813F /* ThankYouScreen.storyboard in Resources */,
 				249A972F1F38B622003ABB8D /* Lato-Regular.ttf in Resources */,
 				9FE9936B1F86CBCC0007D759 /* OralHealthTableCell.xib in Resources */,
 				9F17D3B41FB56C7200FC96B5 /* music-6.mp3 in Resources */,
@@ -1605,10 +1697,13 @@
 				9F17D3B51FB56C7200FC96B5 /* music-7.mp3 in Resources */,
 				9F17D3DD1FB56C7200FC96B5 /* female-morning-brush-4.mp3 in Resources */,
 				9F17D3D61FB56C7200FC96B5 /* male-evening-rinse-3.mp3 in Resources */,
+				9F43DF2520BEC6910017813F /* EditUserProfileScreen.storyboard in Resources */,
 				9F17D3DA1FB56C7200FC96B5 /* female-morning-brush-6.mp3 in Resources */,
 				9FF8376C1F6D371E00E72CBC /* StatisticsOptionsCell.xib in Resources */,
 				9F17D3D71FB56C7200FC96B5 /* male-evening-rinse-4.mp3 in Resources */,
 				9F17D3B61FB56C7200FC96B5 /* music-5.mp3 in Resources */,
+				9F43DF2120BEC6340017813F /* ActionScreen.storyboard in Resources */,
+				9F43DF2320BEC66B0017813F /* UserProfileScreen.storyboard in Resources */,
 				9F17D3CA1FB56C7200FC96B5 /* male-evening-greeting.mp3 in Resources */,
 				9F17D3D21FB56C7200FC96B5 /* male-evening-brush-2.mp3 in Resources */,
 				9F17D3C51FB56C7200FC96B5 /* male-morning-rinse-4.mp3 in Resources */,
@@ -1618,11 +1713,15 @@
 				9FBAEE90204357A1009FD69A /* ConfirmDeleteProfilePopupScreen.xib in Resources */,
 				9F2A39561F629748007D089F /* MainMenuCell.xib in Resources */,
 				9F17D3D31FB56C7200FC96B5 /* male-evening-brush-3.mp3 in Resources */,
+				9FE8DC7320BEFB41000282B3 /* SplashView.xib in Resources */,
 				9F17D3C91FB56C7200FC96B5 /* male-morning-rinse-3.mp3 in Resources */,
 				9F17D3E41FB56C7200FC96B5 /* female-morning-rinse-5.mp3 in Resources */,
+				9F43DF1B20BEC5780017813F /* ForgotYourPasswordScreen.storyboard in Resources */,
 				9F17D3D81FB56C7200FC96B5 /* male-evening-rinse-5.mp3 in Resources */,
 				9F17D3B71FB56C7200FC96B5 /* music-4.mp3 in Resources */,
+				9F43DF3120BEC8620017813F /* GoalsScreen.storyboard in Resources */,
 				9FFC8BBA1FA20D640043F7BC /* EmptyState.xib in Resources */,
+				9F43DF1720BEC50D0017813F /* UserAgreementScreen.storyboard in Resources */,
 				9F17D3EF1FB56C7200FC96B5 /* female-evening-greeting.mp3 in Resources */,
 				9F17D3C21FB56C7200FC96B5 /* male-morning-brush-6.mp3 in Resources */,
 				249A972B1F38B622003ABB8D /* Lato-Light.ttf in Resources */,
@@ -1641,13 +1740,18 @@
 				9FE84F012037032900C35AB6 /* CaptchaView.xib in Resources */,
 				9F17D3BE1FB56C7200FC96B5 /* male-morning-brush-1.mp3 in Resources */,
 				9F17D3C81FB56C7200FC96B5 /* male-morning-rinse-2.mp3 in Resources */,
+				9F43DF2920BEC7110017813F /* CollectScreen.storyboard in Resources */,
 				9F17D3BF1FB56C7200FC96B5 /* male-morning-brush-2.mp3 in Resources */,
+				9F43DF1D20BEC5D60017813F /* SideMenu.storyboard in Resources */,
 				9F17D3E21FB56C7200FC96B5 /* female-morning-rinse-3.mp3 in Resources */,
 				9F17D3DC1FB56C7200FC96B5 /* female-morning-brush-5.mp3 in Resources */,
+				9F43DF2720BEC6D00017813F /* CollectRewardPointsScreen.storyboard in Resources */,
+				9F43DF1920BEC5470017813F /* WelcomeScreen.storyboard in Resources */,
 				9FF837701F6D387E00E72CBC /* StatisticsCircularBarsCell.xib in Resources */,
 				9F17D3C11FB56C7200FC96B5 /* male-morning-brush-7.mp3 in Resources */,
 				9F4190B41FCD4EBC00ADE2AC /* Notification.wav in Resources */,
 				9F0D45D11F69342E00E2A423 /* ActionView.xib in Resources */,
+				9F43DF2D20BEC7D70017813F /* SuccessfullyCollectedScreen.storyboard in Resources */,
 				9F0A6C811F605832003AF65C /* Lato-Black.ttf in Resources */,
 				9F17D3E31FB56C7200FC96B5 /* female-morning-rinse-2.mp3 in Resources */,
 				9F17D3C31FB56C7200FC96B5 /* male-morning-brush-4.mp3 in Resources */,
@@ -1655,11 +1759,14 @@
 				9F17D3E71FB56C7200FC96B5 /* female-evening-floss-3.mp3 in Resources */,
 				9F17D3C71FB56C7200FC96B5 /* male-morning-rinse-1.mp3 in Resources */,
 				9F17D3D91FB56C7200FC96B5 /* female-morning-greeting.mp3 in Resources */,
+				9F43DF3D20BEC9000017813F /* AboutScreen.storyboard in Resources */,
 				9FF0AEA11F58B8A30056846B /* GoogleService-Info.plist in Resources */,
+				9F43DF3320BEC87F0017813F /* StatisticScreen.storyboard in Resources */,
 				9F17D3BB1FB56C7200FC96B5 /* music-9.mp3 in Resources */,
 				9F17D3BC1FB56C7200FC96B5 /* music-8.mp3 in Resources */,
 				9FE7CC0F1FB205BC0042EB14 /* BrushBar.xib in Resources */,
 				9FDF9B07208A2FB1002A6E9F /* Localizable.strings in Resources */,
+				9F43DF3720BEC8B20017813F /* EmergencyScreen.storyboard in Resources */,
 				9F17D3D51FB56C7200FC96B5 /* male-evening-rinse-2.mp3 in Resources */,
 				9FA7EAAE1F9FC698003AD94A /* Assets.xcassets in Resources */,
 				9FFC8BBE1FA210420043F7BC /* ErrorState.xib in Resources */,
@@ -1866,6 +1973,7 @@
 				9F4482DD1F8B8CB700349A10 /* TransactionData.swift in Sources */,
 				9F28A39D1F5066150002FF53 /* APIProvider.swift in Sources */,
 				9FDE781B1F9B3B190013719F /* NotificationsDailyBrushingData.swift in Sources */,
+				9FE8DC7120BEF42E000282B3 /* SplashView.swift in Sources */,
 				9F16E3491F9A9F030081D244 /* NotificationsManager.swift in Sources */,
 				9FF837741F6D3A3E00E72CBC /* StatisticsLabelCell.swift in Sources */,
 				9FCA68B81FAA1F5F008B36DA /* aescrypt.c in Sources */,
@@ -1937,6 +2045,7 @@
 				9F1390211F63FF19006528F2 /* InsidePageHeaderView.swift in Sources */,
 				9F1712A11F4C539A00FB263B /* SignUpScreenCoordinator.swift in Sources */,
 				9F42EBB81F8EB55A0061FEA3 /* UserSessionData.swift in Sources */,
+				9FE8DC6D20BEF11E000282B3 /* BeginScreenViewController.swift in Sources */,
 				9FCA68D41FAA1F5F008B36DA /* crypto_scrypt-nosse.c in Sources */,
 				9F13901D1F63EC7E006528F2 /* UserProfileScreenViewController.swift in Sources */,
 				2430C8BC1F3CA8A600353EE1 /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */,
@@ -1959,7 +2068,6 @@
 				24B7D0A51F34D8F700797685 /* MasterViewController.swift in Sources */,
 				9F75EBFF20641A69004AF32C /* SpotlightModels.swift in Sources */,
 				9FB6513D2044BFA300C2D705 /* SuccessResponse.swift in Sources */,
-				249A97081F38949B003ABB8D /* SplashScreenViewController.swift in Sources */,
 				9FF0AEA51F593AA30056846B /* DecodeOperation.swift in Sources */,
 				9F1712A71F4C53D900FB263B /* LoginScreenPresenter.swift in Sources */,
 				9F75EBFD206413B3004AF32C /* AwesomeSpotlightView.swift in Sources */,

@@ -151,21 +151,21 @@ extension FlossActionView: ActionViewProxyDelegateProtocol {
         
         if let routine = UserDataContainer.shared.routine {
             
-            if newState == .Ready {
+            if newState == .ready {
                 embedView?.actionFootherContainer.setActionButtonLabel("dashboard_btn_start".localized(), withState: .blue)
                 SoundManager.shared.playSound(SoundType.sound(routine.type, .floss, .ready))
                 embedView?.descriptionTextView.text = readyDescriptionString
-            } else if newState == .Action {
+            } else if newState == .action {
                 embedView?.actionFootherContainer.setActionButtonLabel("dashboard_btn_stop".localized(), withState: .red)
                 SoundManager.shared.playSound(SoundType.sound(routine.type, .floss, .progress(0)))
                 embedView?.descriptionTextView.text = actionDescriptionString
-            } else if newState == .Done {
+            } else if newState == .done {
                 
                 resetTimer()
                 SoundManager.shared.playSound(SoundType.sound(routine.type, .floss, .done(.congratulations)))
                 embedView?.descriptionTextView.text = doneDescriptionString
                 
-            } else if newState == .Initial {
+            } else if newState == .initial {
                 embedView?.toggleDescriptionText(false)
                 return
             }
@@ -174,7 +174,7 @@ extension FlossActionView: ActionViewProxyDelegateProtocol {
             
         } else {
             
-            if newState == .Initial {
+            if newState == .initial {
                 resetTimer()
             } else {
                 embedView?.actionFootherContainer.setActionButtonLabel("dashboard_btn_stop".localized(), withState: .red)

@@ -10,20 +10,19 @@ import Foundation
 import UIKit
 
 extension UIStoryboard {
+    
     func instantiateViewController<T: UIViewController>() -> T? {
         return instantiateViewController(withIdentifier: T.storyboardIdentifier) as? T
     }
+    
     func instantiateViewControllerWith(id viewControllerID: String) -> UIViewController? {
         return instantiateViewController(withIdentifier: viewControllerID)
     }
+    
 }
 
 extension UIStoryboard {
     class var main: UIStoryboard {
         return UIStoryboard(name: "Main", bundle: nil)
-    }
-    
-    class var login: UIStoryboard {
-        return UIStoryboard(name: "Login", bundle: nil)
     }
 }
