@@ -47,7 +47,7 @@ struct NotificationsVisitDentist: NotificationDataProtocol {
         let content = UNMutableNotificationContent()
         content.title = data.title
         content.body = data.message
-        content.sound = UNNotificationSound(named: "Notification.wav")
+        content.sound = UNNotificationSound(named: NotificationSound.dncNotification.rawValue)
         
         let center = UNUserNotificationCenter.current()
         var triggerDate: Date = Date()

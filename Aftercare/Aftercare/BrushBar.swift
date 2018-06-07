@@ -120,15 +120,15 @@ class BrushBar: UIView {
             let sectionToHighlight: [UIButton]?
             
             switch section {
-                case .UpperRight:
+                case .upperRight:
                     sectionToHighlight = self?.upperRightPart
-                case .DownRight:
+                case .downRight:
                     sectionToHighlight = self?.downRightPart
-                case .DownLeft:
+                case .downLeft:
                     sectionToHighlight = self?.downLeftPart
-                case .UpperLeft:
+                case .upperLeft:
                     sectionToHighlight = self?.upperLeftPart
-                case .None:
+                case .none:
                     sectionToHighlight = nil
                     self?.highlightedSection = nil
             }
@@ -145,11 +145,11 @@ class BrushBar: UIView {
     }
     
     enum BrushBarSections {
-        case UpperRight
-        case DownRight
-        case DownLeft
-        case UpperLeft
-        case None
+        case upperRight
+        case downRight
+        case downLeft
+        case upperLeft
+        case none
     }
     
 }

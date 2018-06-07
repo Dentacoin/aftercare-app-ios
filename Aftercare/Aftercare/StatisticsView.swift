@@ -43,7 +43,6 @@ class StatisticsView: UIView {
     
     func config(type: ActionRecordType) {
         self.type = type
-        //UserDataContainer.shared.delegate = self
     }
     
     //MARK: - internal logic

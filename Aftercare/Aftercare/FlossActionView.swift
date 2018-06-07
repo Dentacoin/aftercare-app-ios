@@ -160,11 +160,9 @@ extension FlossActionView: ActionViewProxyDelegateProtocol {
                 SoundManager.shared.playSound(SoundType.sound(routine.type, .floss, .progress(0)))
                 embedView?.descriptionTextView.text = actionDescriptionString
             } else if newState == .done {
-                
                 resetTimer()
                 SoundManager.shared.playSound(SoundType.sound(routine.type, .floss, .done(.congratulations)))
                 embedView?.descriptionTextView.text = doneDescriptionString
-                
             } else if newState == .initial {
                 embedView?.toggleDescriptionText(false)
                 return

@@ -11,15 +11,18 @@ struct Routines {
     
     fileprivate static let localFileName = "routineRecords.json"
     
+    static let morningInterval = 5...17
+    static let eveningInterval = 17...24
+    
     static func getRoutineForNow() -> Routine? {
         let now = Date()
         let calendar = Calendar.current
         let components = calendar.dateComponents([.hour], from: now)
         if let hour = components.hour {
-            if hour >= 2, hour <= 11 {
-                return Routine(startHour: 2, toEndHour: 11, withActions: [.brush, .rinsed], .morning)
-            } else if hour >= 17, hour <= 24 {
-                return Routine(startHour: 17, toEndHour: 24, withActions: [.flossed, .brush, .rinsed], .evening)
+            if morningInterval.contains(hour) {
+                return Routine(hour, withActions: [.brush, .rinsed], .morning)
+            } else if eveningInterval.contains(hour) {
+                return Routine(hour, withActions: [.flossed, .brush, .rinsed], .evening)
             }
         }
         return nil
@@ -71,14 +74,12 @@ struct Routines {
 
 struct Routine {
     
-    var startHour: Int = 0
-    var endHour: Int = 0
+    var currentHour: Int = 0
     var type: RoutineType = .morning
     var actions: [ActionRecordType] = []
     
-    init(startHour start: Int, toEndHour end: Int, withActions actions: [ActionRecordType], _ type: RoutineType) {
-        self.startHour = start
-        self.endHour = end
+    init(_ currentHour: Int, withActions actions: [ActionRecordType], _ type: RoutineType) {
+        self.currentHour = currentHour
         self.actions = actions
         self.type = type
     }
@@ -94,7 +95,11 @@ struct Routine {
             case .evening:
                 return "message_evening_routine_start".localized()
             case .morning:
-                return "message_morning_routine_start".localized()
+                if currentHour < 12 {
+                    return "message_morning_routine_start".localized()
+                } else {
+                    return "message_day_routine_start".localized()
+                }
         }
     }
     
@@ -113,7 +118,11 @@ struct Routine {
                 case .evening:
                     return "btn_evening".localized()
                 case .morning:
-                    return "btn_morning".localized()
+                    if currentHour < 12 {
+                        return "btn_morning".localized()
+                    } else {
+                        return "btn_routine".localized()
+                    }
             }
         }
     }

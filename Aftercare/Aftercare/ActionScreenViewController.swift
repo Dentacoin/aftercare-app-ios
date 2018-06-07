@@ -36,8 +36,8 @@ class ActionScreenViewController: UIViewController, ContentConformer {
     fileprivate var spotlights: [AwesomeSpotlight] = []
     
     fileprivate var routineRecordData: RoutineData? {
-        didSet {
-            UserDataContainer.shared.lastRoutineRecord = routineRecordData
+        didSet(value) {
+            UserDataContainer.shared.lastRoutineRecord = value
         }
     }
     
@@ -102,10 +102,6 @@ class ActionScreenViewController: UIViewController, ContentConformer {
                 requestJourney()
             }
         }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        prepareSubScreens()
     }
     
     override func viewDidLayoutSubviews() {
@@ -192,6 +188,7 @@ class ActionScreenViewController: UIViewController, ContentConformer {
 
                         return
                     } else {
+                        // Journey successfully completed [Show Journey End Popup]
                         self?.showMissionPopup(ofType: .journeyEnd)
                         return
                     }
@@ -278,8 +275,6 @@ extension ActionScreenViewController {
     
     fileprivate func setup() {
         
-        showSplashView()
-        
         header.delegate = self
         contentScrollView.delegate = self
         contentScrollView.clipsToBounds = false
@@ -290,16 +285,18 @@ extension ActionScreenViewController {
         
         header.updateTitle("dashboard_hdl_dentacare".localized())
         
+        prepareSubScreens()
+        
         //Sync with the server
         UserDataContainer.shared.syncWithServer()
     }
     
     fileprivate func createSubScreens() -> [ActionViewProtocol]? {
         
-        let flossPage = FlossActionView()
+        let flossPage = BrushActionView()
         flossPage.delegate = self
         pagesArray.append(flossPage)
-        let brushPage = BrushActionView()
+        let brushPage = FlossActionView()
         brushPage.delegate = self
         pagesArray.append(brushPage)
         let rinsePage = RinseActionView()
@@ -343,13 +340,21 @@ extension ActionScreenViewController {
     
     fileprivate func prepareSubScreens() {
         
+        //showSplashView()
+//        let startTime = SystemMethods.Utils.millisecondsSinceAppStart()
+//        print(" START Preparing \(startTime)")
+        
         guard let screens = createSubScreens() else { return }
         setupSubScreens(screens)
         
         //scroll subscreen's scroll view to the middle screen (Brushing)
-        scrollContentScrollViewTo(page: 1, animating: false)
+        //this triggers header tab update too but it doesn't update the 0 index
+        //scrollContentScrollViewTo(page: 0, animating: false)
+        lastTab = 0
         
-        removeSplashView()
+//        let endTime = SystemMethods.Utils.millisecondsSinceAppStart()
+//        print(" END Preparing \((endTime - startTime))")
+        //removeSplashView()
     }
     
     fileprivate func scrollContentScrollViewTo(page index: Int, animating animate: Bool) {
@@ -445,7 +450,7 @@ extension ActionScreenViewController: AwesomeSpotlightViewDelegate {
 extension ActionScreenViewController: ActionViewDelegate {
     
     func requestToOpenCollectScreen() {
-        let vcID = String(describing: CollectScreenViewController.self)
+        let vcID = String(describing: CollectRewardPointsController.self)
         contentDelegate?.requestLoadViewController(vcID, nil)
     }
     
@@ -481,9 +486,25 @@ extension ActionScreenViewController: ActionViewDelegate {
         
         if let newRecord = newRecord {
             guard var routineData = self.routineRecordData else {
-                exitFullscreen()
+                
+                // TODO: record single action outside of routine
+                
+//                let now = Date()
+//                let calendar = Calendar.current
+//                let components = calendar.dateComponents([.hour], from: now)
+//                guard let hour = components.hour else {
+//                    assertionFailure("Couldn't determine current hour time")
+//                    return
+//                }
+//                let type = Routines.eveningInterval.contains(hour) ? RoutineType.evening : RoutineType.morning
+//                // Even that we create RoutineData and record our action, this will be recorded as action outside of routine in the server
+//                var routineData = RoutineData(startTime: newRecord.startTime.dateFromISO8601!, type: type)
+//                routineData.endTime = newRecord.endTime
+//                routineData.records = [newRecord]
+//                recordData(routineData, onComplete: onRoutineDataSuccessfullyRecorded)
                 return
             }
+            
             if var _ = routineData.records {
                 routineData.records?.append(newRecord)
             } else {
@@ -510,41 +531,55 @@ extension ActionScreenViewController: ActionViewDelegate {
                 allLocalRecords.append(routineData)
             }
             
-            APIProvider.recordRoutine(routineData, onComplete: { [weak self] (routineData, error) in
-                
-                if let error = error {
-                    print("ActionScreenViewController : actionComplete Error: \(error)")
-                    if error.code == ErrorCode.noInternetConnection.rawValue {
-                        //save routineData locally
-                        
-                        return
-                    }
-                }
-                
-                UserDataContainer.shared.lastRoutineRecord = routineData
-                
-                if let journey = UserDataContainer.shared.journey {
-                    if journey.completed == true {
-                        if journey.skipped > journey.tolerance {
-                            self?.showMissionPopup(ofType: .journeyFailed)
-                        } else {
-                            self?.showEndRoutinePopup(forRoutine: routine)
-                        }
-                    } else {
-                        self?.showEndRoutinePopup(forRoutine: routine)
-                    }
-                } else {
-                    self?.showEndRoutinePopup(forRoutine: routine)
-                }
-                
-                self?.exitFullscreen()
-                self?.clearMissionData()
-                UserDataContainer.shared.syncWithServer()
-                
-            })
+            // record multiple action within a routine
+            recordData(routineData, onComplete: onRoutineDataSuccessfullyRecorded)
             
         }
         
+    }
+    
+    fileprivate func recordData(_ routineData: RoutineData, onComplete completionHandler: @escaping (_ data: RoutineData) -> Void) {
+        //TODO: If any routine or action is saved locally, try to record that first
+        APIProvider.recordRoutine(routineData, onComplete: { (routineData, error) in
+            
+            if let error = error {
+                print("ActionScreenViewController : actionComplete Error: \(error)")
+                if error.code == ErrorCode.noInternetConnection.rawValue {
+                    //TODO: save routineData locally
+                    return
+                }
+            }
+            
+            if let data = routineData {
+                completionHandler(data)
+            }
+            
+        })
+    }
+    
+    fileprivate func onRoutineDataSuccessfullyRecorded(_ data: RoutineData) {
+        
+        routineRecordData = data
+        
+        if let routine = UserDataContainer.shared.routine {
+            if let journey = UserDataContainer.shared.journey {
+                if journey.completed == true {
+                    if journey.skipped > journey.tolerance {
+                        showMissionPopup(ofType: .journeyFailed)
+                    } else {
+                        showEndRoutinePopup(forRoutine: routine)
+                    }
+                } else {
+                    showEndRoutinePopup(forRoutine: routine)
+                }
+            } else {
+                showEndRoutinePopup(forRoutine: routine)
+            }
+        }
+        
+        exitFullscreen()
+        clearMissionData()
+        UserDataContainer.shared.syncWithServer()
     }
     
     fileprivate func clearMissionData() {
@@ -592,25 +627,25 @@ extension ActionScreenViewController: ActionViewDelegate {
         return missionPopup
     }
     
-    fileprivate func showSplashView() {
-        let splash = splashView
-        splash.frame = UIScreen.main.bounds
-        view.addSubview(splash)
-    }
-    
-    fileprivate func removeSplashView() {
-        
-        let splashAnimator = UIViewPropertyAnimator(duration: 0.5, curve: .easeOut) { [weak self] in
-            self?.splashView.alpha = 1
-        }
-        splashAnimator.addCompletion { [weak self] position in
-            if position == .end {
-                self?.splashView.removeFromSuperview()
-            }
-        }
-        splashAnimator.startAnimation()
-
-    }
+//    fileprivate func showSplashView() {
+//        let splash = splashView
+//        splash.frame = UIScreen.main.bounds
+//        view.addSubview(splash)
+//    }
+//
+//    fileprivate func removeSplashView() {
+//
+//        let splashAnimator = UIViewPropertyAnimator(duration: 0.5, curve: .easeOut) { [weak self] in
+//            self?.splashView.alpha = 1
+//        }
+//        splashAnimator.addCompletion { [weak self] position in
+//            if position == .end {
+//                self?.splashView.removeFromSuperview()
+//            }
+//        }
+//        splashAnimator.startAnimation()
+//
+//    }
     
 }
 
@@ -708,10 +743,14 @@ extension ActionScreenViewController: MissionPopupScreenDelegate {
 extension ActionScreenViewController: TutorialsPopupScreenDelegate {
     
     func onTutorialsFinished() {
-        self.tutorialsPopup.dismiss(animated: true, completion: nil)
+        closeTutorialsPopup()
     }
     
     func onTutorialsClosed() {
+        closeTutorialsPopup()
+    }
+    
+    fileprivate func closeTutorialsPopup() {
         self.tutorialsPopup.dismiss(animated: true, completion: nil)
     }
     

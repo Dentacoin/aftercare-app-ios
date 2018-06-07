@@ -57,7 +57,7 @@ class MissionPopupScreen: UIView {
                 let location = touch.location(in: self)
                 let frame = containerView.frame
                 if !frame.contains(location) {
-                    self.delegate?.onActionButtonPressed(self)
+                    self.delegate?.onPopupClosed()
                     self.removeFromSuperview()
                 }
             }

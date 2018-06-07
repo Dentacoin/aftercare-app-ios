@@ -182,11 +182,13 @@ enum VoicePath: String, Pathable {
 
 enum RoutineType: String, Pathable, Codable {
     case morning
+    case day
     case evening
     var path: String? {
         switch self {
-        case .morning: return "morning"
-        case .evening: return "evening"
+        case .morning:  return "morning"
+        case .day:      return "day"
+        case .evening:  return "evening"
         }
     }
 }

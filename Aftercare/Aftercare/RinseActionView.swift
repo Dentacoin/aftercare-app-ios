@@ -184,7 +184,6 @@ extension RinseActionView: ActionViewProxyDelegateProtocol {
         if let routine = UserDataContainer.shared.routine {
         
             if newState == .ready {
-                
                 embedView?.actionFootherContainer.setActionButtonLabel("dashboard_btn_start".localized(), withState: .blue)
                 if routine.type == .morning {
                     embedView?.descriptionTextView.text = readyMorningDescriptionString
@@ -192,15 +191,10 @@ extension RinseActionView: ActionViewProxyDelegateProtocol {
                     embedView?.descriptionTextView.text = readyEveningDescriptionString
                 }
                 SoundManager.shared.playSound(SoundType.sound(routine.type, .rinse, .ready))
-                
             } else if newState == .action {
-                
                 embedView?.actionFootherContainer.setActionButtonLabel("dashboard_btn_stop".localized(), withState: .red)
-                
             } else if newState == .done {
-                
                 resetTimer()
-                
             } else if newState == .initial {
                 embedView?.toggleDescriptionText(false)
                 return

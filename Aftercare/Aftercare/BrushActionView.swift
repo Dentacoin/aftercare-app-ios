@@ -159,54 +159,47 @@ extension BrushActionView: ActionViewProxyDelegateProtocol {
         
         let seconds: Int = Int(seconds)
         
-        if seconds >= 0, seconds < 30 {
+        switch seconds {
+        case 0...30:
             if !actionDescription01Flag {
                 actionDescription01Flag = true
-                timer.highlightSection(.UpperRight)
+                timer.highlightSection(.upperLeft)
                 if let routine = UserDataContainer.shared.routine {
                     SoundManager.shared.playSound(SoundType.sound(routine.type, .brush, .progress(seconds)))
                     embedView?.descriptionTextView.text = actionStep01String
                 }
             }
-        }
-        
-        if seconds > 30, seconds < 60 {
+        case 30...60:
             if !actionDescription02Flag {
                 actionDescription02Flag = true
-                timer.highlightSection(.DownRight)
+                timer.highlightSection(.downLeft)
                 if let routine = UserDataContainer.shared.routine {
                     SoundManager.shared.playSound(SoundType.sound(routine.type, .brush, .progress(seconds)))
                     embedView?.descriptionTextView.text = actionStep02String
                 }
             }
-        }
-        
-        if seconds > 60, seconds < 90 {
+        case 60...90:
             if !actionDescription03Flag {
                 actionDescription03Flag = true
-                timer.highlightSection(.DownLeft)
+                timer.highlightSection(.downRight)
                 if let routine = UserDataContainer.shared.routine {
                     SoundManager.shared.playSound(SoundType.sound(routine.type, .brush, .progress(seconds)))
                     embedView?.descriptionTextView.text = actionStep03String
                 }
             }
-        }
-        
-        if seconds > 90, seconds < 120 {
+        case 90...120:
             if !actionDescription04Flag {
                 actionDescription04Flag = true
-                timer.highlightSection(.UpperLeft)
+                timer.highlightSection(.upperRight)
                 if let routine = UserDataContainer.shared.routine {
                     SoundManager.shared.playSound(SoundType.sound(routine.type, .brush, .progress(seconds)))
                     embedView?.descriptionTextView.text = actionStep04String
                 }
             }
-        }
-        
-        if seconds > 120 {
+        default:
             if !actionDescription05Flag {
                 actionDescription05Flag = true
-                timer.highlightSection(.None)
+                timer.highlightSection(.none)
                 if let routine = UserDataContainer.shared.routine {
                     SoundManager.shared.playSound(SoundType.sound(routine.type, .brush, .progress(seconds)))
                     embedView?.descriptionTextView.text = actionStep05String
@@ -226,12 +219,10 @@ extension BrushActionView: ActionViewProxyDelegateProtocol {
             } else if newState == .action {
                 embedView?.actionFootherContainer.setActionButtonLabel("dashboard_btn_stop".localized(), withState: .red)
             } else if newState == .done {
-                
                 resetTimer()
                 //this is the same sound for morning and evening routine
                 SoundManager.shared.playSound(SoundType.sound(.morning, .brush, .done(.congratulations)))
                 embedView?.descriptionTextView.text = doneDescriptionString
-                
             } else if newState == .initial {
                 embedView?.toggleDescriptionText(false)
                 return
@@ -263,7 +254,7 @@ extension BrushActionView: ActionViewProxyDelegateProtocol {
         
         guard let timer = self.timer else { return }
         timer.timerLabel.text = "0:00"
-        timer.highlightSection(.None)
+        timer.highlightSection(.none)
         
     }
     

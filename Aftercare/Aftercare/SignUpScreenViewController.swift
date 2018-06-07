@@ -278,52 +278,39 @@ extension SignUpScreenViewController {
         )
     }
     
-    func validateAndSignUp() {
+    @discardableResult fileprivate func validateUserData() -> Bool {
         
         _ = textFieldShouldEndEditing(firstNameTextField)
         if let error = firstNameTextField.errorMessage, error != "" {
             firstNameTextField.becomeFirstResponder()
-            return
+            return false
         }
         
         _ = textFieldShouldEndEditing(lastNameTextField)
         if let error = lastNameTextField.errorMessage, error != "" {
             lastNameTextField.becomeFirstResponder()
-            return
+            return false
         }
         
         _ = textFieldShouldEndEditing(emailTextField)
         if let error = emailTextField.errorMessage, error != "" {
             emailTextField.becomeFirstResponder()
-            return
+            return false
         }
         
         _ = textFieldShouldEndEditing(passwordTextField)
         if let error = passwordTextField.errorMessage, error != "" {
             passwordTextField.becomeFirstResponder()
-            return
+            return false
         }
         
         _ = textFieldShouldEndEditing(captchaCodeTextField)
         if let error = captchaCodeTextField.errorMessage, error != "" {
             captchaCodeTextField.becomeFirstResponder()
-            return
+            return false
         }
         
-        if uiIsBlocked == true {
-            return
-        }
-        uiIsBlocked = true
-        showLoadingScreenState()
-        
-        output.requestSignUpUser(
-            firstName: firstNameTextField.text!,
-            lastName: lastNameTextField.text!,
-            email: emailTextField.text!,
-            password: passwordTextField.text!,
-            captchaId: captchaView.data?.id ?? 0,
-            captchaCode: captchaCodeTextField.text!
-        )
+        return true
     }
     
 }
@@ -336,7 +323,47 @@ extension SignUpScreenViewController {
         if uiIsBlocked == true {
             return
         }
-        self.validateAndSignUp()
+        if validateUserData() {
+            // the sign up process continues from one of the two methods
+            // userDidAcceptTermsAndConditions() or userDidDeclineTermsAndConditions()
+            router.showUserAgreementScreen() { [weak self] consent in
+                
+                if consent {
+                    self?.output.requestSignUpUser(
+                        firstName: self?.firstNameTextField.text ?? "",
+                        lastName: self?.lastNameTextField.text ?? "",
+                        email: self?.emailTextField.text ?? "",
+                        password: self?.passwordTextField.text ?? "",
+                        captchaId: self?.captchaView.data?.id ?? 0,
+                        captchaCode: self?.captchaCodeTextField.text ?? ""
+                    )
+                } else {
+                    self?.clearState()
+                }
+                
+//                func userDidAcceptTermsAndConditions(from sender: UIButton) {
+//
+//                    // request sign up user.
+//                    // If this sign up request secceed showWelcomeScreen() should be called
+//                    // if it fails showErrorMessage should be called instead
+//
+//                    switch sender {
+//                    case facebookButton:
+//
+//                    case twitterButton:
+//
+//                    case googlePlusButton:
+//
+//                    default:
+//                        // Sign Up with email
+//
+//                    }
+//
+//                }
+            }
+            showLoadingScreenState()
+            uiIsBlocked = true
+        }
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
@@ -353,24 +380,51 @@ extension SignUpScreenViewController {
         if uiIsBlocked == true {
             return
         }
+        // show user agreement
+        router.showUserAgreementScreen() { [weak self] consent in
+            if consent {
+                // if consent > request signup/login with falsebook
+                self?.output.requestLoginWith(provider: FacebookProvider.shared, in: self!)
+            } else {
+                self?.clearState()
+            }
+        }
         showLoadingScreenState()
-        output.requestLoginWith(provider: FacebookProvider.shared, in: self)
+        uiIsBlocked = true
     }
     
     @IBAction func twitterButtonPressed(_ sender: UIButton) {
         if uiIsBlocked == true {
             return
         }
+        // show user agreement
+        router.showUserAgreementScreen() { [weak self] consent in
+            if consent {
+                // if consent > request signup/login with twitter
+                self?.output.requestLoginWith(provider: TwitterProvider.shared, in: self!)
+            } else {
+                self?.clearState()
+            }
+        }
         showLoadingScreenState()
-        output.requestLoginWith(provider: TwitterProvider.shared, in: self)
+        uiIsBlocked = true
     }
     
     @IBAction func googlePlusButtonPressed(_ sender: UIButton) {
         if uiIsBlocked == true {
             return
         }
+        // show user agreement
+        router.showUserAgreementScreen() { [weak self] consent in
+            if consent {
+                // if consent > request signup/login with google plus
+                self?.output.requestLoginWith(provider: GooglePlusProvider.shared, in: self!)
+            } else {
+                self?.clearState()
+            }
+        }
         showLoadingScreenState()
-        output.requestLoginWith(provider: GooglePlusProvider.shared, in: self)
+        uiIsBlocked = true
     }
 }
 
@@ -399,7 +453,7 @@ extension SignUpScreenViewController: UITextFieldDelegate {
             captchaCodeTextField.becomeFirstResponder()
         } else if textField == captchaCodeTextField {
             captchaCodeTextField.resignFirstResponder()
-            self.validateAndSignUp()
+            validateUserData()
         }
         
         return true
@@ -500,8 +554,8 @@ extension SignUpScreenViewController: SignUpScreenControllerInputProtocol {
     }
     
     func showWelcomeScreen() {
-        
         if newAvatarUploaded == true, let avatar = UserDataContainer.shared.userAvatar {
+            // Upload user avatar before routing to welcome screen
             var data = UpdateUserRequestData()
             data.avatarBase64 = avatar.toBase64()
             APIProvider.updateUser(data) { [weak self] response, error in
@@ -514,14 +568,10 @@ extension SignUpScreenViewController: SignUpScreenControllerInputProtocol {
             }
             
         } else {
+            // no user avatar selected so we route to welcome screen
             clearState()
             self.router.navigateToWelcomeScreen()
         }
-    }
-    
-    func showUserAgreementScreen(_ data: AuthenticationRequestProtocol) {
-        self.clearState()
-        self.router.showUserAgreementScreen(data)
     }
     
     func showErrorMessage(_ message: String) {
@@ -531,6 +581,18 @@ extension SignUpScreenViewController: SignUpScreenControllerInputProtocol {
             message: message,
             buttonTitle: "txt_ok".localized()
         )
+    }
+    
+    func userIsNotConsentOnTermsAndConditions() {
+        router.showUserAgreementScreen() { [weak self] consent in
+            if consent {
+                // update user consent on terms and conditions
+                self?.showWelcomeScreen()
+            } else {
+                UserDataContainer.shared.logout()
+            }
+            self?.clearState()
+        }
     }
     
     func userDidCancelToAuthenticate() {
@@ -545,5 +607,6 @@ protocol SignUpScreenControllerInputProtocol: ViewControllerInputProtocol, SignU
 protocol SignUpScreenControllerOutputProtocol: ViewControllerOutputProtocol {
     func requestSignUpUser(firstName: String, lastName: String, email: String, password: String, captchaId: Int, captchaCode: String)
     func requestLoginWith(provider: SocialLoginProviderProtocol, in controller: UIViewController)
+    func updateUserConsentOnTermsAndConditions()
 }
 

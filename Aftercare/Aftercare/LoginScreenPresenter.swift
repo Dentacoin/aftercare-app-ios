@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 //MARK: - Login Screen Presenter Protocols
 
@@ -14,8 +15,8 @@ import Foundation
 protocol LoginScreenPresenterInputProtocol: PresenterInputProtocol, LoginScreenCoordinatorOutputProtocol {}
 protocol LoginScreenPresenterOutputProtocol: PresenterOutputProtocol {
     func showWelcomeScreen()
-    func showUserAgreementScreen()
     func showErrorMessage(_ message: String)
+    func userNotConsentToTermsAndConditions()
     func userDidCancelToAuthenticate()
 }
 
@@ -43,12 +44,16 @@ extension LoginScreenPresenter: LoginScreenPresenterInputProtocol {
     }
     
     func userDidSignUp() {
-        output?.showUserAgreementScreen()
+        output?.showWelcomeScreen()
     }
     
     func userDidFailToSignUp(error: NSError) {
         UserDataContainer.shared.logout()//this clears any data saved during unsuccessful attempt to log-in
         output?.showErrorMessage(error.localizedDescription)
+    }
+    
+    func userIsNotConsentOnTermsAndConditions() {
+        output?.userNotConsentToTermsAndConditions()
     }
     
     func userDidCancelToAuthenticate() {

@@ -16,6 +16,7 @@ protocol LoginScreenCoordinatorOutputProtocol: CoordinatorOutputProtocol {
     func userDidFailToSignUp(error: NSError)
     func userDidLogin()
     func userDidFailToLogin(error: NSError)
+    func userIsNotConsentOnTermsAndConditions()
     func userDidCancelToAuthenticate()
 }
 
@@ -70,6 +71,7 @@ extension LoginScreenCoordinator: LoginScreenCoordinatorInputProtocol {
                         postalCode: nil,
                         country: nil,
                         city: nil,
+                        consent: true,
                         birthDay: nil,
                         password: nil,
                         avatar_64: nil
@@ -102,6 +104,12 @@ extension LoginScreenCoordinator: LoginScreenCoordinatorInputProtocol {
                 }
                 if let data = userData {
                     UserDataContainer.shared.userInfo = data
+                    if let consent = data.consent {
+                        if !consent {
+                            self?.output.userIsNotConsentOnTermsAndConditions()
+                            return
+                        }
+                    }
                     self?.output.userDidLogin()
                 }
                 
@@ -109,6 +117,30 @@ extension LoginScreenCoordinator: LoginScreenCoordinatorInputProtocol {
             
         }
         
+    }
+    
+    func updateUserConsentOnTermsAndConditions() {
+        
+        let userData = UserDataContainer.shared.userInfo
+        guard var updateUserRequestData = userData?.toUpdateUserRequestData() else {
+            assertionFailure("Error: LoginScreenCoordinator: updateUserConsentOnTermsAndConditions() :: unable to retreive valid updateUserRequestData")
+            return
+        }
+        
+        updateUserRequestData.consent = true
+        
+        APIProvider.updateUser(updateUserRequestData) { data, error in
+            if let error = error?.toNSError() {
+                print("Error: couldn't update user's consent on Terms And Conditions with error: \(error)")
+                return
+            }
+            
+            guard let data = data else {
+                print("Error: Invalid user data : couldn't update user's consent on Terms And Conditions")
+                return
+            }
+            UserDataContainer.shared.userInfo = data
+        }
     }
     
     //MARK: - fileprivate methods
@@ -139,6 +171,12 @@ extension LoginScreenCoordinator: LoginScreenCoordinatorInputProtocol {
                 }
                 if let data = userData {
                     UserDataContainer.shared.userInfo = data
+                    if let consent = data.consent {
+                        if !consent {
+                            self?.output.userIsNotConsentOnTermsAndConditions()
+                            return
+                        }
+                    }
                     self?.output.userDidLogin()
                 }
             }
@@ -170,6 +208,12 @@ extension LoginScreenCoordinator: LoginScreenCoordinatorInputProtocol {
                 }
                 if let data = userData {
                     UserDataContainer.shared.userInfo = data
+                    if let consent = data.consent {
+                        if !consent {
+                            self?.output.userIsNotConsentOnTermsAndConditions()
+                            return
+                        }
+                    }
                     self?.output.userDidSignUp()
                 }
             }

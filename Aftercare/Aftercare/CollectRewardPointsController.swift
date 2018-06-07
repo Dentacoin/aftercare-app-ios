@@ -52,12 +52,10 @@ class CollectRewardPointsController: UIViewController, ContentConformer {
         claimablePointsLabel.text = "collect_dp_claimable_points".localized()
         
         let earned = UserDataContainer.shared.actionScreenData?.earnedDCN ?? 0
-        let pending = UserDataContainer.shared.actionScreenData?.pendingDCN ?? 0
-        let collectablePoints = earned - pending
         
         claimableValueLabel.textColor = UIColor.dntCharcoalGrey
         claimableValueLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntLargeTitleFontSize)
-        claimableValueLabel.text = "txt_dp".localized(String(collectablePoints))
+        claimableValueLabel.text = "txt_dp".localized(String(earned))
         
         visitWebsiteLabel.textColor = UIColor.dntCharcoalGrey
         visitWebsiteLabel.font = UIFont.dntLatoLightFont(size: UIFont.dntLargeTextSize)
@@ -69,7 +67,7 @@ class CollectRewardPointsController: UIViewController, ContentConformer {
         let themeManager = ThemeManager.shared
         visitWebsiteButton.setTitle("collect_dp_visit_website_btn".localized(), for: .normal)
         themeManager.setDCBlueTheme(to: visitWebsiteButton, ofType: .ButtonDefaultBlueGradient)
-        visitWebsiteButton.isEnabled = collectablePoints > 0
+        //visitWebsiteButton.isEnabled = earned > 0
     }
 }
 

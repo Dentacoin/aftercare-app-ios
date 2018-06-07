@@ -58,12 +58,13 @@ class SideMenuViewController: UIViewController {
                 CellDataKeys.icon : "collectIcon",
                 CellDataKeys.value : String(describing: CollectRewardPointsController.self)
             ],
+//              [
+//                CellDataKeys.type : CellTypes.content.rawValue,
+//                CellDataKeys.title : "drawer_nav_withdraws",
+//                CellDataKeys.icon : "withdrawsIcon",
+//                CellDataKeys.value : String(describing: WithdrawsScreenViewController.self)
+//            ],
               [
-                CellDataKeys.type : CellTypes.content.rawValue,
-                CellDataKeys.title : "drawer_nav_withdraws",
-                CellDataKeys.icon : "withdrawsIcon",
-                CellDataKeys.value : String(describing: WithdrawsScreenViewController.self)
-            ],[
                 CellDataKeys.type : CellTypes.content.rawValue,
                 CellDataKeys.title : "drawer_nav_goals",
                 CellDataKeys.icon : "goalsIcon",

@@ -10,6 +10,8 @@ import Foundation
 
 struct UpdateUserRequestData: Encodable {
     
+    // TODO: I should deprecate this object and use the UserData object insted with custom encode method
+    
     var firstName: String?
     var lastName: String?
     var gender: GenderType?
@@ -18,6 +20,7 @@ struct UpdateUserRequestData: Encodable {
     var country: String?
     var city: String?
     var password: String?
+    var consent: Bool?
     var avatarBase64: String?
     
     func encode(to encoder: Encoder) throws {
@@ -51,6 +54,10 @@ struct UpdateUserRequestData: Encodable {
             try! container.encode(city, forKey: .city)
         }
         
+        if let consent = self.consent {
+            try! container.encode(consent, forKey: .consent)
+        }
+        
         if let password = self.password {
             try! container.encode(password, forKey: .password)
         }
@@ -69,6 +76,7 @@ struct UpdateUserRequestData: Encodable {
         case country
         case city
         case password
+        case consent
         case avatarBase64 = "avatar_64"
     }
     

@@ -7,15 +7,15 @@
 //
 
 import Foundation
-
+import UIKit
 //MARK: - SignUp Screen Presenter Protocols
 
 // In most cases equals Coordinator Output Protocol
 protocol SignUpScreenPresenterInputProtocol: PresenterInputProtocol, SignUpScreenCoordinatorOutputProtocol {}
 protocol SignUpScreenPresenterOutputProtocol: PresenterOutputProtocol {
     func showWelcomeScreen()
-    func showUserAgreementScreen(_ data: AuthenticationRequestProtocol)
     func showErrorMessage(_ message: String)
+    func userIsNotConsentOnTermsAndConditions()
     func userDidCancelToAuthenticate()
 }
 
@@ -33,9 +33,7 @@ class SignUpScreenPresenter {
 
 extension SignUpScreenPresenter: SignUpScreenPresenterInputProtocol {
     
-    func userRequestSignUp(_ data: AuthenticationRequestProtocol) {
-        output?.showUserAgreementScreen(data)
-    }
+    // TODO: fix naming: DidLogin and DidFailToLogin in SignUpScreenPresenter class. Replace with DidAuthenticate, DidFailToAuthenticate
     
     func userDidLogin() {
         output?.showWelcomeScreen()
@@ -44,6 +42,10 @@ extension SignUpScreenPresenter: SignUpScreenPresenterInputProtocol {
     func userDidFailToLogin(error: NSError) {
         UserDataContainer.shared.logout()//this clears any data saved during unsuccessful attempt to log-in
         output?.showErrorMessage(error.localizedDescription)
+    }
+    
+    func userIsNotConsentOnTermsAndConditions() {
+        output?.userIsNotConsentOnTermsAndConditions()
     }
     
     func userDidCancelToAuthenticate() {

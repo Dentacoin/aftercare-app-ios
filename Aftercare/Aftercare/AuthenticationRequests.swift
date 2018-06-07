@@ -17,6 +17,7 @@ class FacebookRequestData: Encodable, AuthenticationRequestProtocol {
     var lastName: String?
     var gender: GenderType?
     var avatar64: String?
+    var consent: Bool?
     
     init(email: String, id: String, token: String) {
         self.email = email
@@ -51,6 +52,7 @@ class FacebookRequestData: Encodable, AuthenticationRequestProtocol {
         case lastName = "lastname"
         case gender
         case avatar64 = "avatar_64"
+        case consent
     }
 }
 
@@ -64,6 +66,7 @@ class TwitterRequestData: Encodable, AuthenticationRequestProtocol {
     var lastName: String?
     var gender: GenderType?
     var avatar64: String?
+    var consent: Bool?
     
     init(email: String, id: String, token: String, secret: String) {
         self.email = email
@@ -89,6 +92,9 @@ class TwitterRequestData: Encodable, AuthenticationRequestProtocol {
         if let gender = self.gender {
             try! container.encode(gender, forKey: .gender)
         }
+        if let consent = self.consent {
+            try! container.encode(consent, forKey: .consent)
+        }
     }
     
     enum TwitterRequestKeys: String, CodingKey {
@@ -100,6 +106,7 @@ class TwitterRequestData: Encodable, AuthenticationRequestProtocol {
         case lastName = "lastname"
         case gender
         case avatar64 = "avatar_64"
+        case consent
     }
 }
 
@@ -111,6 +118,7 @@ class GoogleRequestData: Encodable, AuthenticationRequestProtocol {
     var lastName: String?
     var gender: GenderType?
     var avatar64: String?
+    var consent: Bool?
     
     init(email: String, id: String, token: String) {
         self.email = email
@@ -134,6 +142,9 @@ class GoogleRequestData: Encodable, AuthenticationRequestProtocol {
         if let gender = self.gender {
             try! container.encode(gender, forKey: .gender)
         }
+        if let consent = self.consent {
+            try! container.encode(consent, forKey: .consent)
+        }
     }
     
     enum GoogleRequestKeys: String, CodingKey {
@@ -144,6 +155,7 @@ class GoogleRequestData: Encodable, AuthenticationRequestProtocol {
         case lastName = "lastname"
         case gender
         case avatar64 = "avatar_64"
+        case consent
     }
     
 }
@@ -158,6 +170,7 @@ class EmailRequestData: Encodable, AuthenticationRequestProtocol {
     var avatar64: String?
     var captchaCode: String?
     var captchaId: Int?
+    var consent: Bool?
     
     init(email: String, password: String) {
         self.email = email
@@ -188,6 +201,9 @@ class EmailRequestData: Encodable, AuthenticationRequestProtocol {
         if let captchaId = self.captchaId {
             try! container.encode(captchaId, forKey: .captchaId)
         }
+        if let consent = self.consent {
+            try! container.encode(consent, forKey: .consent)
+        }
     }
     
     enum EmailRequestKeys: String, CodingKey {
@@ -199,6 +215,7 @@ class EmailRequestData: Encodable, AuthenticationRequestProtocol {
         case avatar64 = "avatar_64"
         case captchaCode
         case captchaId
+        case consent
     }
     
 }
@@ -210,4 +227,5 @@ protocol AuthenticationRequestProtocol {
     var lastName: String? { get set }
     var gender: GenderType? { get set }
     var avatar64: String? { get set }
+    var consent: Bool? { get set }
 }

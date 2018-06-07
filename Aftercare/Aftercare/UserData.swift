@@ -21,6 +21,7 @@ struct UserData: Codable {
     var postalCode: String?
     var country: String?
     var city: String?
+    var consent: Bool?
     var birthDay: String?
     var lastLoginDate: String?
     var createdDate: String?
@@ -36,12 +37,13 @@ struct UserData: Codable {
         firstName: String?,
         lastName: String?,
         gender: GenderType = .unspecified,
-        postalCode: String?,
-        country: String?,
-        city: String?,
-        birthDay: String?,
-        password: String?,
-        avatar_64: String?
+        postalCode: String? = nil,
+        country: String? = nil,
+        city: String? = nil,
+        consent: Bool? = nil,
+        birthDay: String? = nil,
+        password: String? = nil,
+        avatar_64: String? = nil
         ) {
         
         self.id = id
@@ -52,6 +54,7 @@ struct UserData: Codable {
         self.postalCode = postalCode
         self.country = country
         self.city = city
+        self.consent = consent
         self.birthDay = birthDay
         self.lastLoginDate = nil
         self.createdDate = nil
@@ -105,6 +108,12 @@ struct UserData: Codable {
         }
         
         do {
+            self.consent = try values.decode(Bool?.self, forKey: .consent)
+        } catch {
+            print("Parsing Error: UserData :: consent property is missing!")
+        }
+        
+        do {
             self.birthDay = try values.decode(String?.self, forKey: .birthDay)
         } catch {
             print("Parsing Error: UserData :: trying to parse birthDay")
@@ -150,6 +159,7 @@ struct UserData: Codable {
         try! container.encode(self.postalCode, forKey: .postalCode)
         try! container.encode(self.country, forKey: .country)
         try! container.encode(self.city, forKey: .city)
+        try! container.encode(self.consent, forKey: .consent)
         try! container.encode(self.lastLoginDate, forKey: .lastLoginDate)
         try! container.encode(self.createdDate, forKey: .createdDate)
         try! container.encode(self.lastModifiedDate, forKey: .lastModifiedDate)
@@ -168,6 +178,7 @@ struct UserData: Codable {
         case postalCode
         case country
         case city
+        case consent
         case lastLoginDate
         case createdDate
         case lastModifiedDate
@@ -177,8 +188,28 @@ struct UserData: Codable {
     }
 }
 
+extension UserData {
+    
+    func toUpdateUserRequestData() -> UpdateUserRequestData {
+        
+        return UpdateUserRequestData(
+            firstName: firstName,
+            lastName: lastName,
+            gender: gender,
+            birthDay: birthDay,
+            postalCode: postalCode,
+            country: country,
+            city: city,
+            password: password,
+            consent: consent,
+            avatarBase64: avatar_64
+        )
+    }
+    
+}
+
 public enum GenderType: String, Codable {
-    case male = "gender_male"
-    case female = "gender_female"
+    case male = "male"
+    case female = "female"
     case unspecified = "unspecified"
 }

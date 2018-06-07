@@ -391,6 +391,8 @@ class UserDataContainer {
         self.userAvatar = nil
     }
     
+    // TODO: - move all network communications in Worker classes and use queues for multiple sequential requests
+    
     open func syncWithServer() {
         self.requestActionScreenData()
         self.requestGoalsData()

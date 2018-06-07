@@ -319,8 +319,8 @@ extension EditUserProfileScreenViewController {
         genderOptionSelected = true
         genderType = GenderType.male
         let themeManager = ThemeManager.shared
-        themeManager.setDCBlueTheme(to: maleButton, ofType: .ButtonOptionStyle(label: "Male", selected: true))
-        themeManager.setDCBlueTheme(to: femaleButton, ofType: .ButtonOptionStyle(label: "Female", selected: false))
+        themeManager.setDCBlueTheme(to: maleButton, ofType: .ButtonOptionStyle(label: "gender_male".localized(), selected: true))
+        themeManager.setDCBlueTheme(to: femaleButton, ofType: .ButtonOptionStyle(label: "gender_female".localized(), selected: false))
     }
     
     @IBAction func femaleButtonPressed(_ sender: UIButton) {
@@ -328,8 +328,8 @@ extension EditUserProfileScreenViewController {
         genderOptionSelected = true
         genderType = GenderType.female
         let themeManager = ThemeManager.shared
-        themeManager.setDCBlueTheme(to: maleButton, ofType: .ButtonOptionStyle(label: "Male", selected: false))
-        themeManager.setDCBlueTheme(to: femaleButton, ofType: .ButtonOptionStyle(label: "Female", selected: true))
+        themeManager.setDCBlueTheme(to: maleButton, ofType: .ButtonOptionStyle(label: "gender_male".localized(), selected: false))
+        themeManager.setDCBlueTheme(to: femaleButton, ofType: .ButtonOptionStyle(label: "gender_female".localized(), selected: true))
     }
     
     @IBAction func updateButtonPressed(_ sender: UIButton) {
@@ -495,7 +495,6 @@ extension EditUserProfileScreenViewController: UITextFieldDelegate {
             birthDateTextField.becomeFirstResponder()
         } else {
             birthDateTextField.resignFirstResponder()
-            //self.validateAndSignUp()
         }
         
         return true

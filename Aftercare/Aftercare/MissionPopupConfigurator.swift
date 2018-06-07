@@ -41,9 +41,7 @@ struct MissionPopupConfigurator {
         toggleFacebookButton(false, forPopup: popup)
         
         if let journey = UserDataContainer.shared.journey {
-            
             popup.titleLabel.text = "journey_hdl_daily".localized(String(journey.day), String(journey.targetDays))
-            
             popup.subTitleLabel.text = "journey_sub_hdl_daily".localized(String(journey.skipped), String(journey.tolerance))
             popup.subTitleLabel.alpha = 1
         } else {

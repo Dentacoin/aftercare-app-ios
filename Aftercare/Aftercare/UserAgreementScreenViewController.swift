@@ -12,7 +12,6 @@ class UserAgreementScreenViewController: UIViewController {
     
     //MARK: - IBOutlets
     
-    @IBOutlet weak var header: InsidePageHeaderView!
     @IBOutlet weak var textField: UITextView!
     @IBOutlet weak var agreeButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
@@ -31,10 +30,9 @@ class UserAgreementScreenViewController: UIViewController {
         return "btn_decline".localized()
     }()
     
-    //MARK: - fileprivate vars
+    // MARK: - public
     
-    fileprivate var signUpData: AuthenticationRequestProtocol?
-    fileprivate var signUpCallback: AuthenticationResult?
+    var delegate: UserAgreementScreenDelegate?
     
     //MARK: - Lifecycle
     
@@ -43,11 +41,6 @@ class UserAgreementScreenViewController: UIViewController {
         setup()
     }
     
-    //MARK: - Public API
-    
-    func config(_ data: AuthenticationRequestProtocol) {
-        self.signUpData = data
-    }
 }
 
 //MARK: - Theme and components setup
@@ -55,23 +48,6 @@ class UserAgreementScreenViewController: UIViewController {
 extension UserAgreementScreenViewController {
     
     fileprivate func setup() {
-        
-        self.header.updateTitle(userAgreementTitleString)
-        self.header.delegate = self
-        
-//        guard let fileURL = Bundle.main.url(forResource: "user-agreement", withExtension: "html") else { return }
-//        let stringData = try? String.init(contentsOf: fileURL, encoding: .utf8)
-//        self.textField.font = UIFont.dntLatoLightFont(size: UIFont.dntNormalTextSize)
-//
-//        let htmlData = NSString(string: stringData ?? "").data(using: String.Encoding.unicode.rawValue)
-//        let options = [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html]
-//        let attributedString = try! NSAttributedString(data: htmlData!, options: options, documentAttributes: nil)
-//        self.textField.attributedText = attributedString
-        
-        let htmlData = NSString(string: "user_agreement".localized()).data(using: String.Encoding.unicode.rawValue)
-        let options = [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html]
-        let attributedString = try! NSAttributedString(data: htmlData!, options: options, documentAttributes: nil)
-        self.textField.attributedText = attributedString
         
         let themeManager = ThemeManager.shared
         
@@ -83,95 +59,20 @@ extension UserAgreementScreenViewController {
         self.cancelButton.setTitle(cancelButtonTitleString, for: .highlighted)
         themeManager.setDCBlueTheme(to: self.cancelButton, ofType: .ButtonDefaultWhite)
         
-        //Create callback instance to handle signUp responces
-        signUpCallback = { [weak self] result, error in
-            
-            self?.changeToNoneState()
-            
-            if let error = error?.toNSError() {
-                self?.showErrorMessage(error)
-                return
-            }
-            
-            guard let session = result else {
-                print("Error: Missing Session Data")
-                return
-            }
-            
-            self?.saveEmailSession(session)
-            self?.retreiveUserInfo()
-            
-        }
+        loadText()
     }
     
-    fileprivate func userDisagree() {
-        if let navController = self.navigationController {
-            navController.popViewController(animated: true)
-        }
-    }
-    
-    fileprivate func userDidAgree() {
-        //attempt signUp process
-        if let emailData = self.signUpData as? EmailRequestData {
-            self.signUpWithEmail(emailData)
-        } else if let socialData = self.signUpData {
-            self.signUpWithSocialNetwork(socialData)
-        } else {
-            //Error: no Sign Up data, can't proceed with the signUp process
-        }
-    }
-    
-    fileprivate func changeToLoadingState() {
-        var loadingState = State(.loadingState)
-        loadingState.title = "txt_loading".localized()
-        self.showState(loadingState)
-    }
-    
-    fileprivate func changeToNoneState() {
-        let noneState = State(.none)
-        self.showState(noneState)
-    }
-    
-    fileprivate func signUpWithEmail(_ data: EmailRequestData) {
-        changeToLoadingState()
-        APIProvider.signUp(withEmail: data, onComplete: signUpCallback!)
-    }
-    
-    fileprivate func signUpWithSocialNetwork(_ data: AuthenticationRequestProtocol) {
-        changeToLoadingState()
-        APIProvider.signUpWithSocial(params: data, onComplete: signUpCallback!)
-    }
-    
-    fileprivate func saveEmailSession(_ sessionData: UserSessionData) {
-        EmailProvider.shared.saveUserSession(sessionData)
-    }
-    
-    fileprivate func retreiveUserInfo() {
-        APIProvider.retreiveUserInfo() { [weak self] userData, error in
-            if let error = error {
-                self?.showErrorMessage(error.toNSError())
-                return
-            }
-            if let data = userData {
-                UserDataContainer.shared.userInfo = data
-                self?.userDidSignUp()
-            }
-        }
-    }
-    
-    fileprivate func showErrorMessage(_ error: NSError) {
-        UIAlertController.show(
-            controllerWithTitle: "error_popup_title".localized(),
-            message: error.localizedDescription,
-            buttonTitle: "txt_ok".localized()
-        )
-    }
-    
-    fileprivate func userDidSignUp() {
-        if let navController = self.navigationController {
-            let controller: WelcomeScreenViewController! = UIStoryboard.main.instantiateViewController()
-            navController.pushViewController(controller, animated: true)
-        }
+    fileprivate func loadText() {
+        
+        // load from localization files
+        let htmlData = NSString(string: "user_agreement".localized()).data(using: String.Encoding.unicode.rawValue)
+        let options = [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html]
+        let attributedString = try! NSAttributedString(data: htmlData!, options: options, documentAttributes: nil)
+        textField.attributedText = attributedString
+        
+        // I HATE THIS HACK: - this fixes a bug where the text field that we use to load our terms & conditions
+        // starts scrolled from few rows below the top
+        textField.scrollRangeToVisible(NSMakeRange(0, 1))
     }
     
 }
@@ -181,21 +82,18 @@ extension UserAgreementScreenViewController {
 extension UserAgreementScreenViewController {
     
     @IBAction func agreeButtonPressed(_ sender: UIButton) {
-        userDidAgree()
+        delegate?.userDidAgree()
     }
     
     @IBAction func cancelButtonPressed(_ sender: UIButton) {
-        userDisagree()
+        delegate?.userDidDecline()
     }
     
 }
 
-//MARK: - InsidePageHeaderViewDelegate
+// MARK: - UserAgreementScreenDelegate
 
-extension UserAgreementScreenViewController: InsidePageHeaderViewDelegate {
-    
-    func backButtonIsPressed() {
-        self.userDisagree()
-    }
-    
+protocol UserAgreementScreenDelegate {
+    func userDidAgree()
+    func userDidDecline()
 }
