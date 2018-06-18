@@ -45,13 +45,15 @@ import UIKit
                 secondItem = loadedView
             }
             
-            let newConstraint = NSLayoutConstraint(item: firstItem!,
-                                                   attribute: constraint.firstAttribute,
-                                                   relatedBy: constraint.relation,
-                                                   toItem: secondItem,
-                                                   attribute: constraint.secondAttribute,
-                                                   multiplier: constraint.multiplier,
-                                                   constant: constraint.constant)
+            let newConstraint = NSLayoutConstraint(
+                item: firstItem!,
+                attribute: constraint.firstAttribute,
+                relatedBy: constraint.relation,
+                toItem: secondItem,
+                attribute: constraint.secondAttribute,
+                multiplier: constraint.multiplier,
+                constant: constraint.constant
+            )
             loadedView.addConstraint(newConstraint)
         }
         

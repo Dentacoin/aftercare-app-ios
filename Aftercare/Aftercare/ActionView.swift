@@ -293,6 +293,7 @@ class ActionView: UIView {
     
     //MARK: - @IBAction
     
+    // TODO: make this guesture working again
     @IBAction func onSwipeGueastureSettingsScreen(_ sender: UIScreenEdgePanGestureRecognizer) {
         
         if sender.state == .began || sender.state == .changed {
@@ -320,6 +321,8 @@ class ActionView: UIView {
             
             if yOffset > statisticsView.frame.size.height * 0.5 {
                 //show statistics view
+                
+                // TODO: Use UIViewPropertyAnimator instead of old UIView.animate in the whole App not just here
                 UIView.animate(withDuration: 0.2, animations: { [weak self] in
                     if let frame = self?.statisticsOpenedFrame {
                         self?.statisticsView.frame = frame
@@ -359,7 +362,7 @@ class ActionView: UIView {
                 userInfo: nil,
                 repeats: true
             )
-            self.startCountdownTime = Date()
+            startCountdownTime = Date()
             self.timerRunning = true
             
             //set the screen not to sleep
@@ -371,12 +374,10 @@ class ActionView: UIView {
     }
     
     fileprivate func stopCountdown() {
-        if let timer = self.timer {
-            timer.invalidate()
-            self.timer = nil
-        }
-        self.endCountdownTime = Date()
-        self.timerRunning = false
+        timer?.invalidate()
+        timer = nil
+        endCountdownTime = Date()
+        timerRunning = false
         
         //set the screen not to sleep
         UIApplication.shared.isIdleTimerDisabled = false
@@ -387,39 +388,39 @@ class ActionView: UIView {
     }
     
     fileprivate func clearTimerData() {
-        self.secondsCount = 0
-        self.startCountdownTime = nil
-        self.endCountdownTime = nil
+        secondsCount = 0
+        startCountdownTime = nil
+        endCountdownTime = nil
     }
     
     fileprivate func tryToCreateNewRecord() {
         if self.secondsCount >= UserDataContainer.shared.ActionMinimumRecordTimeInSeconds {
             //create new record
             guard let startTime = self.startCountdownTime else {
-                self.delegate?.actionComplete(nil)//action complete with invalid record
+                delegate?.actionComplete(nil)//action complete with invalid record
                 return
             }
             guard let endTime = self.endCountdownTime else {
-                self.delegate?.actionComplete(nil)//action complete with invalid record
+                delegate?.actionComplete(nil)//action complete with invalid record
                 return
             }
             guard let type = self.actionViewRecordType else {
-                self.delegate?.actionComplete(nil)//action complete with invalid record
+                delegate?.actionComplete(nil)//action complete with invalid record
                 return
             }
             let record = ActionRecordData(startTime: startTime.iso8601, endTime: endTime.iso8601, type: type)
             
             //Notify the delegate
-            self.delegate?.actionComplete(record)
+            delegate?.actionComplete(record)
             
         } else {
             //action complete with invalid record
-            self.delegate?.actionComplete(nil)
+            delegate?.actionComplete(nil)
         }
     }
     
     @objc fileprivate func updateTimer() {
-        self.secondsCount += UpdateIntervalInMilliseconds
+        secondsCount += UpdateIntervalInMilliseconds
         delegate?.timerUpdated(secondsCount)
     }
     
@@ -488,7 +489,7 @@ extension ActionView: ActionFooterViewDelegate {
                 SoundManager.shared.playRandomMusic()
             } else {
                 actionState = .initial
-                SoundManager.shared.stopMusic()
+                delegate?.timerStopped()
             }
             self.perform(Selector.executeActionSelector, with: nil, afterDelay: 0.0)
         }

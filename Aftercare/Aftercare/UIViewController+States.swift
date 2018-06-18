@@ -223,7 +223,7 @@ class EmptyStateView: ReusableXibView {
     @IBOutlet weak var titleLabel: UILabel!
     
     override class func nibName() -> String {
-        return "EmptyState"
+        return String(describing: self)
     }
 }
 
@@ -241,7 +241,7 @@ class LoadingStateView: ReusableXibView {
     }
     
     override class func nibName() -> String {
-        return "LoadingState"
+        return String(describing: self)
     }
     
 //    private func updateProgress() {
@@ -266,7 +266,7 @@ class ErrorStateView: ReusableXibView {
     @IBOutlet weak var titleLabel: UILabel!
 
     override class func nibName() -> String {
-        return "ErrorState"
+        return String(describing: self)
     }
 }
 

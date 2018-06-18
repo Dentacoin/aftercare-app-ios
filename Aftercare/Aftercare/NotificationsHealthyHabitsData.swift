@@ -96,7 +96,7 @@ struct NotificationsHealthyHabitsData: NotificationDataProtocol {
     }()
     
     fileprivate lazy var notificationMessage10: String = {
-        return NSString.localizedUserNotificationString(forKey: "notifications_txt_healthy_habits_11".localized(), arguments: nil)
+        return NSString.localizedUserNotificationString(forKey: "notifications_txt_healthy_habits_10".localized(), arguments: nil)
     }()
     
     fileprivate var allNotifications: [NotificationData] = []

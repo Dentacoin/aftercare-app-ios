@@ -171,7 +171,6 @@ protocol Pathable {
 enum VoicePath: String, Pathable {
     case male
     case female
-    
     var path: String? {
         switch self {
         case .male: return "male"
@@ -182,13 +181,13 @@ enum VoicePath: String, Pathable {
 
 enum RoutineType: String, Pathable, Codable {
     case morning
-    case day
     case evening
+    case day//I HATE THIS: This type is used only for the day greeting, the backend doesn't support day routine yet.
     var path: String? {
         switch self {
         case .morning:  return "morning"
-        case .day:      return "day"
         case .evening:  return "evening"
+        case .day:  return "day"
         }
     }
 }
@@ -197,7 +196,6 @@ enum ActionPath: Pathable {
     case brush
     case floss
     case rinse
-    
     var path: String? {
         switch self {
         case .brush: return "brush"
@@ -231,11 +229,8 @@ enum SoundPath {
         guard let routinePath = routine.path else {
             throw SoundPathError.invalidPath
         }
-//        guard let resourcePath = Bundle.main.resourcePath else {
-//            throw SoundPathError.invalidPath
-//        }
-        let soundName = voicePath + "-" + routinePath + "-" + "greeting"
-        return soundName//voicePath + "/" + routinePath + "/" + soundName
+        let soundPath = voicePath + "-" + routinePath + "-" + "greeting"
+        return soundPath
     }
     
     static func sound(voice: VoicePath, routine: RoutineType, action: ActionPath, status: StatusPath) throws -> String {
@@ -248,10 +243,6 @@ enum SoundPath {
         guard let actionPath = action.path else {
             throw SoundPathError.invalidPath
         }
-//        guard let resourcePath = Bundle.main.resourcePath else {
-//            throw SoundPathError.invalidPath
-//        }
-        
         switch (routine, action) {
         case (.morning, .floss): throw SoundPathError.invalidAction
         default: break
@@ -267,8 +258,8 @@ enum SoundPath {
         default: break
         }
         
-        let name = voicePath + "-" + routinePath + "-" + actionPath + "-" + NameHelper(action, status)
-        return name//voicePath + "/" + routinePath + "/" + actionPath + "/" + name
+        let soundPath = voicePath + "-" + routinePath + "-" + actionPath + "-" + NameHelper(action, status)
+        return soundPath
     }
     
     private static func NameHelper(_ action: ActionPath, _ status: StatusPath) -> String {

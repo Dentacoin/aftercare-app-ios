@@ -45,7 +45,7 @@ struct MissionPopupConfigurator {
             popup.subTitleLabel.text = "journey_sub_hdl_daily".localized(String(journey.skipped), String(journey.tolerance))
             popup.subTitleLabel.alpha = 1
         } else {
-            popup.titleLabel.text = "welcome_txt_welcome".localized()
+            popup.titleLabel.text = "welcome_txt_welcome"
             popup.subTitleLabel.alpha = 0
         }
         
@@ -104,18 +104,20 @@ struct MissionPopupConfigurator {
         
         toggleFacebookButton(false, forPopup: popup)
         
-        guard let journey = UserDataContainer.shared.journey else {
-            return
-        }
+//        guard let journey = UserDataContainer.shared.journey else {
+//            return
+//        }
         
         popup.titleLabel.text = "journey_hdl_start".localized()
-        popup.subTitleLabel.text = "journey_sub_hdl_start"
+        popup.subTitleLabel.text = "journey_sub_hdl_start".localized()
         
-        popup.descriptionTextView.text = "journey_txt_start_dp".localized(
-            String(journey.targetDays),
-            String(journey.targetDays * 2),
-            String(journey.tolerance)
-        )
+        popup.descriptionTextView.text = "journey_txt_start_dp".localized(String(90), String(180), String(20))
+        //journey_hdl_start
+            
+//            String(journey.targetDays),
+//            String(journey.targetDays * 2),
+//            String(journey.tolerance)
+//        )
         let actionButtonLabel = "journey_btn_start".localized()
         popup.actionButton.setTitle(actionButtonLabel, for: .normal)
         popup.actionButton.setTitle(actionButtonLabel, for: .highlighted)

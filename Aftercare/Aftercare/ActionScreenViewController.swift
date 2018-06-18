@@ -140,8 +140,10 @@ class ActionScreenViewController: UIViewController, ContentConformer {
                     }
                     
                     if let routine = Routines.getRoutineForNow() {
+                        UserDataContainer.shared.routine = routine
                         self?.routineRecordData = RoutineData(startTime: Date(), type: routine.type)
-                        self?.showStartRoutinePopup(forRoutine: routine)
+                        self?.showMissionPopup(ofType: .journeyStart)
+                        return
                     }
                 } else {
                     // Someting whent wrong
@@ -235,7 +237,13 @@ class ActionScreenViewController: UIViewController, ContentConformer {
         UserDataContainer.shared.lastTimeRoutinePopupPresented = Date()
         let popup = createMissionPopup()
         MissionPopupConfigurator.config(popup, forType: .routineStart)
-        SoundManager.shared.playSound(SoundType.greeting(routine.type))
+        if let routine = UserDataContainer.shared.routine {
+            if routine.currentHour <= 11 {
+                SoundManager.shared.playSound(SoundType.greeting(routine.type))
+            } else {
+                SoundManager.shared.playSound(SoundType.greeting(RoutineType.day))
+            }
+        }
     }
     
     fileprivate func showEndRoutinePopup(forRoutine routine: Routine) {
@@ -502,6 +510,10 @@ extension ActionScreenViewController: ActionViewDelegate {
 //                routineData.endTime = newRecord.endTime
 //                routineData.records = [newRecord]
 //                recordData(routineData, onComplete: onRoutineDataSuccessfullyRecorded)
+                
+                exitFullscreen()
+                SoundManager.shared.stopMusic()
+                
                 return
             }
             
@@ -517,6 +529,7 @@ extension ActionScreenViewController: ActionViewDelegate {
         
         guard let routine = UserDataContainer.shared.routine else {
             exitFullscreen()
+            SoundManager.shared.stopMusic()
             return
         }
         
@@ -533,7 +546,8 @@ extension ActionScreenViewController: ActionViewDelegate {
             
             // record multiple action within a routine
             recordData(routineData, onComplete: onRoutineDataSuccessfullyRecorded)
-            
+            exitFullscreen()
+            showEndRoutinePopup(forRoutine: routine)
         }
         
     }
@@ -545,7 +559,7 @@ extension ActionScreenViewController: ActionViewDelegate {
             if let error = error {
                 print("ActionScreenViewController : actionComplete Error: \(error)")
                 if error.code == ErrorCode.noInternetConnection.rawValue {
-                    //TODO: save routineData locally
+                    //TODO: save routineData locally, handle the error
                     return
                 }
             }
@@ -558,26 +572,7 @@ extension ActionScreenViewController: ActionViewDelegate {
     }
     
     fileprivate func onRoutineDataSuccessfullyRecorded(_ data: RoutineData) {
-        
         routineRecordData = data
-        
-        if let routine = UserDataContainer.shared.routine {
-            if let journey = UserDataContainer.shared.journey {
-                if journey.completed == true {
-                    if journey.skipped > journey.tolerance {
-                        showMissionPopup(ofType: .journeyFailed)
-                    } else {
-                        showEndRoutinePopup(forRoutine: routine)
-                    }
-                } else {
-                    showEndRoutinePopup(forRoutine: routine)
-                }
-            } else {
-                showEndRoutinePopup(forRoutine: routine)
-            }
-        }
-        
-        exitFullscreen()
         clearMissionData()
         UserDataContainer.shared.syncWithServer()
     }

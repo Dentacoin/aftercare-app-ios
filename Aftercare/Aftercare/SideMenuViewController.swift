@@ -280,12 +280,12 @@ class SideMenuViewController: UIViewController {
                 }
                 return cell.icon
             case .achieveGoalsAndEarn:
-                guard let cell = menuOptionsTable.cellForRow(at: IndexPath(row: 3, section: 0)) as? MainMenuCell else {
+                guard let cell = menuOptionsTable.cellForRow(at: IndexPath(row: 2, section: 0)) as? MainMenuCell else {
                     return nil
                 }
                 return cell.icon
             case .sendEmergency:
-                guard let cell = menuOptionsTable.cellForRow(at: IndexPath(row: 6, section: 0)) as? MainMenuCell else {
+                guard let cell = menuOptionsTable.cellForRow(at: IndexPath(row: 5, section: 0)) as? MainMenuCell else {
                     return nil
                 }
                 return cell.icon

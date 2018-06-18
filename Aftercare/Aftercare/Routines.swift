@@ -11,8 +11,9 @@ struct Routines {
     
     fileprivate static let localFileName = "routineRecords.json"
     
-    static let morningInterval = 5...17
-    static let eveningInterval = 17...24
+    static let morningInterval = 5...11
+    static let dayInterval = 12...16
+    static let eveningInterval = 17...23//this includes 23:59 but not 24:00 as it should be
     
     static func getRoutineForNow() -> Routine? {
         let now = Date()
@@ -93,22 +94,26 @@ struct Routine {
     var startDescription: String {
         switch self.type {
             case .evening:
-                return "message_evening_routine_start".localized()
+            return "message_evening_routine_start".localized()
             case .morning:
-                if currentHour < 12 {
-                    return "message_morning_routine_start".localized()
-                } else {
-                    return "message_day_routine_start".localized()
-                }
+            if currentHour < 12 {
+                return "message_morning_routine_start".localized()
+            } else {
+                return "message_day_routine_start".localized()
+            }
+            default:
+                return ""
         }
     }
     
     var endDescription: String {
         switch self.type {
             case .evening:
-                return "message_evening_routine_end".localized()
+            return "message_evening_routine_end".localized()
             case .morning:
-                return "message_morning_routine_end".localized()
+            return "message_morning_routine_end".localized()
+            default:
+                return ""
         }
     }
     
@@ -116,13 +121,15 @@ struct Routine {
         get {
             switch self.type {
                 case .evening:
-                    return "btn_evening".localized()
+                return "btn_evening".localized()
                 case .morning:
-                    if currentHour < 12 {
-                        return "btn_morning".localized()
-                    } else {
-                        return "btn_routine".localized()
-                    }
+                if currentHour < 12 {
+                    return "btn_morning".localized()
+                } else {
+                    return "btn_routine".localized()
+                }
+                default:
+                    return ""
             }
         }
     }
