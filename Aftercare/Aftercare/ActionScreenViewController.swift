@@ -142,6 +142,7 @@ class ActionScreenViewController: UIViewController, ContentConformer {
                     if let routine = Routines.getRoutineForNow() {
                         UserDataContainer.shared.routine = routine
                         self?.routineRecordData = RoutineData(startTime: Date(), type: routine.type)
+                        UserDataContainer.shared.lastTimeRoutinePopupPresented = Date()
                         self?.showMissionPopup(ofType: .journeyStart)
                         return
                     }
@@ -210,7 +211,6 @@ class ActionScreenViewController: UIViewController, ContentConformer {
                         } else {
                             // This routine is already done
                             self?.clearMissionData()
-                            return
                         }
                     } else {
                         //different type routine, proceed with execution
@@ -218,15 +218,6 @@ class ActionScreenViewController: UIViewController, ContentConformer {
                         self?.showStartRoutinePopup(forRoutine: routine)
                     }
                 }
-
-                if journey.day == 1, journey.skipped == 0 {
-                    // Journey just started. [Show Start Journey Popup]
-                    self?.routineRecordData = RoutineData(startTime: Date(), type: routine.type)
-                    UserDataContainer.shared.lastTimeRoutinePopupPresented = Date()
-                    self?.showMissionPopup(ofType: .journeyStart)
-                    return
-                }
-    
             }
         }
     }
