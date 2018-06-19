@@ -76,6 +76,7 @@ protocol StatisticsOptionsCellDelegate: class {
 protocol DataSourceDelegate: class {
     func actionScreenDataUpdated(_ data: ActionScreenData)
     func goalsDataUpdated(_ data: [GoalData])
+    func journeyDataUpdated(_ journey: JourneyData)
 }
 
 //MARK: - Default implementations
@@ -109,6 +110,10 @@ extension ActionViewProxyDelegateProtocol {
     
     func updateData(_ data: ActionScreenData) {
         embedView?.updateData(data)
+    }
+    
+    func updateJourney(_ journey: JourneyData) {
+        embedView?.updateJourney(journey)
     }
     
     //sender to delegate methods

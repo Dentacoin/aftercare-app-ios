@@ -95,7 +95,13 @@ class UserDataContainer {
     
     var lastRoutineRecord: RoutineData?
     var routine: Routine?
-    var journey: JourneyData?
+    var journey: JourneyData? {
+        didSet {
+            if let journey = self.journey {
+                delegate?.journeyDataUpdated(journey)
+            }
+        }
+    }
     
     var lastTimeRoutinePopupPresented: Date?
     
@@ -394,21 +400,21 @@ class UserDataContainer {
     // TODO: - move all network communications in Worker classes and use queues for multiple sequential requests
     
     open func syncWithServer() {
-        self.requestActionScreenData()
-        self.requestGoalsData()
+        requestActionScreenData()
+        requestGoalsData()
         
         // We need this journey request to sync the app properly on the first launch.
         // Second request for journey is made within the Action Screen because
         // and according to the proggress made by the user we decide what to show there
-        self.requestJourneyData()
+        requestJourneyData()
         
-        self.loadUserAvatar() { success in
+        loadUserAvatar() { success in
             print("User Avatar success \(success)")
         }
     }
     
     open func loadUserAvatar(_ onComplete: ((_ success: Bool) -> Void)? = nil) {
-        if let path = self.userAvatarPath {
+        if let path = userAvatarPath {
             APIProvider.loadUserAvatar(path) { [weak self] image, error in
                 if let error = error {
                     print("loadUserAvatar : Error \(error)")
@@ -419,7 +425,7 @@ class UserDataContainer {
                 onComplete?(true)
             }
         } else {
-            onComplete?(self.userAvatar == nil)
+            onComplete?(userAvatar == nil)
         }
     }
     

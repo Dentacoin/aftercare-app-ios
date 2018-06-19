@@ -243,23 +243,29 @@ class ActionView: UIView {
         
         guard let dashboard = screenDashboardData else { return }
         
-        var daysPassed = 0
-        var daysTotal = -1
         if let journey = UserDataContainer.shared.journey {
-            daysPassed = journey.day
-            daysTotal = journey.targetDays
+            updateJourney(journey)
         }
         //set bar values
         
         actionBarsContainer.setLastBarValue(dashboard.lastTime, type)
         actionBarsContainer.setLeftBarValue(dashboard.left, forType: type)
-        actionBarsContainer.setDayBarValue(daysPassed, fromTotalOf: daysTotal)
         
         if let type = self.actionViewRecordType {
             statisticsView.config(type: type)
         }
         
         self.statisticsView.updateData(data)
+    }
+    
+    func updateJourney(_ journey: JourneyData) {
+        var daysPassed = 0
+        var daysTotal = -1
+        if let journey = UserDataContainer.shared.journey {
+            daysPassed = journey.day
+            daysTotal = journey.targetDays
+        }
+        actionBarsContainer.setDayBarValue(daysPassed, fromTotalOf: daysTotal)
     }
     
     func toggleDescriptionText(_ toggle: Bool) {
@@ -533,6 +539,7 @@ protocol ActionViewProtocol {
     var embedView: ActionView? { get }
     
     func updateData(_ data: ActionScreenData)
+    func updateJourney(_ journey: JourneyData)
     func screenWillEnterFullscreen()
     func screenWillExitFullscreen()
     func stateDidChangeTo(_ newState: ActionState)

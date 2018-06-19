@@ -684,6 +684,12 @@ extension ActionScreenViewController: DataSourceDelegate {
             }
         }
     }
+    
+    func journeyDataUpdated(_ journey: JourneyData) {
+        for page in pagesArray {
+            page.updateJourney(journey)
+        }
+    }
 }
 
 //MARK: - UIScrollViewDelegate
