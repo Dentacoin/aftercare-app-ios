@@ -14,6 +14,7 @@ import FBSDKShareKit
 class GoalPopupScreen: UIView {
     
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var badgeContainerView: UIView!
     @IBOutlet weak var popupPanel: UIImageView!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var shareWithFBButton: FBSDKShareButton!
@@ -120,8 +121,6 @@ extension GoalPopupScreen {
         ovalImage.image = UIImage(named: "oval-" + colorStyle.rawValue)
         ribbonImage.image = UIImage(named: "ribbon-" + colorStyle.rawValue)
         
-        animateGoalLogo()
-        
         popupPanel.image = UIImage(named: ImageIDs.goalBackground)
         popupPanel.layer.cornerRadius = 10
         popupPanel.clipsToBounds = true
@@ -149,6 +148,8 @@ extension GoalPopupScreen {
             attributes: [NSAttributedStringKey.paragraphStyle: paragraph]
         )
         shareWithFBButton.setAttributedTitle(shareTitle, for: .normal)
+        
+        animateGoalLogo()
     }
     
     fileprivate func unachievedStyle() {
@@ -156,12 +157,14 @@ extension GoalPopupScreen {
         guard let id = self.data?.id else { return }
         
         let firstGoal = id.contains(GoalStyles.first.rawValue)
+        
         if firstGoal {
             toothImage.image = UIImage(named: "tooth-" + GoalColors.gray.rawValue)
             numberLabel.text = ""
         } else {
             toothImage.image = nil
             numberLabel.text = id.getGoalLabel()
+            numberLabel.alpha = 1
         }
         
         titleLabel.textColor = UIColor.black
@@ -192,12 +195,9 @@ extension GoalPopupScreen {
         let colorStyle: GoalColors = self.getColorStyle(byID: id)
         let animateLogo = colorStyle == GoalColors.purple
         
-        // Turn off autolayout for a view before modify it's frame.
-        // Otherwise animating the view will lead to strange results
-        counturImage.translatesAutoresizingMaskIntoConstraints = true
+        var ovalEndFrame = ovalImage.frame
+        ovalEndFrame.origin.x = (badgeContainerView.frame.width - ovalEndFrame.width) / 2
         
-        ovalImage.translatesAutoresizingMaskIntoConstraints = true
-        let ovalEndFrame = ovalImage.frame
         ovalImage.frame = CGRect(
             x: ovalEndFrame.origin.x + (ovalEndFrame.width / 2),
             y: ovalEndFrame.origin.y + (ovalEndFrame.height / 2),
@@ -208,12 +208,12 @@ extension GoalPopupScreen {
         var badgeEndFrame: CGRect?
         if animateLogo {
             
-            let ovalFrame = ovalImage.frame
+            var ovalFrame = ovalImage.frame
+            ovalFrame.origin.x = (badgeContainerView.frame.width - ovalFrame.width) / 2
             
             // I HATE THIS HACK: - Hardcoding the start and end frame of toothImage
             // fixes strange problem that makes height of the toothImage equal to zero
             
-            toothImage.translatesAutoresizingMaskIntoConstraints = true
             badgeEndFrame = CGRect(
                 x: ovalFrame.midX - 31.5,
                 y: ovalFrame.midY - 34,
@@ -229,18 +229,18 @@ extension GoalPopupScreen {
             )
             
         } else {
-            numberLabel.translatesAutoresizingMaskIntoConstraints = true
-            badgeEndFrame = numberLabel.frame
-            numberLabel.frame.origin.y += (badgeEndFrame?.size.height)! / 4
+            var endFrame = numberLabel.frame
+            endFrame.origin.x = (badgeContainerView.frame.width - endFrame.width) / 2
+            badgeEndFrame = endFrame
+            numberLabel.frame.origin.y += endFrame.size.height / 4
         }
     
-        ribbonImage.translatesAutoresizingMaskIntoConstraints = true
-        let ribbonEndFrame = ribbonImage.frame
+        var ribbonEndFrame = ribbonImage.frame
+        ribbonEndFrame.origin.x = (badgeContainerView.frame.width - ribbonEndFrame.width) / 2
         var ribbonStartFrame = ribbonImage.frame
         ribbonStartFrame.origin.y -= ribbonImage.frame.height
         ribbonImage.frame = ribbonStartFrame
         
-        starImage.translatesAutoresizingMaskIntoConstraints = true
         let starEndFrame = starImage.frame
         starImage.frame = CGRect(
             x: starEndFrame.origin.x - (starEndFrame.width / 2),
@@ -301,15 +301,6 @@ extension GoalPopupScreen {
     //MARK: - IBActions
     
     @IBAction func onCloseButtonPressed(_ sender: UIButton) {
-        
-        //Activate autolayout again
-        counturImage.translatesAutoresizingMaskIntoConstraints = false
-        ovalImage.translatesAutoresizingMaskIntoConstraints = false
-        toothImage.translatesAutoresizingMaskIntoConstraints = false
-        starImage.translatesAutoresizingMaskIntoConstraints = false
-        ribbonImage.translatesAutoresizingMaskIntoConstraints = false
-        numberLabel.translatesAutoresizingMaskIntoConstraints = false
-        
         self.removeFromSuperview()
     }
     
