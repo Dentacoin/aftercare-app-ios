@@ -598,19 +598,18 @@ extension EditUserProfileScreenViewController: ConfirmDeleteProfileDelegate {
     func deleteProfileConfirmed() {
         uiIsBlocked = false
         
+        clearState()
+        
         if let navController = self.navigationController {
-            
             UserDataContainer.shared.logout()
-            
-            let controller: BeginScreenViewController! =
-                UIStoryboard.main.instantiateViewController()
-            
+            let controller: BeginScreenViewController! = UIStoryboard.main.instantiateViewController()
             navController.pushViewController(controller, animated: true)
         }
     }
     
     func deleteProfileCancaled() {
         uiIsBlocked = false
+        clearState()
     }
     
 }

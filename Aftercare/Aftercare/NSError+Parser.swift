@@ -60,7 +60,7 @@ extension NSError {
                 case .canceledAuthentication:
                     description = NSLocalizedString("Canceled Authentication By The User", comment: "")
                 case .userCannotWithdraw:
-                    description = NSLocalizedString("Sorry but you have to use Dentacare app for at least 3 months to be able to withdraw earned DCN!", comment: "")
+                    description = NSLocalizedString("Sorry but you have to use Dentacare app for at least 3 months to be able to withdraw earned DP!", comment: "")
                 case .userEmailConfirmed:
                     description = NSLocalizedString("User Email Already Confirmed", comment: "")
                 case .userEmailConfirmationOverload:

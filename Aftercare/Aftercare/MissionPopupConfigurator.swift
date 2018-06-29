@@ -63,7 +63,7 @@ struct MissionPopupConfigurator {
         }
         
         if let record = UserDataContainer.shared.lastRoutineRecord {
-            popup.titleLabel.text?.append("\nDCN \(String(describing: record.earnedDCN)) earned!")
+            popup.titleLabel.text?.append("\nDP \(String(describing: record.earnedDCN)) earned!")
         } else {
             print("MissionPopupConfigurator : Missing routine record")
         }
@@ -160,7 +160,7 @@ struct MissionPopupConfigurator {
         let actionButtonLabel = "journey_btn_completed".localized()
         popup.actionButton.setTitle(actionButtonLabel, for: .normal)
         popup.actionButton.setTitle(actionButtonLabel, for: .highlighted)
-        popup.cancelable = false
+        popup.cancelable = true
     }
     
     // MARK: - Helper methods

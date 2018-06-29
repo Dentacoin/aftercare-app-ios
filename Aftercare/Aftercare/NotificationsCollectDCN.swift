@@ -30,7 +30,7 @@ struct NotificationsCollectDCN: NotificationDataProtocol {
         cancelNotification()
         
         guard let totalDCN = UserDataContainer.shared.actionScreenData?.earnedDCN else {
-            print("NotificationsCollectDCN: Error trying to retrieved total DCNs for the User")
+            print("NotificationsCollectDCN: Error trying to retrieved total DPs for the User")
             return
         }
         
@@ -45,7 +45,7 @@ struct NotificationsCollectDCN: NotificationDataProtocol {
         }
         
         if totalDCN <= 0 {
-            print("NotificationsCollectDCN: User doesn't have enough DCN to withdraw")
+            print("NotificationsCollectDCN: User doesn't have enough DP to withdraw")
             return
         }
         
