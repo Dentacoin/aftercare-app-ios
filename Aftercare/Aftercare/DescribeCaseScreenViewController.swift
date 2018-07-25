@@ -244,7 +244,7 @@ extension DescribeCaseScreenViewController: MFMailComposeViewControllerDelegate 
             var messageBody = describeYourCaseTextView.text!
             if !(contactTextField.text?.isEmpty)! {
                 messageBody += "\n"
-                messageBody += "emergency_lbl_phone".localized() + contactTextField.text!
+                messageBody += "emergency_hnt_phone".localized() + ": " + contactTextField.text!
             }
             
             let mailComposerViewController = MFMailComposeViewController()

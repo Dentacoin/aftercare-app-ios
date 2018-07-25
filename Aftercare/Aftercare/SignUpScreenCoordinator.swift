@@ -52,7 +52,7 @@ extension SignUpScreenCoordinator: SignUpScreenCoordinatorInputProtocol {
             
             if let result = result {
                 
-                if let dataContainer: UserDataProviderProtocol = provider as? UserDataProviderProtocol {
+                if let dataContainer: UserDataProviderProtocol = result as? UserDataProviderProtocol {
                     guard let email = dataContainer.email else {
                         assertionFailure("Fatal Error: missing user email")
                         return

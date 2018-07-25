@@ -380,15 +380,7 @@ extension SignUpScreenViewController {
         if uiIsBlocked == true {
             return
         }
-        // show user agreement
-        router.showUserAgreementScreen() { [weak self] consent in
-            if consent {
-                // if consent > request signup/login with falsebook
-                self?.output.requestLoginWith(provider: FacebookProvider.shared, in: self!)
-            } else {
-                self?.clearState()
-            }
-        }
+        output.requestLoginWith(provider: FacebookProvider.shared, in: self)
         showLoadingScreenState()
         uiIsBlocked = true
     }
@@ -397,15 +389,7 @@ extension SignUpScreenViewController {
         if uiIsBlocked == true {
             return
         }
-        // show user agreement
-        router.showUserAgreementScreen() { [weak self] consent in
-            if consent {
-                // if consent > request signup/login with twitter
-                self?.output.requestLoginWith(provider: TwitterProvider.shared, in: self!)
-            } else {
-                self?.clearState()
-            }
-        }
+        output.requestLoginWith(provider: TwitterProvider.shared, in: self)
         showLoadingScreenState()
         uiIsBlocked = true
     }
@@ -414,15 +398,7 @@ extension SignUpScreenViewController {
         if uiIsBlocked == true {
             return
         }
-        // show user agreement
-        router.showUserAgreementScreen() { [weak self] consent in
-            if consent {
-                // if consent > request signup/login with google plus
-                self?.output.requestLoginWith(provider: GooglePlusProvider.shared, in: self!)
-            } else {
-                self?.clearState()
-            }
-        }
+        output.requestLoginWith(provider: GooglePlusProvider.shared, in: self)
         showLoadingScreenState()
         uiIsBlocked = true
     }

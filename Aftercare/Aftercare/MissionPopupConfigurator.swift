@@ -121,7 +121,7 @@ struct MissionPopupConfigurator {
         let actionButtonLabel = "journey_btn_start".localized()
         popup.actionButton.setTitle(actionButtonLabel, for: .normal)
         popup.actionButton.setTitle(actionButtonLabel, for: .highlighted)
-        popup.cancelable = false
+        popup.cancelable = true
     }
     
     fileprivate static func configJourneyFailed(_ popup: MissionPopupScreen) {
@@ -142,7 +142,7 @@ struct MissionPopupConfigurator {
         let actionButtonLabel = "journey_btn_failed".localized()
         popup.actionButton.setTitle(actionButtonLabel, for: .normal)
         popup.actionButton.setTitle(actionButtonLabel, for: .highlighted)
-        popup.cancelable = false
+        popup.cancelable = true
     }
     
     fileprivate static func configJourneyEnd(_ popup: MissionPopupScreen) {
