@@ -74,7 +74,7 @@ class FacebookProvider {
         login.logIn(
             withReadPermissions: [FacebookUserPermissions.Email.rawValue, FacebookUserPermissions.PublicProfile.rawValue],
             from: controller
-        ) { (result, error) in
+        ) { [weak self] (result, error) in
             
             if let error = error {
                 
@@ -89,23 +89,21 @@ class FacebookProvider {
                     return
                 }
                 
-                if let token = result?.token.tokenString {
+                if let token = result?.token {
                     
-                    self.hasGrantedEmailPermisson = (result?.token.hasGranted(FacebookUserPermissions.Email.rawValue))!
-                    self.hasGrantedProfilePermission = (result?.token.hasGranted(FacebookUserPermissions.PublicProfile.rawValue))!
+                    self?.hasGrantedEmailPermisson = token.hasGranted(FacebookUserPermissions.Email.rawValue)
+                    self?.hasGrantedProfilePermission = token.hasGranted(FacebookUserPermissions.PublicProfile.rawValue)
                     
-                    self.loggedIn = true
+                    self?.loggedIn = true
                     
-                    sessionData.updateValue(token, forKey: FacebookDefaultsKeys.Token.rawValue)
-                    if let id = result?.token.userID {
-                        sessionData.updateValue(id, forKey: FacebookDefaultsKeys.UserFacebookID.rawValue)
-                    }
+                    sessionData.updateValue(token.tokenString, forKey: FacebookDefaultsKeys.Token.rawValue)
+                    sessionData.updateValue(token.userID, forKey: FacebookDefaultsKeys.UserFacebookID.rawValue)
                     
-                    UserDefaultsManager.shared.setValue(token, forKey: FacebookDefaultsKeys.Token.rawValue)
-                    UserDefaultsManager.shared.setValue(result?.token.expirationDate, forKey: FacebookDefaultsKeys.TokenValidTo.rawValue)
-                    UserDefaultsManager.shared.setValue(result?.token.userID, forKey: FacebookDefaultsKeys.UserFacebookID.rawValue)
+                    UserDefaultsManager.shared.setValue(token.tokenString, forKey: FacebookDefaultsKeys.Token.rawValue)
+                    UserDefaultsManager.shared.setValue(token.expirationDate, forKey: FacebookDefaultsKeys.TokenValidTo.rawValue)
+                    UserDefaultsManager.shared.setValue(token.userID, forKey: FacebookDefaultsKeys.UserFacebookID.rawValue)
                     
-                    print("token: \(token), userID: \(String(describing: result?.token.userID)), expires on: \(String(describing: result?.token.expirationDate))")
+                    print("token: \(token.tokenString), userID: \(String(describing: token.userID)), expires on: \(String(describing: token.expirationDate))")
                     
                     onComplete(sessionData)
                     

@@ -111,9 +111,9 @@ DEPENDENCIES:
   - Alamofire
   - AlamofireImage
   - CodableAlamofire
-  - Crashlytics
+  - Crashlytics (= 3.10.2)
   - Disk
-  - Fabric
+  - Fabric (= 1.7.7)
   - FacebookCore
   - FacebookLogin
   - FacebookShare
@@ -123,8 +123,8 @@ DEPENDENCIES:
   - GooglePlacePicker
   - GooglePlaces
   - GoogleSignIn
-  - QRCodeReader.swift
-  - SwiftySound
+  - QRCodeReader.swift (= 8.2.0)
+  - SwiftySound (= 1.0.0)
   - TwitterKit
 
 SPEC REPOS:
@@ -196,6 +196,6 @@ SPEC CHECKSUMS:
   TwitterCore: 644d59e75abccb26cf0a9050d2c4dea0e5412241
   TwitterKit: a2e60ddcedbf54091eac6f27685ca7a87681e1d7
 
-PODFILE CHECKSUM: 5d1e9002c106482e446256b395863573ff10c651
+PODFILE CHECKSUM: 5ff1e5087c10db0bce4da79cc26d372d26d377e6
 
 COCOAPODS: 1.5.3

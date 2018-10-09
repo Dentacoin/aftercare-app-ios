@@ -20,7 +20,7 @@ class ActionScreenViewController: UIViewController, ContentConformer {
     //MARK: - Public
     
     var header: ActionHeaderView! {
-        return headerView as! ActionHeaderView
+        return headerView as? ActionHeaderView
     }
     
     //MARK: - Delegates

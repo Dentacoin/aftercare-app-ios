@@ -24,7 +24,7 @@
 		24B7D0AA1F34DA7B00797685 /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B7D0A91F34DA7B00797685 /* UIViewController+Helpers.swift */; };
 		24ED18241F38C5FD00C1A11A /* UIImage+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ED18231F38C5FD00C1A11A /* UIImage+Helpers.swift */; };
 		24ED18261F38C74500C1A11A /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ED18251F38C74500C1A11A /* UIImageView+Extension.swift */; };
-		3B828BCBBBFDAFEED9B6CED1 /* Pods_Aftercare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99A8C39EB881FCEEB56CDF1F /* Pods_Aftercare.framework */; };
+		573AC912B81406FB28B55CC7 /* Pods_Aftercare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 575C97364AE8672E841E2FEE /* Pods_Aftercare.framework */; };
 		9F051BEA20C94BF500F5EA62 /* male-day-greeting.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9F051BE920C94BF500F5EA62 /* male-day-greeting.mp3 */; };
 		9F051BEC20C94C0000F5EA62 /* female-day-greeting.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9F051BEB20C94C0000F5EA62 /* female-day-greeting.mp3 */; };
 		9F0A6C7E1F6027C4003AF65C /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A6C7D1F6027C4003AF65C /* SideMenuViewController.swift */; };
@@ -353,9 +353,7 @@
 		24B7D0A91F34DA7B00797685 /* UIViewController+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helpers.swift"; sourceTree = "<group>"; };
 		24ED18231F38C5FD00C1A11A /* UIImage+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Helpers.swift"; sourceTree = "<group>"; };
 		24ED18251F38C74500C1A11A /* UIImageView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
-		8199557DBA3418960A2E7E5E /* Pods_AftercareTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AftercareTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8B71FD2B567EB9E88E99AA9F /* Pods-Aftercare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aftercare.release.xcconfig"; path = "Pods/Target Support Files/Pods-Aftercare/Pods-Aftercare.release.xcconfig"; sourceTree = "<group>"; };
-		99A8C39EB881FCEEB56CDF1F /* Pods_Aftercare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Aftercare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		575C97364AE8672E841E2FEE /* Pods_Aftercare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Aftercare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F051BE920C94BF500F5EA62 /* male-day-greeting.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "male-day-greeting.mp3"; sourceTree = "<group>"; };
 		9F051BEB20C94C0000F5EA62 /* female-day-greeting.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "female-day-greeting.mp3"; sourceTree = "<group>"; };
 		9F0A6C7D1F6027C4003AF65C /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
@@ -692,8 +690,8 @@
 		9FFC8BB91FA20D640043F7BC /* EmptyStateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyStateView.xib; sourceTree = "<group>"; };
 		9FFC8BBB1FA20DBF0043F7BC /* LoadingStateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingStateView.xib; sourceTree = "<group>"; };
 		9FFC8BBD1FA210420043F7BC /* ErrorStateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorStateView.xib; sourceTree = "<group>"; };
-		D55A1762601B53CA199110CE /* Pods-Aftercare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aftercare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Aftercare/Pods-Aftercare.debug.xcconfig"; sourceTree = "<group>"; };
-		F2D1FD8B797510B97BA91254 /* Pods_AftercareUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AftercareUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D272D94D20910A7CB3BED19B /* Pods-Aftercare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aftercare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Aftercare/Pods-Aftercare.debug.xcconfig"; sourceTree = "<group>"; };
+		D8F96DC518ED5E0F54281813 /* Pods-Aftercare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aftercare.release.xcconfig"; path = "Pods/Target Support Files/Pods-Aftercare/Pods-Aftercare.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -701,30 +699,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B828BCBBBFDAFEED9B6CED1 /* Pods_Aftercare.framework in Frameworks */,
+				573AC912B81406FB28B55CC7 /* Pods_Aftercare.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		012D01CA7E86CB221D99A725 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				99A8C39EB881FCEEB56CDF1F /* Pods_Aftercare.framework */,
-				8199557DBA3418960A2E7E5E /* Pods_AftercareTests.framework */,
-				F2D1FD8B797510B97BA91254 /* Pods_AftercareUITests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		24657E7B1F13EA390057B846 = {
 			isa = PBXGroup;
 			children = (
 				24657E861F13EA390057B846 /* Aftercare */,
 				24657E851F13EA390057B846 /* Products */,
-				5D954C984E689B941B079ACD /* Pods */,
-				012D01CA7E86CB221D99A725 /* Frameworks */,
+				4D03701CAE7AABF24BB4F290 /* Pods */,
+				5E96E54F0DE6782296EEC490 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -978,13 +966,21 @@
 			name = Protocols;
 			sourceTree = "<group>";
 		};
-		5D954C984E689B941B079ACD /* Pods */ = {
+		4D03701CAE7AABF24BB4F290 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D55A1762601B53CA199110CE /* Pods-Aftercare.debug.xcconfig */,
-				8B71FD2B567EB9E88E99AA9F /* Pods-Aftercare.release.xcconfig */,
+				D272D94D20910A7CB3BED19B /* Pods-Aftercare.debug.xcconfig */,
+				D8F96DC518ED5E0F54281813 /* Pods-Aftercare.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		5E96E54F0DE6782296EEC490 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				575C97364AE8672E841E2FEE /* Pods_Aftercare.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		9F0D45CF1F69340300E2A423 /* Views */ = {
@@ -1575,13 +1571,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 24657EAC1F13EA390057B846 /* Build configuration list for PBXNativeTarget "Aftercare" */;
 			buildPhases = (
-				4F6FE1625170BE169C50B4BF /* [CP] Check Pods Manifest.lock */,
+				99D16AE007108028D4742641 /* [CP] Check Pods Manifest.lock */,
 				24657E801F13EA390057B846 /* Sources */,
 				24657E811F13EA390057B846 /* Frameworks */,
 				24657E821F13EA390057B846 /* Resources */,
-				1992E6EA865D822FB7188AE8 /* [CP] Embed Pods Frameworks */,
-				E0903D14840867E6124F59C2 /* [CP] Copy Pods Resources */,
 				9F256DD21FABCE2500970D3D /* ShellScript */,
+				FFDC37148D7991390350BB5F /* [CP] Embed Pods Frameworks */,
+				3464DFDD7374ED47C31362ED /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1785,7 +1781,66 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1992E6EA865D822FB7188AE8 /* [CP] Embed Pods Frameworks */ = {
+		3464DFDD7374ED47C31362ED /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Aftercare/Pods-Aftercare-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlacePicker/Frameworks/GooglePlacePicker.framework/Resources/GooglePlacePicker.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterShareExtensionUIResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlacePicker.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterKitResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterShareExtensionUIResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Aftercare/Pods-Aftercare-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		99D16AE007108028D4742641 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Aftercare-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9F256DD21FABCE2500970D3D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 88067ecfee6a6813ea849bc502af48623fd6d7ec 635e05a21b7c83dafcd53a6b111054316d13518d58b0ce5c97a4d4df9865b9f1\n";
+		};
+		FFDC37148D7991390350BB5F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1839,65 +1894,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Aftercare/Pods-Aftercare-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4F6FE1625170BE169C50B4BF /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Aftercare-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9F256DD21FABCE2500970D3D /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 88067ecfee6a6813ea849bc502af48623fd6d7ec 635e05a21b7c83dafcd53a6b111054316d13518d58b0ce5c97a4d4df9865b9f1\n";
-		};
-		E0903D14840867E6124F59C2 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Aftercare/Pods-Aftercare-resources.sh",
-				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
-				"${PODS_ROOT}/GooglePlacePicker/Frameworks/GooglePlacePicker.framework/Resources/GooglePlacePicker.bundle",
-				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
-				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
-				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
-				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterShareExtensionUIResources.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlacePicker.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterKitResources.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterShareExtensionUIResources.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Aftercare/Pods-Aftercare-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2231,7 +2227,7 @@
 		};
 		24657EAD1F13EA390057B846 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D55A1762601B53CA199110CE /* Pods-Aftercare.debug.xcconfig */;
+			baseConfigurationReference = D272D94D20910A7CB3BED19B /* Pods-Aftercare.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -2280,7 +2276,7 @@
 		};
 		24657EAE1F13EA390057B846 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8B71FD2B567EB9E88E99AA9F /* Pods-Aftercare.release.xcconfig */;
+			baseConfigurationReference = D8F96DC518ED5E0F54281813 /* Pods-Aftercare.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
