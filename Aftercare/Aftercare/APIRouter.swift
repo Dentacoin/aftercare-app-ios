@@ -12,11 +12,12 @@ struct APIRouter: APIRouterProtocol {
     
     static var basePath: String {
         get {
-            guard let apiProtocol = SystemMethods.Environment.value(forKey: .EnvironmentAPIProtocol) else { return "" }
             guard let apiURL = SystemMethods.Environment.value(forKey: .EnvironmentAPIURL) else { return "" }
-            return apiProtocol + "://" + apiURL
+            return "https://" + apiURL
         }
     }
+    
+    typealias EmptyType = Dictionary<String, String>
     
     struct LoginWithEmail: Creatable {
         typealias EParameters = EmailRequestData
@@ -38,6 +39,11 @@ struct APIRouter: APIRouterProtocol {
         var route: String = "login"
     }
     
+    struct LoginWithCivic: Creatable {
+        typealias EParameters = CivicRequestData
+        var route: String = "login"
+    }
+    
     struct SignUpWithEmail: Creatable {
         typealias EParameters = EmailRequestData
         var route: String = "userreg"
@@ -55,27 +61,31 @@ struct APIRouter: APIRouterProtocol {
 
     struct SignUpWithGoogle: Creatable {
         typealias EParameters = GoogleRequestData
-        //typealias EParameters = UserDataProviderProtocol.EParameters
+        var route: String = "userreg"
+    }
+    
+    struct SignUpWithCivic: Creatable {
+        typealias EParameters = CivicRequestData
         var route: String = "userreg"
     }
     
     struct Logout: Readable {
-        typealias EParameters = Dictionary<String, String>
+        typealias EParameters = EmptyType
         var route: String = "logout"
     }
     
     struct GetUser: Readable {
-        typealias EParameters = Dictionary<String, String>
+        typealias EParameters = EmptyType
         var route: String = "user"
     }
     
     struct GetGoals: Readable {
-        typealias EParameters = Dictionary<String, String>
+        typealias EParameters = EmptyType
         var route: String = "goals"
     }
     
     struct UploadAvatar: Creatable {
-        typealias EParameters = Dictionary<String, String>
+        typealias EParameters = EmptyType
         var route: String = "upload_avatar"
     }
     
@@ -110,7 +120,7 @@ struct APIRouter: APIRouterProtocol {
     }
     
     struct EmailConfirmation: Readable {
-        typealias EParameters = Dictionary<String, String>
+        typealias EParameters = EmptyType
         var route: String = "confirm"
     }
     
@@ -120,7 +130,7 @@ struct APIRouter: APIRouterProtocol {
     }
     
     struct RequestOralHealth: Readable {
-        typealias EParameters = Dictionary<String, String>
+        typealias EParameters = EmptyType
         var route: String = "oralhealth"
     }
     
@@ -130,7 +140,7 @@ struct APIRouter: APIRouterProtocol {
     }
     
     struct Transactions: Readable {
-        typealias EParameters = Dictionary<String, String>
+        typealias EParameters = EmptyType
         var route: String = "transactions"
     }
     

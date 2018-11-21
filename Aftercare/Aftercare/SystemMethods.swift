@@ -51,59 +51,6 @@ struct SystemMethods {
         
     }
     
-    struct Files {
-        
-        static let decodeQueue: OperationQueue = {
-            let queue = OperationQueue()
-            queue.underlyingQueue = DispatchQueue(label: "com.dentacoin.dentacare-app.imageDecoder", attributes: .concurrent)
-            queue.maxConcurrentOperationCount = OperationQueue.defaultMaxConcurrentOperationCount
-            return queue
-        }()
-        
-        static func retrieveImage(urlString : String, completion: @escaping (UIImage?) -> Void) {
-            
-            let queue = decodeQueue.underlyingQueue
-            let request = Alamofire.request(urlString, method: .get)
-            let imageRequest = ImageRequest(request: request)
-            let serializer = DataRequest.imageResponseSerializer()
-            
-            imageRequest.request.response(queue: queue, responseSerializer: serializer) { response in
-                guard let image = response.result.value else {
-                    completion(nil)//no image
-                    return
-                }
-                imageRequest.decodeOperation = self.decode(image) { image in
-                    completion(image)
-                }
-            }
-        }
-        
-        static func saveImageLocally(image: UIImage, imageId: String) {
-            let path = fileInDocumentsDirectory(filename: imageId + ".jpg")
-            let jpgImageData: Data? = UIImageJPEGRepresentation(image, 1.0)
-            try! jpgImageData?.write(to: URL(fileURLWithPath: path))
-            UserDefaultsManager.shared.setValue(path, forKey: imageId)
-        }
-        
-        //decode image
-        fileprivate static func decode(_ image: UIImage, completion: @escaping (UIImage) -> Void) -> DecodeOperation {
-            let operation = DecodeOperation(image: image, completion: completion)
-            decodeQueue.addOperation(operation)
-            return operation
-        }
-        
-        // Get the documents Directory
-        fileprivate static func documentsDirectory() -> String {
-            return NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        }
-        
-        // Get path for a file in the directory
-        fileprivate static func fileInDocumentsDirectory(filename: String) -> String {
-            return documentsDirectory().appending("/" + filename)
-        }
-        
-    }
-    
     struct Goals {
         
         static func scanForNewGoals() -> [GoalData]? {
@@ -175,9 +122,51 @@ struct SystemMethods {
             case TwitterSecretKey
             case GooglePlacesAPIKey
             case EnvironmentAPIURL
-            case EnvironmentAPIProtocol
+            case CivicApplicationIdentifier
+            case CivicSecret
+            case CivicRedirectScheme
         }
         
+    }
+    
+    struct BundleUrlTypes {
+        
+        private static let urlTypeKey = "CFBundleURLTypes"
+        private static let urlSchemeKey = "CFBundleURLSchemes"
+        private static let urlBundleName = "CFBundleURLName"
+        
+        static func value(for key: BundleUrlTypeKey) -> String? {
+            guard let dict = Bundle.main.infoDictionary else { return nil }
+            guard let urlTypesArray = dict[urlTypeKey] as? [Dictionary<String, Any>] else { return nil }
+            for urlType in urlTypesArray {
+                if let name = urlType[urlBundleName] as? String, name == key.rawValue {
+                    guard let schemeArray = urlType[urlSchemeKey] as? [String] else { return nil }
+                    return schemeArray.first
+                }
+            }
+            return nil
+        }
+        
+        enum BundleUrlTypeKey: String {
+            case facebook
+            case twitter
+            case google
+            case civic
+        }
+    }
+    
+    struct AppInfoPlist {
+        
+        static func value(forKey key: AppInfoPlistKey) -> String? {
+            guard let dict = Bundle.main.infoDictionary else { return nil }
+            return dict[key.rawValue] as? String
+        }
+        
+        enum AppInfoPlistKey: String {
+            case CFBundleShortVersionString
+            case CFBundleVersion
+            case CFBundleIdentifier
+        }
     }
     
     struct Utils {

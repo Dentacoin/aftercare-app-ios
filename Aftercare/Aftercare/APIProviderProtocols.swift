@@ -17,7 +17,7 @@ protocol APIProviderProtocol {
     )
     
     static func loginWithSocialNetwork(
-        params: AuthenticationRequestProtocol,
+        params: AuthenticationResponseProtocol,
         onComplete: @escaping AuthenticationResult
     )
     
@@ -27,7 +27,7 @@ protocol APIProviderProtocol {
     )
     
     static func signUpWithSocial(
-        params: AuthenticationRequestProtocol,
+        params: AuthenticationResponseProtocol,
         onComplete: @escaping AuthenticationResult
     )
     
@@ -98,7 +98,7 @@ protocol APIProviderProtocol {
 }
 
 typealias AuthenticationResult = (_ result: UserSessionData?, _ error: ErrorData?) -> Void
-typealias LoginRequestResult = (_ result: AuthenticationRequestProtocol?, _ error: ErrorData?) -> Void
+typealias LoginRequestResult = (_ result: AuthenticationResponseProtocol?, _ error: ErrorData?) -> Void
 
 protocol DataProviderSerializedType {
     associatedtype EParameters = Encodable
@@ -126,3 +126,4 @@ protocol SocialLoginProviderProtocol {
 protocol FacebookProviderProtocol: SocialLoginProviderProtocol {}
 protocol TwitterProviderProtocol: SocialLoginProviderProtocol {}
 protocol GooglePlusProviderProtocol: SocialLoginProviderProtocol {}
+protocol CivicProviderProtocol: SocialLoginProviderProtocol {}

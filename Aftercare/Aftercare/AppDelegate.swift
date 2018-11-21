@@ -22,26 +22,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        //Hide status bar inside the app!
-        UIApplication.shared.statusBarStyle = .lightContent
-        UIApplication.shared.isStatusBarHidden = true
-        
-        //Preload main view controller
-//        if let rootViewController = self.window?.rootViewController as? MasterViewController {
-//            rootViewController.preloadMainController = true
-//        }
+        // TODO: move all initializing of third party libraries in separate class
         
         #if DEBUG
-        let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory,
-                                                                    .userDomainMask,
-                                                                    true)[0]
-        print("Documents Path: \(documentsPath)")
-        #endif //DEBUG
-        
+//        let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+//        print("Documents Path: \(documentsPath)")
 //        for name in UIFont.familyNames {
 //            print("FONT NAME \(name)")
 //            print(UIFont.fontNames(forFamilyName: name))
 //        }
+        #endif //DEBUG
         
         // facebook initialization
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -65,6 +55,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             print("WARNING: Missing Google Places API Key!")
         }
+        
+        //Init Civic
+        CivicProvider.shared.initialize()
         
         //Fabric initialization
         Fabric.with([Crashlytics.self])
@@ -116,6 +109,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             annotation: [:]
         ) {
             return true
+        }
+        
+        //Civic scheme
+        if CivicProvider.shared.interface.canHandle(url: url) {
+            return CivicProvider.shared.interface.handle(url: url)
         }
         
         //Facebook scheme

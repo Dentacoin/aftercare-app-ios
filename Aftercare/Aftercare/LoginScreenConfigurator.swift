@@ -1,9 +1,7 @@
 //
-//  LoginScreenConfigurator.swift
-//  Aftercare
-//
-//  Created by Dimitar Grudev on 8/22/17.
-//  Copyright © 2017 Stichting Administratiekantoor Dentacoin. All rights reserved.
+// Aftercare
+// Created by Dimitar Grudev on 9.10.18.
+// Copyright © 2018 Stichting Administratiekantoor Dentacoin.
 //
 
 import Foundation

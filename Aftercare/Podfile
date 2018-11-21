@@ -24,6 +24,9 @@ target 'Aftercare' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'GoogleSignIn'
+
+  #Civic SDK
+  pod 'CivicConnect'
   
   #Persistence helper
   pod 'Disk'
@@ -36,10 +39,10 @@ target 'Aftercare' do
   pod 'QRCodeReader.swift', '8.2.0'
   
   #Fabric/Crashlytics
-  pod 'Fabric', '1.7.7'
-  pod 'Crashlytics', '3.10.2'
+  pod 'Fabric'
+  pod 'Crashlytics'
   
   #Sound Helper
-  pod 'SwiftySound', '1.0.0'
+  pod 'SwiftySound'
   
 end

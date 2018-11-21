@@ -602,7 +602,7 @@ extension EditUserProfileScreenViewController: ConfirmDeleteProfileDelegate {
         
         if let navController = self.navigationController {
             UserDataContainer.shared.logout()
-            let controller: BeginScreenViewController! = UIStoryboard.main.instantiateViewController()
+            let controller: LoginScreenViewController! = UIStoryboard.main.instantiateViewController()
             navController.pushViewController(controller, animated: true)
         }
     }

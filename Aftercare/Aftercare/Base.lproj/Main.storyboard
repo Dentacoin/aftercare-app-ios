@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -41,7 +41,7 @@
                 <viewControllerPlaceholder storyboardIdentifier="MainMenuViewController" storyboardName="MainMenu" referencedIdentifier="MainMenuViewController" id="TGa-5d-A7u" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HNb-u6-Brf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="698" y="-196"/>
+            <point key="canvasLocation" x="700" y="-197"/>
         </scene>
         <!--ActionScreenViewController-->
         <scene sceneID="I9b-hm-aPH">
@@ -171,29 +171,13 @@
             </objects>
             <point key="canvasLocation" x="726" y="445"/>
         </scene>
-        <!--BeginScreenViewController-->
-        <scene sceneID="1gq-Xz-g6w">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="BeginScreenViewController" storyboardName="BeginScreen" referencedIdentifier="BeginScreenViewController" id="h6u-j7-cd2" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WNc-7q-41Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-86" y="-406"/>
-        </scene>
-        <!--SignUpScreenViewController-->
-        <scene sceneID="baY-IU-t1a">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="SignUpScreenViewController" storyboardName="SignUpScreen" referencedIdentifier="SignUpScreenViewController" id="ykH-I5-LNy" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="a9B-k4-BQW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-77" y="-371"/>
-        </scene>
-        <!--LoginScreenViewController-->
+        <!--LoginWithEmailScreenViewController-->
         <scene sceneID="WNh-pV-EXJ">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="LoginScreenViewController" storyboardName="LoginScreen" referencedIdentifier="LoginScreenViewController" id="Vis-dH-sHb" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="LoginWithEmailScreenViewController" storyboardName="LoginWithEmailScreen" referencedIdentifier="LoginWithEmailScreenViewController" id="Vis-dH-sHb" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dd0-gU-HbP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-86" y="-337"/>
+            <point key="canvasLocation" x="-62" y="-282"/>
         </scene>
         <!--UserAgreementScreenViewController-->
         <scene sceneID="UXg-Xz-qpf">
@@ -201,7 +185,7 @@
                 <viewControllerPlaceholder storyboardIdentifier="UserAgreementScreenViewController" storyboardName="UserAgreementScreen" referencedIdentifier="UserAgreementScreenViewController" id="KGz-Gd-xQE" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HJZ-iG-x2W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-36" y="-304"/>
+            <point key="canvasLocation" x="-61" y="-238"/>
         </scene>
         <!--WelcomeScreenViewController-->
         <scene sceneID="689-CV-XKg">
@@ -209,7 +193,15 @@
                 <viewControllerPlaceholder storyboardIdentifier="WelcomeScreenViewController" storyboardName="WelcomeScreen" referencedIdentifier="WelcomeScreenViewController" id="t4q-yb-Sre" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j8m-qV-Z88" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-68" y="-270"/>
+            <point key="canvasLocation" x="-94" y="-367"/>
+        </scene>
+        <!--LoginScreenViewController-->
+        <scene sceneID="C2Z-Kk-xuQ">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="LoginScreenViewController" storyboardName="LoginScreen" referencedIdentifier="LoginScreenViewController" id="ghj-QS-vcV" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gif-zE-kww" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-110" y="-324"/>
         </scene>
         <!--ForgotYourPasswordScreenViewController-->
         <scene sceneID="PRc-gU-r3I">
@@ -217,7 +209,7 @@
                 <viewControllerPlaceholder storyboardIdentifier="ForgotYourPasswordScreenViewController" storyboardName="ForgotYourPasswordScreen" referencedIdentifier="ForgotYourPasswordScreenViewController" id="X0Q-aL-eWb" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="haB-DS-ocI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-11" y="-236"/>
+            <point key="canvasLocation" x="-34" y="-197"/>
         </scene>
     </scenes>
 </document>

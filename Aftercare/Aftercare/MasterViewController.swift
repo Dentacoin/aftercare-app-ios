@@ -38,7 +38,7 @@ final class MasterViewController: UIViewController {
     
     private lazy var beginViewController: UINavigationController = {
         // Instantiate View Controller
-        let viewController: BeginScreenViewController! = UIStoryboard.main.instantiateViewController()
+        let viewController: LoginScreenViewController! = UIStoryboard.main.instantiateViewController()
         let navController = UINavigationController(rootViewController: viewController)
         navController.setNavigationBarHidden(true, animated: false)
         

@@ -12,14 +12,6 @@ import CodableAlamofire
 
 struct APIProvider : APIProviderProtocol {
     
-    //MARK: - fileprivates
-    
-    static fileprivate var jsonDecoder: JSONDecoder = {
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
-        return decoder
-    }()
-    
     //MARK: - public API
     
     static func signUp(
@@ -48,19 +40,21 @@ struct APIProvider : APIProviderProtocol {
     }
     
     static func signUpWithSocial(
-        params: AuthenticationRequestProtocol,
+        params: AuthenticationResponseProtocol,
         onComplete: @escaping AuthenticationResult
         ) {
         
         var errorData: ErrorData?
         var urlRequest: URLRequestConvertible?
         
-        if let param = params as? FacebookRequestData {
-            urlRequest = APIRouter.SignUpWithFacebook.post(parameters: param)
-        } else if let param = params as? TwitterRequestData {
-            urlRequest = APIRouter.SignUpWithTwitter.post(parameters: param)
-        } else if let param = params as? GoogleRequestData {
-            urlRequest = APIRouter.SignUpWithGoogle.post(parameters: param)
+        if let params = params as? FacebookRequestData {
+            urlRequest = APIRouter.SignUpWithFacebook.post(parameters: params)
+        } else if let params = params as? TwitterRequestData {
+            urlRequest = APIRouter.SignUpWithTwitter.post(parameters: params)
+        } else if let params = params as? GoogleRequestData {
+            urlRequest = APIRouter.SignUpWithGoogle.post(parameters: params)
+        } else if let params = params as? CivicRequestData {
+            urlRequest = APIRouter.SignUpWithCivic.post(parameters: params)
         }
         
         guard let request = urlRequest else {
@@ -68,7 +62,6 @@ struct APIProvider : APIProviderProtocol {
         }
         
         Alamofire.request(request).responseDecodableObject() { (response: DataResponse<UserSessionData>) in
-            //print("success response: \(response)")
             switch response.result {
                 case .success(let userSession):
                     onComplete(userSession, nil)
@@ -109,19 +102,21 @@ struct APIProvider : APIProviderProtocol {
     }
     
     static func loginWithSocialNetwork(
-        params: AuthenticationRequestProtocol,
+        params: AuthenticationResponseProtocol,
         onComplete: @escaping AuthenticationResult
         ) {
         
         var errorData: ErrorData?
         var urlRequest: URLRequestConvertible?
         
-        if let param = params as? FacebookRequestData {
-            urlRequest = APIRouter.LoginWithFacebook.post(parameters: param)
-        } else if let param = params as? TwitterRequestData {
-            urlRequest = APIRouter.LoginWithTwitter.post(parameters: param)
-        } else if let param = params as? GoogleRequestData {
-            urlRequest = APIRouter.LoginWithGoogle.post(parameters: param)
+        if let params = params as? FacebookRequestData {
+            urlRequest = APIRouter.LoginWithFacebook.post(parameters: params)
+        } else if let params = params as? TwitterRequestData {
+            urlRequest = APIRouter.LoginWithTwitter.post(parameters: params)
+        } else if let params = params as? GoogleRequestData {
+            urlRequest = APIRouter.LoginWithGoogle.post(parameters: params)
+        } else if let params = params as? CivicRequestData {
+            urlRequest = APIRouter.LoginWithCivic.post(parameters: params)
         }
         
         guard let request = urlRequest else { return }

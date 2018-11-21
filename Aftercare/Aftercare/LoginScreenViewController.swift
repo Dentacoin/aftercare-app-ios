@@ -1,44 +1,32 @@
 //
-//  LoginScreenViewController.swift
-//  Aftercare
-//
-//  Created by Dimitar Grudev on 8/7/17.
-//  Copyright © 2017 Stichting Administratiekantoor Dentacoin. All rights reserved.
+// Aftercare
+// Created by Dimitar Grudev on 9.10.18.
+// Copyright © 2018 Stichting Administratiekantoor Dentacoin.
 //
 
+import Foundation
 import UIKit
 
-class LoginScreenViewController : UIViewController {
+class LoginScreenViewController: UIViewController {
+
+    // MARK: - IBOutlets
+    @IBOutlet weak var connectWithCivitButtonContainer: UIView!
+    @IBOutlet weak var connectWithFacebookButtonContainer: UIView!
+    @IBOutlet weak var connectWithGoogleButtonContainer: UIView!
+    @IBOutlet weak var connectWithTwitterButtonContainer: UIView!
+    @IBOutlet weak var orLabel: UILabel!
+    @IBOutlet weak var loginWithEmailButton: UIButton!
     
-    //MARK: - IBOutlets
-    
-    @IBOutlet weak var emailTextField: SkyFloatingLabelTextField!
-    @IBOutlet weak var passwordTextField: SkyFloatingLabelTextField!
-    @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var forgotPasswordButton: UIButton!
-    @IBOutlet weak var orConnectWithLabel: UILabel!
-    @IBOutlet weak var facebookButton: UIButton!
-    @IBOutlet weak var twitterButton: UIButton!
-    @IBOutlet weak var googlePlusButton: UIButton!
-    
-    //MARK: - Private vars
-    
-    fileprivate lazy var emailErrorString:String = {
-        return "error_txt_email_not_valid".localized()
-    }()
-    
-    fileprivate lazy var passwordErrorString: String = {
-        return "error_txt_password_short".localized()
-    }()
-    
+    // MARK: - Private vars
+
     fileprivate var uiIsBlocked = false
     
-    //MARK: - Clean Swift
-    
+    // MARK: - Clean Swift
+
     var output: LoginScreenControllerOutputProtocol!
     var router: LoginScreenRouterProtocol!
     
-    //MARK: - initialize
+    // MARK: - initialize
     
     init(configurator: LoginScreenConfigurator = LoginScreenConfigurator.shared) {
         super.init(nibName: nil, bundle: nil)
@@ -57,35 +45,21 @@ class LoginScreenViewController : UIViewController {
         self.configure()
     }
     
-    //MARK: - Configurator
+    // MARK: - Configurator
     
     private func configure(configurator: LoginScreenConfigurator = LoginScreenConfigurator.shared) {
         configurator.configure(viewController: self)
     }
     
-    //MARK: - Lifecicle
+    // MARK: - Lifecicle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
         setup()
-        addListenersForKeyboard()
     }
-    
-    deinit {
-        self.removeListenersForKeyboard()
-    }
-    
-    //MARK: - resign first responder
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
-    
 }
 
-//MARK: - Theme and components setup
+// MARK: - Theme and components setup
 
 extension LoginScreenViewController {
     
@@ -93,190 +67,71 @@ extension LoginScreenViewController {
         
         let themeManager = ThemeManager.shared
         
-        //setup forgotPasswordButton theme
+        if let civicButton = LoginButton.loadViewFromNib() {
+            connectWithCivitButtonContainer.addSubview(civicButton)
+            (civicButton as! LoginButton).delegate = self
+            civicButton.frame.size = connectWithCivitButtonContainer.frame.size
+            themeManager.setDCBlueTheme(to: civicButton, ofType: .ButtonLogin(type: .civic))
+        }
         
-        themeManager.setDCBlueTheme(
-            to: forgotPasswordButton,
-            ofType: .ButtonLink(fontSize: UIFont.dntSmallLabelFontSize)
-        )
+        if let facebookButton = LoginButton.loadViewFromNib() {
+            connectWithFacebookButtonContainer.addSubview(facebookButton)
+            (facebookButton as! LoginButton).delegate = self
+            facebookButton.frame.size = connectWithFacebookButtonContainer.frame.size
+            themeManager.setDCBlueTheme(to: facebookButton, ofType: .ButtonLogin(type: .facebook))
+        }
         
-        //setup Text Field theme
+        if let googleButton = LoginButton.loadViewFromNib() {
+            connectWithGoogleButtonContainer.addSubview(googleButton)
+            (googleButton as! LoginButton).delegate = self
+            googleButton.frame.size = connectWithGoogleButtonContainer.frame.size
+            themeManager.setDCBlueTheme(to: googleButton, ofType: .ButtonLogin(type: .google))
+        }
         
-        let paragraph = NSMutableParagraphStyle()
-        paragraph.alignment = .left
+        if let twitterButton = LoginButton.loadViewFromNib() {
+            connectWithTwitterButtonContainer.addSubview(twitterButton)
+            (twitterButton as! LoginButton).delegate = self
+            twitterButton.frame.size = connectWithTwitterButtonContainer.frame.size
+            themeManager.setDCBlueTheme(to: twitterButton, ofType: .ButtonLogin(type: .twitter))
+        }
         
-        themeManager.setDCBlueTheme(to: emailTextField, ofType: .TextFieldDefaut)
-        let emailPlaceholder = NSAttributedString.init(
-            string: "signup_hnt_email".localized(),
-            attributes: [
-                NSAttributedStringKey.foregroundColor: UIColor.white,
-                NSAttributedStringKey.font: UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)!,
-                NSAttributedStringKey.paragraphStyle: paragraph
-            ])
-        emailTextField.attributedPlaceholder = emailPlaceholder
-        emailTextField.keyboardType = .emailAddress
-        emailTextField.autocorrectionType = .no
-        
-        themeManager.setDCBlueTheme(to: passwordTextField, ofType: .TextFieldDefaut)
-        passwordTextField.isSecureTextEntry = true
-        let passwordPlaceholder = NSAttributedString.init(
-            string: "signup_hnt_password".localized(),
-            attributes: [
-                NSAttributedStringKey.foregroundColor: UIColor.white,
-                NSAttributedStringKey.font: UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)!,
-                NSAttributedStringKey.paragraphStyle: paragraph
-            ])
-        passwordTextField.attributedPlaceholder = passwordPlaceholder
-        passwordTextField.autocorrectionType = .no
-        
-        //setup "Or Connect With" Label theme
-        
-        orConnectWithLabel.font = UIFont.dntLatoRegularFontWith(size: UIFont.dntNoteFontSize)
-        orConnectWithLabel.textColor = .white
-        
-        //setup logonButton theme
-        
-        themeManager.setDCBlueTheme(to: self.loginButton, ofType: .ButtonDefault)
-        loginButton.titleLabel?.text = "btn_auth_login".localized()
-        
-        //setting social networks buttons themes
-        
-        themeManager.setDCBlueTheme(
-            to: facebookButton,
-            ofType: .ButtonSocialNetworkWith(
-                logoNormal: UIImage(named: ImageIDs.facebookIcon)!,
-                logoHighlighted: UIImage(named: ImageIDs.facebookHighlightedIcon)!
-            )
-        )
-        
-        themeManager.setDCBlueTheme(
-            to: twitterButton,
-            ofType: .ButtonSocialNetworkWith(
-                logoNormal: UIImage(named: ImageIDs.twitterIcon)!,
-                logoHighlighted: UIImage(named: ImageIDs.twitterHighlightedIcon)!
-            )
-        )
-        
-        themeManager.setDCBlueTheme(
-            to: googlePlusButton,
-            ofType: .ButtonSocialNetworkWith(
-                logoNormal: UIImage(named: ImageIDs.googlePlusIcon)!,
-                logoHighlighted: UIImage(named: ImageIDs.googlePlusHighlightedIcon)!
-            )
-        )
-        
+        orLabel.text = "txt_auth_or".localized()
+        loginWithEmailButton.setTitle("txt_auth_login_with_email".localized(), for: .normal)
     }
     
-    @discardableResult fileprivate func validateUserData() -> Bool {
-        
-        textFieldShouldEndEditing(emailTextField)
-        textFieldShouldEndEditing(passwordTextField)
-        
-        if let error = emailTextField.errorMessage, !error.isEmpty {
-            emailTextField.becomeFirstResponder()
-            uiIsBlocked = false
-            return false
-        }
+}
 
-        if let error = passwordTextField.errorMessage, !error.isEmpty {
-            passwordTextField.becomeFirstResponder()
-            uiIsBlocked = false
-            return false
-        }
-        return true
-    }
+// MARK: - LoginButtonDelegate conformance
+
+extension LoginScreenViewController: LoginButtonDelegate {
     
-    fileprivate func loginWithEmailCredentials() {
-        if validateUserData() {
-            showLoadingScreenState()
-            if let email = emailTextField.text, let pass = passwordTextField.text {
-                output.requestLoginWith(email: email, password: pass)
-            }
+    func loginButtonPressed(_ button: LoginButton) {
+        
+        showLoadingScreenState()
+        
+        guard let buttonType = button.type else {
+            return
+        }
+        switch buttonType {
+        case .civic:
+            output.requestLoginWith(provider: CivicProvider.shared, in: self)
+        case .facebook:
+            output.requestLoginWith(provider: FacebookProvider.shared, in: self)
+        case .google:
+            output.requestLoginWith(provider: GooglePlusProvider.shared, in: self)
+        case .twitter:
+            output.requestLoginWith(provider: TwitterProvider.shared, in: self)
         }
     }
     
 }
 
-//MARK: - UITextFieldDelegate
-
-extension LoginScreenViewController: UITextFieldDelegate {
-    
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        self.textFieldFirstResponder = textField
-        return true
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == emailTextField {
-            emailTextField.resignFirstResponder()
-            passwordTextField.becomeFirstResponder()
-        } else if textField == passwordTextField {
-            passwordTextField.resignFirstResponder()
-            loginWithEmailCredentials()
-        }
-        return true
-    }
-    
-    @discardableResult func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        if textField == emailTextField {
-            if let email = emailTextField.text, SystemMethods.User.validateEmail(email) == true {
-                emailTextField.errorMessage = ""
-            } else {
-                emailTextField.errorMessage = emailErrorString
-            }
-        } else if textField == passwordTextField {
-            if let pass = passwordTextField.text, SystemMethods.User.validatePassword(pass) == true {
-                passwordTextField.errorMessage = ""
-            } else {
-                passwordTextField.errorMessage = passwordErrorString
-            }
-        }
-        return true
-    }
-    
-}
-
-//MARK: - IBActions
+// MARK: - IBActions
 
 extension LoginScreenViewController {
     
-    @IBAction func loginButtonPressed(_ sender: Any) {
-        if uiIsBlocked == true { return }
-        uiIsBlocked = true
-        loginWithEmailCredentials()
-    }
-    
-    @IBAction func backButtonPressed(_ sender: UIButton) {
-        if uiIsBlocked == true { return }
-        if let navController = self.navigationController {
-            navController.popViewController(animated: true)
-        }
-    }
-    
-    @IBAction func facebookButtonPressed(_ sender: UIButton) {
-        if uiIsBlocked == true { return }
-        uiIsBlocked = true
-        output.requestLoginWith(provider: FacebookProvider.shared, in: self)
-        showLoadingScreenState()
-    }
-    
-    @IBAction func twitterButtonPressed(_ sender: UIButton) {
-        if uiIsBlocked == true { return }
-        uiIsBlocked = true
-        output.requestLoginWith(provider: TwitterProvider.shared, in: self)
-        showLoadingScreenState()
-    }
-    
-    @IBAction func googlePlusButtonPressed(_ sender: UIButton) {
-        if uiIsBlocked == true { return }
-        uiIsBlocked = true
-        output.requestLoginWith(provider: GooglePlusProvider.shared, in: self)
-        showLoadingScreenState()
-    }
-    
-    @IBAction func forgotPasswordButtonPressed(_ sender: UIButton) {
-        if uiIsBlocked == true { return }
-        router.showForgotPasswordScreen()
+    @IBAction func emailLoginButtonPressed() {
+        router.showLoginWithEmailScreen()
     }
     
 }
@@ -298,7 +153,7 @@ extension LoginScreenViewController: LoginScreenControllerInputProtocol {
         clearState()
         router.navigateToWelcomeScreen()
     }
-
+    
     func showErrorMessage(_ message: String) {
         clearState()
         UIAlertController.show(
@@ -308,7 +163,7 @@ extension LoginScreenViewController: LoginScreenControllerInputProtocol {
         )
     }
     
-    func userNotConsentToTermsAndConditions() {
+    func userIsNotConsentOnTermsAndConditions() {
         router.showUserAgreementScreen() { [weak self] consent in
             if consent {
                 // update user consent on terms and conditions
@@ -323,15 +178,11 @@ extension LoginScreenViewController: LoginScreenControllerInputProtocol {
     func userDidCancelToAuthenticate() {
         clearState()
     }
-
+    
 }
-
-//MARK: - Login Screen Protocols
 
 protocol LoginScreenControllerInputProtocol: ViewControllerInputProtocol, LoginScreenPresenterOutputProtocol {}
 protocol LoginScreenControllerOutputProtocol: ViewControllerOutputProtocol {
-    func requestLoginWith(email: String, password: String)
     func requestLoginWith(provider: SocialLoginProviderProtocol, in controller: UIViewController)
     func updateUserConsentOnTermsAndConditions()
 }
-

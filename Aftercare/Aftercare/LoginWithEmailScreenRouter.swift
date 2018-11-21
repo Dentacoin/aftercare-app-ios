@@ -1,5 +1,5 @@
 //
-//  SignUpScreenRouter.swift
+//  LoginScreenRouter.swift
 //  Aftercare
 //
 //  Created by Dimitar Grudev on 8/22/17.
@@ -10,31 +10,28 @@ import UIKit
 
 //MARK: - Login Router Protocol
 
-typealias AgreementCompletion = (_ consent: Bool) -> Void
-
-protocol SignUpScreenRouterProtocol {
+protocol LoginWithEmailScreenRouterProtocol {
     func navigateToWelcomeScreen()
     func showUserAgreementScreen(_ completion: @escaping AgreementCompletion)
+    func showForgotPasswordScreen()
 }
 
-class SignUpScreenRouter {
+class LoginWithEmailScreenRouter {
     
-    private(set) weak var viewController: SignUpScreenViewController?
+    private(set) weak var viewController: LoginWithEmailScreenViewController?
     
-    private var userAgreementController: UserAgreementScreenViewController!
+    fileprivate var userAgreementController: UserAgreementScreenViewController!
     private var onAgreementCompletion: AgreementCompletion!
     //MARK: - Lifecycle
     
-    init(viewController: SignUpScreenViewController) {
+    init(viewController: LoginWithEmailScreenViewController) {
         self.viewController =  viewController
     }
     
 }
 
-extension SignUpScreenRouter: SignUpScreenRouterProtocol {
+extension LoginWithEmailScreenRouter: LoginWithEmailScreenRouterProtocol {
 
-    // TODO: fix naming inconsistancy - navigateToWelcomeScreen and showUserAgreementScreen methods
-    
     func navigateToWelcomeScreen() {
         if let navController = viewController?.navigationController {
             
@@ -53,21 +50,31 @@ extension SignUpScreenRouter: SignUpScreenRouterProtocol {
             navController.present(userAgreementController, animated: true, completion: nil)
         }
     }
-
+    
+    func showForgotPasswordScreen() {
+        if let navController = viewController?.navigationController {
+            
+            let controller: ForgotYourPasswordScreenViewController! =
+                UIStoryboard.main.instantiateViewController()
+            
+            navController.pushViewController(controller, animated: true)
+        }
+    }
 }
 
 // MARK: - UserAgreementScreenDelegate
 
-extension SignUpScreenRouter: UserAgreementScreenDelegate {
-
+extension LoginWithEmailScreenRouter: UserAgreementScreenDelegate {
+    
     func userDidAgree() {
         userAgreementController.dismiss(animated: true, completion: nil)
         onAgreementCompletion(true)
     }
-
+    
     func userDidDecline() {
         userAgreementController.dismiss(animated: true, completion: nil)
         onAgreementCompletion(false)
     }
-
+    
 }
+

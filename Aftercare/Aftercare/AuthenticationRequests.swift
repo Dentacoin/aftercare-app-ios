@@ -8,7 +8,7 @@
 
 import Foundation
 
-class FacebookRequestData: Encodable, AuthenticationRequestProtocol {
+class FacebookRequestData: Encodable, AuthenticationResponseProtocol {
     
     var email: String
     var facebookID: String
@@ -56,7 +56,7 @@ class FacebookRequestData: Encodable, AuthenticationRequestProtocol {
     }
 }
 
-class TwitterRequestData: Encodable, AuthenticationRequestProtocol {
+class TwitterRequestData: Encodable, AuthenticationResponseProtocol {
     
     var email: String
     var twitterID: String
@@ -110,7 +110,7 @@ class TwitterRequestData: Encodable, AuthenticationRequestProtocol {
     }
 }
 
-class GoogleRequestData: Encodable, AuthenticationRequestProtocol {
+class GoogleRequestData: Encodable, AuthenticationResponseProtocol {
     var email: String
     var googleID: String
     var googleAccessToken: String
@@ -160,7 +160,63 @@ class GoogleRequestData: Encodable, AuthenticationRequestProtocol {
     
 }
 
-class EmailRequestData: Encodable, AuthenticationRequestProtocol {
+class CivicRequestData: Encodable, AuthenticationResponseProtocol {
+    var email: String?
+    var civicUserId: String
+    var firstName: String?
+    var lastName: String?
+    var birthday: String?
+    var gender: GenderType?
+    var avatar64: String?
+    var country: String?
+    var consent: Bool?
+    
+    init(id: String, email: String?) {
+        self.email = email
+        self.civicUserId = id
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CivicRequestKeys.self)
+        
+        try! container.encode(email, forKey: .email)
+        try! container.encode(civicUserId, forKey: .civicUserId)
+        
+        if let firstName = self.firstName {
+            try! container.encode(firstName, forKey: .firstName)
+        }
+        if let lastName = self.lastName {
+            try! container.encode(lastName, forKey: .lastName)
+        }
+        if let birthday = self.birthday {
+            try! container.encode(birthday, forKey: .birthday)
+        }
+        if let gender = self.gender {
+            try! container.encode(gender, forKey: .gender)
+        }
+        if let country = self.country {
+            try! container.encode(country, forKey: .country)
+        }
+        if let consent = self.consent {
+            try! container.encode(consent, forKey: .consent)
+        }
+    }
+    
+    enum CivicRequestKeys: String, CodingKey {
+        case email
+        case civicUserId
+        case firstName = "firstname"
+        case lastName = "lastname"
+        case birthday
+        case gender
+        case avatar64 = "avatar_64"
+        case country
+        case consent
+    }
+    
+}
+
+class EmailRequestData: Encodable, AuthenticationResponseProtocol {
     
     var email: String
     var password: String
@@ -180,8 +236,8 @@ class EmailRequestData: Encodable, AuthenticationRequestProtocol {
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: EmailRequestKeys.self)
         
-        try! container.encode(self.email, forKey: .email)
-        try! container.encode(self.password, forKey: .password)
+        try! container.encode(email, forKey: .email)
+        try! container.encode(password, forKey: .password)
         
         if let firstName = self.firstName {
             try! container.encode(firstName, forKey: .firstName)
@@ -222,7 +278,7 @@ class EmailRequestData: Encodable, AuthenticationRequestProtocol {
 
 //MARK: - Protocols
 
-protocol AuthenticationRequestProtocol {
+protocol AuthenticationResponseProtocol {
     var firstName: String? { get set }
     var lastName: String? { get set }
     var gender: GenderType? { get set }

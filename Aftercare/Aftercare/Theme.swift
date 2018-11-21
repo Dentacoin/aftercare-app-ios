@@ -64,6 +64,22 @@ extension UIColor {
     @nonobjc class var dntDarkGreen: UIColor {
         return UIColor(red: 87.0 / 255.0, green: 189.0 / 255.0, blue: 68.0 / 255.0, alpha: 1.0)
     }
+    
+    @nonobjc class var dntCivicGreen: UIColor {
+        return UIColor(hex: 0x5EAE4E)
+    }
+    
+    @nonobjc class var dntFacebookBlue: UIColor {
+        return UIColor(hex: 0x405892)
+    }
+    
+    @nonobjc class var dntTwitterBlue: UIColor {
+        return UIColor(hex: 0x4C9CE9)
+    }
+    
+    @nonobjc class var dntGoogleFontGrey: UIColor {
+        return UIColor(hex: 0x797979)
+    }
 }
 
 //MARK - Image IDs
@@ -123,6 +139,7 @@ enum DCBlueThemeTypes {
     case ButtonDefaultWhiteWith(size: CGSize)
     case ButtonDefaultBlueGradient
     case ButtonDefaultRedGradient
+    case ButtonLogin(type: LoginButtonType)
     case ButtonLink(fontSize: CGFloat)
     case ButtonLinkWithColor(fontSize: CGFloat, color: UIColor)
     case ButtonMainMenu
@@ -135,6 +152,13 @@ enum DCBlueThemeTypes {
     case TextFieldDefaut
     case TextFieldDarkBlue
     case TabBarDefault
+}
+
+enum LoginButtonType {
+    case civic
+    case facebook
+    case twitter
+    case google
 }
 
 //MARK: - Component Theme Definitions
@@ -164,13 +188,13 @@ class ThemeManager {
         
         switch component {
             case is UIButton:
-                self.styleButton(component as! UIButton, type: type)
+                styleButton(component as! UIButton, type: type)
             case is SkyFloatingLabelTextField:
-                self.styleSFLTextField(component as! SkyFloatingLabelTextField, type: type)
+                styleSFLTextField(component as! SkyFloatingLabelTextField, type: type)
             case is UITabBar:
-                self.styleTabBar(component as! UITabBar, type: type)
-            default:
-                print("Unsupported component by the Theme Manager")
+                styleTabBar(component as! UITabBar, type: type)
+            default:// UIView type
+                styleUIView(component, type: type)
         }
         
     }
@@ -188,49 +212,43 @@ class ThemeManager {
         switch type {
         case .ButtonDefaultWith(let size):
             applyDefaultButtonStyle(button: button, width: size.width, height: size.height)
-            return
         case .ButtonDefault:
             applyDefaultButtonStyle(button: button, width: 280, height: 50)
-            return
         case .ButtonDefaultWhite:
             applyDefaultWhiteButtonStyle(button: button, width: 280, height: 50)
-            return
         case .ButtonDefaultWhiteWith(let size):
             applyDefaultWhiteButtonStyle(button: button, width: size.width, height: size.height)
-            return
         case .ButtonDefaultBlueGradient:
             applyDefaultBlueGradient(button: button, width: button.frame.size.width, height: button.frame.size.height)
-            return
         case .ButtonDefaultRedGradient:
             applyDefaultRedGradient(button: button, width: button.frame.size.width, height: button.frame.size.height)
-            return
         case .ButtonLink(let size):
             applyLinkButtonStyle(button: button, fontSize: size)
-            return
         case .ButtonLinkWithColor(let size, let color):
             applyLinkButtonStyle(button: button, fontSize: size, color: color)
-            return
         case .ButtonMainMenu:
             applyMainMenuButtonStyle(button: button)
-            return
         case .ButtonTabStyle(let label):
             applyButtonTabStyle(button: button, label: label)
-            return
         case .ButtonTabSelectedStyle(let label):
             applyButtonTabStyle(button: button, label: label, selectedState: true)
-            return
         case .ButtonOptionStyle(let label, let selected):
             applyButtonOptionStyle(button: button, label, selected)
-            return
         case .ButtonActionStyle(let label, let selected):
             applyButtonActionStyle(button: button, label, selected)
-            return
         case .ButtonSocialNetworkWith(let logoNormal, let logoHighlighted):
             applySocialNetworkButton(button: button, logoNormal: logoNormal, logoHighlighted: logoHighlighted)
-            return
         case .ButtonTooth(let color, let selected):
             applyToothButton(button: button, color: color, selected)
+        default:
             return
+        }
+    }
+    
+    fileprivate func styleUIView(_ view: UIView, type: DCBlueThemeTypes) {
+        switch type {
+        case .ButtonLogin(let type):
+            applyLoginButtonStyle(forButton: view as! LoginButton, ofType: type)
         default:
             return
         }
@@ -260,7 +278,6 @@ class ThemeManager {
             (start: CGPoint(x: 0.0, y: 0.5), end: CGPoint(x: 1.0, y: 0.5))
         )
         
-        //button.setBackgroundImage(normalImage, for: .normal)
         button.setBackgroundImage(focusedImage, for: .highlighted)
     }
     
@@ -279,7 +296,6 @@ class ThemeManager {
         
         //highlighted state settings
         button.setTitleColor(.white, for: .highlighted)
-        //button.setBackgroundImage(focusedImage!, for: .highlighted)
         
         let focusedImage = createImageWithGradient(
             CGRect(x: 0, y: 0, width: width, height: height),
@@ -352,6 +368,70 @@ class ThemeManager {
         
         button.setBackgroundImage(normalImage, for: .normal)
         button.setBackgroundImage(focusedImage, for: .highlighted)
+        
+    }
+    
+    fileprivate func applyLoginButtonStyle(forButton button: LoginButton, ofType type: LoginButtonType) {
+        
+        let applyCivicStyle = { (button: LoginButton) in
+            button.label.text = "btn_auth_civic".localized()
+            button.label.textColor = .white
+            button.icon.image = UIImage(named: "logo-civic")
+            button.backgroundColor = .dntCivicGreen
+            button.type = .civic
+        }
+        
+        let applyFacebookStyle = { (button: LoginButton) in
+            button.label.text = "btn_auth_facebook".localized()
+            button.label.textColor = .white
+            button.icon.image = UIImage(named: "logo-facebook")
+            button.backgroundColor = .dntFacebookBlue
+            button.type = .facebook
+        }
+        
+        let applyGoogleStyle = { (button: LoginButton) in
+            button.label.text = "btn_auth_google".localized()
+            button.label.textColor = .dntGoogleFontGrey
+            button.icon.image = UIImage(named: "logo-google")
+            button.backgroundColor = .white
+            button.type = .google
+        }
+        
+        let applyTwitterStyle = { (button: LoginButton) in
+            button.label.text = "btn_auth_twitter".localized()
+            button.label.textColor = .white
+            button.icon.image = UIImage(named: "logo-twitter")
+            button.backgroundColor = .dntTwitterBlue
+            button.type = .twitter
+        }
+        
+        let applyCommonSettings = { (button: LoginButton) in
+            
+            button.layer.cornerRadius = button.frame.height / 2
+            button.label.font = UIFont.dntLatoRegularFontWith(size: UIFont.dntLabelFontSize)
+            button.layer.borderWidth = 1
+            button.layer.borderColor = UIColor.white.cgColor
+            
+            // shadow setup
+            button.layer.shadowColor = UIColor.black.cgColor
+            button.layer.shadowOffset =  CGSize(width: 1.0, height: 1.0)
+            button.layer.shadowOpacity = 1
+            button.layer.shadowRadius = 2
+            
+        }
+        
+        applyCommonSettings(button)
+        
+        switch type {
+            case .civic:
+                applyCivicStyle(button)
+            case .facebook:
+                applyFacebookStyle(button)
+            case .google:
+                applyGoogleStyle(button)
+            case .twitter:
+                applyTwitterStyle(button)
+        }
         
     }
     

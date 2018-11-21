@@ -21,23 +21,45 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLIconFile</key>
+			<string></string>
+			<key>CFBundleURLName</key>
+			<string>facebook</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb1500240286681345</string>
+				<string>FB_BUNDLE_URL_SCHEME</string>
 			</array>
 		</dict>
+        <dict>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>CFBundleURLName</key>
+            <string>twitter</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>TWITTER_BUNDLE_URL_SCHEME</string>
+            </array>
+        </dict>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>google</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>twitterkit-es5qD7Wt2nbfZz3MQW9NpinHc</string>
+				<string>GOOGLE_BUNDLE_URL_SCHEME</string>
 			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>civic</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.860109241512-s4usv8gls1am6pp693srb0thdtv1qlr2</string>
+				<string>CIVIC_REDIRECT_SCHEME</string>
 			</array>
 		</dict>
 	</array>
@@ -45,8 +67,10 @@
 	<string>30</string>
 	<key>EnvironmentVariables</key>
 	<dict>
-		<key>EnvironmentAPIProtocol</key>
-		<string>ENVIRONMENT_API_PROTOCOL</string>
+		<key>CivicApplicationIdentifier</key>
+		<string>CIVIC_APP_IDENTIFIER</string>
+		<key>CivicSecret</key>
+		<string>CIVIC_APP_SECRET</string>
 		<key>EnvironmentAPIURL</key>
 		<string>ENVIRONMENT_API_URL</string>
 		<key>GooglePlacesAPIKey</key>
@@ -59,7 +83,7 @@
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
-		<string>88067ecfee6a6813ea849bc502af48623fd6d7ec</string>
+		<string>FABRIC_API_KEY</string>
 		<key>Kits</key>
 		<array>
 			<dict>
@@ -73,7 +97,7 @@
 	<key>FacebookAppID</key>
 	<string>FACEBOOK_APP_ID</string>
 	<key>FacebookDisplayName</key>
-	<string>Dentacare</string>
+	<string>Dentacoin</string>
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<false/>
 	<key>LSApplicationQueriesSchemes</key>

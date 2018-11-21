@@ -12,7 +12,7 @@ import GoogleSignIn
 
 class GooglePlusProvider: NSObject {
     
-    static let shared = GooglePlusProvider()//singleton instance
+    static let shared = GooglePlusProvider()
     
     //MARK: - fileprivate vars
     
@@ -169,7 +169,7 @@ extension GooglePlusProvider: GIDSignInUIDelegate {
     
     func sign(inWillDispatch signIn: GIDSignIn!, error: Error!) {
         if error != nil {
-            print("GooglePlusProvider :: google sign-in with error: \(error)")
+            print("GooglePlusProvider :: google sign-in with error: \(String(describing: error))")
         }
     }
     

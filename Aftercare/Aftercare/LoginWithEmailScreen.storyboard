@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login With Email Screen View Controller-->
+        <scene sceneID="7jb-3s-HJD">
+            <objects>
+                <viewController storyboardIdentifier="LoginWithEmailScreenViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="l2U-Ul-Knm" customClass="LoginWithEmailScreenViewController" customModule="Aftercare" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" tag="16" contentMode="scaleToFill" id="UTN-7H-wlL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradientBlueBG" translatesAutoresizingMaskIntoConstraints="NO" id="9E4-hW-f8y">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="YCv-dl-onW">
+                                <rect key="frame" x="0.0" y="40" width="375" height="587"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" image="dentacareLogo" translatesAutoresizingMaskIntoConstraints="NO" id="cOz-tz-hcy">
+                                        <rect key="frame" x="116" y="0.0" width="143" height="46"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="143" id="HxG-HU-EM2"/>
+                                            <constraint firstAttribute="height" constant="46" id="bjp-Gk-YhV"/>
+                                        </constraints>
+                                    </imageView>
+                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kaY-2l-UdQ">
+                                        <rect key="frame" x="67.5" y="62" width="240" height="133.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="E6H-sc-TPo">
+                                        <rect key="frame" x="16" y="211.5" width="343" height="160"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="AeV-vN-LbW">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="39"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" image="userIcon" translatesAutoresizingMaskIntoConstraints="NO" id="jGb-ep-mRO">
+                                                        <rect key="frame" x="0.0" y="0.0" width="25" height="39"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="39" id="XzG-Ap-zOw"/>
+                                                            <constraint firstAttribute="width" constant="25" id="igv-nM-6p9"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fEb-nw-EOA" customClass="SkyFloatingLabelTextField" customModule="Aftercare" customModuleProvider="target">
+                                                        <rect key="frame" x="41" y="0.0" width="302" height="39"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Email"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="98h-hd-tRB">
+                                                <rect key="frame" x="0.0" y="55" width="343" height="39"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" image="padlockIcon" translatesAutoresizingMaskIntoConstraints="NO" id="III-tU-bLI">
+                                                        <rect key="frame" x="0.0" y="0.0" width="25" height="39"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="25" id="7Nu-zY-ZXF"/>
+                                                            <constraint firstAttribute="height" constant="39" id="hJ4-0h-EK4"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kT0-yu-dEg" customClass="SkyFloatingLabelTextField" customModule="Aftercare" customModuleProvider="target">
+                                                        <rect key="frame" x="41" y="0.0" width="302" height="39"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Password"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
+                                                </subviews>
+                                            </stackView>
+                                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BQf-aM-Wp8">
+                                                <rect key="frame" x="0.0" y="110" width="343" height="50"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SGP-P9-VzH">
+                                                        <rect key="frame" x="207" y="0.0" width="136" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="V1e-tH-jhR"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Forgot Password">
+                                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="forgotPasswordButtonPressed:" destination="l2U-Ul-Knm" eventType="touchUpInside" id="8rq-5l-bt8"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="SGP-P9-VzH" secondAttribute="trailing" id="XL0-T4-gce"/>
+                                                    <constraint firstItem="SGP-P9-VzH" firstAttribute="top" secondItem="BQf-aM-Wp8" secondAttribute="top" id="a3Y-Dy-Vfm"/>
+                                                    <constraint firstAttribute="bottom" secondItem="SGP-P9-VzH" secondAttribute="bottom" id="jYW-nW-ZSx"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tou-cD-ni6">
+                                        <rect key="frame" x="67.5" y="387.5" width="240" height="133.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="WRs-hT-ZRW">
+                                        <rect key="frame" x="47.5" y="537" width="280" height="50"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TMT-na-qFR">
+                                                <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="280" id="m5P-iy-zrt"/>
+                                                    <constraint firstAttribute="height" constant="50" id="v8A-vr-b5j"/>
+                                                </constraints>
+                                                <state key="normal" title="Login">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="loginButtonPressed:" destination="l2U-Ul-Knm" eventType="touchUpInside" id="QNG-ep-Hm2"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="E6H-sc-TPo" secondAttribute="trailing" constant="16" id="6Td-vx-ze9"/>
+                                    <constraint firstItem="E6H-sc-TPo" firstAttribute="leading" secondItem="YCv-dl-onW" secondAttribute="leading" constant="16" id="I10-JQ-xLf"/>
+                                    <constraint firstItem="kaY-2l-UdQ" firstAttribute="height" secondItem="tou-cD-ni6" secondAttribute="height" id="ff2-Fl-7WG"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uem-Gh-Wei">
+                                <rect key="frame" x="20" y="40" width="30" height="30"/>
+                                <state key="normal" image="backButton"/>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="l2U-Ul-Knm" eventType="touchUpInside" id="BmD-8r-d0N"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YCv-dl-onW" firstAttribute="top" secondItem="kpE-lO-KxH" secondAttribute="top" constant="20" id="B3S-5J-wIV"/>
+                            <constraint firstAttribute="bottom" secondItem="YCv-dl-onW" secondAttribute="bottom" constant="40" id="Di3-NN-dMZ"/>
+                            <constraint firstAttribute="top" secondItem="9E4-hW-f8y" secondAttribute="top" id="DuP-2B-bmR"/>
+                            <constraint firstItem="Uem-Gh-Wei" firstAttribute="leading" secondItem="kpE-lO-KxH" secondAttribute="leading" constant="20" id="Hq6-ZI-yM6"/>
+                            <constraint firstItem="Uem-Gh-Wei" firstAttribute="top" secondItem="kpE-lO-KxH" secondAttribute="top" constant="20" id="L5o-J4-9pq"/>
+                            <constraint firstItem="9E4-hW-f8y" firstAttribute="leading" secondItem="kpE-lO-KxH" secondAttribute="leading" id="RA7-ty-F9Q"/>
+                            <constraint firstItem="kpE-lO-KxH" firstAttribute="trailing" secondItem="9E4-hW-f8y" secondAttribute="trailing" id="RYg-w0-Wtg"/>
+                            <constraint firstItem="9E4-hW-f8y" firstAttribute="bottom" secondItem="UTN-7H-wlL" secondAttribute="bottom" id="T2U-ze-rWa"/>
+                            <constraint firstItem="kpE-lO-KxH" firstAttribute="trailing" secondItem="YCv-dl-onW" secondAttribute="trailing" id="TGA-FS-kcx"/>
+                            <constraint firstItem="YCv-dl-onW" firstAttribute="leading" secondItem="kpE-lO-KxH" secondAttribute="leading" id="vYk-IJ-cuX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="kpE-lO-KxH"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="fEb-nw-EOA" id="9KK-Wm-w0k"/>
+                        <outlet property="forgotPasswordButton" destination="SGP-P9-VzH" id="mhW-KT-uSE"/>
+                        <outlet property="loginButton" destination="TMT-na-qFR" id="pUc-rJ-Vtw"/>
+                        <outlet property="passwordTextField" destination="kT0-yu-dEg" id="mH6-yo-mZn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8fy-LJ-zhe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="88.799999999999997" y="391.75412293853077"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="backButton" width="30" height="30"/>
+        <image name="dentacareLogo" width="239" height="77"/>
+        <image name="gradientBlueBG" width="375" height="667"/>
+        <image name="padlockIcon" width="25" height="34"/>
+        <image name="userIcon" width="25" height="27"/>
+    </resources>
+</document>

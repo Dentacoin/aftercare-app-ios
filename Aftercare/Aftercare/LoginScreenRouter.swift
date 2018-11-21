@@ -1,19 +1,15 @@
 //
-//  LoginScreenRouter.swift
-//  Aftercare
-//
-//  Created by Dimitar Grudev on 8/22/17.
-//  Copyright © 2017 Stichting Administratiekantoor Dentacoin. All rights reserved.
+// Aftercare
+// Created by Dimitar Grudev on 9.10.18.
+// Copyright © 2018 Stichting Administratiekantoor Dentacoin.
 //
 
 import UIKit
 
-//MARK: - Login Router Protocol
-
 protocol LoginScreenRouterProtocol {
     func navigateToWelcomeScreen()
     func showUserAgreementScreen(_ completion: @escaping AgreementCompletion)
-    func showForgotPasswordScreen()
+    func showLoginWithEmailScreen()
 }
 
 class LoginScreenRouter {
@@ -22,6 +18,7 @@ class LoginScreenRouter {
     
     fileprivate var userAgreementController: UserAgreementScreenViewController!
     private var onAgreementCompletion: AgreementCompletion!
+    
     //MARK: - Lifecycle
     
     init(viewController: LoginScreenViewController) {
@@ -31,13 +28,17 @@ class LoginScreenRouter {
 }
 
 extension LoginScreenRouter: LoginScreenRouterProtocol {
-
+    
+    func showLoginWithEmailScreen() {
+        if let navController = viewController?.navigationController {
+            let controller: LoginWithEmailScreenViewController! = UIStoryboard.main.instantiateViewController()
+            navController.pushViewController(controller, animated: true)
+        }
+    }
+    
     func navigateToWelcomeScreen() {
         if let navController = viewController?.navigationController {
-            
-            let controller: WelcomeScreenViewController! =
-                UIStoryboard.main.instantiateViewController()
-            
+            let controller: WelcomeScreenViewController! = UIStoryboard.main.instantiateViewController()
             navController.pushViewController(controller, animated: true)
         }
     }
@@ -48,16 +49,6 @@ extension LoginScreenRouter: LoginScreenRouterProtocol {
             userAgreementController = UIStoryboard.main.instantiateViewController()
             userAgreementController.delegate = self
             navController.present(userAgreementController, animated: true, completion: nil)
-        }
-    }
-    
-    func showForgotPasswordScreen() {
-        if let navController = viewController?.navigationController {
-            
-            let controller: ForgotYourPasswordScreenViewController! =
-                UIStoryboard.main.instantiateViewController()
-            
-            navController.pushViewController(controller, animated: true)
         }
     }
 }
@@ -77,4 +68,3 @@ extension LoginScreenRouter: UserAgreementScreenDelegate {
     }
     
 }
-

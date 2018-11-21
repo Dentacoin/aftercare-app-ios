@@ -103,8 +103,6 @@ class FacebookProvider {
                     UserDefaultsManager.shared.setValue(token.expirationDate, forKey: FacebookDefaultsKeys.TokenValidTo.rawValue)
                     UserDefaultsManager.shared.setValue(token.userID, forKey: FacebookDefaultsKeys.UserFacebookID.rawValue)
                     
-                    print("token: \(token.tokenString), userID: \(String(describing: token.userID)), expires on: \(String(describing: token.expirationDate))")
-                    
                     onComplete(sessionData)
                     
                 }

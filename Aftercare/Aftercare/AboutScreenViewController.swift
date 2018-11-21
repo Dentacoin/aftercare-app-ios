@@ -25,7 +25,7 @@ class AboutScreenViewController: UIViewController, ContentConformer {
     //MARK: - Public
     
     var header: InitialPageHeaderView! {
-        return headerView as! InitialPageHeaderView
+        return (headerView as! InitialPageHeaderView)
     }
     
     //MARK: - fileprivates
@@ -61,9 +61,8 @@ class AboutScreenViewController: UIViewController, ContentConformer {
     fileprivate func setup() {
         
         //add app version at the bottom of the text field
-        guard let dict = Bundle.main.infoDictionary else { return }
-        guard let version: String = dict["CFBundleShortVersionString"] as? String else { return }
-        guard let build: String = dict["CFBundleVersion"] as? String else { return }
+        guard let version = SystemMethods.AppInfoPlist.value(forKey: .CFBundleShortVersionString) else { return }
+        guard let build = SystemMethods.AppInfoPlist.value(forKey: .CFBundleVersion) else { return }
         
         appVersionLabel.font = UIFont.dntLatoRegularFontWith(size: UIFont.dntLabelFontSize)
         appVersionLabel.textColor = UIColor.dntCeruleanBlue
