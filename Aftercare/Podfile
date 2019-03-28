@@ -33,11 +33,11 @@ target 'Aftercare' do
   pod 'GooglePlacePicker'
   
   #QRCode
-  pod 'QRCodeReader.swift', '8.2.0'
+  pod 'QRCodeReader.swift'
   
   #Fabric/Crashlytics
-  pod 'Fabric', '1.7.7'
-  pod 'Crashlytics', '3.10.2'
+  pod 'Fabric'
+  pod 'Crashlytics'
   
   #Sound Helper
   pod 'SwiftySound', '1.0.0'

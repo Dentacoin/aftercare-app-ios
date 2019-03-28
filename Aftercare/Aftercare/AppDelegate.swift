@@ -22,19 +22,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        //Hide status bar inside the app!
-        UIApplication.shared.statusBarStyle = .lightContent
-        UIApplication.shared.isStatusBarHidden = true
-        
         //Preload main view controller
 //        if let rootViewController = self.window?.rootViewController as? MasterViewController {
 //            rootViewController.preloadMainController = true
 //        }
         
         #if DEBUG
-        let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory,
-                                                                    .userDomainMask,
-                                                                    true)[0]
+        let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
         print("Documents Path: \(documentsPath)")
         #endif //DEBUG
         

@@ -56,35 +56,35 @@ class UserDataContainer {
     }
     
     //how much time in seconds one action floss/brush/rinse takes on the timer
-    open let FlossActionDurationInSeconds: Double = 120
-    open let BrushActionDurationInSeconds: Double = 120
-    open let RinseActionDurationInSeconds: Double = 30
+    public let FlossActionDurationInSeconds: Double = 120
+    public let BrushActionDurationInSeconds: Double = 120
+    public let RinseActionDurationInSeconds: Double = 30
     
     //the minimum time in seconds that is needed in order action to be record
     //on the server (this is different from the lowest time that is considered for valid record witch is 2 min.)
-    open let ActionMinimumRecordTimeInSeconds: Double = 15
+    public let ActionMinimumRecordTimeInSeconds: Double = 15
     
     //how many times can be taken per day, week, month for every kind of action
-    open let maximumFlossesPerDay: Double = 1//1 time per day
-    open let maximumBrushesPerDay: Double = 2
-    open let maximumRinsesPerDay: Double = 2
-    open let maximumFlossesPerWeek: Double = 14//14 times per week
-    open let maximumBrushesPerWeek: Double = 14
-    open let maximumRinsesPerWeek: Double = 14
-    open let maximumFlossesPerMonth: Double = 60//60 times per month - we use average month length = 30 days
-    open let maximumBrushesPerMonth: Double = 60
-    open let maximumRinsesPerMonth: Double = 60
+    public let maximumFlossesPerDay: Double = 1//1 time per day
+    public let maximumBrushesPerDay: Double = 2
+    public let maximumRinsesPerDay: Double = 2
+    public let maximumFlossesPerWeek: Double = 14//14 times per week
+    public let maximumBrushesPerWeek: Double = 14
+    public let maximumRinsesPerWeek: Double = 14
+    public let maximumFlossesPerMonth: Double = 60//60 times per month - we use average month length = 30 days
+    public let maximumBrushesPerMonth: Double = 60
+    public let maximumRinsesPerMonth: Double = 60
     
     //maximum time in seconds that every kind of action can be rewarded per day, week, month
-    open let maximumFlossTimePerDay: Double = 240//240 seconds = 2 times * 2 min.
-    open let maximumBrushTimePerDay: Double = 240
-    open let maximumRinseTimePerDay: Double = 240
-    open let maximumFlossTimePerWeek: Double = 1680//7 days * 2 times a day * 2 min.
-    open let maximumBrushTimePerWeek: Double = 1680
-    open let maximumRinseTimePerWeek: Double = 1680
-    open let maximumFlossTimePerMonth: Double = 7200//30 days per month * 2 times a day * 2 min.
-    open let maximumBrushTimePerMonth: Double = 7200
-    open let maximumRinseTimePerMonth: Double = 7200
+    public let maximumFlossTimePerDay: Double = 240//240 seconds = 2 times * 2 min.
+    public let maximumBrushTimePerDay: Double = 240
+    public let maximumRinseTimePerDay: Double = 240
+    public let maximumFlossTimePerWeek: Double = 1680//7 days * 2 times a day * 2 min.
+    public let maximumBrushTimePerWeek: Double = 1680
+    public let maximumRinseTimePerWeek: Double = 1680
+    public let maximumFlossTimePerMonth: Double = 7200//30 days per month * 2 times a day * 2 min.
+    public let maximumBrushTimePerMonth: Double = 7200
+    public let maximumRinseTimePerMonth: Double = 7200
     
     //MARK: - singleton
     

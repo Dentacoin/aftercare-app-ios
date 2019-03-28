@@ -12,9 +12,8 @@ struct APIRouter: APIRouterProtocol {
     
     static var basePath: String {
         get {
-            guard let apiProtocol = SystemMethods.Environment.value(forKey: .EnvironmentAPIProtocol) else { return "" }
             guard let apiURL = SystemMethods.Environment.value(forKey: .EnvironmentAPIURL) else { return "" }
-            return apiProtocol + "://" + apiURL
+            return "https://" + apiURL
         }
     }
     

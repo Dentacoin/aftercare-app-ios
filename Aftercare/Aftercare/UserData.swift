@@ -92,7 +92,7 @@ struct UserData: Codable {
         do {
             self.postalCode = try values.decode(String?.self, forKey: .postalCode)
         } catch {
-            print("Parsing Error: UserData :: id property is missing!")
+            print("Parsing Error: UserData :: postalCode property is missing!")
         }
         
         do {
@@ -116,32 +116,32 @@ struct UserData: Codable {
         do {
             self.birthDay = try values.decode(String?.self, forKey: .birthDay)
         } catch {
-            print("Parsing Error: UserData :: trying to parse birthDay")
+            print("Parsing Error: UserData :: birthDay property is missing")
         }
         do {
             self.lastLoginDate = try values.decode(String?.self, forKey: .lastLoginDate)
         } catch {
-            print("Parsing Error: UserData :: trying to parse lastLoginDate")
+            print("Parsing Error: UserData :: lastLoginDate property is missing")
         }
         do {
             self.createdDate = try values.decode(String?.self, forKey: .createdDate)
         } catch {
-            print("Parsing Error: UserData :: trying to parse createdDate")
+            print("Parsing Error: UserData :: createdDate property is missing")
         }
         do {
             self.lastModifiedDate = try values.decode(String?.self, forKey: .lastModifiedDate)
         } catch {
-            print("Parsing Error: UserData :: trying to parse lastModifiedDate")
+            print("Parsing Error: UserData :: lastModifiedDate property is missing")
         }
         do {
             self.confirmed = try values.decode(Bool.self, forKey: .confirmed)
         } catch {
-            print("Parsing Error: UserData :: trying to parse confirmed")
+            print("Parsing Error: UserData :: confirmed property is missing")
         }
         do {
             self.password = try values.decode(String?.self, forKey: .password)
         } catch {
-            print("Parsing Error: UserData :: trying to parse password")
+            print("Parsing Error: UserData :: password property is missing")
         }
         
         self.avatar = try? values.decode(AvatarData.self, forKey: .avatar)

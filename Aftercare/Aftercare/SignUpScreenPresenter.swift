@@ -6,8 +6,8 @@
 //  Copyright © 2017 Stichting Administratiekantoor Dentacoin. All rights reserved.
 //
 
-import Foundation
 import UIKit
+
 //MARK: - SignUp Screen Presenter Protocols
 
 // In most cases equals Coordinator Output Protocol

@@ -45,8 +45,6 @@
 	<string>30</string>
 	<key>EnvironmentVariables</key>
 	<dict>
-		<key>EnvironmentAPIProtocol</key>
-		<string>ENVIRONMENT_API_PROTOCOL</string>
 		<key>EnvironmentAPIURL</key>
 		<string>ENVIRONMENT_API_URL</string>
 		<key>GooglePlacesAPIKey</key>

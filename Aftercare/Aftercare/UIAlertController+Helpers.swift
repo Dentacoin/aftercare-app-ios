@@ -13,26 +13,31 @@ typealias AlertDismissHandler = () -> ()
 extension UIAlertController {
     
     static func show(message: String) {
-        let controller = alertController(title: nil, message: message, buttonTitle: "txt_ok".localized(), handler: nil)
+        let controller = show(title: nil, message: message, buttonTitle: "txt_ok".localized(), handler: nil)
         controller.show()
     }
     
     static func show(controllerWithTitle title: String, message: String) {
-        let controller = alertController(title: title, message: message, buttonTitle: "txt_ok".localized(), handler: nil)
+        let controller = show(title: title, message: message, buttonTitle: "txt_ok".localized(), handler: nil)
         controller.show()
     }
     
     static func show(controllerWithTitle title: String, message: String, buttonTitle: String) {
-        let controller = alertController(title: title, message: message, buttonTitle: buttonTitle, handler: nil)
+        let controller = show(title: title, message: message, buttonTitle: buttonTitle, handler: nil)
         controller.show()
     }
     
     static func show(controllerWithTitle title: String, message: String, cancelTitle: String) {
-        let controller = alertController(title: title, message: message, cancelTitle: cancelTitle, buttonTitle: "txt_ok".localized(), nil, nil)
+        let controller = show(title: title, message: message, cancelTitle: cancelTitle, buttonTitle: "txt_ok".localized(), nil, nil)
         controller.show()
     }
     
-    @discardableResult static func alertController(
+    static func show(title: String, message: String, handler: @escaping AlertDismissHandler) {
+        let controller = show(title: title, message: message, buttonTitle: "txt_ok".localized(), handler: handler)
+        controller.show()
+    }
+    
+    @discardableResult static func show(
         title: String?,
         message: String,
         buttonTitle: String,
@@ -56,10 +61,11 @@ extension UIAlertController {
         return controller
     }
     
-    @discardableResult static func alertController(title: String?,
-                                message: String,
-                                cancelTitle: String,
-                                buttonTitle: String,
+    @discardableResult static func show(
+        title: String?,
+        message: String,
+        cancelTitle: String,
+        buttonTitle: String,
         _ handler: AlertDismissHandler? = nil,
         _ cancelHandler: AlertDismissHandler? = nil) -> UIAlertController {
         

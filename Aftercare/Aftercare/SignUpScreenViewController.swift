@@ -91,22 +91,16 @@ class SignUpScreenViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.uploadUserAvatarButton.delegate = self
-        self.firstNameTextField.delegate = self
-        self.lastNameTextField.delegate = self
-        self.emailTextField.delegate = self
-        self.passwordTextField.delegate = self
-        self.captchaCodeTextField.delegate = self
+        uploadUserAvatarButton.delegate = self
+        firstNameTextField.delegate = self
+        lastNameTextField.delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        captchaCodeTextField.delegate = self
+        captchaView.requestNewCaptcha()
         
-        self.addListenersForKeyboard()
+        addListenersForKeyboard()
         setup()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.captchaCodeTextField.text = ""
-        self.captchaView.invalidate()
     }
     
     deinit {
@@ -340,26 +334,6 @@ extension SignUpScreenViewController {
                 } else {
                     self?.clearState()
                 }
-                
-//                func userDidAcceptTermsAndConditions(from sender: UIButton) {
-//
-//                    // request sign up user.
-//                    // If this sign up request secceed showWelcomeScreen() should be called
-//                    // if it fails showErrorMessage should be called instead
-//
-//                    switch sender {
-//                    case facebookButton:
-//
-//                    case twitterButton:
-//
-//                    case googlePlusButton:
-//
-//                    default:
-//                        // Sign Up with email
-//
-//                    }
-//
-//                }
             }
             showLoadingScreenState()
             uiIsBlocked = true
@@ -553,9 +527,12 @@ extension SignUpScreenViewController: SignUpScreenControllerInputProtocol {
     func showErrorMessage(_ message: String) {
         clearState()
         UIAlertController.show(
-            controllerWithTitle: "error_popup_title".localized(),
+            title: "error_popup_title".localized(),
             message: message,
-            buttonTitle: "txt_ok".localized()
+            handler: { [weak self] in
+                self?.captchaView.invalidate()
+                self?.captchaCodeTextField.text = ""
+            }
         )
     }
     

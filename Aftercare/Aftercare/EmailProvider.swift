@@ -6,7 +6,6 @@
 //  Copyright © 2017 Stichting Administratiekantoor Dentacoin. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 class EmailProvider: EmailProviderProtocol, UserDataProviderProtocol {
@@ -102,9 +101,6 @@ class EmailProvider: EmailProviderProtocol, UserDataProviderProtocol {
         UserDefaultsManager.shared.setGlobalValue(session.validTo, forKey: "token_valid_to")
     }
     
-    //MARK: - fileprivate methods
-    
-    
 }
 
 extension EmailProvider: DataProviderSerializedType {
@@ -112,7 +108,6 @@ extension EmailProvider: DataProviderSerializedType {
 }
 
 fileprivate enum UserDefaultsKeys: String {
-    
     case Token = "uToken"
     case TokenValidTo = "uTokenValidTo"
     case Email = "uEmail"
@@ -121,5 +116,4 @@ fileprivate enum UserDefaultsKeys: String {
     case FirstName = "uFirstName"
     case LastName = "uLastName"
     case Gender = "uGender"
-    
 }

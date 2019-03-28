@@ -10,9 +10,9 @@ import Foundation
 import Alamofire
 import AlamofireImage
 
-struct SystemMethods {
+enum SystemMethods {
     
-    struct User {
+    enum User {
         
         static func validateFirstName(_ name: String) -> Bool {
             return validateName(name)
@@ -51,7 +51,7 @@ struct SystemMethods {
         
     }
     
-    struct Files {
+    enum Files {
         
         static let decodeQueue: OperationQueue = {
             let queue = OperationQueue()
@@ -104,7 +104,7 @@ struct SystemMethods {
         
     }
     
-    struct Goals {
+    enum Goals {
         
         static func scanForNewGoals() -> [GoalData]? {
             let DefaultsKeyAchievedGoals = "achievedGoalsList"
@@ -157,7 +157,7 @@ struct SystemMethods {
         
     }
     
-    struct Environment {
+    enum Environment {
         
         static func value(forKey key: EnvironmentKey) -> String? {
             
@@ -175,12 +175,11 @@ struct SystemMethods {
             case TwitterSecretKey
             case GooglePlacesAPIKey
             case EnvironmentAPIURL
-            case EnvironmentAPIProtocol
         }
         
     }
     
-    struct Utils {
+    enum Utils {
         
         static func millisecondsSinceAppStart() -> Double {
             var kinfo = kinfo_proc()
