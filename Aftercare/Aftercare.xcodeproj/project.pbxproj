@@ -731,15 +731,12 @@
 		24657E861F13EA390057B846 /* Aftercare */ = {
 			isa = PBXGroup;
 			children = (
-				9F9EF2F41F9E0CEE005BE398 /* Aftercare.entitlements */,
+				9F67922A224D65A50075FC7B /* SupportingFiles */,
 				9FE51F731FAA271700771A34 /* Headers */,
 				24FE8CD51F30D92E00AD582C /* Protocols */,
 				24FE8CCC1F30CC5500AD582C /* Resources */,
 				24FE8CCD1F30CC6800AD582C /* Xibs/Storyboards */,
 				24FE8CCE1F30CC9400AD582C /* Classes */,
-				24657E871F13EA390057B846 /* AppDelegate.swift */,
-				24657E931F13EA390057B846 /* Info.plist */,
-				9FF0AEA01F58B8A30056846B /* GoogleService-Info.plist */,
 			);
 			path = Aftercare;
 			sourceTree = "<group>";
@@ -826,6 +823,7 @@
 				24FE8CD01F30CCB700AD582C /* Models */,
 				24FE8CD21F30CCF100AD582C /* Views */,
 				24FE8CD11F30CCE800AD582C /* Controllers */,
+				24657E871F13EA390057B846 /* AppDelegate.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1380,6 +1378,16 @@
 			name = Screens;
 			sourceTree = "<group>";
 		};
+		9F67922A224D65A50075FC7B /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				9FF0AEA01F58B8A30056846B /* GoogleService-Info.plist */,
+				24657E931F13EA390057B846 /* Info.plist */,
+				9F9EF2F41F9E0CEE005BE398 /* Aftercare.entitlements */,
+			);
+			name = SupportingFiles;
+			sourceTree = "<group>";
+		};
 		9F75EBF52064135C004AF32C /* AwesomeSpotlight */ = {
 			isa = PBXGroup;
 			children = (
@@ -1628,6 +1636,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 				it,

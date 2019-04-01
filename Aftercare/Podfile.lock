@@ -132,7 +132,7 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - Protobuf (3.6.1)
-  - QRCodeReader.swift (9.0.1)
+  - QRCodeReader.swift (8.2.0)
   - SwiftySound (1.0.0)
   - TwitterCore (3.2.0)
   - TwitterKit (3.4.1):
@@ -155,7 +155,7 @@ DEPENDENCIES:
   - GooglePlacePicker
   - GooglePlaces
   - GoogleSignIn
-  - QRCodeReader.swift
+  - QRCodeReader.swift (= 8.2.0)
   - SwiftySound
   - TwitterKit
 
@@ -231,11 +231,11 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
-  QRCodeReader.swift: 96292a5612fbc2fd9a0b26f93fa5164c8d02f59d
+  QRCodeReader.swift: 003eb32f18a5a675b936ec82ba0ff368cddbff45
   SwiftySound: b9c3370956fd4ed65ed79d45563070077a50a2cd
   TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
   TwitterKit: 054005edf5350aa9074af74b41456e5a61e3f322
 
-PODFILE CHECKSUM: 90076dda58c8c3de8dbd773d3e3e217cf5efaae2
+PODFILE CHECKSUM: 41ba3d0a7d6e992cd2c12b3b3231e926b2891d02
 
 COCOAPODS: 1.5.3
