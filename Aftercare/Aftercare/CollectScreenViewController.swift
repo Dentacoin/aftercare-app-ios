@@ -47,7 +47,7 @@ class CollectScreenViewController: UIViewController, ContentConformer {
     //MARK: - Public
     
     var header: InitialPageHeaderView! {
-        return headerView as! InitialPageHeaderView
+        return headerView as? InitialPageHeaderView
     }
     
     //MARK: - Lifecycle
@@ -158,9 +158,9 @@ extension CollectScreenViewController {
         let walletAddressPlaceholder = NSAttributedString.init(
             string: "collect_wallet_hnt_address".localized(),
             attributes: [
-                NSAttributedStringKey.foregroundColor: UIColor.dntCeruleanBlue,
-                NSAttributedStringKey.font: UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)!,
-                NSAttributedStringKey.paragraphStyle: paragraph
+                .foregroundColor: UIColor.dntCeruleanBlue,
+                .font: UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)!,
+                .paragraphStyle: paragraph
             ])
         if let wallet: String = UserDefaultsManager.shared.getValue(forKey: "wallet") {
             self.walletAddressTextField.text = wallet

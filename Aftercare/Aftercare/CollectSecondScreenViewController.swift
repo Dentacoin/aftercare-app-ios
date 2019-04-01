@@ -49,7 +49,7 @@ class CollectSecondScreenViewController: UIViewController, ContentConformer {
     //MARK: - public
     
     var header: InsidePageHeaderView! {
-        return headerView as! InsidePageHeaderView
+        return headerView as? InsidePageHeaderView
     }
     
     //MARK: - Lifecycle
@@ -240,7 +240,7 @@ extension CollectSecondScreenViewController: UIWebViewDelegate {
         print(error)
     }
     
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
         print("REQUEST: \(request)")
         return true
     }

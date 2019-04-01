@@ -38,8 +38,8 @@ class EditUserProfileScreenViewController: UIViewController, ContentConformer {
     
     //MARK: - Public
     
-    var header: InsidePageHeaderView! {
-        return headerView as! InsidePageHeaderView
+    var header: InsidePageHeaderView! {// TODO: remove this property and find solution for it
+        return headerView as? InsidePageHeaderView
     }
     
     //MARK: - error message lazy init strings
@@ -73,7 +73,7 @@ class EditUserProfileScreenViewController: UIViewController, ContentConformer {
     
     fileprivate let datePickerView: UIDatePicker = {
         let datePickerView: UIDatePicker = UIDatePicker()
-        datePickerView.datePickerMode = UIDatePickerMode.date
+        datePickerView.datePickerMode = UIDatePicker.Mode.date
         
         let nowDate = Date()
         let calendar = Calendar.current
@@ -195,9 +195,9 @@ extension EditUserProfileScreenViewController {
         let firstNamePlaceholder = NSAttributedString.init(
             string: "signup_hnt_first_name".localized(),
             attributes: [
-                NSAttributedStringKey.foregroundColor: UIColor.white,
-                NSAttributedStringKey.font: UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)!,
-                NSAttributedStringKey.paragraphStyle: paragraph
+                .foregroundColor: UIColor.white,
+                .font: UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)!,
+                .paragraphStyle: paragraph
             ])
         self.firstNameTextField.attributedPlaceholder = firstNamePlaceholder
         if let firstName = UserDataContainer.shared.userInfo?.firstName {
@@ -208,9 +208,9 @@ extension EditUserProfileScreenViewController {
         let lastNamePlaceholder = NSAttributedString.init(
             string: "signup_hnt_last_name".localized(),
             attributes: [
-                NSAttributedStringKey.foregroundColor: UIColor.white,
-                NSAttributedStringKey.font: UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)!,
-                NSAttributedStringKey.paragraphStyle: paragraph
+                .foregroundColor: UIColor.white,
+                .font: UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)!,
+                .paragraphStyle: paragraph
             ])
         self.lastNameTextField.attributedPlaceholder = lastNamePlaceholder
         if let lastName = UserDataContainer.shared.userInfo?.lastName {
@@ -221,9 +221,9 @@ extension EditUserProfileScreenViewController {
         let passwordPlaceholder = NSAttributedString.init(
             string: "signup_hnt_password".localized(),
             attributes: [
-                NSAttributedStringKey.foregroundColor: UIColor.white,
-                NSAttributedStringKey.font: UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)!,
-                NSAttributedStringKey.paragraphStyle: paragraph
+                .foregroundColor: UIColor.white,
+                .font: UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)!,
+                .paragraphStyle: paragraph
             ])
         self.passwordTextField.attributedPlaceholder = passwordPlaceholder
         self.passwordTextField.isSecureTextEntry = true
@@ -232,9 +232,9 @@ extension EditUserProfileScreenViewController {
         let zipPlaceholder = NSAttributedString.init(
             string: "profile_hnt_zip".localized(),
             attributes: [
-                NSAttributedStringKey.foregroundColor: UIColor.white,
-                NSAttributedStringKey.font: UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)!,
-                NSAttributedStringKey.paragraphStyle: paragraph
+                .foregroundColor: UIColor.white,
+                .font: UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)!,
+                .paragraphStyle: paragraph
             ])
         self.zipCodeTextField.attributedPlaceholder = zipPlaceholder
         if let zip = UserDataContainer.shared.userInfo?.postalCode {
@@ -245,9 +245,9 @@ extension EditUserProfileScreenViewController {
         let cityCountryPlaceholder = NSAttributedString.init(
             string: "profile_hnt_city_country".localized(),
             attributes: [
-                NSAttributedStringKey.foregroundColor: UIColor.white,
-                NSAttributedStringKey.font: UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)!,
-                NSAttributedStringKey.paragraphStyle: paragraph
+                .foregroundColor: UIColor.white,
+                .font: UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)!,
+                .paragraphStyle: paragraph
             ])
         self.cityCountryTextField.attributedPlaceholder = cityCountryPlaceholder
         if let city = UserDataContainer.shared.userInfo?.city, let country = UserDataContainer.shared.userInfo?.country {
@@ -258,9 +258,9 @@ extension EditUserProfileScreenViewController {
         let birthDatePlaceholder = NSAttributedString.init(
             string: "profile_hnt_birthday".localized(),
             attributes: [
-                NSAttributedStringKey.foregroundColor: UIColor.white,
-                NSAttributedStringKey.font: UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)!,
-                NSAttributedStringKey.paragraphStyle: paragraph
+                .foregroundColor: UIColor.white,
+                .font: UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)!,
+                .paragraphStyle: paragraph
             ])
         self.birthDateTextField.attributedPlaceholder = birthDatePlaceholder
         self.birthDateTextField.inputView = datePickerView

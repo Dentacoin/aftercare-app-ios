@@ -96,14 +96,13 @@ class FacebookProvider {
                     
                     self?.loggedIn = true
                     
+                    // TODO: - save this in keychain or store in more propriate way than user defaults
                     sessionData.updateValue(token.tokenString, forKey: FacebookDefaultsKeys.Token.rawValue)
                     sessionData.updateValue(token.userID, forKey: FacebookDefaultsKeys.UserFacebookID.rawValue)
                     
                     UserDefaultsManager.shared.setValue(token.tokenString, forKey: FacebookDefaultsKeys.Token.rawValue)
                     UserDefaultsManager.shared.setValue(token.expirationDate, forKey: FacebookDefaultsKeys.TokenValidTo.rawValue)
                     UserDefaultsManager.shared.setValue(token.userID, forKey: FacebookDefaultsKeys.UserFacebookID.rawValue)
-                    
-                    print("token: \(token.tokenString), userID: \(String(describing: token.userID)), expires on: \(String(describing: token.expirationDate))")
                     
                     onComplete(sessionData)
                     

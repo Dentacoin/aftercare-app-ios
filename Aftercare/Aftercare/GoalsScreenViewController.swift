@@ -17,7 +17,7 @@ class GoalsScreenViewController: UIViewController, ContentConformer {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var header: InitialPageHeaderView! {
-        return headerView as! InitialPageHeaderView
+        return headerView as? InitialPageHeaderView
     }
     
     //MARK: - fileprivates

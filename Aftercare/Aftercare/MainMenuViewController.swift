@@ -45,11 +45,11 @@ final class MainMenuViewController: UIViewController {
     
     fileprivate func setup() {
         navController.setNavigationBarHidden(true, animated: false)
-        self.addChildViewController(navController)
+        self.addChild(navController)
         self.view.addSubview(navController.view)
         navController.view.frame = self.view.bounds
         navController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        navController.didMove(toParentViewController: self)
+        navController.didMove(toParent: self)
         
         //default home screen setup and load
         let homeScreen: ActionScreenViewController! = UIStoryboard.main.instantiateViewController()
@@ -92,12 +92,12 @@ extension MainMenuViewController: ContentDelegate {
         backgroundView.view.frame = screenFrame
         backgroundView.view.backgroundColor = UIColor.black.withAlphaComponent(0)
         self.view.addSubview(backgroundView.view)
-        self.addChildViewController(backgroundView)
+        self.addChild(backgroundView)
         
         sideMenuViewController.delegate = self
         self.view.addSubview(sideMenuViewController.view)
         
-        self.addChildViewController(sideMenuViewController)
+        self.addChild(sideMenuViewController)
         sideMenuViewController.view.layoutIfNeeded()
         sideMenuViewController.view.frame = CGRect(
             x: 0 - UIScreen.main.bounds.size.width,
@@ -177,10 +177,10 @@ extension MainMenuViewController: SideMenuDelegate {
             self?.sideMenuViewController.view.backgroundColor = UIColor.clear
             self?.backgroundView.view.backgroundColor = UIColor.black.withAlphaComponent(0)
         }, completion: { [weak self] finished in
-                self?.sideMenuViewController.view.removeFromSuperview()
-                self?.sideMenuViewController.removeFromParentViewController()
-                self?.backgroundView.view.removeFromSuperview()
-                self?.backgroundView.removeFromParentViewController()
+            self?.sideMenuViewController.view.removeFromSuperview()
+            self?.sideMenuViewController.removeFromParent()
+            self?.backgroundView.view.removeFromSuperview()
+            self?.backgroundView.removeFromParent()
         })
     }
     

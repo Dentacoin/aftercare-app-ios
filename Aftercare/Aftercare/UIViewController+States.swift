@@ -120,7 +120,7 @@ extension UIViewController {
         UIView.animate(
             withDuration: 0.5,
             delay: 0,
-            options: UIViewAnimationOptions.curveEaseOut,
+            options: .curveEaseOut,
             animations: {
                 loadingView.effectView.alpha = 0.5
             },

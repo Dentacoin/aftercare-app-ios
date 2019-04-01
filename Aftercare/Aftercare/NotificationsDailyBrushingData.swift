@@ -37,7 +37,7 @@ struct NotificationsDailyBrushingData: NotificationDataProtocol {
         let content = UNMutableNotificationContent()
         content.title = data.title
         content.body = data.message
-        content.sound = UNNotificationSound(named: NotificationSound.dncNotification.rawValue)
+        content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: NotificationSound.dncNotification.rawValue))
         
         let center = UNUserNotificationCenter.current()
         

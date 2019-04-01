@@ -67,11 +67,11 @@ class ConfirmDeleteProfilePopupScreen: UIView {
         let captchaPlaceholder = NSAttributedString.init(
             string: "signup_hnt_captcha".localized(),
             attributes: [
-                NSAttributedStringKey.foregroundColor: UIColor.dntCeruleanBlue,
-                NSAttributedStringKey.font: UIFont.dntLatoLightFont(
+                .foregroundColor: UIColor.dntCeruleanBlue,
+                .font: UIFont.dntLatoLightFont(
                     size: UIFont.dntLabelFontSize
                     )!,
-                NSAttributedStringKey.paragraphStyle: paragraph
+                .paragraphStyle: paragraph
             ]
         )
         captchaTextField.attributedPlaceholder = captchaPlaceholder
@@ -91,14 +91,14 @@ class ConfirmDeleteProfilePopupScreen: UIView {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(self.keyboardWillShow),
-            name: NSNotification.Name.UIKeyboardWillShow,
+            name: UIResponder.keyboardWillShowNotification,
             object: nil
         )
         
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(self.keyboardWillHide),
-            name: NSNotification.Name.UIKeyboardWillHide,
+            name: UIResponder.keyboardWillHideNotification,
             object: nil
         )
         
@@ -109,7 +109,7 @@ class ConfirmDeleteProfilePopupScreen: UIView {
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             
             guard let textField = self.captchaTextField else {
                 return

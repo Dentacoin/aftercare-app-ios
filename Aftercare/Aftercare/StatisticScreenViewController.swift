@@ -22,7 +22,7 @@ class StatisticScreenViewController: UIViewController, ContentConformer {
     //MARK: - Public
     
     var header: InitialPageHeaderView! {
-        return headerView as! InitialPageHeaderView
+        return headerView as? InitialPageHeaderView
     }
     
     //MARK: - fileprivates
@@ -152,7 +152,7 @@ extension StatisticScreenViewController {
         
         //these two settings help us use auto layout for the cells and
         //their size to be determined by its contents
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 160
         
         tableView.reloadData()

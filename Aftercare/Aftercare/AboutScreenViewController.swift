@@ -25,7 +25,7 @@ class AboutScreenViewController: UIViewController, ContentConformer {
     //MARK: - Public
     
     var header: InitialPageHeaderView! {
-        return headerView as! InitialPageHeaderView
+        return headerView as? InitialPageHeaderView
     }
     
     //MARK: - fileprivates
@@ -91,14 +91,14 @@ extension AboutScreenViewController: InitialPageHeaderViewDelegate {
 
 fileprivate extension NSMutableAttributedString {
     @discardableResult func bold(_ text: String) -> NSMutableAttributedString {
-        let attrs: [NSAttributedStringKey: Any] = [.font: UIFont.dntLatoBlackFont(size: UIFont.dntLargeTextSize)!]
+        let attrs: [NSAttributedString.Key: Any] = [.font: UIFont.dntLatoBlackFont(size: UIFont.dntLargeTextSize)!]
         let boldString = NSMutableAttributedString(string: text, attributes: attrs)
         append(boldString)
         return self
     }
     
     @discardableResult func normal(_ text: String) -> NSMutableAttributedString {
-        let attrs: [NSAttributedStringKey: Any] = [.font: UIFont.dntLatoRegularFontWith(size: UIFont.dntNormalTextSize)!]
+        let attrs: [NSAttributedString.Key: Any] = [.font: UIFont.dntLatoRegularFontWith(size: UIFont.dntNormalTextSize)!]
         let normal = NSAttributedString(string: text, attributes: attrs)
         append(normal)
         return self

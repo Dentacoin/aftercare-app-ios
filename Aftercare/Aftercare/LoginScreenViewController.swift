@@ -109,9 +109,9 @@ extension LoginScreenViewController {
         let emailPlaceholder = NSAttributedString.init(
             string: "signup_hnt_email".localized(),
             attributes: [
-                NSAttributedStringKey.foregroundColor: UIColor.white,
-                NSAttributedStringKey.font: UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)!,
-                NSAttributedStringKey.paragraphStyle: paragraph
+                .foregroundColor: UIColor.white,
+                .font: UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)!,
+                .paragraphStyle: paragraph
             ])
         emailTextField.attributedPlaceholder = emailPlaceholder
         emailTextField.keyboardType = .emailAddress
@@ -122,9 +122,9 @@ extension LoginScreenViewController {
         let passwordPlaceholder = NSAttributedString.init(
             string: "signup_hnt_password".localized(),
             attributes: [
-                NSAttributedStringKey.foregroundColor: UIColor.white,
-                NSAttributedStringKey.font: UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)!,
-                NSAttributedStringKey.paragraphStyle: paragraph
+                .foregroundColor: UIColor.white,
+                .font: UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)!,
+                .paragraphStyle: paragraph
             ])
         passwordTextField.attributedPlaceholder = passwordPlaceholder
         passwordTextField.autocorrectionType = .no

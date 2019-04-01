@@ -146,11 +146,11 @@ extension SignUpScreenViewController {
         let firstNamePlaceholder = NSAttributedString.init(
             string: "signup_hnt_first_name".localized(),
             attributes: [
-                NSAttributedStringKey.foregroundColor: UIColor.white,
-                NSAttributedStringKey.font: UIFont.dntLatoLightFont(
+                .foregroundColor: UIColor.white,
+                .font: UIFont.dntLatoLightFont(
                     size: UIFont.dntLabelFontSize
                 )!,
-                NSAttributedStringKey.paragraphStyle: paragraph
+                .paragraphStyle: paragraph
             ]
         )
         
@@ -165,11 +165,11 @@ extension SignUpScreenViewController {
         let lastNamePlaceholder = NSAttributedString.init(
             string: "signup_hnt_last_name".localized(),
             attributes: [
-                NSAttributedStringKey.foregroundColor: UIColor.white,
-                NSAttributedStringKey.font: UIFont.dntLatoLightFont(
+                .foregroundColor: UIColor.white,
+                .font: UIFont.dntLatoLightFont(
                     size: UIFont.dntLabelFontSize
                     )!,
-                NSAttributedStringKey.paragraphStyle: paragraph
+                .paragraphStyle: paragraph
             ]
         )
         
@@ -184,11 +184,11 @@ extension SignUpScreenViewController {
         let emailPlaceholder = NSAttributedString.init(
                 string: "signup_hnt_email".localized(),
                 attributes: [
-                NSAttributedStringKey.foregroundColor: UIColor.white,
-                NSAttributedStringKey.font: UIFont.dntLatoLightFont(
+                .foregroundColor: UIColor.white,
+                .font: UIFont.dntLatoLightFont(
                     size: UIFont.dntLabelFontSize
                 )!,
-                NSAttributedStringKey.paragraphStyle: paragraph
+                .paragraphStyle: paragraph
             ]
         )
         
@@ -206,11 +206,11 @@ extension SignUpScreenViewController {
         let passwordPlaceholder = NSAttributedString.init(
             string: "signup_hnt_password".localized(),
             attributes: [
-                NSAttributedStringKey.foregroundColor: UIColor.white,
-                NSAttributedStringKey.font: UIFont.dntLatoLightFont(
+                .foregroundColor: UIColor.white,
+                .font: UIFont.dntLatoLightFont(
                     size: UIFont.dntLabelFontSize
                 )!,
-                NSAttributedStringKey.paragraphStyle: paragraph
+                .paragraphStyle: paragraph
             ]
         )
         
@@ -220,11 +220,11 @@ extension SignUpScreenViewController {
         let captchaPlaceholder = NSAttributedString.init(
             string: "signup_hnt_captcha".localized(),
             attributes: [
-                NSAttributedStringKey.foregroundColor: UIColor.white,
-                NSAttributedStringKey.font: UIFont.dntLatoLightFont(
+                .foregroundColor: UIColor.white,
+                .font: UIFont.dntLatoLightFont(
                     size: UIFont.dntLabelFontSize
                     )!,
-                NSAttributedStringKey.paragraphStyle: paragraph
+                .paragraphStyle: paragraph
             ]
         )
         

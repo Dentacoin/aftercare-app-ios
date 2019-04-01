@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         //Preload main view controller
 //        if let rootViewController = self.window?.rootViewController as? MasterViewController {
@@ -96,7 +96,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     // facebook initialization
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+    internal func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         
         //Twitter scheme
         if TWTRTwitter.sharedInstance().application(app, open: url, options: options) {
@@ -106,7 +106,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Google scheme
         if GIDSignIn.sharedInstance().handle(
             url,
-            sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
+            sourceApplication:options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
             annotation: [:]
         ) {
             return true

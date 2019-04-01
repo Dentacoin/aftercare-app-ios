@@ -584,7 +584,7 @@ public extension UIImage {
         let imageRect = CGRect(origin: CGPoint.zero, size: size)
         var effectImage = self
         let hasBlur = blurRadius > CGFloat(Float.ulpOfOne)
-        let hasSaturationChange = fabs(saturationDeltaFactor - 1.0) > CGFloat(Float.ulpOfOne)
+        let hasSaturationChange = abs(saturationDeltaFactor - 1.0) > CGFloat(Float.ulpOfOne)
         if (hasBlur || hasSaturationChange) {
             
             UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
@@ -751,7 +751,7 @@ public extension UIImage {
     }
     
     func toBase64() -> String? {
-        let imageData = UIImagePNGRepresentation(self)
+        let imageData = self.pngData()
         return imageData?.base64EncodedString(options: Data.Base64EncodingOptions.lineLength64Characters)
     }
     

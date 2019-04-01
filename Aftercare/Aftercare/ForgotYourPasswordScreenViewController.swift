@@ -68,7 +68,7 @@ class ForgotYourPasswordScreenViewController: UIViewController {
         UIView.animate(
             withDuration: 1,
             delay: 0.5,
-            options: UIViewAnimationOptions.curveEaseIn,
+            options: .curveEaseIn,
             animations: { [weak self] in
             
             self?.postRequestMessageYConstraint.constant = 0
@@ -115,9 +115,9 @@ extension ForgotYourPasswordScreenViewController {
         let emailPlaceholder = NSAttributedString.init(
             string: "signup_hnt_email".localized(),
             attributes: [
-                NSAttributedStringKey.foregroundColor: UIColor.white,
-                NSAttributedStringKey.font: UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)!,
-                NSAttributedStringKey.paragraphStyle: paragraph
+                .foregroundColor: UIColor.white,
+                .font: UIFont.dntLatoLightFont(size: UIFont.dntLabelFontSize)!,
+                .paragraphStyle: paragraph
             ])
         self.emailTextField.attributedPlaceholder = emailPlaceholder
         

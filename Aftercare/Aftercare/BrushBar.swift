@@ -87,7 +87,7 @@ class BrushBar: UIView {
     fileprivate func setup() {
         contentView = loadViewFromNib()
         contentView!.frame = bounds
-        contentView!.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
+        contentView!.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(contentView!)
     }
     

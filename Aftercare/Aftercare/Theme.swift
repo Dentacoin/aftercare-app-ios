@@ -390,16 +390,16 @@ class ThemeManager {
         let titleAttributedStringNormal = NSAttributedString(
             string: label,
             attributes: [
-                    NSAttributedStringKey.foregroundColor: UIColor.white,
-                    NSAttributedStringKey.font: titleFontNormal
+                .foregroundColor: UIColor.white,
+                .font: titleFontNormal
                 ]
             )
         
         let titleAttributedStringSelected = NSAttributedString(
             string: label,
             attributes: [
-                    NSAttributedStringKey.foregroundColor: UIColor.white,
-                    NSAttributedStringKey.font: titleFontSelected
+                .foregroundColor: UIColor.white,
+                .font: titleFontSelected
                 ]
             )
         
@@ -456,8 +456,8 @@ class ThemeManager {
             let titleAttributedStringNormal = NSAttributedString(
                 string: label,
                 attributes: [
-                    NSAttributedStringKey.foregroundColor: UIColor.dntCeruleanBlue,
-                    NSAttributedStringKey.font: titleFont
+                    .foregroundColor: UIColor.dntCeruleanBlue,
+                    .font: titleFont
                 ]
             )
             
@@ -478,8 +478,8 @@ class ThemeManager {
             let titleAttributedStringNormal = NSAttributedString(
                 string: label,
                 attributes: [
-                    NSAttributedStringKey.foregroundColor: UIColor.white,
-                    NSAttributedStringKey.font: titleFont
+                    .foregroundColor: UIColor.white,
+                    .font: titleFont
                 ]
             )
             
@@ -508,8 +508,8 @@ class ThemeManager {
         let titleAttributedStringNormal = NSAttributedString(
             string: label,
             attributes: [
-                NSAttributedStringKey.foregroundColor: selected ? UIColor.white : UIColor.dntCeruleanBlue,
-                NSAttributedStringKey.font: titleFont
+                .foregroundColor: selected ? UIColor.white : UIColor.dntCeruleanBlue,
+                .font: titleFont
             ]
         )
         
@@ -655,14 +655,14 @@ class ThemeManager {
                 return
             }
             
-            let titleAttributesNormal: [NSAttributedStringKey : Any] = [
-                NSAttributedStringKey.foregroundColor : UIColor.white,
-                NSAttributedStringKey.font : titleFontNormal
+            let titleAttributesNormal: [NSAttributedString.Key: Any] = [
+                .foregroundColor : UIColor.white,
+                .font : titleFontNormal
             ]
             
-            let titleAttributesSelected: [NSAttributedStringKey : Any] = [
-                NSAttributedStringKey.foregroundColor : UIColor.white,
-                NSAttributedStringKey.font : titleFontSelected
+            let titleAttributesSelected: [NSAttributedString.Key: Any] = [
+                .foregroundColor : UIColor.white,
+                .font : titleFontSelected
             ]
             
             for item: UITabBarItem in tabBarItems {
@@ -670,7 +670,7 @@ class ThemeManager {
                 item.setTitleTextAttributes(titleAttributesNormal, for: .normal)
                 item.setTitleTextAttributes(titleAttributesSelected, for: .highlighted)
                 
-                item.titlePositionAdjustment = UIOffsetMake(0, -((tabBarHeight - fontSize) / 2))
+                item.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -((tabBarHeight - fontSize) / 2))
                 
             }
         }

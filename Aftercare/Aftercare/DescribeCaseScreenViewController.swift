@@ -34,7 +34,7 @@ class DescribeCaseScreenViewController: UIViewController, ContentConformer {
     //MARK: - Public
     
     var header: InsidePageHeaderView! {
-        return headerView as! InsidePageHeaderView
+        return headerView as? InsidePageHeaderView
     }
     
     //MARK: - fileprivates
@@ -252,13 +252,13 @@ extension DescribeCaseScreenViewController: MFMailComposeViewControllerDelegate 
             mailComposerViewController.setToRecipients(["emergency@dentacoin.com"])
             mailComposerViewController.setSubject("emergency_email_subject".localized())
             mailComposerViewController.setMessageBody(messageBody, isHTML: false)
-            mailComposerViewController.addAttachmentData(
-                UIImageJPEGRepresentation(UserDataContainer.shared.emergencyScreenImage!,
-                CGFloat(1.0))!,
-                mimeType: "image/jpeg",
-                fileName:  "dentalCaseImage.jpeg"
-            )
-            
+            if let attachImage = UserDataContainer.shared.emergencyScreenImage, let attachData = attachImage.jpegData(compressionQuality: 1.0) {
+                mailComposerViewController.addAttachmentData(
+                    attachData,
+                    mimeType: "image/jpeg",
+                    fileName: "dentalCaseImage.jpeg"
+                )
+            }
             return mailComposerViewController
         }
     }
@@ -268,18 +268,11 @@ extension DescribeCaseScreenViewController: MFMailComposeViewControllerDelegate 
         controller.dismiss(animated: true, completion: nil)
         
         switch result {
-        case .cancelled:
-            //...
-            break
-        case .failed:
-            //...
-            break
-        case .saved:
-            //...
-            break
-        case .sent:
-            let vcID = String(describing: ThankYouScreenViewController.self)
-            contentDelegate?.requestLoadViewController(vcID, nil)
+            case .sent:
+                let vcID = String(describing: ThankYouScreenViewController.self)
+                contentDelegate?.requestLoadViewController(vcID, nil)
+            default:
+                break
         }
         
     }

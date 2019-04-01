@@ -29,14 +29,14 @@ extension UIViewController {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(self.keyboardWillShow),
-            name: NSNotification.Name.UIKeyboardWillShow,
+            name: UIResponder.keyboardWillShowNotification,
             object: nil
         )
         
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(self.keyboardWillHide),
-            name: NSNotification.Name.UIKeyboardWillHide,
+            name: UIResponder.keyboardWillHideNotification,
             object: nil
         )
         
@@ -49,7 +49,7 @@ extension UIViewController {
     //MARK: - Keyboard Over Content
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             
             var textContainerPosition: CGPoint?
             var textFrame: CGRect?

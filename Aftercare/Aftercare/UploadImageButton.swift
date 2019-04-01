@@ -89,19 +89,21 @@ extension UploadImageButton : UIImagePickerControllerDelegate {
         
     }
     
-    fileprivate func imagePickerFor(sourceType: UIImagePickerControllerSourceType) {
+    fileprivate func imagePickerFor(sourceType: UIImagePickerController.SourceType) {
         
         if UIImagePickerController.isSourceTypeAvailable(sourceType) == false {
             
             var sourceTypeName = ""
             
             switch sourceType {
-            case .camera:
-                sourceTypeName = "Camera"
-            case .photoLibrary:
-                sourceTypeName = "Photo Library"
-            case .savedPhotosAlbum:
-                sourceTypeName = "Photo Album"
+                case .camera:
+                    sourceTypeName = "Camera"
+                case .photoLibrary:
+                    sourceTypeName = "Photo Library"
+                case .savedPhotosAlbum:
+                    sourceTypeName = "Photo Album"
+                default:
+                    sourceTypeName = ""
             }
             
             let errorMessage = "profile_upload_avatar_error".localized(sourceTypeName)
@@ -131,14 +133,14 @@ extension UploadImageButton : UIImagePickerControllerDelegate {
         delegate?.optionsCanceled()
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         var choosedImage: UIImage?
         var choosedImageMaxSize: UIImage?
         
-        if let img = info[UIImagePickerControllerEditedImage] as? UIImage {
+        if let img = info[UIImagePickerController.InfoKey.editedImage.rawValue] as? UIImage {
             choosedImage = img
-        } else if let img = info[UIImagePickerControllerOriginalImage] as? UIImage {
+        } else if let img = info[UIImagePickerController.InfoKey.originalImage.rawValue] as? UIImage {
             choosedImage = img
             
         } else {

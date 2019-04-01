@@ -361,7 +361,7 @@ extension ActionScreenViewController {
         self.currentPageIndex = index
         if animate {
             DispatchQueue.main.async() { [weak self] in
-                UIView.animate(withDuration: 0.25, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+                UIView.animate(withDuration: 0.25, delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
                     self?.contentScrollView.contentOffset.x = (self?.view.frame.width)! * CGFloat(index)
                 }, completion: nil)
             }

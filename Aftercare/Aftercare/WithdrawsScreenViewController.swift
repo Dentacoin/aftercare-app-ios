@@ -18,7 +18,7 @@ class WithdrawsScreenViewController: UIViewController, ContentConformer {
     // MARK: - public
     
     var header: InitialPageHeaderView! {
-        return headerView as! InitialPageHeaderView
+        return headerView as? InitialPageHeaderView
     }
     
     // MARK: - fileprivates
@@ -75,7 +75,7 @@ extension WithdrawsScreenViewController {
         )
         
         withdrawsTableView.estimatedRowHeight = 40
-        withdrawsTableView.rowHeight = UITableViewAutomaticDimension
+        withdrawsTableView.rowHeight = UITableView.automaticDimension
         withdrawsTableView.allowsSelection = false
         withdrawsTableView.dataSource = self
         showLoadingScreenState()

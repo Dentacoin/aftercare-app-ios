@@ -62,7 +62,7 @@ final class MasterViewController: UIViewController {
     
     private func add(asChildViewController viewController: UIViewController) {
         // Add Child View Controller
-        addChildViewController(viewController)
+        addChild(viewController)
         
         // Add Child View as Subview
         view.addSubview(viewController.view)
@@ -72,18 +72,18 @@ final class MasterViewController: UIViewController {
         viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         // Notify Child View Controller
-        viewController.didMove(toParentViewController: self)
+        viewController.didMove(toParent: self)
     }
     
     private func remove(asChildViewController viewController: UIViewController) {
         // Notify Child View Controller
-        viewController.willMove(toParentViewController: nil)
+        viewController.willMove(toParent: nil)
         
         // Remove Child View From Superview
         viewController.view.removeFromSuperview()
         
         // Notify Child View Controller
-        viewController.removeFromParentViewController()
+        viewController.removeFromParent()
     }
     
     //MARK: - View

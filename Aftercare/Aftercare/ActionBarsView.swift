@@ -30,7 +30,7 @@ class ActionBarsView: UIView {
     fileprivate func setup() {
         contentView = loadViewFromNib()
         contentView!.frame = bounds
-        contentView!.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
+        contentView!.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(contentView!)
         customizeComponents()
         invalidateIntrinsicContentSize()
@@ -51,9 +51,9 @@ class ActionBarsView: UIView {
     
     override var intrinsicContentSize: CGSize {
         if let frame = contentView?.frame {
-            return CGSize(width: UIViewNoIntrinsicMetric, height: frame.size.height)
+            return CGSize(width: UIView.noIntrinsicMetric, height: frame.size.height)
         }
-        return CGSize(width: UIViewNoIntrinsicMetric, height: UIViewNoIntrinsicMetric)
+        return CGSize(width: UIView.noIntrinsicMetric, height: UIView.noIntrinsicMetric)
     }
 
     //MARK: - public api

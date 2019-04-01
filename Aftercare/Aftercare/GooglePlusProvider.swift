@@ -169,7 +169,7 @@ extension GooglePlusProvider: GIDSignInUIDelegate {
     
     func sign(inWillDispatch signIn: GIDSignIn!, error: Error!) {
         if error != nil {
-            print("GooglePlusProvider :: google sign-in with error: \(error)")
+            print("GooglePlusProvider :: google sign-in with error: \(String(describing: error))")
         }
     }
     
@@ -267,7 +267,7 @@ extension GooglePlusProvider: GIDSignInDelegate {
                 
             }
             
-            self?.googleSignInViewController?.removeFromParentViewController()
+            self?.googleSignInViewController?.removeFromParent()
             
         }
     }

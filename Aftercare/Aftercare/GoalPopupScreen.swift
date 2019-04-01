@@ -145,7 +145,7 @@ extension GoalPopupScreen {
         
         let shareTitle = NSAttributedString(
             string: "btn_goal_popup_share".localized(),
-            attributes: [NSAttributedStringKey.paragraphStyle: paragraph]
+            attributes: [.paragraphStyle: paragraph]
         )
         shareWithFBButton.setAttributedTitle(shareTitle, for: .normal)
         

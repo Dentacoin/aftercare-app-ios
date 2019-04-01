@@ -92,7 +92,7 @@ struct MissionPopupConfigurator {
         
         let shareTitle = NSAttributedString(
             string: "btn_mission_popup_share".localized(),
-            attributes: [NSAttributedStringKey.paragraphStyle: paragraph]
+            attributes: [.paragraphStyle: paragraph]
         )
         
         popup.shareWithFacebook.setAttributedTitle(shareTitle, for: .normal)

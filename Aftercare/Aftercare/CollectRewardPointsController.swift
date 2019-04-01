@@ -26,7 +26,7 @@ class CollectRewardPointsController: UIViewController, ContentConformer {
     //MARK: - Public
     
     var header: InitialPageHeaderView! {
-        return headerView as! InitialPageHeaderView
+        return headerView as? InitialPageHeaderView
     }
     
     // MARK: - Lifecycle

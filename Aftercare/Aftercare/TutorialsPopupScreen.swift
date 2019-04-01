@@ -127,7 +127,7 @@ class TutorialsPopupScreen: UIViewController {
     fileprivate func scrollContentScrollViewTo(page index: Int) {
         self.currentPage = index
         DispatchQueue.main.async() {
-            UIView.animate(withDuration: 0.25, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+            UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut, animations: {
                 self.contentScrollView.contentOffset.x = self.contentScrollView.frame.size.width * CGFloat(index)
             }, completion: nil)
         }

@@ -80,8 +80,8 @@ enum SystemMethods {
         
         static func saveImageLocally(image: UIImage, imageId: String) {
             let path = fileInDocumentsDirectory(filename: imageId + ".jpg")
-            let jpgImageData: Data? = UIImageJPEGRepresentation(image, 1.0)
-            try! jpgImageData?.write(to: URL(fileURLWithPath: path))
+            guard let jpgImageData = image.jpegData(compressionQuality: 1.0) else { return }
+            try? jpgImageData.write(to: URL(fileURLWithPath: path))
             UserDefaultsManager.shared.setValue(path, forKey: imageId)
         }
         
