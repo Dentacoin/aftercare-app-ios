@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--User Agreement Screen View Controller-->
+        <scene sceneID="e0a-e6-qNX">
+            <objects>
+                <viewController storyboardIdentifier="UserAgreementScreenViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hVA-nE-tss" customClass="UserAgreementScreenViewController" customModule="Aftercare" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="V1g-oM-HgT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nfu-SC-KSr">
+                                <rect key="frame" x="0.0" y="20" width="375" height="499"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a38-A7-c7x">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="499"/>
+                                        <subviews>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="EnC-kO-eGX">
+                                                <rect key="frame" x="16" y="16" width="343" height="483"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
+                                            </textView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="EnC-kO-eGX" secondAttribute="trailing" constant="16" id="7cT-Xy-3lk"/>
+                                            <constraint firstAttribute="bottom" secondItem="EnC-kO-eGX" secondAttribute="bottom" id="8gr-Rd-mf7"/>
+                                            <constraint firstItem="EnC-kO-eGX" firstAttribute="top" secondItem="a38-A7-c7x" secondAttribute="top" constant="16" id="vSQ-Ww-wOL"/>
+                                            <constraint firstItem="EnC-kO-eGX" firstAttribute="leading" secondItem="a38-A7-c7x" secondAttribute="leading" constant="16" id="yWo-Zw-nw9"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="a38-A7-c7x" firstAttribute="top" secondItem="nfu-SC-KSr" secondAttribute="top" id="8wZ-2v-W1e"/>
+                                    <constraint firstItem="a38-A7-c7x" firstAttribute="width" secondItem="nfu-SC-KSr" secondAttribute="width" id="MHS-Hh-957"/>
+                                    <constraint firstAttribute="bottom" secondItem="a38-A7-c7x" secondAttribute="bottom" id="v5c-EM-h7k"/>
+                                    <constraint firstAttribute="trailing" secondItem="a38-A7-c7x" secondAttribute="trailing" id="vP6-xa-Pit"/>
+                                    <constraint firstItem="a38-A7-c7x" firstAttribute="leading" secondItem="nfu-SC-KSr" secondAttribute="leading" id="xcB-Bf-P3r"/>
+                                    <constraint firstAttribute="height" secondItem="a38-A7-c7x" secondAttribute="height" id="zh6-h0-5WN"/>
+                                </constraints>
+                            </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WG9-rJ-yDq">
+                                <rect key="frame" x="0.0" y="535" width="375" height="132"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edP-BA-eF6">
+                                        <rect key="frame" x="47.5" y="0.0" width="280" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="See-k6-T2h"/>
+                                            <constraint firstAttribute="width" constant="280" id="gkw-2H-RUW"/>
+                                        </constraints>
+                                        <state key="normal" title="Agree">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="agreeButtonPressed:" destination="hVA-nE-tss" eventType="touchUpInside" id="SnR-cT-e7x"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="haL-TN-Ig0">
+                                        <rect key="frame" x="47.5" y="66" width="280" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="PTX-iz-UMO"/>
+                                            <constraint firstAttribute="width" constant="280" id="VG4-A5-hAk"/>
+                                        </constraints>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancelButtonPressed:" destination="hVA-nE-tss" eventType="touchUpInside" id="A2b-fa-JxD"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="haL-TN-Ig0" firstAttribute="centerX" secondItem="WG9-rJ-yDq" secondAttribute="centerX" id="AiN-mz-Oto"/>
+                                    <constraint firstAttribute="bottom" secondItem="haL-TN-Ig0" secondAttribute="bottom" constant="16" id="KTq-mJ-dxi"/>
+                                    <constraint firstItem="edP-BA-eF6" firstAttribute="centerX" secondItem="WG9-rJ-yDq" secondAttribute="centerX" id="M8k-K2-0Gt"/>
+                                    <constraint firstItem="haL-TN-Ig0" firstAttribute="top" secondItem="edP-BA-eF6" secondAttribute="bottom" constant="16" id="kDE-jR-vMB"/>
+                                    <constraint firstAttribute="height" constant="132" id="uyg-tz-d0h"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nfu-SC-KSr" firstAttribute="top" secondItem="9NT-b0-hJz" secondAttribute="top" id="FYT-2J-qQb"/>
+                            <constraint firstItem="WG9-rJ-yDq" firstAttribute="leading" secondItem="V1g-oM-HgT" secondAttribute="leading" id="c6m-vB-sxg"/>
+                            <constraint firstAttribute="trailing" secondItem="WG9-rJ-yDq" secondAttribute="trailing" id="ddP-MS-lzC"/>
+                            <constraint firstItem="nfu-SC-KSr" firstAttribute="bottom" secondItem="WG9-rJ-yDq" secondAttribute="top" constant="-16" id="nGY-OF-JPf"/>
+                            <constraint firstItem="nfu-SC-KSr" firstAttribute="leading" secondItem="9NT-b0-hJz" secondAttribute="leading" id="q9W-S9-i2k"/>
+                            <constraint firstItem="9NT-b0-hJz" firstAttribute="bottom" secondItem="WG9-rJ-yDq" secondAttribute="bottom" id="w6Q-Rb-LQg"/>
+                            <constraint firstItem="nfu-SC-KSr" firstAttribute="trailing" secondItem="9NT-b0-hJz" secondAttribute="trailing" id="yZK-bQ-xai"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9NT-b0-hJz"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="agreeButton" destination="edP-BA-eF6" id="X3F-qp-uFr"/>
+                        <outlet property="cancelButton" destination="haL-TN-Ig0" id="SYi-T3-SLr"/>
+                        <outlet property="textField" destination="EnC-kO-eGX" id="EIy-nr-Yo5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bH4-0q-vZ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-16" y="312"/>
+        </scene>
+    </scenes>
+</document>

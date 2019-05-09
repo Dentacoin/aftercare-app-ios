@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Goals Screen View Controller-->
+        <scene sceneID="qkO-Xt-0g2">
+            <objects>
+                <viewController storyboardIdentifier="GoalsScreenViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oyR-kY-G3o" customClass="GoalsScreenViewController" customModule="Aftercare" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="E2L-73-hBX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rwQ-UE-QNv" customClass="InitialPageHeaderView" customModule="Aftercare" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="diA-HV-wnL"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradientGreyBG" translatesAutoresizingMaskIntoConstraints="NO" id="oBs-Ah-35r">
+                                <rect key="frame" x="0.0" y="100" width="375" height="567"/>
+                            </imageView>
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Hef-hF-Nq7">
+                                <rect key="frame" x="8" y="108" width="359" height="551"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="KJA-TG-g18">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rwQ-UE-QNv" firstAttribute="top" secondItem="E2L-73-hBX" secondAttribute="top" id="3Ev-rU-wa3"/>
+                            <constraint firstItem="yrp-C5-REf" firstAttribute="trailing" secondItem="rwQ-UE-QNv" secondAttribute="trailing" id="97l-x0-N1m"/>
+                            <constraint firstItem="Hef-hF-Nq7" firstAttribute="leading" secondItem="yrp-C5-REf" secondAttribute="leading" constant="8" id="Arg-4P-cDM"/>
+                            <constraint firstItem="oBs-Ah-35r" firstAttribute="top" secondItem="rwQ-UE-QNv" secondAttribute="bottom" id="BBh-gr-zMq"/>
+                            <constraint firstItem="rwQ-UE-QNv" firstAttribute="leading" secondItem="yrp-C5-REf" secondAttribute="leading" id="MUE-PG-RZa"/>
+                            <constraint firstItem="oBs-Ah-35r" firstAttribute="leading" secondItem="E2L-73-hBX" secondAttribute="leading" id="Tom-XZ-TfQ"/>
+                            <constraint firstItem="yrp-C5-REf" firstAttribute="bottom" secondItem="Hef-hF-Nq7" secondAttribute="bottom" constant="8" id="cA1-aU-hez"/>
+                            <constraint firstAttribute="trailing" secondItem="oBs-Ah-35r" secondAttribute="trailing" id="cVc-Th-zgC"/>
+                            <constraint firstItem="Hef-hF-Nq7" firstAttribute="top" secondItem="rwQ-UE-QNv" secondAttribute="bottom" constant="8" id="kI4-A9-iwR"/>
+                            <constraint firstItem="yrp-C5-REf" firstAttribute="trailing" secondItem="Hef-hF-Nq7" secondAttribute="trailing" constant="8" id="xHY-y1-Uvm"/>
+                            <constraint firstItem="oBs-Ah-35r" firstAttribute="bottom" secondItem="E2L-73-hBX" secondAttribute="bottom" id="zyU-YJ-zDG"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="yrp-C5-REf"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="collectionView" destination="Hef-hF-Nq7" id="cQm-5c-xub"/>
+                        <outlet property="headerHeightConstraint" destination="diA-HV-wnL" id="bKM-zi-cJV"/>
+                        <outlet property="headerView" destination="rwQ-UE-QNv" id="z1f-0N-VPh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h5X-To-QfE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="852" y="517"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="gradientGreyBG" width="375" height="667"/>
+    </resources>
+</document>

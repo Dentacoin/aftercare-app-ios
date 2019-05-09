@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TutorialView" customModule="Aftercare" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="593"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradientBlueBG" translatesAutoresizingMaskIntoConstraints="NO" id="bNO-cP-zuI">
+                    <rect key="frame" x="28" y="106" width="319" height="414.5"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="bNO-cP-zuI" secondAttribute="height" multiplier="1:1.3" id="890-l6-PCA"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Fy0-Nz-pWw">
+                    <rect key="frame" x="76" y="169.5" width="223.5" height="223.5"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Fy0-Nz-pWw" secondAttribute="height" multiplier="1:1" id="8E8-B4-5kX"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tutorial label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SH3-dv-5Zt">
+                    <rect key="frame" x="36" y="401" width="303" height="111.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ch9-dA-RbH">
+                    <rect key="frame" x="0.0" y="38" width="375" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="TXW-Jy-d0i"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Fy0-Nz-pWw" firstAttribute="centerX" secondItem="bNO-cP-zuI" secondAttribute="centerX" id="QPG-Rd-2i6"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ch9-dA-RbH" secondAttribute="trailing" id="U99-sW-9XO"/>
+                <constraint firstItem="bNO-cP-zuI" firstAttribute="top" secondItem="ch9-dA-RbH" secondAttribute="bottom" constant="8" id="VWa-PW-eJf"/>
+                <constraint firstItem="SH3-dv-5Zt" firstAttribute="top" secondItem="Fy0-Nz-pWw" secondAttribute="bottom" constant="8" id="WJm-fO-Swv"/>
+                <constraint firstItem="bNO-cP-zuI" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.85" id="Xbr-io-Jbe"/>
+                <constraint firstItem="SH3-dv-5Zt" firstAttribute="leading" secondItem="bNO-cP-zuI" secondAttribute="leading" constant="8" id="ZQt-QE-K9P"/>
+                <constraint firstItem="ch9-dA-RbH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="38" id="aZd-MI-OcF"/>
+                <constraint firstItem="bNO-cP-zuI" firstAttribute="trailing" secondItem="SH3-dv-5Zt" secondAttribute="trailing" constant="8" id="gBg-NU-igk"/>
+                <constraint firstItem="ch9-dA-RbH" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="kQN-Wk-glt"/>
+                <constraint firstItem="bNO-cP-zuI" firstAttribute="bottom" secondItem="SH3-dv-5Zt" secondAttribute="bottom" constant="8" id="l4G-ec-Kpt"/>
+                <constraint firstItem="Fy0-Nz-pWw" firstAttribute="width" secondItem="bNO-cP-zuI" secondAttribute="width" multiplier="0.7" id="m12-Dy-jWh"/>
+                <constraint firstItem="Fy0-Nz-pWw" firstAttribute="centerY" secondItem="bNO-cP-zuI" secondAttribute="centerY" constant="-32" id="pNM-8f-YVB"/>
+                <constraint firstItem="bNO-cP-zuI" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="v4A-L4-cYB"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="backgroundImage" destination="bNO-cP-zuI" id="xtM-G0-8it"/>
+                <outlet property="descriptionLabel" destination="SH3-dv-5Zt" id="zFn-Pk-HoA"/>
+                <outlet property="titleLabel" destination="ch9-dA-RbH" id="s7L-S2-3Pp"/>
+                <outlet property="tutorialImage" destination="Fy0-Nz-pWw" id="WSz-Tf-vy0"/>
+            </connections>
+            <point key="canvasLocation" x="34.5" y="17.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="gradientBlueBG" width="375" height="667"/>
+    </resources>
+</document>

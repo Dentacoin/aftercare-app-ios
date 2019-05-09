@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Emergency Screen View Controller-->
+        <scene sceneID="T3M-w7-htI">
+            <objects>
+                <viewController storyboardIdentifier="EmergencyScreenViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BNt-o1-OOh" customClass="EmergencyScreenViewController" customModule="Aftercare" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Lld-Qg-xlw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gJF-Qh-IgF" customClass="InitialPageHeaderView" customModule="Aftercare" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="ZZR-zk-BFP"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradientGreyBG" translatesAutoresizingMaskIntoConstraints="NO" id="uiR-4O-kcD">
+                                <rect key="frame" x="0.0" y="100" width="375" height="567"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a sick tooth" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfV-o9-Ggz">
+                                <rect key="frame" x="16" y="108" width="343" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Mcx-KU-RYJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0p7-GV-njY">
+                                <rect key="frame" x="47.5" y="609" width="280" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="TQM-zs-1AL"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="280" id="V76-Fp-xyh"/>
+                                </constraints>
+                                <state key="normal" title="Next">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="nextButtonPressed:" destination="BNt-o1-OOh" eventType="touchUpInside" id="cRS-UH-4Gz"/>
+                                </connections>
+                            </button>
+                            <view opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gir-ye-6vf">
+                                <rect key="frame" x="65" y="184" width="250" height="400"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="emergencyPanel" translatesAutoresizingMaskIntoConstraints="NO" id="QUO-k8-21e">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="300"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BjU-EK-yen">
+                                        <rect key="frame" x="12" y="125" width="37" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="tooth-2"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zId-nk-Qpc">
+                                        <rect key="frame" x="18" y="97" width="35" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="tooth-3"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A6u-pb-KnX">
+                                        <rect key="frame" x="26" y="76" width="32" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="tooth-4"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ogN-PU-Ecj">
+                                        <rect key="frame" x="34" y="54" width="32" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="tooth-5"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dpv-Pz-CPo">
+                                        <rect key="frame" x="48" y="30" width="29" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="tooth-6"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6F4-Y9-2qu">
+                                        <rect key="frame" x="66" y="18" width="27" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="tooth-7"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M7m-x0-YOK">
+                                        <rect key="frame" x="89" y="8" width="29" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="tooth-8"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IOF-9k-LnD">
+                                        <rect key="frame" x="116" y="8" width="28" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="tooth-9"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kjn-LA-OyV">
+                                        <rect key="frame" x="141" y="18" width="27" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="tooth-10"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rLP-Qf-JTY">
+                                        <rect key="frame" x="157" y="32" width="29" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="tooth-11"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YJl-Mq-ZTz">
+                                        <rect key="frame" x="168" y="54" width="32" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="tooth-12"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vdS-Th-VLp">
+                                        <rect key="frame" x="175" y="76" width="33" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="tooth-13"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SQt-W4-qGH">
+                                        <rect key="frame" x="181" y="97" width="35" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="tooth-14"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hff-1I-IXE">
+                                        <rect key="frame" x="185" y="125" width="36" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="tooth-15"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pxC-44-Xi0">
+                                        <rect key="frame" x="188" y="154" width="36" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="tooth-16"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2FQ-7P-O66">
+                                        <rect key="frame" x="10" y="154" width="37" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="tooth-1"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EX3-Vy-wuc">
+                                        <rect key="frame" x="5" y="216" width="37" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="tooth-17"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d55-1h-Dd3">
+                                        <rect key="frame" x="8" y="244" width="37" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="tooth-18"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zHV-hN-96R">
+                                        <rect key="frame" x="15" y="270" width="34" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="tooth-19"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mMj-IN-Pfi">
+                                        <rect key="frame" x="25" y="296" width="33" height="27"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="tooth-20"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OoN-9p-GOi">
+                                        <rect key="frame" x="36" y="316" width="31" height="27"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="tooth-21"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iCz-Cr-MAS">
+                                        <rect key="frame" x="52" y="331" width="30" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="tooth-22"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRc-fE-CXt">
+                                        <rect key="frame" x="71" y="346" width="26" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="tooth-23"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IF5-O2-mxS">
+                                        <rect key="frame" x="93" y="353" width="24" height="27"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="tooth-24"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B94-So-Odf">
+                                        <rect key="frame" x="117" y="352" width="24" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="tooth-25"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uE0-Jc-69T">
+                                        <rect key="frame" x="137" y="346" width="26" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="tooth-26"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cRo-UK-vZ8">
+                                        <rect key="frame" x="153" y="333" width="28" height="27"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="tooth-27"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nMx-SR-HIx">
+                                        <rect key="frame" x="166" y="316" width="32" height="27"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="tooth-28"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Frr-mi-QHI">
+                                        <rect key="frame" x="177" y="296" width="32" height="27"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="tooth-29"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HLk-Xn-UMp">
+                                        <rect key="frame" x="185" y="271" width="34" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="tooth-30"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ItU-1A-3NA">
+                                        <rect key="frame" x="190" y="245" width="36" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="tooth-31"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B3b-Ld-Fth">
+                                        <rect key="frame" x="193" y="216" width="37" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="tooth-32"/>
+                                    </button>
+                                </subviews>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="uiR-4O-kcD" secondAttribute="trailing" id="5zz-FW-zQb"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="yfV-o9-Ggz" secondAttribute="leading" id="8al-jM-A4D"/>
+                            <constraint firstItem="gJF-Qh-IgF" firstAttribute="leading" secondItem="Umd-Sp-BIp" secondAttribute="leading" id="9yv-7P-Icj"/>
+                            <constraint firstItem="gJF-Qh-IgF" firstAttribute="top" secondItem="Lld-Qg-xlw" secondAttribute="top" id="B9t-fZ-KXx"/>
+                            <constraint firstItem="uiR-4O-kcD" firstAttribute="leading" secondItem="Lld-Qg-xlw" secondAttribute="leading" id="CG9-8Y-II5"/>
+                            <constraint firstItem="Umd-Sp-BIp" firstAttribute="trailing" secondItem="gJF-Qh-IgF" secondAttribute="trailing" id="GYq-OO-4QA"/>
+                            <constraint firstItem="0p7-GV-njY" firstAttribute="bottom" secondItem="Umd-Sp-BIp" secondAttribute="bottom" constant="-8" id="LXM-Ml-OwZ"/>
+                            <constraint firstItem="0p7-GV-njY" firstAttribute="centerX" secondItem="Umd-Sp-BIp" secondAttribute="centerX" id="WQD-yL-wrf"/>
+                            <constraint firstAttribute="bottom" secondItem="uiR-4O-kcD" secondAttribute="bottom" id="cpO-xJ-HMV"/>
+                            <constraint firstItem="uiR-4O-kcD" firstAttribute="top" secondItem="gJF-Qh-IgF" secondAttribute="bottom" id="qYu-Sa-huq"/>
+                            <constraint firstItem="yfV-o9-Ggz" firstAttribute="top" secondItem="gJF-Qh-IgF" secondAttribute="bottom" constant="8" id="uQz-ut-hjx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="yfV-o9-Ggz" secondAttribute="trailing" id="xbc-8s-ZaM"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Umd-Sp-BIp"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="bottomContentPadding" destination="LXM-Ml-OwZ" id="h25-pI-345"/>
+                        <outlet property="headerHeightConstraint" destination="ZZR-zk-BFP" id="98U-bn-ohE"/>
+                        <outlet property="headerView" destination="gJF-Qh-IgF" id="ugQ-hj-QOD"/>
+                        <outlet property="mouthContainer" destination="Gir-ye-6vf" id="Wr4-PZ-ROr"/>
+                        <outlet property="nextButton" destination="0p7-GV-njY" id="6qc-Eo-GpR"/>
+                        <outlet property="titleLabel" destination="yfV-o9-Ggz" id="3Ff-nd-VXj"/>
+                        <outlet property="tooth01" destination="2FQ-7P-O66" id="ASx-ce-inq"/>
+                        <outlet property="tooth02" destination="BjU-EK-yen" id="Coe-q0-lGn"/>
+                        <outlet property="tooth03" destination="zId-nk-Qpc" id="8Wm-Qp-Bws"/>
+                        <outlet property="tooth04" destination="A6u-pb-KnX" id="Z49-IC-Om7"/>
+                        <outlet property="tooth05" destination="ogN-PU-Ecj" id="5Md-Uh-BC2"/>
+                        <outlet property="tooth06" destination="Dpv-Pz-CPo" id="fAx-yW-kVO"/>
+                        <outlet property="tooth07" destination="6F4-Y9-2qu" id="288-Z4-xws"/>
+                        <outlet property="tooth08" destination="M7m-x0-YOK" id="oGa-1R-yD4"/>
+                        <outlet property="tooth09" destination="IOF-9k-LnD" id="clc-tP-rdc"/>
+                        <outlet property="tooth10" destination="Kjn-LA-OyV" id="8pn-AY-8Tj"/>
+                        <outlet property="tooth11" destination="rLP-Qf-JTY" id="THq-NM-Oxi"/>
+                        <outlet property="tooth12" destination="YJl-Mq-ZTz" id="7md-60-ClS"/>
+                        <outlet property="tooth13" destination="vdS-Th-VLp" id="gT9-qc-w0B"/>
+                        <outlet property="tooth14" destination="SQt-W4-qGH" id="Krr-HW-nHn"/>
+                        <outlet property="tooth15" destination="hff-1I-IXE" id="yco-7S-Zls"/>
+                        <outlet property="tooth16" destination="pxC-44-Xi0" id="jRM-fZ-Wme"/>
+                        <outlet property="tooth17" destination="EX3-Vy-wuc" id="FzH-4r-ucO"/>
+                        <outlet property="tooth18" destination="d55-1h-Dd3" id="jGS-Zm-A3T"/>
+                        <outlet property="tooth19" destination="zHV-hN-96R" id="2hu-HJ-gI4"/>
+                        <outlet property="tooth20" destination="mMj-IN-Pfi" id="D7M-vc-gle"/>
+                        <outlet property="tooth21" destination="OoN-9p-GOi" id="v7x-39-b9F"/>
+                        <outlet property="tooth22" destination="iCz-Cr-MAS" id="YQB-69-yD9"/>
+                        <outlet property="tooth23" destination="gRc-fE-CXt" id="WkF-Dm-Hbt"/>
+                        <outlet property="tooth24" destination="IF5-O2-mxS" id="h9u-2x-7V8"/>
+                        <outlet property="tooth25" destination="B94-So-Odf" id="FAQ-Qb-Dz6"/>
+                        <outlet property="tooth26" destination="uE0-Jc-69T" id="khw-EF-UmZ"/>
+                        <outlet property="tooth27" destination="cRo-UK-vZ8" id="biG-VU-Vnl"/>
+                        <outlet property="tooth28" destination="nMx-SR-HIx" id="t6H-sJ-CLV"/>
+                        <outlet property="tooth29" destination="Frr-mi-QHI" id="yIK-Gw-cM9"/>
+                        <outlet property="tooth30" destination="HLk-Xn-UMp" id="bEQ-Vj-OPH"/>
+                        <outlet property="tooth31" destination="ItU-1A-3NA" id="0XF-WT-Ytn"/>
+                        <outlet property="tooth32" destination="B3b-Ld-Fth" id="Uub-Yt-ohz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gey-bR-Z7v" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="850" y="3546"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="emergencyPanel" width="244" height="392"/>
+        <image name="gradientGreyBG" width="375" height="667"/>
+        <image name="tooth-1" width="36" height="29"/>
+        <image name="tooth-10" width="27" height="29"/>
+        <image name="tooth-11" width="29" height="30"/>
+        <image name="tooth-12" width="31" height="27"/>
+        <image name="tooth-13" width="32" height="25"/>
+        <image name="tooth-14" width="34" height="31"/>
+        <image name="tooth-15" width="36" height="29"/>
+        <image name="tooth-16" width="36" height="28"/>
+        <image name="tooth-17" width="36" height="30"/>
+        <image name="tooth-18" width="36" height="29"/>
+        <image name="tooth-19" width="34" height="30"/>
+        <image name="tooth-2" width="36" height="29"/>
+        <image name="tooth-20" width="32" height="26"/>
+        <image name="tooth-21" width="31" height="27"/>
+        <image name="tooth-22" width="29" height="29"/>
+        <image name="tooth-23" width="26" height="29"/>
+        <image name="tooth-24" width="24" height="28"/>
+        <image name="tooth-25" width="24" height="28"/>
+        <image name="tooth-26" width="26" height="29"/>
+        <image name="tooth-27" width="28" height="28"/>
+        <image name="tooth-28" width="32" height="27"/>
+        <image name="tooth-29" width="32" height="26"/>
+        <image name="tooth-3" width="34" height="31"/>
+        <image name="tooth-30" width="34" height="31"/>
+        <image name="tooth-31" width="36" height="29"/>
+        <image name="tooth-32" width="37" height="30"/>
+        <image name="tooth-4" width="32" height="25"/>
+        <image name="tooth-5" width="32" height="27"/>
+        <image name="tooth-6" width="29" height="29"/>
+        <image name="tooth-7" width="26" height="29"/>
+        <image name="tooth-8" width="28" height="30"/>
+        <image name="tooth-9" width="28" height="30"/>
+    </resources>
+</document>

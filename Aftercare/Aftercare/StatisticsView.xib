@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="StatisticsView" customModule="Aftercare" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="307"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradientBlueBG" translatesAutoresizingMaskIntoConstraints="NO" id="XZP-jA-ifO">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="307"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8aM-QP-Q9j">
+                    <rect key="frame" x="137.66666666666666" y="8" width="100" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="4Ob-eF-HVi"/>
+                        <constraint firstAttribute="width" constant="100" id="yDX-3k-dnA"/>
+                    </constraints>
+                    <state key="normal" image="statisticsButtonCloseIcon"/>
+                    <connections>
+                        <action selector="closeStatsticsButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="iWl-aC-uxy"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Statistic Screen Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKy-FP-6MC">
+                    <rect key="frame" x="0.0" y="36" width="375" height="20.333333333333329"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="TRZ-Kj-dGZ">
+                    <rect key="frame" x="8" y="64.333333333333329" width="359" height="36"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nDu-6V-Sz1">
+                            <rect key="frame" x="0.0" y="0.0" width="114.33333333333333" height="36"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="36" id="QlT-d0-Jnh"/>
+                            </constraints>
+                            <state key="normal" title="Daily"/>
+                            <connections>
+                                <action selector="scheduleOptionButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="EdL-TA-Hd8"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IaR-QO-g1b">
+                            <rect key="frame" x="122.33333333333334" y="0.0" width="114.33333333333334" height="36"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="36" id="a6G-c7-1nI"/>
+                            </constraints>
+                            <state key="normal" title="Weekly"/>
+                            <connections>
+                                <action selector="scheduleOptionButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="IDv-ya-v09"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tos-sZ-iwO">
+                            <rect key="frame" x="244.66666666666666" y="0.0" width="114.33333333333334" height="36"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="36" id="XN7-E3-dyH"/>
+                            </constraints>
+                            <state key="normal" title="Mothly"/>
+                            <connections>
+                                <action selector="scheduleOptionButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="YmV-Sc-AbH"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Qm9-dd-Ce1">
+                    <rect key="frame" x="16" y="108.33333333333333" width="343" height="190.66666666666669"/>
+                    <subviews>
+                        <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D7c-k4-1ln" customClass="SmallCircularBar" customModule="Aftercare" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="103.66666666666667" height="190.66666666666666"/>
+                        </view>
+                        <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="53q-DJ-9gy" customClass="SmallCircularBar" customModule="Aftercare" customModuleProvider="target">
+                            <rect key="frame" x="119.66666666666666" y="0.0" width="103.66666666666666" height="190.66666666666666"/>
+                        </view>
+                        <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sRT-PL-1uJ" customClass="SmallCircularBar" customModule="Aftercare" customModuleProvider="target">
+                            <rect key="frame" x="239.33333333333334" y="0.0" width="103.66666666666666" height="190.66666666666666"/>
+                        </view>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="ZKy-FP-6MC" secondAttribute="trailing" id="1mG-ig-73V"/>
+                <constraint firstItem="XZP-jA-ifO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="28B-ui-Ldl"/>
+                <constraint firstAttribute="trailing" secondItem="TRZ-Kj-dGZ" secondAttribute="trailing" constant="8" id="7PV-hN-CU5"/>
+                <constraint firstItem="Qm9-dd-Ce1" firstAttribute="top" secondItem="TRZ-Kj-dGZ" secondAttribute="bottom" constant="8" id="83m-Wx-XJn"/>
+                <constraint firstItem="ZKy-FP-6MC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="88a-Hp-u8I"/>
+                <constraint firstAttribute="bottom" secondItem="XZP-jA-ifO" secondAttribute="bottom" id="CcW-3H-2aY"/>
+                <constraint firstItem="ZKy-FP-6MC" firstAttribute="top" secondItem="8aM-QP-Q9j" secondAttribute="bottom" constant="8" id="Iwh-Im-vZ8"/>
+                <constraint firstAttribute="bottom" secondItem="Qm9-dd-Ce1" secondAttribute="bottom" constant="8" id="NX7-ig-baf"/>
+                <constraint firstItem="8aM-QP-Q9j" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="Nsy-Zr-xLy"/>
+                <constraint firstAttribute="trailing" secondItem="Qm9-dd-Ce1" secondAttribute="trailing" constant="16" id="RXM-Rh-ByS"/>
+                <constraint firstItem="8aM-QP-Q9j" firstAttribute="centerX" secondItem="XZP-jA-ifO" secondAttribute="centerX" id="Vej-3E-xxn"/>
+                <constraint firstItem="Qm9-dd-Ce1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="edc-Vo-haw"/>
+                <constraint firstItem="TRZ-Kj-dGZ" firstAttribute="top" secondItem="ZKy-FP-6MC" secondAttribute="bottom" constant="8" id="j3b-FZ-Ass"/>
+                <constraint firstItem="XZP-jA-ifO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="jR3-gL-vb6"/>
+                <constraint firstItem="TRZ-Kj-dGZ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="y9S-X2-Vth"/>
+                <constraint firstAttribute="trailing" secondItem="XZP-jA-ifO" secondAttribute="trailing" id="zIR-MN-zUJ"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="actionsTakenBar" destination="D7c-k4-1ln" id="iWZ-LQ-5gW"/>
+                <outlet property="averageBar" destination="sRT-PL-1uJ" id="QTS-kR-Ky0"/>
+                <outlet property="dailyOptionButton" destination="nDu-6V-Sz1" id="m9m-aW-Ido"/>
+                <outlet property="monthlyOptionButton" destination="tos-sZ-iwO" id="pZ9-OP-Rbn"/>
+                <outlet property="statisticsTitleLabel" destination="ZKy-FP-6MC" id="cSp-O3-QCm"/>
+                <outlet property="timeLeftBar" destination="53q-DJ-9gy" id="b43-Eo-hDi"/>
+                <outlet property="weeklyOptionButton" destination="IaR-QO-g1b" id="xlY-Mc-7Wm"/>
+            </connections>
+            <point key="canvasLocation" x="34.5" y="53.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="gradientBlueBG" width="375" height="667"/>
+        <image name="statisticsButtonCloseIcon" width="27" height="8"/>
+    </resources>
+</document>

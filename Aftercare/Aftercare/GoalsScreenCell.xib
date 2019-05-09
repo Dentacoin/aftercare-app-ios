@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Black.ttf">
+            <string>Lato-Black</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GoalsScreenCell" id="ohC-Ic-SDu" customClass="GoalsScreenCell" customModule="Aftercare" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="150" height="200"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="150" height="200"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKx-uR-TRD">
+                        <rect key="frame" x="8" y="136" width="134" height="56"/>
+                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="oval-blue" translatesAutoresizingMaskIntoConstraints="NO" id="a2U-ad-MH5">
+                        <rect key="frame" x="15.5" y="8" width="120" height="120"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="a2U-ad-MH5" secondAttribute="height" multiplier="1:1" id="B0i-d1-jBd"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tooth-purple" translatesAutoresizingMaskIntoConstraints="NO" id="1ci-kS-QsP">
+                        <rect key="frame" x="46" y="38" width="60.5" height="60.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="1ci-kS-QsP" secondAttribute="height" multiplier="1:1" id="Nq3-3l-0sW"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="60" translatesAutoresizingMaskIntoConstraints="NO" id="h9X-8a-MEN">
+                        <rect key="frame" x="52.5" y="20" width="46.5" height="96"/>
+                        <fontDescription key="fontDescription" name="Lato-Black" family="Lato" pointSize="80"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star-blue" translatesAutoresizingMaskIntoConstraints="NO" id="LNo-62-rGx">
+                        <rect key="frame" x="86.5" y="25.5" width="25" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="25" id="H8O-pj-SUZ"/>
+                            <constraint firstAttribute="width" secondItem="LNo-62-rGx" secondAttribute="height" multiplier="1:1" id="age-KL-WXt"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="h9X-8a-MEN" firstAttribute="centerY" secondItem="a2U-ad-MH5" secondAttribute="centerY" id="044-zS-6jf"/>
+                <constraint firstItem="LNo-62-rGx" firstAttribute="trailing" secondItem="1ci-kS-QsP" secondAttribute="trailing" constant="5" id="4NX-J2-81B"/>
+                <constraint firstItem="1ci-kS-QsP" firstAttribute="width" secondItem="a2U-ad-MH5" secondAttribute="width" multiplier="0.5" id="86E-H0-vNM"/>
+                <constraint firstAttribute="bottom" secondItem="BKx-uR-TRD" secondAttribute="bottom" constant="8" id="9rg-eB-EJh"/>
+                <constraint firstItem="h9X-8a-MEN" firstAttribute="centerX" secondItem="a2U-ad-MH5" secondAttribute="centerX" id="EaJ-BS-tdi"/>
+                <constraint firstItem="1ci-kS-QsP" firstAttribute="centerX" secondItem="a2U-ad-MH5" secondAttribute="centerX" id="Mey-9P-SkQ"/>
+                <constraint firstItem="1ci-kS-QsP" firstAttribute="centerY" secondItem="a2U-ad-MH5" secondAttribute="centerY" id="Teo-BW-sDo"/>
+                <constraint firstItem="a2U-ad-MH5" firstAttribute="centerX" secondItem="ohC-Ic-SDu" secondAttribute="centerX" id="afC-EG-ECM"/>
+                <constraint firstItem="LNo-62-rGx" firstAttribute="centerY" secondItem="1ci-kS-QsP" secondAttribute="top" id="hBL-va-hjN"/>
+                <constraint firstItem="BKx-uR-TRD" firstAttribute="top" secondItem="a2U-ad-MH5" secondAttribute="bottom" constant="8" id="hic-U3-jhC"/>
+                <constraint firstItem="BKx-uR-TRD" firstAttribute="leading" secondItem="ohC-Ic-SDu" secondAttribute="leading" constant="8" id="lwp-EO-Ll0"/>
+                <constraint firstItem="a2U-ad-MH5" firstAttribute="width" secondItem="ohC-Ic-SDu" secondAttribute="width" multiplier="0.8" id="pIr-UE-0o0"/>
+                <constraint firstItem="a2U-ad-MH5" firstAttribute="top" secondItem="ohC-Ic-SDu" secondAttribute="top" constant="8" id="u3t-4B-UDO"/>
+                <constraint firstAttribute="trailing" secondItem="BKx-uR-TRD" secondAttribute="trailing" constant="8" id="y3t-5k-9Jf"/>
+            </constraints>
+            <size key="customSize" width="150" height="200"/>
+            <connections>
+                <outlet property="numberLabel" destination="h9X-8a-MEN" id="WZG-Qe-AdC"/>
+                <outlet property="ovalImage" destination="a2U-ad-MH5" id="bPJ-OZ-2Oz"/>
+                <outlet property="starImage" destination="LNo-62-rGx" id="WrW-eD-GTl"/>
+                <outlet property="title" destination="BKx-uR-TRD" id="Lqi-8Q-SU6"/>
+                <outlet property="toothImage" destination="1ci-kS-QsP" id="EkH-sm-RRY"/>
+            </connections>
+            <point key="canvasLocation" x="35" y="329"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="oval-blue" width="127" height="126"/>
+        <image name="star-blue" width="34" height="31"/>
+        <image name="tooth-purple" width="66" height="68"/>
+    </resources>
+</document>

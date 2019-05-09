@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OralHealthTableCell" id="aRl-AN-5mu" customClass="OralHealthTableCell" customModule="Aftercare" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="216"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aRl-AN-5mu" id="8W3-bX-Gfc">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="215.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cIR-TN-Vey">
+                        <rect key="frame" x="8" y="8" width="359" height="200"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="200" id="8Ad-Ux-teU"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xrr-oY-tam">
+                        <rect key="frame" x="8" y="183.5" width="359" height="24.5"/>
+                        <color key="backgroundColor" red="0.89507772019999998" green="0.89507772019999998" blue="0.89507772019999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oHY-TJ-7Ky">
+                        <rect key="frame" x="8" y="191.5" width="359" height="0.0"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1to-hP-QGt">
+                        <rect key="frame" x="8" y="200" width="359" height="0.0"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="oHY-TJ-7Ky" firstAttribute="trailing" secondItem="cIR-TN-Vey" secondAttribute="trailing" id="3o4-Cd-7xb"/>
+                    <constraint firstItem="xrr-oY-tam" firstAttribute="leading" secondItem="cIR-TN-Vey" secondAttribute="leading" id="7rK-no-R4c"/>
+                    <constraint firstAttribute="bottom" secondItem="cIR-TN-Vey" secondAttribute="bottom" constant="8" id="DNC-Bo-tBY"/>
+                    <constraint firstItem="xrr-oY-tam" firstAttribute="top" secondItem="oHY-TJ-7Ky" secondAttribute="top" constant="-8" id="EUw-H8-TXQ"/>
+                    <constraint firstAttribute="trailing" secondItem="cIR-TN-Vey" secondAttribute="trailing" constant="8" id="J4M-Vu-ssQ"/>
+                    <constraint firstItem="1to-hP-QGt" firstAttribute="top" secondItem="oHY-TJ-7Ky" secondAttribute="bottom" constant="8" id="NGE-yf-iqU"/>
+                    <constraint firstItem="cIR-TN-Vey" firstAttribute="top" secondItem="8W3-bX-Gfc" secondAttribute="top" constant="8" id="Pyh-Zj-v4e"/>
+                    <constraint firstItem="1to-hP-QGt" firstAttribute="trailing" secondItem="cIR-TN-Vey" secondAttribute="trailing" id="TYH-H4-X0z"/>
+                    <constraint firstItem="xrr-oY-tam" firstAttribute="trailing" secondItem="cIR-TN-Vey" secondAttribute="trailing" id="U3x-1Q-tDh"/>
+                    <constraint firstItem="cIR-TN-Vey" firstAttribute="leading" secondItem="8W3-bX-Gfc" secondAttribute="leading" constant="8" id="Zvr-gw-4ov"/>
+                    <constraint firstItem="1to-hP-QGt" firstAttribute="bottom" secondItem="cIR-TN-Vey" secondAttribute="bottom" constant="-8" id="c6p-lJ-fhV"/>
+                    <constraint firstItem="xrr-oY-tam" firstAttribute="bottom" secondItem="cIR-TN-Vey" secondAttribute="bottom" id="hcl-YM-1DX"/>
+                    <constraint firstItem="1to-hP-QGt" firstAttribute="leading" secondItem="cIR-TN-Vey" secondAttribute="leading" id="knE-sS-tLu"/>
+                    <constraint firstItem="oHY-TJ-7Ky" firstAttribute="leading" secondItem="cIR-TN-Vey" secondAttribute="leading" id="m0d-RV-auQ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="backgroundImage" destination="cIR-TN-Vey" id="0Dp-FK-B9r"/>
+                <outlet property="descriptionLabel" destination="1to-hP-QGt" id="bv1-CZ-93n"/>
+                <outlet property="shadeView" destination="xrr-oY-tam" id="rzs-Os-g3h"/>
+                <outlet property="titleLabel" destination="oHY-TJ-7Ky" id="hdm-9b-l4R"/>
+            </connections>
+            <point key="canvasLocation" x="25.5" y="54"/>
+        </tableViewCell>
+    </objects>
+</document>

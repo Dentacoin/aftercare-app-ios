@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Master View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="MasterViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="MasterViewController" customModule="Aftercare" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="abD-rS-j4a"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="32" y="175"/>
+        </scene>
+        <!--SideMenuViewController-->
+        <scene sceneID="lV4-uJ-DGx">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="SideMenuViewController" storyboardName="SideMenu" referencedIdentifier="SideMenuViewController" id="S61-FA-180" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JJJ-0R-UgI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="699" y="-156"/>
+        </scene>
+        <!--MainMenuViewController-->
+        <scene sceneID="3lH-gx-vKR">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="MainMenuViewController" storyboardName="MainMenu" referencedIdentifier="MainMenuViewController" id="TGa-5d-A7u" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HNb-u6-Brf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="698" y="-196"/>
+        </scene>
+        <!--ActionScreenViewController-->
+        <scene sceneID="I9b-hm-aPH">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="ActionScreenViewController" storyboardName="ActionScreen" referencedIdentifier="ActionScreenViewController" id="vRr-TA-P0V" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="itP-ms-acQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="714" y="-117"/>
+        </scene>
+        <!--UserProfileScreenViewController-->
+        <scene sceneID="iOT-5H-HIb">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="UserProfileScreenViewController" storyboardName="UserProfileScreen" referencedIdentifier="UserProfileScreenViewController" id="92B-sb-WYN" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O2m-MC-cty" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="738" y="-79"/>
+        </scene>
+        <!--EditUserProfileScreenViewController-->
+        <scene sceneID="5o9-vS-5M7">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="EditUserProfileScreenViewController" storyboardName="EditUserProfileScreen" referencedIdentifier="EditUserProfileScreenViewController" id="tyb-yh-t4Z" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GLc-6z-q5a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="757" y="-40"/>
+        </scene>
+        <!--CollectRewardPointsController-->
+        <scene sceneID="5x5-gR-V2G">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="CollectRewardPointsController" storyboardName="CollectRewardPointsScreen" referencedIdentifier="CollectRewardPointsController" id="2wf-3S-pvz" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mHf-hX-lMN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="727" y="-2"/>
+        </scene>
+        <!--CollectScreenViewController-->
+        <scene sceneID="oOL-XP-bs2">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="CollectScreenViewController" storyboardName="CollectScreen" referencedIdentifier="CollectScreenViewController" id="loI-QQ-Wuy" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yrj-x6-Oat" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="718" y="37"/>
+        </scene>
+        <!--CollectSecondScreenViewController-->
+        <scene sceneID="xaq-Mb-Z7m">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="CollectSecondScreenViewController" storyboardName="CollectSecondScreen" referencedIdentifier="CollectSecondScreenViewController" id="CXH-sV-IOZ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fso-Tb-eOI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="754" y="76"/>
+        </scene>
+        <!--SuccessfullyCollectedScreenViewController-->
+        <scene sceneID="Vtd-DL-Z38">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="SuccessfullyCollectedScreenViewController" storyboardName="SuccessfullyCollectedScreen" referencedIdentifier="SuccessfullyCollectedScreenViewController" id="lGK-9K-zbA" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6QA-Nf-OXc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="791" y="115"/>
+        </scene>
+        <!--WithdrawsScreenViewController-->
+        <scene sceneID="P3j-ng-e14">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="WithdrawsScreenViewController" storyboardName="WithdrawsScreen" referencedIdentifier="WithdrawsScreenViewController" id="Oyj-a7-Wn8" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4ET-9F-u7c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="735" y="152"/>
+        </scene>
+        <!--GoalsScreenViewController-->
+        <scene sceneID="32Y-VL-ihP">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="GoalsScreenViewController" storyboardName="GoalsScreen" referencedIdentifier="GoalsScreenViewController" id="Jm8-Fb-8qB" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YPp-OW-Wqd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="709" y="189"/>
+        </scene>
+        <!--StatisticScreenViewController-->
+        <scene sceneID="GnN-RS-kVy">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="StatisticScreenViewController" storyboardName="StatisticScreen" referencedIdentifier="StatisticScreenViewController" id="RIm-AI-aPD" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="etI-R0-rEL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="724" y="227"/>
+        </scene>
+        <!--OralHealthScreenViewController-->
+        <scene sceneID="dR5-yr-AsD">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="OralHealthScreenViewController" storyboardName="OralHealthScreen" referencedIdentifier="OralHealthScreenViewController" id="GM7-BQ-qwg" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ay1-6A-oYZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="735" y="264"/>
+        </scene>
+        <!--EmergencyScreenViewController-->
+        <scene sceneID="AAS-S5-FIr">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="EmergencyScreenViewController" storyboardName="EmergencyScreen" referencedIdentifier="EmergencyScreenViewController" id="roT-9E-zD0" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dW6-qo-gxT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="738" y="303"/>
+        </scene>
+        <!--DescribeCaseScreenViewController-->
+        <scene sceneID="qL9-V7-O5C">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="DescribeCaseScreenViewController" storyboardName="DescribeCaseScreen" referencedIdentifier="DescribeCaseScreenViewController" id="cpb-Dj-wR6" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M8b-EX-TyJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="750" y="338"/>
+        </scene>
+        <!--ThankYouScreenViewController-->
+        <scene sceneID="0hm-kB-518">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="ThankYouScreenViewController" storyboardName="ThankYouScreen" referencedIdentifier="ThankYouScreenViewController" id="d9j-H1-2cq" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ofK-kS-MSC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="730" y="373"/>
+        </scene>
+        <!--AboutScreenViewController-->
+        <scene sceneID="xBQ-Zj-VAe">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="AboutScreenViewController" storyboardName="AboutScreen" referencedIdentifier="AboutScreenViewController" id="OcO-P6-6RY" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pc2-eY-hI8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="713" y="409"/>
+        </scene>
+        <!--SettingsScreenViewController-->
+        <scene sceneID="5hD-t2-mox">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="SettingsScreenViewController" storyboardName="SettingsScreen" referencedIdentifier="SettingsScreenViewController" id="jPC-dd-CYL" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2fg-3U-91k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="726" y="445"/>
+        </scene>
+        <!--BeginScreenViewController-->
+        <scene sceneID="1gq-Xz-g6w">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="BeginScreenViewController" storyboardName="BeginScreen" referencedIdentifier="BeginScreenViewController" id="h6u-j7-cd2" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WNc-7q-41Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-86" y="-406"/>
+        </scene>
+        <!--SignUpScreenViewController-->
+        <scene sceneID="baY-IU-t1a">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="SignUpScreenViewController" storyboardName="SignUpScreen" referencedIdentifier="SignUpScreenViewController" id="ykH-I5-LNy" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a9B-k4-BQW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-77" y="-371"/>
+        </scene>
+        <!--LoginScreenViewController-->
+        <scene sceneID="WNh-pV-EXJ">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="LoginScreenViewController" storyboardName="LoginScreen" referencedIdentifier="LoginScreenViewController" id="Vis-dH-sHb" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dd0-gU-HbP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-86" y="-337"/>
+        </scene>
+        <!--UserAgreementScreenViewController-->
+        <scene sceneID="UXg-Xz-qpf">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="UserAgreementScreenViewController" storyboardName="UserAgreementScreen" referencedIdentifier="UserAgreementScreenViewController" id="KGz-Gd-xQE" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HJZ-iG-x2W" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-36" y="-304"/>
+        </scene>
+        <!--WelcomeScreenViewController-->
+        <scene sceneID="689-CV-XKg">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="WelcomeScreenViewController" storyboardName="WelcomeScreen" referencedIdentifier="WelcomeScreenViewController" id="t4q-yb-Sre" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j8m-qV-Z88" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-68" y="-270"/>
+        </scene>
+        <!--ForgotYourPasswordScreenViewController-->
+        <scene sceneID="PRc-gU-r3I">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="ForgotYourPasswordScreenViewController" storyboardName="ForgotYourPasswordScreen" referencedIdentifier="ForgotYourPasswordScreenViewController" id="X0Q-aL-eWb" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="haB-DS-ocI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-11" y="-236"/>
+        </scene>
+    </scenes>
+</document>
