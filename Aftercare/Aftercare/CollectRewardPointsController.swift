@@ -76,7 +76,7 @@ class CollectRewardPointsController: UIViewController, ContentConformer {
 extension CollectRewardPointsController {
     
     @IBAction func onVisitTheWebsiteButtonPressed(_ sender: UIButton) {
-        guard let url = URL(string: "https://dentacare.dentacoin.com") else {
+        guard let url = URL(string: "https://dentacare.dentacoin.com/withdraw-dentacare-dcn") else {
             return
         }
         UIApplication.shared.open(url, options: [:], completionHandler: nil)

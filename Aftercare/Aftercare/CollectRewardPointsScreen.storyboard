@@ -48,7 +48,7 @@
                                                 <accessibility key="accessibilityConfiguration">
                                                     <accessibilityTraits key="traits" link="YES" staticText="YES"/>
                                                 </accessibility>
-                                                <string key="text">Visit https://dentacare.dentacoin.com 
+                                                <string key="text">Visit https://dentacare.dentacoin.com/withdraw-dentacare-dcn
 and login with your account to claim your reward.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
