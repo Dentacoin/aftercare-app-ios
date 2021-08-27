@@ -71,6 +71,7 @@ class FacebookProvider {
         
         //login.loginBehavior = .web
         
+	login.logOut()
         login.logIn(
             withReadPermissions: [FacebookUserPermissions.Email.rawValue, FacebookUserPermissions.PublicProfile.rawValue],
             from: controller

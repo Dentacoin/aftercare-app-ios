@@ -149,22 +149,6 @@ extension LoginScreenViewController {
             )
         )
         
-        themeManager.setDCBlueTheme(
-            to: twitterButton,
-            ofType: .ButtonSocialNetworkWith(
-                logoNormal: UIImage(named: ImageIDs.twitterIcon)!,
-                logoHighlighted: UIImage(named: ImageIDs.twitterHighlightedIcon)!
-            )
-        )
-        
-        themeManager.setDCBlueTheme(
-            to: googlePlusButton,
-            ofType: .ButtonSocialNetworkWith(
-                logoNormal: UIImage(named: ImageIDs.googlePlusIcon)!,
-                logoHighlighted: UIImage(named: ImageIDs.googlePlusHighlightedIcon)!
-            )
-        )
-        
     }
     
     @discardableResult fileprivate func validateUserData() -> Bool {

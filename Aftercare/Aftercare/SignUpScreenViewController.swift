@@ -254,22 +254,6 @@ extension SignUpScreenViewController {
                     logoHighlighted: UIImage(named: ImageIDs.facebookHighlightedIcon)!
                 )
             )
-        
-        themeManager.setDCBlueTheme(
-            to: self.twitterButton,
-            ofType: .ButtonSocialNetworkWith(
-                logoNormal: UIImage(named: ImageIDs.twitterIcon)!,
-                logoHighlighted: UIImage(named: ImageIDs.twitterHighlightedIcon)!
-            )
-        )
-        
-        themeManager.setDCBlueTheme(
-            to: self.googlePlusButton,
-            ofType: .ButtonSocialNetworkWith(
-                logoNormal: UIImage(named: ImageIDs.googlePlusIcon)!,
-                logoHighlighted: UIImage(named: ImageIDs.googlePlusHighlightedIcon)!
-            )
-        )
     }
     
     @discardableResult fileprivate func validateUserData() -> Bool {

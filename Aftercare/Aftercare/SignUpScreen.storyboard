@@ -248,32 +248,6 @@
                                                                     <action selector="facebookButtonPressed:" destination="bOo-MS-rG8" eventType="touchUpInside" id="fz5-KW-hMp"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Wj-TO-X9i">
-                                                                <rect key="frame" x="61.999999999999986" y="0.0" width="46" height="46"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" secondItem="3Wj-TO-X9i" secondAttribute="height" multiplier="1:1" id="g4n-7d-8Jq"/>
-                                                                    <constraint firstAttribute="width" constant="46" id="rhn-PO-Yfc"/>
-                                                                </constraints>
-                                                                <state key="normal" title="T">
-                                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                </state>
-                                                                <connections>
-                                                                    <action selector="twitterButtonPressed:" destination="bOo-MS-rG8" eventType="touchUpInside" id="eEE-XP-dUd"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B1N-Zr-TDL">
-                                                                <rect key="frame" x="124" y="0.0" width="46" height="46"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" constant="46" id="OC6-EK-7ij"/>
-                                                                    <constraint firstAttribute="width" secondItem="B1N-Zr-TDL" secondAttribute="height" multiplier="1:1" id="RE7-zl-7iF"/>
-                                                                </constraints>
-                                                                <state key="normal" title="G+">
-                                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                </state>
-                                                                <connections>
-                                                                    <action selector="googlePlusButtonPressed:" destination="bOo-MS-rG8" eventType="touchUpInside" id="fag-U2-S68"/>
-                                                                </connections>
-                                                            </button>
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>

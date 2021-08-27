@@ -149,32 +149,6 @@
                                                     <action selector="facebookButtonPressed:" destination="l2U-Ul-Knm" eventType="touchUpInside" id="vHr-tU-daP"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oqA-1p-HFU">
-                                                <rect key="frame" x="62" y="24" width="46" height="46"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="46" id="7Hr-5I-5TA"/>
-                                                    <constraint firstAttribute="height" constant="46" id="RCq-nm-RoL"/>
-                                                </constraints>
-                                                <state key="normal" title="T">
-                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="twitterButtonPressed:" destination="l2U-Ul-Knm" eventType="touchUpInside" id="iph-zR-yCl"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Kn-Mi-XWb">
-                                                <rect key="frame" x="124" y="24" width="46" height="46"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="46" id="G1K-hq-sE5"/>
-                                                    <constraint firstAttribute="height" constant="46" id="lxy-hx-xC6"/>
-                                                </constraints>
-                                                <state key="normal" title="G+">
-                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="googlePlusButtonPressed:" destination="l2U-Ul-Knm" eventType="touchUpInside" id="yFl-DD-UuW"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                     </stackView>
                                 </subviews>

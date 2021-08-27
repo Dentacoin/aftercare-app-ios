@@ -25,9 +25,6 @@ target 'Aftercare' do
   pod 'Firebase/Auth'
   pod 'GoogleSignIn'
 
-  #Civic SDK
-  pod 'CivicConnect'
-
   #Persistence helper
   pod 'Disk'
 
