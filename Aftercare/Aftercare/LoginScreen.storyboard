@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="YCv-dl-onW">
-                                <rect key="frame" x="0.0" y="60" width="375" height="567"/>
+                                <rect key="frame" x="0.0" y="40" width="375" height="587"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" image="dentacareLogo" translatesAutoresizingMaskIntoConstraints="NO" id="cOz-tz-hcy">
                                         <rect key="frame" x="116" y="0.0" width="143" height="46"/>
@@ -32,11 +30,11 @@
                                         </constraints>
                                     </imageView>
                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kaY-2l-UdQ">
-                                        <rect key="frame" x="67.5" y="62" width="240" height="50.5"/>
+                                        <rect key="frame" x="67.5" y="62" width="240" height="84"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="E6H-sc-TPo">
-                                        <rect key="frame" x="16" y="128.5" width="343" height="160"/>
+                                        <rect key="frame" x="16" y="162" width="343" height="156.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="AeV-vN-LbW">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="39"/>
@@ -50,7 +48,6 @@
                                                     </imageView>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fEb-nw-EOA" customClass="SkyFloatingLabelTextField" customModule="Aftercare" customModuleProvider="target">
                                                         <rect key="frame" x="41" y="0.0" width="302" height="39"/>
-                                                        <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <userDefinedRuntimeAttributes>
@@ -71,7 +68,6 @@
                                                     </imageView>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kT0-yu-dEg" customClass="SkyFloatingLabelTextField" customModule="Aftercare" customModuleProvider="target">
                                                         <rect key="frame" x="41" y="0.0" width="302" height="39"/>
-                                                        <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <userDefinedRuntimeAttributes>
@@ -81,10 +77,10 @@
                                                 </subviews>
                                             </stackView>
                                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BQf-aM-Wp8">
-                                                <rect key="frame" x="0.0" y="110" width="343" height="50"/>
+                                                <rect key="frame" x="0.0" y="110" width="343" height="46.5"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SGP-P9-VzH">
-                                                        <rect key="frame" x="207" y="0.0" width="136" height="50"/>
+                                                        <rect key="frame" x="208" y="0.0" width="135" height="46.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="V1e-tH-jhR"/>
                                                         </constraints>
@@ -106,11 +102,11 @@
                                         </subviews>
                                     </stackView>
                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tou-cD-ni6">
-                                        <rect key="frame" x="67.5" y="304.5" width="240" height="50"/>
+                                        <rect key="frame" x="67.5" y="334.5" width="240" height="84"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="WRs-hT-ZRW">
-                                        <rect key="frame" x="47.5" y="370.5" width="280" height="86.5"/>
+                                        <rect key="frame" x="47.5" y="434.5" width="280" height="86.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TMT-na-qFR">
                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
@@ -133,20 +129,31 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Bt3-dt-eJG">
-                                        <rect key="frame" x="102.5" y="473" width="170" height="94"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Bt3-dt-eJG">
+                                        <rect key="frame" x="129.5" y="537" width="116" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u84-cf-5NU">
-                                                <rect key="frame" x="0.0" y="24" width="46" height="46"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="46" id="Ptw-SK-1P3"/>
-                                                    <constraint firstAttribute="height" constant="46" id="mVP-xG-XR7"/>
+                                                    <constraint firstAttribute="height" constant="50" id="mVP-xG-XR7"/>
                                                 </constraints>
-                                                <state key="normal" title="FB">
+                                                <state key="normal" image="fb-highlighted">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="facebookButtonPressed:" destination="l2U-Ul-Knm" eventType="touchUpInside" id="vHr-tU-daP"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hVf-Ws-h2I">
+                                                <rect key="frame" x="66" y="0.0" width="50" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="vMV-Tt-sOt"/>
+                                                </constraints>
+                                                <state key="normal" image="apple-login-50px">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="appleButtonPressed:" destination="l2U-Ul-Knm" eventType="touchUpInside" id="WzX-0E-vPw"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -159,13 +166,14 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uem-Gh-Wei">
-                                <rect key="frame" x="20" y="40" width="30" height="30"/>
+                                <rect key="frame" x="20" y="20" width="30" height="30"/>
                                 <state key="normal" image="backButton"/>
                                 <connections>
                                     <action selector="backButtonPressed:" destination="l2U-Ul-Knm" eventType="touchUpInside" id="BmD-8r-d0N"/>
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="kpE-lO-KxH"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="YCv-dl-onW" firstAttribute="top" secondItem="kpE-lO-KxH" secondAttribute="top" constant="40" id="B3S-5J-wIV"/>
@@ -179,7 +187,6 @@
                             <constraint firstItem="kpE-lO-KxH" firstAttribute="trailing" secondItem="YCv-dl-onW" secondAttribute="trailing" id="TGA-FS-kcx"/>
                             <constraint firstItem="YCv-dl-onW" firstAttribute="leading" secondItem="kpE-lO-KxH" secondAttribute="leading" id="vYk-IJ-cuX"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="kpE-lO-KxH"/>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -187,11 +194,9 @@
                         <outlet property="emailTextField" destination="fEb-nw-EOA" id="9KK-Wm-w0k"/>
                         <outlet property="facebookButton" destination="u84-cf-5NU" id="nrR-T7-l9f"/>
                         <outlet property="forgotPasswordButton" destination="SGP-P9-VzH" id="mhW-KT-uSE"/>
-                        <outlet property="googlePlusButton" destination="2Kn-Mi-XWb" id="uRQ-Xs-Nd0"/>
                         <outlet property="loginButton" destination="TMT-na-qFR" id="pUc-rJ-Vtw"/>
                         <outlet property="orConnectWithLabel" destination="JwR-OM-tTY" id="JQ2-Ae-BjJ"/>
                         <outlet property="passwordTextField" destination="kT0-yu-dEg" id="mH6-yo-mZn"/>
-                        <outlet property="twitterButton" destination="oqA-1p-HFU" id="cBr-Xu-KL9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8fy-LJ-zhe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -199,9 +204,19 @@
             <point key="canvasLocation" x="88.799999999999997" y="391.75412293853077"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="fEb-nw-EOA">
+            <size key="intrinsicContentSize" width="62.5" height="34"/>
+        </designable>
+        <designable name="kT0-yu-dEg">
+            <size key="intrinsicContentSize" width="90.5" height="34"/>
+        </designable>
+    </designables>
     <resources>
+        <image name="apple-login-50px" width="50" height="50"/>
         <image name="backButton" width="30" height="30"/>
         <image name="dentacareLogo" width="239" height="77"/>
+        <image name="fb-highlighted" width="46" height="46"/>
         <image name="gradientBlueBG" width="375" height="667"/>
         <image name="padlockIcon" width="25" height="34"/>
         <image name="userIcon" width="25" height="27"/>

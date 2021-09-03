@@ -57,6 +57,8 @@ struct APIProvider : APIProviderProtocol {
         
         if let param = params as? FacebookRequestData {
             urlRequest = APIRouter.SignUpWithFacebook.post(parameters: param)
+        }else if let param = params as? AppleRequestData {
+            urlRequest = APIRouter.SignUpWithApple.post(parameters: param)
         } else if let param = params as? TwitterRequestData {
             urlRequest = APIRouter.SignUpWithTwitter.post(parameters: param)
         } else if let param = params as? GoogleRequestData {
@@ -118,6 +120,8 @@ struct APIProvider : APIProviderProtocol {
         
         if let param = params as? FacebookRequestData {
             urlRequest = APIRouter.LoginWithFacebook.post(parameters: param)
+        }else if let param = params as? AppleRequestData {
+            urlRequest = APIRouter.LoginWithApple.post(parameters: param)
         } else if let param = params as? TwitterRequestData {
             urlRequest = APIRouter.LoginWithTwitter.post(parameters: param)
         } else if let param = params as? GoogleRequestData {

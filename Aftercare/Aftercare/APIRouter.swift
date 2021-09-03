@@ -26,6 +26,11 @@ struct APIRouter: APIRouterProtocol {
         typealias EParameters = FacebookRequestData
         var route: String = "login"
     }
+    
+    struct LoginWithApple: Creatable {
+        typealias EParameters = AppleRequestData
+        var route: String = "login"
+    }
 
     struct LoginWithTwitter: Creatable {
         typealias EParameters = TwitterRequestData
@@ -46,6 +51,12 @@ struct APIRouter: APIRouterProtocol {
         typealias EParameters = FacebookRequestData
         var route: String = "userreg"
     }
+    
+    struct SignUpWithApple: Creatable {
+        typealias EParameters = AppleRequestData
+        var route: String = "userreg"
+    }
+
 
     struct SignUpWithTwitter: Creatable {
         typealias EParameters = TwitterRequestData

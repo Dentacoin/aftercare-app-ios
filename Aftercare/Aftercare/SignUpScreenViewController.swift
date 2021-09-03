@@ -343,6 +343,16 @@ extension SignUpScreenViewController {
         uiIsBlocked = true
     }
     
+    @IBAction func appleButtonPressed(_ sender: UIButton) {
+        if uiIsBlocked == true {
+            return
+        }
+        output.requestLoginWith(provider: AppleProvider.shared, in: self)
+        showLoadingScreenState()
+        uiIsBlocked = true
+        clearState()
+    }
+    
     @IBAction func twitterButtonPressed(_ sender: UIButton) {
         if uiIsBlocked == true {
             return

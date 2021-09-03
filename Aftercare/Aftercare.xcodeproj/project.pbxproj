@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1864456726DEB7BA00AF8F03 /* AppleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1864456626DEB7BA00AF8F03 /* AppleProvider.swift */; };
+		1864456B26DEE51A00AF8F03 /* build_environment.sh in Resources */ = {isa = PBXBuildFile; fileRef = 1864456A26DEE51A00AF8F03 /* build_environment.sh */; };
 		2430C8BA1F3CA87400353EE1 /* SkyFloatingLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2430C8B91F3CA87400353EE1 /* SkyFloatingLabelTextField.swift */; };
 		2430C8BC1F3CA8A600353EE1 /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2430C8BB1F3CA8A600353EE1 /* SkyFloatingLabelTextFieldWithIcon.swift */; };
 		2430C8BE1F3CA8C700353EE1 /* UITextField+fixCaretPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2430C8BD1F3CA8C700353EE1 /* UITextField+fixCaretPosition.swift */; };
@@ -318,6 +320,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1864456626DEB7BA00AF8F03 /* AppleProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleProvider.swift; sourceTree = "<group>"; };
+		1864456A26DEE51A00AF8F03 /* build_environment.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build_environment.sh; sourceTree = "<group>"; };
+		1864456D26DEE8B600AF8F03 /* development.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = development.plist; sourceTree = "<group>"; };
 		2430C8B91F3CA87400353EE1 /* SkyFloatingLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkyFloatingLabelTextField.swift; sourceTree = "<group>"; };
 		2430C8BB1F3CA8A600353EE1 /* SkyFloatingLabelTextFieldWithIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkyFloatingLabelTextFieldWithIcon.swift; sourceTree = "<group>"; };
 		2430C8BD1F3CA8C700353EE1 /* UITextField+fixCaretPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+fixCaretPosition.swift"; sourceTree = "<group>"; };
@@ -706,6 +711,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1864456826DEE49F00AF8F03 /* config */ = {
+			isa = PBXGroup;
+			children = (
+				1864456926DEE4BF00AF8F03 /* environments */,
+			);
+			name = config;
+			sourceTree = "<group>";
+		};
+		1864456926DEE4BF00AF8F03 /* environments */ = {
+			isa = PBXGroup;
+			children = (
+				1864456A26DEE51A00AF8F03 /* build_environment.sh */,
+				1864456D26DEE8B600AF8F03 /* development.plist */,
+			);
+			name = environments;
+			sourceTree = "<group>";
+		};
 		24657E7B1F13EA390057B846 = {
 			isa = PBXGroup;
 			children = (
@@ -727,6 +749,7 @@
 		24657E861F13EA390057B846 /* Aftercare */ = {
 			isa = PBXGroup;
 			children = (
+				1864456826DEE49F00AF8F03 /* config */,
 				9F9EF2F41F9E0CEE005BE398 /* Aftercare.entitlements */,
 				9FE51F731FAA271700771A34 /* Headers */,
 				24FE8CD51F30D92E00AD582C /* Protocols */,
@@ -1303,6 +1326,7 @@
 				9F28A39E1F5586DE0002FF53 /* FacebookProvider.swift */,
 				9F28A3A01F5586F40002FF53 /* TwitterProvider.swift */,
 				9F28A3A21F5587040002FF53 /* GooglePlusProvider.swift */,
+				1864456626DEB7BA00AF8F03 /* AppleProvider.swift */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -1741,6 +1765,7 @@
 				9F17D3BD1FB56C7200FC96B5 /* male-morning-greeting.mp3 in Resources */,
 				9F17D3CE1FB56C7200FC96B5 /* male-evening-brush-6.mp3 in Resources */,
 				9F17D3B81FB56C7200FC96B5 /* music-1.mp3 in Resources */,
+				1864456B26DEE51A00AF8F03 /* build_environment.sh in Resources */,
 				9FE84F012037032900C35AB6 /* CaptchaView.xib in Resources */,
 				9F17D3BE1FB56C7200FC96B5 /* male-morning-brush-1.mp3 in Resources */,
 				9F17D3C81FB56C7200FC96B5 /* male-morning-rinse-2.mp3 in Resources */,
@@ -2016,6 +2041,7 @@
 				9FBAEE94204468D0009FD69A /* UserDefaultsManager.swift in Sources */,
 				9FE7CC151FB254400042EB14 /* BrushActionView.swift in Sources */,
 				9FE22F841F7FAFAF00238DBB /* NSError+Parser.swift in Sources */,
+				1864456726DEB7BA00AF8F03 /* AppleProvider.swift in Sources */,
 				9FDE781F1F9B406E0013719F /* NotificationsVisitDentist.swift in Sources */,
 				9FCA68CE1FAA1F5F008B36DA /* Utilities.m in Sources */,
 				9FBAEE8C20417F3A009FD69A /* WithdrawsCell.swift in Sources */,
@@ -2235,10 +2261,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Aftercare/Aftercare.entitlements;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 34;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 9VFT72C446;
-				ENVIRONMENT = staging;
+				ENVIRONMENT = development;
 				HEADER_SEARCH_PATHS = (
 					"${PODS_ROOT}/Firebase/Core/Sources",
 					"$(inherited)",
@@ -2266,7 +2292,7 @@
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.6;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dentacoin.dentacare-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2286,7 +2312,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Aftercare/Aftercare.entitlements;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 34;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 9VFT72C446;
 				ENVIRONMENT = production;
@@ -2317,7 +2343,7 @@
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dentacoin.dentacare-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Aftercare/Aftercare-Bridging-Header.h";

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AuthenticationServices
 
 class LoginScreenViewController : UIViewController {
     
@@ -244,6 +245,15 @@ extension LoginScreenViewController {
         showLoadingScreenState()
     }
     
+    
+    @IBAction func appleButtonPressed(_ sender: UIButton) {
+        if uiIsBlocked == true { return }
+        uiIsBlocked = true
+        output.requestLoginWith(provider: AppleProvider.shared, in: self)
+        showLoadingScreenState()
+        clearState()
+    }
+    
     @IBAction func twitterButtonPressed(_ sender: UIButton) {
         if uiIsBlocked == true { return }
         uiIsBlocked = true
@@ -319,3 +329,37 @@ protocol LoginScreenControllerOutputProtocol: ViewControllerOutputProtocol {
     func updateUserConsentOnTermsAndConditions()
 }
 
+extension LoginScreenViewController  : ASAuthorizationControllerDelegate{
+    
+    @available(iOS 13.0, *)
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        print(error.localizedDescription)
+    }
+    @available(iOS 13.0, *)
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        
+        switch authorization.credential {
+        case let credentials as ASAuthorizationAppleIDCredential:
+            print("Email: \(credentials.user)")
+            print("Token: \(credentials.identityToken!)")
+            print("Token string: \(credentials.identityToken?.base64EncodedString() ?? nil)")
+            guard let idTokenString = String(data: credentials.identityToken!, encoding: .utf8) else {
+            print("Unable to serialize token string from data: \(credentials.identityToken.debugDescription)")
+            return
+            }
+            print(idTokenString)
+            
+        default:
+            break
+        }
+    }
+    
+}
+
+extension LoginScreenViewController: ASAuthorizationControllerPresentationContextProviding{
+    
+    @available(iOS 13.0, *)
+    func presentationAnchor(for controller : ASAuthorizationController) -> ASPresentationAnchor {
+        return view.window!
+    }
+}

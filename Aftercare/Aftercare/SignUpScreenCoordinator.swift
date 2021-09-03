@@ -136,7 +136,7 @@ extension SignUpScreenCoordinator: SignUpScreenCoordinatorInputProtocol {
         APIProvider.loginWithSocialNetwork(params: params) { [weak self] result, error in
             
             if let error = error?.toNSError() {
-                if error.code == 417 {//User doesn't exist, try to sign-up
+                if error.code == 417 || error.code == 404 {//User doesn't exist, try to sign-up
                     self?.internalSignUpWithSocial(params)
                 } else {
                     //Unsuccessful login attempt

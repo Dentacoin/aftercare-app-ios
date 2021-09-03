@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>README</key>
+    <string>Copy this file to config/environments/development.plist. DO NOT add it to the targets! It gets copied to environment.plist during build. See build_environment script for more.</string>
+    <key>AppGroup</key>
+    <string>your.app.group</string>
+    <key>HostName</key>
+    <string>localhost</string>
+    <key>AppName</key>
+    <string>Your app name</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.1</string>
+    <key>RandomKey</key>
+    <string>whatever you want</string>
+</dict>
+</plist>

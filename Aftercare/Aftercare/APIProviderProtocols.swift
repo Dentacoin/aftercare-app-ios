@@ -124,5 +124,6 @@ protocol SocialLoginProviderProtocol {
 }
 
 protocol FacebookProviderProtocol: SocialLoginProviderProtocol {}
+protocol AppleProviderProtocol: SocialLoginProviderProtocol {}
 protocol TwitterProviderProtocol: SocialLoginProviderProtocol {}
 protocol GooglePlusProviderProtocol: SocialLoginProviderProtocol {}

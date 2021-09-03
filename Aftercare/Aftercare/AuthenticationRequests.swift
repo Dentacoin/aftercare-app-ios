@@ -56,6 +56,55 @@ class FacebookRequestData: Encodable, AuthenticationRequestProtocol {
     }
 }
 
+class AppleRequestData: Encodable, AuthenticationRequestProtocol {
+    
+   // var email: String?
+    var appleLoginId: String
+    //var appleAccessToken: String?
+    var firstName: String?
+    var lastName: String?
+    var gender: GenderType?
+    var avatar64: String?
+    var consent: Bool?
+    
+    init( id: String) {
+        //self.email = email
+        self.appleLoginId = id
+       // self.appleAccessToken = token
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: AppleRequestKeys.self)
+        
+       // try! container.encode(self.email, forKey: .email)
+        try! container.encode(self.appleLoginId, forKey: .appleLoginId)
+       // try! container.encode(self.appleAccessToken, forKey: .appleAccessToken)
+        
+        if let firstName = self.firstName {
+            try! container.encode(firstName, forKey: .firstName)
+        }
+        if let lastName = self.lastName {
+            try! container.encode(lastName, forKey: .lastName)
+        }
+        if let gender = self.gender {
+            try! container.encode(gender, forKey: .gender)
+        }
+        
+    }
+    
+    enum AppleRequestKeys: String, CodingKey {
+        //case email
+        case appleLoginId
+       // case appleAccessToken
+        case firstName = "firstname"
+        case lastName = "lastname"
+        case gender
+        case avatar64 = "avatar_64"
+        case consent
+    }
+}
+
+
 class TwitterRequestData: Encodable, AuthenticationRequestProtocol {
     
     var email: String

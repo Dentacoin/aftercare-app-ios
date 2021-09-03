@@ -106,6 +106,8 @@
 	<string>Your location is required to better calculate timing of your daily routines</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Please allow Dentacare app access your photos library in order to choose your avatar image.</string>
+	<key>Preprocessor Prefix File</key>
+	<string>environment_preprocess.h</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Lato-Light.ttf</string>
